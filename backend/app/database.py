@@ -14,7 +14,7 @@ from typing import Generator
 # Get database URL from environment or use SQLite for development
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "sqlite:///./visionx.db"  # Default to SQLite for easy development
+    "sqlite:////tmp/visionx.db"
 )
 
 # Handle PostgreSQL URL format from some hosting providers (postgres:// -> postgresql://)

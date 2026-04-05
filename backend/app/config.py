@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     # Application
     APP_NAME: str = "VisionX ML Backend"
     APP_VERSION: str = "1.0.0"
-    DEBUG: bool = True
+    DEBUG: bool = os.getenv("DEBUG", "true").lower() != "false"
     
     # Server
     HOST: str = "0.0.0.0"
