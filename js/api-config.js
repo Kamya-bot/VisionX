@@ -1,15 +1,17 @@
 /**
  * VisionX — API Configuration
  * Handles all backend communication with real JWT authentication.
- * Base URL is read from window.VISIONX_API_URL (set by env) or falls back to localhost.
+ * Base URL is read from window.VISIONX_API_URL (set by env) or falls back to Render.
  */
 
 const API_CONFIG = {
     BASE_URL: (() => {
         if (window.VISIONX_API_URL) return window.VISIONX_API_URL + '/api/v1';
-        // In Docker: frontend is on port 80, backend on port 8000, nginx proxies /api/
-        if (window.location.port === '80' || window.location.port === '') return '/api/v1';
-        // Local dev: Live Server on 5500, backend on 8000
+        // Local dev only
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            return 'http://localhost:8000/api/v1';
+        }
+        // All deployed environments (Vercel, etc.) use Render backend
         return 'https://visionx-mzqc.onrender.com/api/v1';
     })(),
     TIMEOUT: 10000
