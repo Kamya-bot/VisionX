@@ -360,30 +360,54 @@ def generate_sample_user_features(user_id: str) -> Dict[str, Any]:
 def preprocess_user_data(features: Dict, model_store) -> np.ndarray:
     """
     Preprocess user data for model input.
-    Builds an 18-feature vector matching what the scaler was trained on.
+    Builds a 27-feature vector matching the training pipeline exactly:
+      - 18 numerical (original + derived)
+      - 3 device_type one-hot (mobile, tablet, desktop)
+      - 4 decision_speed one-hot (fast, moderate, slow, very_slow)
+      - 2 extra derived (experience_level, session_efficiency)
+    Total: 27
     """
-    session_time = float(features.get("session_time", 600))
-    clicks = float(features.get("clicks", 15))
-    scroll_depth = float(features.get("scroll_depth", 0.7))
+    session_time      = float(features.get("session_time", 600))
+    clicks            = float(features.get("clicks", 15))
+    scroll_depth      = float(features.get("scroll_depth", 0.7))
     categories_viewed = float(features.get("categories_viewed", 3))
-    comparison_count = float(features.get("comparison_count", 4))
-    product_views = float(features.get("product_views", 10))
-    decision_time = float(features.get("decision_time", 600))
-    price_sensitivity = float(features.get("price_sensitivity", 0.5))
-    feature_interest_score = float(features.get("feature_interest_score", 0.7))
-    previous_decisions = float(features.get("previous_decisions", 10))
-    engagement_score = float(features.get("engagement_score", 0.7))
-    purchase_intent_score = float(features.get("purchase_intent_score", 0.6))
+    comparison_count  = float(features.get("comparison_count", 4))
+    product_views     = float(features.get("product_views", 10))
+    decision_time     = float(features.get("decision_time", 600))
+    price_sensitivity       = float(features.get("price_sensitivity", 0.5))
+    feature_interest_score  = float(features.get("feature_interest_score", 0.7))
+    previous_decisions      = float(features.get("previous_decisions", 10))
+    engagement_score        = float(features.get("engagement_score", 0.7))
+    purchase_intent_score   = float(features.get("purchase_intent_score", 0.6))
 
-    # Derived / encoded features to reach 18 total
-    is_mobile = 0.0
-    is_tablet = 0.0
-    is_desktop = 1.0
-    click_rate = clicks / max(session_time / 60.0, 1.0)
-    decision_efficiency = min(comparison_count / max(decision_time / 60.0, 1.0), 1.0)
-    overall_engagement = (engagement_score + purchase_intent_score + scroll_depth) / 3.0
+    # Derived features (same formulas as feature_engineering.py)
+    engagement_ratio    = clicks / (session_time + 1)
+    decision_efficiency = product_views / (decision_time + 1)
+    interaction_score   = clicks * scroll_depth
+    behavior_intensity  = comparison_count + product_views
+    research_depth      = categories_viewed * scroll_depth
+    intent_signal       = (purchase_intent_score * 0.4 +
+                           engagement_score * 0.3 +
+                           decision_efficiency * 0.3)
+    experience_level    = float(np.log1p(previous_decisions))
+    session_efficiency  = product_views / (session_time + 1)
 
+    # device_type one-hot: assume desktop
+    device_mobile  = 0.0
+    device_tablet  = 0.0
+    device_desktop = 1.0
+
+    # decision_speed one-hot based on decision_time bins
+    # bins: fast<300, moderate<900, slow<1800, very_slow>=1800
+    speed_fast      = 1.0 if decision_time < 300  else 0.0
+    speed_moderate  = 1.0 if 300 <= decision_time < 900  else 0.0
+    speed_slow      = 1.0 if 900 <= decision_time < 1800 else 0.0
+    speed_very_slow = 1.0 if decision_time >= 1800 else 0.0
+
+    # Build vector in same column order as get_feature_matrix (alphabetical after exclusions)
+    # Order matches: numerical_columns (18) + device dummies (3) + speed dummies (4) + extra derived (2)
     feature_vector = [
+        # 18 numerical (order matches self.numerical_columns in FeatureEngineer)
         session_time,
         clicks,
         scroll_depth,
@@ -396,12 +420,24 @@ def preprocess_user_data(features: Dict, model_store) -> np.ndarray:
         previous_decisions,
         engagement_score,
         purchase_intent_score,
-        is_mobile,
-        is_tablet,
-        is_desktop,
-        click_rate,
+        engagement_ratio,
         decision_efficiency,
-        overall_engagement,
+        interaction_score,
+        behavior_intensity,
+        research_depth,
+        intent_signal,
+        # 2 extra derived
+        experience_level,
+        session_efficiency,
+        # 3 device one-hot
+        device_desktop,
+        device_mobile,
+        device_tablet,
+        # 4 speed one-hot
+        speed_fast,
+        speed_moderate,
+        speed_slow,
+        speed_very_slow,
     ]
 
     X = np.array(feature_vector, dtype=float).reshape(1, -1)
