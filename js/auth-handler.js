@@ -1,6 +1,7 @@
 /**
  * VisionX — Auth Handler
  * Connects to the real FastAPI backend for login and registration.
+ * Handles Render free-tier cold starts gracefully.
  */
 
 // ─── Guard: redirect logged-in users away from login/register pages ──────────
@@ -11,6 +12,67 @@
         window.location.href = 'login.html';
     }
 })();
+
+
+// ─── Server wake-up: ping backend on page load so it's ready ─────────────────
+(function wakeUpServer() {
+    fetch('https://visionx-mzqc.onrender.com/').catch(() => {});
+})();
+
+
+// ─── apiCall with longer timeout for cold starts ──────────────────────────────
+async function apiCallWithRetry(endpoint, options = {}, timeoutMs = 55000) {
+    const token = localStorage.getItem('auth_token');
+    const config = {
+        method: options.method || 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            ...(token && { 'Authorization': `Bearer ${token}` }),
+        },
+        ...(options.body && { body: JSON.stringify(options.body) })
+    };
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+    try {
+        const response = await fetch(
+            `https://visionx-mzqc.onrender.com/api/v1${endpoint}`,
+            { ...config, signal: controller.signal }
+        );
+        clearTimeout(timeoutId);
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.detail || data.error || data.message || `Error ${response.status}`);
+        }
+        return data;
+
+    } catch (error) {
+        clearTimeout(timeoutId);
+        if (error.name === 'AbortError') {
+            throw new Error('Server is taking too long to respond. Please try again.');
+        }
+        throw error;
+    }
+}
+
+
+// ─── Cold-start banner ────────────────────────────────────────────────────────
+function showWakingBanner() {
+    if (document.getElementById('vx-waking-banner')) return;
+    const banner = document.createElement('div');
+    banner.id = 'vx-waking-banner';
+    banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:#1a56db;color:#fff;padding:10px 20px;font-size:13px;text-align:center;font-family:sans-serif;';
+    banner.innerHTML = '⏳ <strong>Starting server...</strong> — Our free server sleeps when idle. This takes up to 30 seconds on first use. Please wait.';
+    document.body.prepend(banner);
+}
+
+function hideWakingBanner() {
+    const banner = document.getElementById('vx-waking-banner');
+    if (banner) banner.remove();
+}
 
 
 // ─── Login ────────────────────────────────────────────────────────────────────
@@ -31,34 +93,25 @@ async function handleLogin(event) {
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
     }
+    showWakingBanner();
 
     try {
-        const data = await apiCall('/auth/login', {
+        const data = await apiCallWithRetry('/auth/login', {
             method: 'POST',
             body: { email, password }
         });
 
-        const user = {
-            id: data.user_id,
-            email: data.email,
-            name: data.full_name || email.split('@')[0],
-            avatar: (data.full_name || email).charAt(0).toUpperCase(),
-            cluster_id: data.cluster_id,
-            cluster_label: data.cluster_label,
-            created_at: new Date().toISOString()
-        };
-        setCurrentUser(user);
-        localStorage.setItem('auth_token', data.access_token);
-        localStorage.setItem('isAuthenticated', 'true');
-
+        hideWakingBanner();
+        saveUserSession(data, email);
         showNotification('Login successful! Redirecting...', 'success');
         window.location.replace('dashboard.html');
 
     } catch (error) {
+        hideWakingBanner();
         showNotification(error.message || 'Login failed', 'error');
         if (submitBtn) {
             submitBtn.disabled = false;
-            submitBtn.innerHTML = 'Login';
+            submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
         }
     }
 }
@@ -92,36 +145,56 @@ async function handleRegister(event) {
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account...';
     }
+    showWakingBanner();
 
     try {
-        const data = await apiCall('/auth/register', {
+        const data = await apiCallWithRetry('/auth/register', {
             method: 'POST',
             body: { email, password, full_name: name || null }
         });
 
-        const user = {
-            id: data.user_id,
-            email: data.email,
-            name: data.full_name || email.split('@')[0],
-            avatar: (data.full_name || email).charAt(0).toUpperCase(),
-            cluster_id: data.cluster_id,
-            cluster_label: data.cluster_label,
-            created_at: new Date().toISOString()
-        };
-        setCurrentUser(user);
-        localStorage.setItem('auth_token', data.access_token);
-        localStorage.setItem('isAuthenticated', 'true');
-
-        showNotification('Account created! Welcome to VisionX', 'success');
+        hideWakingBanner();
+        saveUserSession(data, email);
+        showNotification('Account created! Welcome to VisionX 🎉', 'success');
         window.location.replace('dashboard.html');
 
     } catch (error) {
+        hideWakingBanner();
         showNotification(error.message || 'Registration failed', 'error');
         if (submitBtn) {
             submitBtn.disabled = false;
-            submitBtn.innerHTML = 'Create Account';
+            submitBtn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
         }
     }
+}
+
+
+// ─── Save session helper ──────────────────────────────────────────────────────
+
+function saveUserSession(data, emailFallback) {
+    const user = {
+        id: data.user_id,
+        email: data.email,
+        name: data.full_name || emailFallback.split('@')[0],
+        avatar: (data.full_name || emailFallback).charAt(0).toUpperCase(),
+        cluster_id: data.cluster_id,
+        cluster_label: data.cluster_label,
+        created_at: new Date().toISOString()
+    };
+    setCurrentUser(user);
+    localStorage.setItem('auth_token', data.access_token);
+    localStorage.setItem('isAuthenticated', 'true');
+}
+
+
+// ─── Google / GitHub OAuth (not yet supported by backend) ────────────────────
+
+function handleGoogleLogin() {
+    showNotification('Google login coming soon! Please use email & password for now.', 'info');
+}
+
+function handleGithubLogin() {
+    showNotification('GitHub login coming soon! Please use email & password for now.', 'info');
 }
 
 
@@ -133,7 +206,7 @@ function handleLogout() {
 }
 
 
-// ─── Update nav with real user name/avatar ───────────────────────────────────
+// ─── Update nav with real user name/avatar ────────────────────────────────────
 
 function updateNavUser() {
     const user = getCurrentUser();
@@ -148,15 +221,25 @@ function updateNavUser() {
 document.addEventListener('DOMContentLoaded', updateNavUser);
 
 
-// ─── Wire up forms ────────────────────────────────────────────────────────────
+// ─── Wire up forms and buttons ────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Forms
     const loginForm = document.getElementById('loginForm');
     if (loginForm) loginForm.addEventListener('submit', handleLogin);
 
     const registerForm = document.getElementById('registerForm');
     if (registerForm) registerForm.addEventListener('submit', handleRegister);
 
-    const logoutBtns = document.querySelectorAll('.logout-btn, [data-action="logout"]');
-    logoutBtns.forEach(btn => btn.addEventListener('click', handleLogout));
+    // Logout buttons
+    document.querySelectorAll('.logout-btn, [data-action="logout"]')
+        .forEach(btn => btn.addEventListener('click', handleLogout));
+
+    // Google buttons (both login + register pages)
+    document.querySelectorAll('.google-btn')
+        .forEach(btn => btn.addEventListener('click', handleGoogleLogin));
+
+    // GitHub buttons
+    document.querySelectorAll('.github-btn')
+        .forEach(btn => btn.addEventListener('click', handleGithubLogin));
 });
