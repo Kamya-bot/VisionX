@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - VisionX</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/ml-components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-eye">
+                        <div class="eye-outer">
+                            <div class="eye-inner">
+                                <div class="eye-pupil"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="logo-text">Vision<span class="gradient-text">X</span></span>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-th-large"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="comparison.html" class="nav-link">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>New Comparison</span>
+                </a>
+                <a href="history.html" class="nav-link">
+                    <i class="fas fa-history"></i>
+                    <span>History</span>
+                </a>
+                <a href="results.html" class="nav-link active">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="profile.html" class="nav-link">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button class="btn btn-secondary btn-full" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <div class="topbar">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <div class="topbar-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search..." class="search-input">
+                </div>
+                
+                <div class="topbar-actions">
+                    <button class="icon-btn notification-btn">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    
+                    <div class="user-menu">
+                        <button class="user-avatar">
+                            <span>JD</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-wrapper">
+                <div class="page-header">
+                    <div>
+                        <h1>Comparison Results</h1>
+                        <p>Analytics and AI-powered insights</p>
+                    </div>
+                    <a href="dashboard.html" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to Dashboard
+                    </a>
+                </div>
+                
+                <!-- ML AI Prediction Card -->
+                <div style="margin-bottom: 2rem;">
+                    <div id="mlPredictionCard"></div>
+                </div>
+                
+                <!-- ML AI Recommendation Card -->
+                <div style="margin-bottom: 2rem;">
+                    <div id="mlRecommendationCard"></div>
+                </div>
+                
+                <!-- ML Score Breakdown (Optional) -->
+                <div class="glass-card" style="padding: 2rem;">
+                    <div class="card-header" style="margin-bottom: 1.5rem;">
+                        <h3><i class="fas fa-chart-radar"></i> Score Breakdown by Criteria</h3>
+                    </div>
+                    <div id="mlScoreBreakdown" style="height: 400px;"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/ml-integration.js"></script>
+    <script src="js/results-ml.js"></script>
+    <script>
+        // Sample comparison data - Replace with actual data from your comparison
+        const comparisonData = {
+            comparison_id: 'comp_demo_001',
+            options: ['Company A', 'Company B', 'Company C'],
+            criteria: [
+                { name: 'Salary', weight: 0.4 },
+                { name: 'Career Growth', weight: 0.3 },
+                { name: 'Work-Life Balance', weight: 0.2 },
+                { name: 'Location', weight: 0.1 }
+            ],
+            scores: {
+                'Company A': { 'Salary': 9, 'Career Growth': 6, 'Work-Life Balance': 8, 'Location': 7 },
+                'Company B': { 'Salary': 7, 'Career Growth': 9, 'Work-Life Balance': 6, 'Location': 8 },
+                'Company C': { 'Salary': 5, 'Career Growth': 7, 'Work-Life Balance': 9, 'Location': 6 }
+            }
+        };
+        
+        // Initialize ML features when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeResultsML(comparisonData.comparison_id, comparisonData);
+            
+            // Optional: Render score breakdown radar chart
+            // renderScoreBreakdown(comparisonData.scores['Company A']);
+        });
+    </script>
+    
+    <!-- Real Data Integration -->
+    <script src="js/api-config.js"></script>
+    <script src="js/auth-handler.js"></script>
+    <script src="js/results-real.js"></script>
+</body>
+</html>

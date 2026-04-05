@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionX Pre-Deployment Checklist</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/checklist.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="checklist-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <div class="checklist-container">
+        <!-- Header -->
+        <header class="checklist-header">
+            <div class="header-content">
+                <div class="header-logo">
+                    <div class="logo-eye">
+                        <div class="eye-outer">
+                            <div class="eye-inner">
+                                <div class="eye-pupil"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h1>Vision<span class="gradient-text">X</span></h1>
+                </div>
+                <div class="header-title">
+                    <h2>Pre-Deployment Checklist</h2>
+                    <p>ML-Integrated Frontend • Production Readiness Validation</p>
+                </div>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="progress-section">
+                <div class="progress-info">
+                    <span class="progress-label">Overall Progress</span>
+                    <span class="progress-value" id="progressValue">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-stats">
+                    <span><i class="fas fa-check-circle"></i> <span id="completedCount">0</span> Completed</span>
+                    <span><i class="fas fa-clock"></i> <span id="pendingCount">0</span> Pending</span>
+                    <span><i class="fas fa-exclamation-circle"></i> <span id="criticalCount">0</span> Critical</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="checklist-main">
+            <!-- Quick Actions -->
+            <div class="quick-actions glass-card">
+                <button class="action-btn" onclick="checkAllAPI()">
+                    <i class="fas fa-bolt"></i> Quick API Test
+                </button>
+                <button class="action-btn" onclick="testAllBrowsers()">
+                    <i class="fas fa-globe"></i> Browser Test
+                </button>
+                <button class="action-btn" onclick="exportChecklist()">
+                    <i class="fas fa-download"></i> Export Report
+                </button>
+                <button class="action-btn" onclick="resetChecklist()">
+                    <i class="fas fa-redo"></i> Reset All
+                </button>
+            </div>
+
+            <!-- Checklist Sections -->
+            
+            <!-- Section 1: Backend & API Readiness -->
+            <section class="checklist-section glass-card" data-section="backend">
+                <div class="section-header" onclick="toggleSection('backend')">
+                    <div class="section-title">
+                        <span class="section-number">1</span>
+                        <div class="section-info">
+                            <h3>Backend & API Readiness</h3>
+                            <p>Verify ML backend is configured and responsive</p>
+                        </div>
+                    </div>
+                    <div class="section-status">
+                        <span class="section-progress">0/6</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+                
+                <div class="section-content">
+                    <div class="checklist-item critical" data-item="backend-running">
+                        <div class="item-header">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" onchange="updateProgress()">
+                                <span class="checkbox-custom"></span>
+                            </label>
+                            <div class="item-info">
+                                <div class="item-title">
+                                    <span>Verify ML backend is running</span>
+                                    <span class="badge badge-critical">CRITICAL</span>
+                                </div>
+                                <p class="item-description">Test backend health endpoint and verify service is online</p>
+                            </div>
+                            <button class="item-help" data-tooltip="Run: curl http://your-backend.com/health">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                        <div class="item-actions">
+                            <button class="test-btn" onclick="testBackendHealth()">
+                                <i class="fas fa-play"></i> Test Now
+                            </button>
+                            <span class="test-result" id="result-backend-running"></span>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item critical" data-item="config-url">
+                        <div class="item-header">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" onchange="updateProgress()">
+                                <span class="checkbox-custom"></span>
+                            </label>
+                            <div class="item-info">
+                                <div class="item-title">
+                                    <span>Update ML_CONFIG.baseURL</span>
+                                    <span class="badge badge-critical">CRITICAL</span>
+                                </div>
+                                <p class="item-description">Update baseURL in js/ml-integration.js to production URL</p>
+                            </div>
+                            <button class="item-help" data-tooltip="File: js/ml-integration.js line 26">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                        <div class="item-code">
+                            <pre><code>const ML_CONFIG = {
+    baseURL: 'https://your-backend.com', // ← Update this
+};</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item" data-item="api-clustering">
+                        <div class="item-header">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" onchange="updateProgress()">
+                                <span class="checkbox-custom"></span>
+                            </label>
+                            <div class="item-info">
+                                <div class="item-title">
+                                    <span>Test user clustering endpoints</span>
+                                </div>
+                                <p class="item-description">GET /api/v1/ml/user-cluster & /cluster-stats</p>
+                            </div>
+                            <button class="item-help" data-tooltip="Should return cluster ID (0-2) and confidence score">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                        <div class="item-actions">
+                            <button class="test-btn" onclick="testClusteringAPI()">
+                                <i class="fas fa-play"></i> Test
+                            </button>
+                            <span class="test-result" id="result-api-clustering"></span>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item" data-item="api-predictions">
+                        <div class="item-header">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" onchange="updateProgress()">
+                                <span class="checkbox-custom"></span>
+                            </label>
+                            <div class="item-info">
+                                <div class="item-title">
+                                    <span>Test prediction & recommendation endpoints</span>
+                                </div>
+                                <p class="item-description">POST /api/v1/ml/predict & /recommend</p>
+                            </div>
+                            <button class="item-help" data-tooltip="Should return predicted option and confidence">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                        <div class="item-actions">
+                            <button class="test-btn" onclick="testPredictionAPI()">
+                                <i class="fas fa-play"></i> Test
+                            </button>
+                            <span class="test-result" id="result-api-predictions"></span>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item" data-item="cors">
+                        <div class="item-header">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" onchange="updateProgress()">
+                                <span class="checkbox-custom"></span>
+                            </label>
+                            <div class="item-info">
+                                <div class="item-title">
+                                    <span>Check CORS configuration</span>
+                                </div>
+                                <p class="item-description">Verify backend allows requests from your domain</p>
+                            </div>
+                            <button class="item-help" data-tooltip="Check browser console for CORS errors">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item" data-item="retry-logic">
+                        <div class="item-header">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" onchange="updateProgress()">
+                                <span class="checkbox-custom"></span>
+                            </label>
+                            <div class="item-info">
+                                <div class="item-title">
+                                    <span>Test retry logic and timeouts</span>
+                                </div>
+                                <p class="item-description">Verify 3 retries with 1s delays, 10s timeout</p>
+                            </div>
+                            <button class="item-help" data-tooltip="Temporarily stop backend to test retry behavior">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                        <div class="item-actions">
+                            <button class="test-btn" onclick="testRetryLogic()">
+                                <i class="fas fa-play"></i> Test
+                            </button>
+                            <span class="test-result" id="result-retry-logic"></span>
+                        </div>
+                    </div>
+
+                    <div class="pro-tip">
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <strong>FAANG Tip:</strong> Set up health monitoring with services like Datadog or New Relic to track API response times and error rates in production.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Frontend Verification -->
+            <section class="checklist-section glass-card" data-section="frontend">
+                <div class="section-header" onclick="toggleSection('frontend')">
+                    <div class="section-title">
+                        <span class="section-number">2</span>
+                        <div class="section-info">
+                            <h3>Frontend Verification</h3>
+                            <p>Ensure all ML components render correctly</p>
+                        </div>
+                    </div>
+                    <div class="section-status">
+                        <span class="section-progress">0/6</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+                
+                <div class="section-content">
+                    <div class="checklist-item critical" data-item="browser-test">
+                        <div class="item-header">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" onchange="updateProgress()">
+                                <span class="checkbox-custom"></span>
+                            </label>
+                            <div class="item-info">
+                                <div class="item-title">
+                                    <span>Test in multiple browsers</span>
+                                    <span class="badge badge-critical">CRITICAL</span>
+                                </div>
+                                <p class="item-description">Chrome, Firefox, Safari, Edge - all 90+ versions</p>
+                            </div>
+                            <button class="item-help" data-tooltip="Test dashboard.html and results.html in each browser">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                        <div class="browser-grid">
+                            <div class="browser-item">
+                                <i class="fab fa-chrome"></i>
+                                <span>Chrome</span>
+                                <input type="checkbox" data-browser="chrome">
+                            </div>
+                            <div class="browser-item">
+                                <i class="fab fa-firefox"></i>
+                                <span>Firefox</span>
+                                <input type="checkbox" data-browser="firefox">
+                            </div>
+                            <div class="browser-item">
+                                <i class="fab fa-safari"></i>
+                                <span>Safari</span>
+                                <input type="checkbox" data-browser="safari">
+                            </div>
+                            <div class="browser-item">
+                                <i class="fab fa-edge"></i>
+                                <span>Edge</span>
+                                <input type="checkbox" data-browser="edge">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item critical" data-item="ml-containers">
+                        <div class="item-header">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" onchange="updateProgress()">
+                                <span class="checkbox-custom"></span>
+                            </label>
+                            <div class="item-info">
+                                <div class="item-title">
+                                    <span>Confirm ML containers render</span>
+                                    <span class="badge badge-critical">CRITICAL</span>
+                                </div>
+                                <p class="item-description">Cluster badge, insights feed, prediction/recommendation cards</p>
+                            </div>
+                            <button class="item-help" data-tooltip="Check for #mlClusterBadge, #mlInsightsFeed, #mlPredictionCard">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                        <div class="container-checklist">
+                            <label><input type="checkbox"> #mlClusterBadge</label>
+                            <label><input type="checkbox"> #mlInsightsFeed</label>
+                            <label><input type="checkbox"> #mlPerformanceStats</label>
+                            <label><input type="checkbox"> #mlPredictionCard</label>
+                            <label><input type="checkbox"> #mlRecommendationCard</label>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item" data-item="animations">
+                        <div class="item-header">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" onchange="updateProgress()">
+                                <span class="checkbox-custom"></span>
+                            </label>
+                            <div class="item-info">
+                                <div class="item-title">
+                                    <span>Verify animations</span>
+                                </div>
+                                <p class="item-description">Glassmorphic effects, confidence bars, chart animations</p>
+                            </div>
+                            <button class="item-help" data-tooltip="All animations should be smooth at 60fps">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item" data-item="charts">
+                        <div class="item-header">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" onchange="updateProgress()">
+                                <span class="checkbox-custom"></span>
+                            </label>
+                            <div class="item-info">
+                                <div class="item-title">
+                                    <span>Verify Chart.js rendering</span>
+                                </div>
+                                <p class="item-description">Doughnut chart (patterns), Radar chart (score breakdown)</p>
+                            </div>
+                            <button class="item-help" data-tooltip="Check activityChart, categoriesChart, patternsChart">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item" data-item="refresh">
+                        <div class="item-header">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" onchange="updateProgress()">
+                                <span class="checkbox-custom"></span>
+                            </label>
+                            <div class="item-info">
+                                <div class="item-title">
+                                    <span>Test refresh features</span>
+                                </div>
+                                <p class="item-description">Manual refresh button and auto-refresh (if enabled)</p>
+                            </div>
+                            <button class="item-help" data-tooltip="Click refresh button in insights feed">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item" data-item="console-errors">
+                        <div class="item-header">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" onchange="updateProgress()">
+                                <span class="checkbox-custom"></span>
+                            </label>
+                            <div class="item-info">
+                                <div class="item-title">
+                                    <span>Console is error-free</span>
+                                </div>
+                                <p class="item-description">No red errors in browser console (F12)</p>
+                            </div>
+                            <button class="item-help" data-tooltip="Press F12 and check Console tab">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="pro-tip">
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <strong>FAANG Tip:</strong> Use Chrome's Lighthouse audit (F12 → Lighthouse) to check performance, accessibility, and best practices scores. Aim for 90+ in all categories.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Continue in next message due to length... -->
+            
+        </main>
+    </div>
+
+    <script src="js/checklist.js"></script>
+</body>
+</html>

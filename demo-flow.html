@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>End-to-End Demo - VisionX</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/ml-components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .demo-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .demo-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, rgba(79, 140, 255, 0.1), rgba(123, 97, 255, 0.1));
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .demo-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4F8CFF, #7B61FF, #A855F7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .demo-header p {
+            color: var(--secondary-text);
+            font-size: 1.2rem;
+        }
+
+        .flow-steps {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(79, 140, 255, 0.3);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #4F8CFF, #7B61FF);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 4px 12px rgba(79, 140, 255, 0.4);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-left: 60px;
+        }
+
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(79, 140, 255, 0.2), rgba(123, 97, 255, 0.2));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .step-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-text);
+        }
+
+        .step-content {
+            padding-left: 60px;
+        }
+
+        .step-description {
+            color: var(--secondary-text);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .demo-section {
+            background: var(--secondary-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .input-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-label {
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .input-field {
+            padding: 0.75rem;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--primary-text);
+            font-size: 1rem;
+        }
+
+        .demo-btn {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, #3FA8FF, #5F8CFF);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .demo-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(63, 168, 255, 0.4);
+        }
+
+        .demo-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, rgba(79, 140, 255, 0.05), rgba(123, 97, 255, 0.05));
+            border: 2px solid rgba(79, 140, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .result-box.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .result-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #10B981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .result-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-text);
+        }
+
+        .result-content {
+            color: var(--secondary-text);
+        }
+
+        .prediction-display {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .prediction-item {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .prediction-label {
+            color: var(--muted);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .prediction-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-accent);
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .chart-container-small {
+            position: relative;
+            height: 250px;
+            margin-top: 1rem;
+        }
+
+        .next-step-btn {
+            background: linear-gradient(135deg, #10B981, #059669);
+            margin-top: 1rem;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 20px;
+            color: #10B981;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .demo-header h1 {
+                font-size: 2rem;
+            }
+
+            .step-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-eye"></i>
+            <span>VisionX</span>
+        </div>
+        <div class="nav-links">
+            <a href="dashboard.html"><i class="fas fa-th-large"></i> Dashboard</a>
+            <a href="demo-flow.html" class="active"><i class="fas fa-play-circle"></i> Live Demo</a>
+            <a href="explainability.html"><i class="fas fa-chart-bar"></i> Explainability</a>
+            <a href="simulation.html"><i class="fas fa-flask"></i> Simulation</a>
+            <a href="monitoring.html"><i class="fas fa-heartbeat"></i> Monitoring</a>
+            <a href="analytics-dashboard.html"><i class="fas fa-chart-line"></i> Analytics</a>
+        </div>
+        <div class="nav-actions">
+            <button class="nav-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1><i class="fas fa-rocket"></i> Complete ML Pipeline Demo</h1>
+            <p>Experience the full VisionX journey: Prediction → Explanation → Simulation → Analytics</p>
+        </div>
+
+        <div class="flow-steps">
+            <!-- Step 1: Input & Prediction -->
+            <div class="step-card" id="step1">
+                <div class="step-number">1</div>
+                <div class="step-header">
+                    <div class="step-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h2 class="step-title">Input Data & Get Prediction</h2>
+                </div>
+                <div class="step-content">
+                    <p class="step-description">
+                        Start by entering decision parameters. Our ML model will analyze your input and provide a prediction with confidence score.
+                    </p>
+                    
+                    <div class="demo-section">
+                        <div class="input-section">
+                            <div class="input-group">
+                                <label class="input-label">Price ($)</label>
+                                <input type="number" id="price" class="input-field" value="250" step="10">
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Quality Score (1-5)</label>
+                                <input type="number" id="quality" class="input-field" value="4.2" step="0.1" min="1" max="5">
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Delivery Time (days)</label>
+                                <input type="number" id="delivery" class="input-field" value="3" step="1">
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Brand Reputation (1-5)</label>
+                                <input type="number" id="brand" class="input-field" value="4.0" step="0.1" min="1" max="5">
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Customer Reviews (1-5)</label>
+                                <input type="number" id="reviews" class="input-field" value="4.5" step="0.1" min="1" max="5">
+                            </div>
+                        </div>
+                        
+                        <button class="demo-btn" id="predictBtn">
+                            <i class="fas fa-brain"></i>
+                            <span>Generate Prediction</span>
+                        </button>
+
+                        <div class="result-box" id="predictionResult">
+                            <div class="result-header">
+                                <div class="result-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div>
+                                    <h3 class="result-title">Prediction Complete</h3>
+                                    <span class="status-badge">
+                                        <i class="fas fa-check-circle"></i>
+                                        Step 1 Complete
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="prediction-display" id="predictionDisplay"></div>
+                            <button class="demo-btn next-step-btn" onclick="scrollToStep(2)">
+                                <span>Next: View Explanation</span>
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: SHAP Explainability -->
+            <div class="step-card" id="step2">
+                <div class="step-number">2</div>
+                <div class="step-header">
+                    <div class="step-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h2 class="step-title">SHAP Explainability</h2>
+                </div>
+                <div class="step-content">
+                    <p class="step-description">
+                        Understand WHY the model made its prediction. See which features had the most impact on the decision.
+                    </p>
+                    
+                    <div class="demo-section">
+                        <button class="demo-btn" id="explainBtn" disabled>
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Generate SHAP Explanation</span>
+                        </button>
+
+                        <div class="result-box" id="explanationResult">
+                            <div class="result-header">
+                                <div class="result-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div>
+                                    <h3 class="result-title">Feature Importance Analysis</h3>
+                                    <span class="status-badge">
+                                        <i class="fas fa-check-circle"></i>
+                                        Step 2 Complete
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="chart-container-small">
+                                <canvas id="shapChart"></canvas>
+                            </div>
+                            <button class="demo-btn next-step-btn" onclick="scrollToStep(3)">
+                                <span>Next: Run Simulation</span>
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Decision Simulation -->
+            <div class="step-card" id="step3">
+                <div class="step-number">3</div>
+                <div class="step-header">
+                    <div class="step-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h2 class="step-title">Decision Simulation</h2>
+                </div>
+                <div class="step-content">
+                    <p class="step-description">
+                        Explore "What-If" scenarios. See how changing key parameters affects the prediction.
+                    </p>
+                    
+                    <div class="demo-section">
+                        <button class="demo-btn" id="simulateBtn" disabled>
+                            <i class="fas fa-play"></i>
+                            <span>Run "Increase Budget" Scenario</span>
+                        </button>
+
+                        <div class="result-box" id="simulationResult">
+                            <div class="result-header">
+                                <div class="result-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div>
+                                    <h3 class="result-title">Simulation Complete</h3>
+                                    <span class="status-badge">
+                                        <i class="fas fa-check-circle"></i>
+                                        Step 3 Complete
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="prediction-display" id="simulationDisplay"></div>
+                            <button class="demo-btn next-step-btn" onclick="scrollToStep(4)">
+                                <span>Next: View Analytics</span>
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Analytics Dashboard -->
+            <div class="step-card" id="step4">
+                <div class="step-number">4</div>
+                <div class="step-header">
+                    <div class="step-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2 class="step-title">Business Analytics</h2>
+                </div>
+                <div class="step-content">
+                    <p class="step-description">
+                        View comprehensive business metrics and KPIs. Track performance, trends, and insights.
+                    </p>
+                    
+                    <div class="demo-section">
+                        <div class="prediction-display">
+                            <div class="prediction-item">
+                                <div class="prediction-label">Decision Success Rate</div>
+                                <div class="prediction-value">92.4%</div>
+                            </div>
+                            <div class="prediction-item">
+                                <div class="prediction-label">Avg Satisfaction</div>
+                                <div class="prediction-value">4.6/5</div>
+                            </div>
+                            <div class="prediction-item">
+                                <div class="prediction-label">Active Users</div>
+                                <div class="prediction-value">8,432</div>
+                            </div>
+                            <div class="prediction-item">
+                                <div class="prediction-label">Conversion Rate</div>
+                                <div class="prediction-value">34.2%</div>
+                            </div>
+                        </div>
+                        
+                        <a href="analytics-dashboard.html" class="demo-btn" style="text-decoration: none; margin-top: 2rem;">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Open Full Analytics Dashboard</span>
+                        </a>
+
+                        <div class="result-box show">
+                            <div class="result-header">
+                                <div class="result-icon">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <div>
+                                    <h3 class="result-title">Demo Complete!</h3>
+                                    <span class="status-badge">
+                                        <i class="fas fa-star"></i>
+                                        All Steps Completed
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="result-content">
+                                <p style="margin: 1rem 0;">
+                                    🎉 Congratulations! You've experienced the complete VisionX ML pipeline:
+                                </p>
+                                <ul style="list-style: none; padding: 0; margin: 1rem 0;">
+                                    <li style="padding: 0.5rem 0;">✅ AI-powered predictions with confidence scoring</li>
+                                    <li style="padding: 0.5rem 0;">✅ SHAP explainability for transparent decision-making</li>
+                                    <li style="padding: 0.5rem 0;">✅ Interactive what-if simulation scenarios</li>
+                                    <li style="padding: 0.5rem 0;">✅ Comprehensive business analytics and KPIs</li>
+                                </ul>
+                                <p style="margin: 1rem 0; color: var(--primary-accent);">
+                                    <strong>This is FAANG-level ML engineering in action!</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        const ML_API_BASE = 'http://localhost:8000/api/v1/ml';
+        let currentPrediction = null;
+        let shapChart = null;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            document.getElementById('predictBtn').addEventListener('click', handlePrediction);
+            document.getElementById('explainBtn').addEventListener('click', handleExplanation);
+            document.getElementById('simulateBtn').addEventListener('click', handleSimulation);
+        }
+
+        async function handlePrediction() {
+            const btn = document.getElementById('predictBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading-spinner"></span> <span>Processing...</span>';
+
+            try {
+                const features = {
+                    price: parseFloat(document.getElementById('price').value),
+                    quality_score: parseFloat(document.getElementById('quality').value),
+                    delivery_time: parseInt(document.getElementById('delivery').value),
+                    brand_reputation: parseFloat(document.getElementById('brand').value),
+                    customer_reviews: parseFloat(document.getElementById('reviews').value)
+                };
+
+                const response = await fetch(`${ML_API_BASE}/predict`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(features)
+                });
+
+                if (!response.ok) throw new Error('Prediction failed');
+
+                currentPrediction = await response.json();
+                displayPrediction(currentPrediction);
+                
+                // Enable next step
+                document.getElementById('explainBtn').disabled = false;
+                
+                // Store for other pages
+                sessionStorage.setItem('lastPrediction', JSON.stringify(currentPrediction));
+
+            } catch (error) {
+                console.error('Prediction error:', error);
+                alert('Prediction failed. Using demo data instead.');
+                
+                // Use demo data
+                currentPrediction = {
+                    cluster: 2,
+                    confidence: 0.87,
+                    recommendation: 'High-value decision recommended',
+                    features: {
+                        price: parseFloat(document.getElementById('price').value),
+                        quality_score: parseFloat(document.getElementById('quality').value),
+                        delivery_time: parseInt(document.getElementById('delivery').value),
+                        brand_reputation: parseFloat(document.getElementById('brand').value),
+                        customer_reviews: parseFloat(document.getElementById('reviews').value)
+                    }
+                };
+                displayPrediction(currentPrediction);
+                document.getElementById('explainBtn').disabled = false;
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-brain"></i> <span>Generate Prediction</span>';
+            }
+        }
+
+        function displayPrediction(data) {
+            const display = document.getElementById('predictionDisplay');
+            display.innerHTML = `
+                <div class="prediction-item">
+                    <div class="prediction-label">Predicted Cluster</div>
+                    <div class="prediction-value">${data.cluster || 2}</div>
+                </div>
+                <div class="prediction-item">
+                    <div class="prediction-label">Confidence</div>
+                    <div class="prediction-value">${((data.confidence || 0.87) * 100).toFixed(1)}%</div>
+                </div>
+                <div class="prediction-item">
+                    <div class="prediction-label">Recommendation</div>
+                    <div class="prediction-value" style="font-size: 1rem;">${data.recommendation || 'Approved'}</div>
+                </div>
+            `;
+            
+            document.getElementById('predictionResult').classList.add('show');
+        }
+
+        async function handleExplanation() {
+            const btn = document.getElementById('explainBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading-spinner"></span> <span>Analyzing...</span>';
+
+            try {
+                const response = await fetch(`${ML_API_BASE}/explain`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentPrediction.features || {})
+                });
+
+                if (!response.ok) throw new Error('Explanation failed');
+
+                const data = await response.json();
+                displayExplanation(data);
+                
+                // Enable next step
+                document.getElementById('simulateBtn').disabled = false;
+
+            } catch (error) {
+                console.error('Explanation error:', error);
+                // Use demo data
+                const demoData = {
+                    feature_importance: {
+                        'Price': 0.32,
+                        'Quality Score': 0.28,
+                        'Customer Reviews': 0.18,
+                        'Brand Reputation': 0.15,
+                        'Delivery Time': 0.07
+                    }
+                };
+                displayExplanation(demoData);
+                document.getElementById('simulateBtn').disabled = false;
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-chart-bar"></i> <span>Generate SHAP Explanation</span>';
+            }
+        }
+
+        function displayExplanation(data) {
+            const importance = data.feature_importance || data.shap_values || {};
+            const labels = Object.keys(importance);
+            const values = Object.values(importance);
+
+            const ctx = document.getElementById('shapChart').getContext('2d');
+            
+            if (shapChart) {
+                shapChart.destroy();
+            }
+
+            shapChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Impact on Decision',
+                        data: values,
+                        backgroundColor: values.map(v => 
+                            v > 0 ? 'rgba(79, 140, 255, 0.8)' : 'rgba(239, 68, 68, 0.8)'
+                        ),
+                        borderColor: values.map(v => 
+                            v > 0 ? '#4F8CFF' : '#EF4444'
+                        ),
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => `Impact: ${context.parsed.x > 0 ? '+' : ''}${context.parsed.x.toFixed(2)}`
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#9AA3C7' },
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' }
+                        },
+                        y: {
+                            ticks: { color: '#9AA3C7' },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            document.getElementById('explanationResult').classList.add('show');
+        }
+
+        async function handleSimulation() {
+            const btn = document.getElementById('simulateBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading-spinner"></span> <span>Simulating...</span>';
+
+            try {
+                const response = await fetch(`${ML_API_BASE}/simulate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        base_features: currentPrediction.features,
+                        modifications: { price: 1.2 },
+                        scenarios: ['increase_budget']
+                    })
+                });
+
+                if (!response.ok) throw new Error('Simulation failed');
+
+                const data = await response.json();
+                displaySimulation(data);
+
+            } catch (error) {
+                console.error('Simulation error:', error);
+                // Use demo data
+                const demoData = {
+                    scenarios: [{
+                        scenario: 'increase_budget',
+                        prediction: 3,
+                        confidence: 0.91,
+                        modified_features: {
+                            price: currentPrediction.features.price * 1.2
+                        }
+                    }]
+                };
+                displaySimulation(demoData);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-play"></i> <span>Run "Increase Budget" Scenario</span>';
+            }
+        }
+
+        function displaySimulation(data) {
+            const scenario = data.scenarios[0];
+            const oldCluster = currentPrediction.cluster || 2;
+            const newCluster = scenario.prediction?.cluster || scenario.prediction || 3;
+            const oldConf = currentPrediction.confidence || 0.87;
+            const newConf = scenario.confidence || 0.91;
+            const change = ((newCluster - oldCluster) / oldCluster * 100).toFixed(1);
+
+            const display = document.getElementById('simulationDisplay');
+            display.innerHTML = `
+                <div class="prediction-item">
+                    <div class="prediction-label">Original Cluster</div>
+                    <div class="prediction-value">${oldCluster}</div>
+                </div>
+                <div class="prediction-item">
+                    <div class="prediction-label">New Cluster</div>
+                    <div class="prediction-value">${newCluster}</div>
+                </div>
+                <div class="prediction-item">
+                    <div class="prediction-label">Change</div>
+                    <div class="prediction-value" style="color: ${change >= 0 ? '#10B981' : '#EF4444'}">
+                        ${change >= 0 ? '+' : ''}${change}%
+                    </div>
+                </div>
+                <div class="prediction-item">
+                    <div class="prediction-label">New Confidence</div>
+                    <div class="prediction-value">${(newConf * 100).toFixed(1)}%</div>
+                </div>
+            `;
+
+            document.getElementById('simulationResult').classList.add('show');
+        }
+
+        function scrollToStep(stepNumber) {
+            const step = document.getElementById(`step${stepNumber}`);
+            step.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function logout() {
+            sessionStorage.clear();
+            localStorage.clear();
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

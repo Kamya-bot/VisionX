@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionX - AI Explainability</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/ml-components.css">
+    
+    <style>
+        .explainability-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .section-header {
+            margin-bottom: 30px;
+        }
+        
+        .section-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #4F8CFF, #7B61FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-header p {
+            color: #9AA3C7;
+            font-size: 1.1rem;
+        }
+        
+        .explanation-card {
+            background: rgba(42, 47, 99, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(79, 140, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 20px 0;
+        }
+        
+        .feature-list {
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: rgba(26, 31, 74, 0.5);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            background: rgba(26, 31, 74, 0.8);
+            transform: translateX(5px);
+        }
+        
+        .feature-name {
+            flex: 0 0 200px;
+            font-weight: 600;
+            color: #E6E8F2;
+        }
+        
+        .impact-bar-container {
+            flex: 1;
+            margin: 0 20px;
+            position: relative;
+            height: 30px;
+            background: rgba(107, 114, 152, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .impact-bar {
+            height: 100%;
+            border-radius: 15px;
+            transition: width 0.6s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .impact-bar.positive {
+            background: linear-gradient(90deg, #10b981, #059669);
+            color: white;
+        }
+        
+        .impact-bar.negative {
+            background: linear-gradient(90deg, #ef4444, #dc2626);
+            color: white;
+        }
+        
+        .contribution-value {
+            flex: 0 0 80px;
+            text-align: right;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .contribution-value.positive {
+            color: #10b981;
+        }
+        
+        .contribution-value.negative {
+            color: #ef4444;
+        }
+        
+        .impact-badge {
+            flex: 0 0 80px;
+            text-align: center;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .badge.high {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        
+        .badge.medium {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+        
+        .badge.low {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        
+        .explanation-text {
+            background: rgba(79, 140, 255, 0.1);
+            border-left: 4px solid #4F8CFF;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            line-height: 1.8;
+            color: #E6E8F2;
+        }
+        
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .loading-spinner.active {
+            display: block;
+        }
+        
+        .spinner {
+            border: 3px solid rgba(79, 140, 255, 0.1);
+            border-top: 3px solid #4F8CFF;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error-message {
+            display: none;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            color: #ef4444;
+        }
+        
+        .error-message.active {
+            display: block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3FA8FF, #5F8CFF);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(79, 140, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background -->
+    <div class="background">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="explainability-container">
+        <!-- Header -->
+        <div class="section-header">
+            <h1><i class="fas fa-brain"></i> AI Explainability</h1>
+            <p>Understand exactly how AI makes predictions - transparent and trustworthy</p>
+        </div>
+
+        <!-- Demo Button -->
+        <button class="btn-primary" id="loadDemoBtn">
+            <i class="fas fa-play"></i> Load Demo Explanation
+        </button>
+
+        <!-- Loading State -->
+        <div class="loading-spinner" id="loadingSpinner">
+            <div class="spinner"></div>
+            <p>Analyzing feature contributions...</p>
+        </div>
+
+        <!-- Error State -->
+        <div class="error-message" id="errorMessage">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>Error:</strong> <span id="errorText"></span>
+        </div>
+
+        <!-- Main Explanation Card -->
+        <div class="explanation-card" id="explanationCard" style="display: none;">
+            <h2><i class="fas fa-chart-bar"></i> Feature Importance Analysis</h2>
+            <p style="color: #9AA3C7; margin-bottom: 20px;">
+                These are the factors that most influenced this AI decision
+            </p>
+
+            <!-- Chart -->
+            <div class="chart-container">
+                <canvas id="shapChart"></canvas>
+            </div>
+
+            <!-- Feature List -->
+            <div class="feature-list" id="featureList">
+                <!-- Features will be populated here -->
+            </div>
+
+            <!-- Explanation Text -->
+            <div class="explanation-text" id="explanationText">
+                <!-- Explanation will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/explainability.js"></script>
+</body>
+</html>

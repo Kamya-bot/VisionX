@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Monitoring - VisionX</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .monitoring-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .metric-title {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .status-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .status-success {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .status-warning {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+        }
+
+        .status-danger {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .drift-alerts {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .alert-item {
+            padding: 1rem;
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 3px solid #ef4444;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .alert-item.warning {
+            background: rgba(251, 191, 36, 0.1);
+            border-left-color: #fbbf24;
+        }
+
+        .chart-container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            height: 400px;
+        }
+
+        .loading-skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 8px;
+            height: 60px;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .refresh-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4F8CFF, #7B61FF);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(79, 140, 255, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .refresh-btn:hover {
+            transform: scale(1.1) rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-eye">
+                        <div class="eye-outer">
+                            <div class="eye-inner">
+                                <div class="eye-pupil"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="logo-text">Vision<span class="gradient-text">X</span></span>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-th-large"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="comparison.html" class="nav-link">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>New Comparison</span>
+                </a>
+                <a href="history.html" class="nav-link">
+                    <i class="fas fa-history"></i>
+                    <span>History</span>
+                </a>
+                <a href="results.html" class="nav-link">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="monitoring.html" class="nav-link active">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>ML Monitoring</span>
+                </a>
+                <a href="profile.html" class="nav-link">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button class="btn btn-secondary btn-full" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <div class="topbar">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <div class="topbar-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search..." class="search-input">
+                </div>
+                
+                <div class="topbar-actions">
+                    <button class="icon-btn notification-btn">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    
+                    <div class="user-menu">
+                        <button class="user-avatar">
+                            <span id="userInitials">U</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-wrapper">
+                <div class="page-header">
+                    <div>
+                        <h1>ML Model Monitoring</h1>
+                        <p>Real-time drift detection and model performance</p>
+                    </div>
+                    <button class="btn btn-primary" id="checkDriftBtn">
+                        <i class="fas fa-sync"></i> Check Drift Now
+                    </button>
+                </div>
+
+                <div class="glass-card" style="padding: 2rem; margin-bottom: 2rem;">
+                    <h2 style="margin-bottom: 1.5rem;">Overall System Status</h2>
+                    <div class="monitoring-grid">
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-title">Model Status</span>
+                                <i class="fas fa-brain" style="color: #4F8CFF; font-size: 1.5rem;"></i>
+                            </div>
+                            <div id="modelStatus">
+                                <div class="loading-skeleton"></div>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-title">Drift Status</span>
+                                <i class="fas fa-wind" style="color: #7B61FF; font-size: 1.5rem;"></i>
+                            </div>
+                            <div id="driftStatus">
+                                <div class="loading-skeleton"></div>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-title">Predictions Today</span>
+                                <i class="fas fa-chart-line" style="color: #22c55e; font-size: 1.5rem;"></i>
+                            </div>
+                            <div id="predictionsCount">
+                                <div class="loading-skeleton"></div>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-title">Avg Confidence</span>
+                                <i class="fas fa-percentage" style="color: #fbbf24; font-size: 1.5rem;"></i>
+                            </div>
+                            <div id="avgConfidence">
+                                <div class="loading-skeleton"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="drift-alerts" id="driftAlertsContainer">
+                    <h3 style="margin-bottom: 1rem;">🚨 Drift Alerts</h3>
+                    <div id="alertsList">
+                        <p style="color: var(--text-secondary);">Loading alerts...</p>
+                    </div>
+                </div>
+
+                <div class="glass-card" style="padding: 2rem; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem;">Feature Drift Analysis</h3>
+                    <div class="chart-container">
+                        <canvas id="featureDriftChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="glass-card" style="padding: 2rem;">
+                    <h3 style="margin-bottom: 1rem;">Prediction Stability Index (PSI) Trend</h3>
+                    <div class="chart-container">
+                        <canvas id="psiTrendChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <button class="refresh-btn" id="refreshBtn" title="Refresh Data">
+        <i class="fas fa-sync"></i>
+    </button>
+    
+    <script src="js/app.js"></script>
+    <script src="js/api-config.js"></script>
+    <script src="js/auth-handler.js"></script>
+    <script>
+        // Monitoring Dashboard JS (inline for simplicity)
+        async function loadMonitoringData() {
+            try {
+                // Load drift summary
+                const driftResponse = await fetch(`${API_CONFIG.BASE_URL}/drift/summary`);
+                const driftData = await driftResponse.json();
+                
+                updateDriftStatus(driftData);
+                
+                // Load ML metrics
+                const metricsResponse = await fetch(`${API_CONFIG.BASE_URL}/ml/metrics`);
+                const metricsData = await metricsResponse.json();
+                
+                updateModelStatus(metricsData);
+                
+                // Load alerts
+                const alertsResponse = await fetch(`${API_CONFIG.BASE_URL}/drift/alerts`);
+                const alertsData = await alertsResponse.json();
+                
+                updateAlerts(alertsData);
+                
+            } catch (error) {
+                console.error('Failed to load monitoring data:', error);
+            }
+        }
+        
+        function updateDriftStatus(data) {
+            const driftStatusEl = document.getElementById('driftStatus');
+            const statusClass = data.status === 'success' ? 'status-success' : 
+                               data.status === 'warning' ? 'status-warning' : 'status-danger';
+            
+            driftStatusEl.innerHTML = `
+                <div class="metric-value">${data.drifted_features_count || 0}</div>
+                <span class="status-badge ${statusClass}">${data.status || 'Unknown'}</span>
+                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">
+                    PSI: ${(data.prediction_psi || 0).toFixed(4)}
+                </p>
+            `;
+        }
+        
+        function updateModelStatus(data) {
+            const modelStatusEl = document.getElementById('modelStatus');
+            modelStatusEl.innerHTML = `
+                <div class="metric-value">${(data.model_accuracy * 100).toFixed(1)}%</div>
+                <span class="status-badge status-success">Active</span>
+            `;
+            
+            document.getElementById('predictionsCount').innerHTML = `
+                <div class="metric-value">${data.total_predictions_today || 0}</div>
+            `;
+            
+            document.getElementById('avgConfidence').innerHTML = `
+                <div class="metric-value">${(data.average_confidence * 100).toFixed(1)}%</div>
+            `;
+        }
+        
+        function updateAlerts(data) {
+            const alertsList = document.getElementById('alertsList');
+            
+            if (!data.alerts || data.alerts.length === 0) {
+                alertsList.innerHTML = '<p style="color: var(--text-secondary);">✅ No active alerts</p>';
+                return;
+            }
+            
+            alertsList.innerHTML = data.alerts.map(alert => `
+                <div class="alert-item ${alert.severity === 'severe' ? '' : 'warning'}">
+                    <strong>${alert.feature}</strong>: ${alert.message}
+                </div>
+            `).join('');
+        }
+        
+        // Auto-refresh every 30 seconds
+        setInterval(loadMonitoringData, 30000);
+        
+        // Manual refresh button
+        document.getElementById('refreshBtn').addEventListener('click', loadMonitoringData);
+        document.getElementById('checkDriftBtn').addEventListener('click', loadMonitoringData);
+        
+        // Initial load
+        document.addEventListener('DOMContentLoaded', loadMonitoringData);
+    </script>
+</body>
+</html>

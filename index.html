@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionX - Decision Intelligence Platform</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/landing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <!-- Logo with Glassmorphic Eye -->
+                <a href="index.html" class="logo">
+                    <div class="logo-eye">
+                        <div class="eye-outer">
+                            <div class="eye-inner">
+                                <div class="eye-pupil"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="logo-text">Vision<span class="gradient-text">X</span></span>
+                </a>
+                
+                <!-- Navigation Links -->
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="login.html" class="btn btn-secondary">Login</a></li>
+                    <li><a href="register.html" class="btn btn-primary">Get Started</a></li>
+                </ul>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <!-- Animated Background -->
+        <div class="hero-bg">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        
+        <!-- Particle Canvas -->
+        <canvas id="particleCanvas" class="particle-canvas"></canvas>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge fade-in">
+                    <span class="badge badge-primary">
+                        <i class="fas fa-sparkles"></i> Decision Intelligence Platform
+                    </span>
+                </div>
+                
+                <h1 class="hero-title fade-in">
+                    Make Smarter Decisions<br>
+                    With <span class="gradient-text">Data-Driven Insights</span>
+                </h1>
+                
+                <p class="hero-subtitle fade-in">
+                    Transform complex life choices into structured comparisons. 
+                    VisionX helps you compare jobs, universities, cities, and more 
+                    using weighted criteria and visual analytics.
+                </p>
+                
+                <div class="hero-cta fade-in">
+                    <a href="register.html" class="btn btn-primary btn-lg">
+                        <i class="fas fa-rocket"></i> Start Comparing Free
+                    </a>
+                    <a href="#how-it-works" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-play-circle"></i> See How It Works
+                    </a>
+                </div>
+                
+                <!-- Stats Counter -->
+                <div class="hero-stats fade-in">
+                    <div class="stat-item">
+                        <div class="stat-value" data-target="10000">0</div>
+                        <div class="stat-label">Decisions Made</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" data-target="5000">0</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" data-target="98">0</div>
+                        <div class="stat-label">Satisfaction Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge badge badge-primary">
+                    <i class="fas fa-star"></i> Features
+                </span>
+                <h2 class="section-title">Powerful Tools for Better Decisions</h2>
+                <p class="section-subtitle">
+                    Everything you need to make informed, data-driven choices
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Weighted Scoring</h3>
+                    <p class="feature-description">
+                        Assign custom weights to criteria that matter most to you. 
+                        Our algorithm calculates the optimal choice based on your priorities.
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-radar"></i>
+                    </div>
+                    <h3 class="feature-title">Visual Analytics</h3>
+                    <p class="feature-description">
+                        Beautiful charts and graphs help you understand trade-offs at a glance. 
+                        See how options compare across multiple dimensions.
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="feature-title">AI Insights</h3>
+                    <p class="feature-description">
+                        Get smart recommendations and insights about your comparisons. 
+                        Understand strengths and weaknesses of each option.
+                    </p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 class="feature-title">Multiple Comparisons</h3>
+                    <p class="feature-description">
+                        Compare unlimited options simultaneously. Perfect for job offers, 
+                        college choices, or any complex decision.
+                    </p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3 class="feature-title">Decision History</h3>
+                    <p class="feature-description">
+                        Track all your past comparisons in one place. 
+                        Review, edit, and learn from previous decisions.
+                    </p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <h3 class="feature-title">Custom Criteria</h3>
+                    <p class="feature-description">
+                        Create your own evaluation criteria or use pre-built templates. 
+                        Fully customizable to fit any decision type.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge badge badge-primary">
+                    <i class="fas fa-info-circle"></i> Process
+                </span>
+                <h2 class="section-title">How VisionX Works</h2>
+                <p class="section-subtitle">
+                    Four simple steps to data-driven decisions
+                </p>
+            </div>
+            
+            <div class="steps-container">
+                <!-- Step 1 -->
+                <div class="step-card glass-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">
+                        <i class="fas fa-plus-circle"></i>
+                    </div>
+                    <h3 class="step-title">Create Comparison</h3>
+                    <p class="step-description">
+                        Start by creating a new comparison. Give it a title and add 
+                        the options you want to evaluate (e.g., Job A vs Job B).
+                    </p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step-card glass-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">
+                        <i class="fas fa-list-check"></i>
+                    </div>
+                    <h3 class="step-title">Define Criteria</h3>
+                    <p class="step-description">
+                        Set up evaluation criteria like salary, growth, location, etc. 
+                        Assign importance weights (e.g., salary 40%, growth 30%).
+                    </p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step-card glass-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="step-title">Score Options</h3>
+                    <p class="step-description">
+                        Rate each option on a scale of 1-10 for every criterion. 
+                        VisionX calculates weighted scores automatically.
+                    </p>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="step-card glass-card">
+                    <div class="step-number">04</div>
+                    <div class="step-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="step-title">View Results</h3>
+                    <p class="step-description">
+                        See detailed analytics, charts, and AI insights. 
+                        Understand which option best matches your priorities.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Interactive Demo Preview -->
+            <div class="demo-preview glass-card">
+                <div class="demo-header">
+                    <h3>Example: Comparing Job Offers</h3>
+                    <span class="badge badge-success">Live Preview</span>
+                </div>
+                <div class="demo-content">
+                    <div class="demo-comparison">
+                        <div class="demo-option">
+                            <h4>Company A</h4>
+                            <div class="demo-score">Score: 7.8</div>
+                            <div class="demo-bar" style="width: 78%"></div>
+                        </div>
+                        <div class="demo-option">
+                            <h4>Company B</h4>
+                            <div class="demo-score">Score: 7.5</div>
+                            <div class="demo-bar" style="width: 75%"></div>
+                        </div>
+                        <div class="demo-option">
+                            <h4>Company C</h4>
+                            <div class="demo-score">Score: 6.9</div>
+                            <div class="demo-bar" style="width: 69%"></div>
+                        </div>
+                    </div>
+                    <div class="demo-insight">
+                        <i class="fas fa-lightbulb"></i>
+                        <p>Company A offers the best overall balance based on your priorities, 
+                        with strong scores in both salary and work-life balance.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTA -->
+            <div class="section-cta">
+                <a href="register.html" class="btn btn-gradient btn-lg">
+                    <i class="fas fa-rocket"></i> Try VisionX Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="js/landing.js"></script>
+</body>
+</html>

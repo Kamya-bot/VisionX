@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - VisionX</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/ml-components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .analytics-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .analytics-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .analytics-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4F8CFF, #7B61FF, #A855F7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .kpi-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(79, 140, 255, 0.3);
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4F8CFF, #7B61FF);
+        }
+
+        .kpi-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .kpi-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #4F8CFF, #7B61FF);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .kpi-trend {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .kpi-trend.up {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10B981;
+        }
+
+        .kpi-trend.down {
+            background: rgba(239, 68, 68, 0.1);
+            color: #EF4444;
+        }
+
+        .kpi-label {
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-subtitle {
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        .chart-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-text);
+        }
+
+        .chart-subtitle {
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 350px;
+        }
+
+        .insights-section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .insight-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--secondary-bg);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #4F8CFF;
+        }
+
+        .insight-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(79, 140, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4F8CFF;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .insight-content {
+            flex: 1;
+        }
+
+        .insight-title {
+            font-weight: 600;
+            color: var(--primary-text);
+            margin-bottom: 0.25rem;
+        }
+
+        .insight-description {
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+        }
+
+        .export-btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #3FA8FF, #5F8CFF);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(63, 168, 255, 0.4);
+        }
+
+        @media (max-width: 1200px) {
+            .chart-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-eye"></i>
+            <span>VisionX</span>
+        </div>
+        <div class="nav-links">
+            <a href="dashboard.html"><i class="fas fa-th-large"></i> Dashboard</a>
+            <a href="explainability.html"><i class="fas fa-chart-bar"></i> Explainability</a>
+            <a href="simulation.html"><i class="fas fa-flask"></i> Simulation</a>
+            <a href="monitoring.html"><i class="fas fa-heartbeat"></i> Monitoring</a>
+            <a href="analytics-dashboard.html" class="active"><i class="fas fa-chart-line"></i> Analytics</a>
+        </div>
+        <div class="nav-actions">
+            <button class="nav-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="analytics-container">
+        <div class="analytics-header">
+            <h1><i class="fas fa-chart-line"></i> Business Analytics Dashboard</h1>
+            <p>Track key performance indicators and business metrics</p>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <div class="kpi-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="kpi-trend up">
+                        <i class="fas fa-arrow-up"></i>
+                        +12.5%
+                    </div>
+                </div>
+                <div class="kpi-label">Decision Success Rate</div>
+                <div class="kpi-value" id="successRate">92.4%</div>
+                <div class="kpi-subtitle">Based on 1,247 decisions</div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <div class="kpi-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <div class="kpi-trend up">
+                        <i class="fas fa-arrow-up"></i>
+                        +8.3%
+                    </div>
+                </div>
+                <div class="kpi-label">Avg Satisfaction</div>
+                <div class="kpi-value" id="avgSatisfaction">4.6<span style="font-size: 1.5rem;">/5</span></div>
+                <div class="kpi-subtitle">User satisfaction score</div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <div class="kpi-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="kpi-trend up">
+                        <i class="fas fa-arrow-up"></i>
+                        +15.2%
+                    </div>
+                </div>
+                <div class="kpi-label">Decision Speed</div>
+                <div class="kpi-value" id="avgDecisionTime">2.3<span style="font-size: 1.5rem;">m</span></div>
+                <div class="kpi-subtitle">Average time to decision</div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <div class="kpi-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="kpi-trend up">
+                        <i class="fas fa-arrow-up"></i>
+                        +22.1%
+                    </div>
+                </div>
+                <div class="kpi-label">Active Users</div>
+                <div class="kpi-value" id="activeUsers">8,432</div>
+                <div class="kpi-subtitle">Last 30 days</div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <div class="kpi-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="kpi-trend up">
+                        <i class="fas fa-arrow-up"></i>
+                        +18.7%
+                    </div>
+                </div>
+                <div class="kpi-label">Conversion Rate</div>
+                <div class="kpi-value" id="conversionRate">34.2%</div>
+                <div class="kpi-subtitle">From interaction to decision</div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <div class="kpi-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="kpi-trend up">
+                        <i class="fas fa-arrow-up"></i>
+                        +25.4%
+                    </div>
+                </div>
+                <div class="kpi-label">Avg Decision Value</div>
+                <div class="kpi-value" id="avgValue">$1,847</div>
+                <div class="kpi-subtitle">Revenue per decision</div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="chart-row">
+            <!-- Trend Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div>
+                        <h2 class="chart-title">Decision Success Trend</h2>
+                        <p class="chart-subtitle">Daily success rate over last 30 days</p>
+                    </div>
+                    <button class="export-btn" onclick="exportData()">
+                        <i class="fas fa-download"></i>
+                        Export
+                    </button>
+                </div>
+                <div class="chart-container">
+                    <canvas id="trendChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Distribution Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div>
+                        <h2 class="chart-title">Decision Distribution</h2>
+                        <p class="chart-subtitle">By category</p>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="distributionChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Behavior Chart -->
+        <div class="chart-card">
+            <div class="chart-header">
+                <div>
+                    <h2 class="chart-title">User Engagement Metrics</h2>
+                    <p class="chart-subtitle">Weekly comparison</p>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="engagementChart"></canvas>
+            </div>
+        </div>
+
+        <!-- AI Insights -->
+        <div class="insights-section">
+            <div class="chart-header">
+                <h2 class="chart-title"><i class="fas fa-lightbulb"></i> AI-Generated Insights</h2>
+            </div>
+            
+            <div class="insight-item">
+                <div class="insight-icon">
+                    <i class="fas fa-arrow-trend-up"></i>
+                </div>
+                <div class="insight-content">
+                    <div class="insight-title">Success Rate Improvement</div>
+                    <div class="insight-description">
+                        Decision success rate has improved by 12.5% over the last month, driven by better feature engineering and model confidence improvements.
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-item">
+                <div class="insight-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="insight-content">
+                    <div class="insight-title">Faster Decision Making</div>
+                    <div class="insight-description">
+                        Average decision time has decreased from 2.7 minutes to 2.3 minutes, indicating improved user experience and model efficiency.
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-item">
+                <div class="insight-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="insight-content">
+                    <div class="insight-title">Growing User Base</div>
+                    <div class="insight-description">
+                        Active users increased by 22.1% month-over-month. Peak usage hours are between 2-4 PM, suggesting optimization opportunities.
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-item">
+                <div class="insight-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="insight-content">
+                    <div class="insight-title">Conversion Optimization</div>
+                    <div class="insight-description">
+                        Conversion rate improved to 34.2%. Users who utilize SHAP explainability have 18% higher conversion rates.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        let trendChart, distributionChart, engagementChart;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeCharts();
+            loadAnalyticsData();
+        });
+
+        function initializeCharts() {
+            // Trend Chart
+            const trendCtx = document.getElementById('trendChart').getContext('2d');
+            trendChart = new Chart(trendCtx, {
+                type: 'line',
+                data: {
+                    labels: generateDayLabels(30),
+                    datasets: [{
+                        label: 'Success Rate',
+                        data: generateTrendData(30, 85, 95),
+                        borderColor: '#4F8CFF',
+                        backgroundColor: 'rgba(79, 140, 255, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 4,
+                        pointHoverRadius: 8
+                    }, {
+                        label: 'Target',
+                        data: new Array(30).fill(90),
+                        borderColor: '#10B981',
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#E6E8F2' }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => `${context.dataset.label}: ${context.parsed.y.toFixed(1)}%`
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 80,
+                            max: 100,
+                            ticks: { color: '#9AA3C7', callback: value => value + '%' },
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' }
+                        },
+                        x: {
+                            ticks: { color: '#9AA3C7' },
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' }
+                        }
+                    }
+                }
+            });
+
+            // Distribution Chart
+            const distCtx = document.getElementById('distributionChart').getContext('2d');
+            distributionChart = new Chart(distCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['E-Commerce', 'SaaS', 'Finance', 'Healthcare', 'Other'],
+                    datasets: [{
+                        data: [35, 25, 20, 15, 5],
+                        backgroundColor: [
+                            '#4F8CFF',
+                            '#7B61FF',
+                            '#A855F7',
+                            '#10B981',
+                            '#F59E0B'
+                        ],
+                        borderColor: '#1A1F4A',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: '#E6E8F2', padding: 15 }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => `${context.label}: ${context.parsed}%`
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Engagement Chart
+            const engageCtx = document.getElementById('engagementChart').getContext('2d');
+            engagementChart = new Chart(engageCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'This Week',
+                        data: [1200, 1350, 1280, 1420, 1380, 980, 850],
+                        backgroundColor: 'rgba(79, 140, 255, 0.8)',
+                        borderColor: '#4F8CFF',
+                        borderWidth: 2
+                    }, {
+                        label: 'Last Week',
+                        data: [1050, 1180, 1120, 1250, 1200, 850, 720],
+                        backgroundColor: 'rgba(123, 97, 255, 0.4)',
+                        borderColor: '#7B61FF',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#E6E8F2' }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { color: '#9AA3C7' },
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' }
+                        },
+                        x: {
+                            ticks: { color: '#9AA3C7' },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        function generateDayLabels(days) {
+            const labels = [];
+            const now = new Date();
+            for (let i = days - 1; i >= 0; i--) {
+                const date = new Date(now);
+                date.setDate(date.getDate() - i);
+                labels.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+            }
+            return labels;
+        }
+
+        function generateTrendData(count, min, max) {
+            const data = [];
+            let current = min + Math.random() * (max - min);
+            
+            for (let i = 0; i < count; i++) {
+                current += (Math.random() - 0.4) * 3;
+                current = Math.max(min, Math.min(max, current));
+                data.push(current);
+            }
+            return data;
+        }
+
+        async function loadAnalyticsData() {
+            try {
+                // In production, fetch from backend analytics API
+                // const response = await fetch('/api/v1/analytics/kpis');
+                // const data = await response.json();
+                
+                // For now, using simulated data
+                updateKPIs();
+            } catch (error) {
+                console.error('Failed to load analytics:', error);
+            }
+        }
+
+        function updateKPIs() {
+            // Simulate real-time KPI updates
+            setInterval(() => {
+                document.getElementById('successRate').textContent = 
+                    (90 + Math.random() * 5).toFixed(1) + '%';
+                document.getElementById('avgSatisfaction').textContent = 
+                    (4.4 + Math.random() * 0.4).toFixed(1) + '/5';
+                document.getElementById('avgDecisionTime').textContent = 
+                    (2 + Math.random() * 0.6).toFixed(1) + 'm';
+                document.getElementById('activeUsers').textContent = 
+                    Math.floor(8000 + Math.random() * 1000).toLocaleString();
+                document.getElementById('conversionRate').textContent = 
+                    (32 + Math.random() * 5).toFixed(1) + '%';
+                document.getElementById('avgValue').textContent = 
+                    '$' + Math.floor(1700 + Math.random() * 300).toLocaleString();
+            }, 5000);
+        }
+
+        function exportData() {
+            // Prepare analytics data
+            const data = {
+                timestamp: new Date().toISOString(),
+                kpis: {
+                    successRate: document.getElementById('successRate').textContent,
+                    avgSatisfaction: document.getElementById('avgSatisfaction').textContent,
+                    avgDecisionTime: document.getElementById('avgDecisionTime').textContent,
+                    activeUsers: document.getElementById('activeUsers').textContent,
+                    conversionRate: document.getElementById('conversionRate').textContent,
+                    avgValue: document.getElementById('avgValue').textContent
+                },
+                charts: {
+                    trendData: trendChart.data.datasets[0].data,
+                    distributionData: distributionChart.data.datasets[0].data
+                }
+            };
+
+            // Create and download JSON file
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `visionx-analytics-${Date.now()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function logout() {
+            sessionStorage.clear();
+            localStorage.clear();
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
