@@ -10,7 +10,7 @@ const API_CONFIG = {
         // In Docker: frontend is on port 80, backend on port 8000, nginx proxies /api/
         if (window.location.port === '80' || window.location.port === '') return '/api/v1';
         // Local dev: Live Server on 5500, backend on 8000
-        return 'http://127.0.0.1:8000/api/v1';
+        return 'https://visionx-mzqc.onrender.com/api/v1';
     })(),
     TIMEOUT: 10000
 };
