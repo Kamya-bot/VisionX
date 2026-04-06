@@ -404,46 +404,28 @@ def preprocess_user_data(features: Dict, model_store) -> np.ndarray:
     speed_slow      = 1.0 if 900 <= decision_time < 1800 else 0.0
     speed_very_slow = 1.0 if decision_time >= 1800 else 0.0
 
-    # Build vector in same column order as get_feature_matrix (alphabetical after exclusions)
-    # Order matches: numerical_columns (18) + device dummies (3) + speed dummies (4) + extra derived (2)
-    feature_vector = [
-        # 18 numerical (order matches self.numerical_columns in FeatureEngineer)
-        session_time,
-        clicks,
-        scroll_depth,
-        categories_viewed,
-        comparison_count,
-        product_views,
-        decision_time,
-        price_sensitivity,
-        feature_interest_score,
-        previous_decisions,
-        engagement_score,
-        purchase_intent_score,
-        engagement_ratio,
-        decision_efficiency,
-        interaction_score,
-        behavior_intensity,
-        research_depth,
-        intent_signal,
-        # 2 extra derived
-        experience_level,
-        session_efficiency,
-        # 3 device one-hot
-        device_desktop,
-        device_mobile,
-        device_tablet,
-        # 4 speed one-hot
-        speed_fast,
-        speed_moderate,
-        speed_slow,
-        speed_very_slow,
-    ]
-
-    X = np.array(feature_vector, dtype=float).reshape(1, -1)
+    # Step 1: 18 numerical features — scaler was fitted on these only
+    numerical_vector = np.array([
+        session_time, clicks, scroll_depth, categories_viewed,
+        comparison_count, product_views, decision_time,
+        price_sensitivity, feature_interest_score, previous_decisions,
+        engagement_score, purchase_intent_score,
+        engagement_ratio, decision_efficiency, interaction_score,
+        behavior_intensity, research_depth, intent_signal,
+    ], dtype=float).reshape(1, -1)
 
     if model_store.scaler:
-        X = model_store.scaler.transform(X)
+        numerical_vector = model_store.scaler.transform(numerical_vector)
+
+    # Step 2: remaining 9 features — appended AFTER scaling (one-hot + log derived)
+    extra_vector = np.array([
+        experience_level, session_efficiency,
+        device_desktop, device_mobile, device_tablet,
+        speed_fast, speed_moderate, speed_slow, speed_very_slow,
+    ], dtype=float).reshape(1, -1)
+
+    # Final: 18 scaled + 9 unscaled = 27
+    X = np.concatenate([numerical_vector, extra_vector], axis=1)
 
     return X
 
