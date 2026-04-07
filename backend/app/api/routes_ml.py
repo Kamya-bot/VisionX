@@ -98,7 +98,6 @@ async def predict_best_option(
         if len(options) < 2:
             raise HTTPException(status_code=400, detail="At least 2 options required")
 
-        # Score each option relative to each other
         option_scores = []
         for option in options:
             score = calculate_option_score(option, options)
@@ -140,8 +139,6 @@ async def predict_best_option(
             logger.info(f"✅ Prediction saved to database for user {request_data.user_id}")
         except Exception as db_error:
             logger.warning(f"⚠️  Failed to save prediction to database: {str(db_error)}")
-
-        logger.info(f"Predicted best option for user {request_data.user_id}: {best_option['id']} ({prediction_time_ms:.1f}ms)")
 
         return PredictionResponse(
             recommended_option_id=best_option["id"],
@@ -211,8 +208,6 @@ async def get_recommendations(request_data: RecommendationRequest, request: Requ
                 )
             )
 
-        logger.info(f"Generated {len(recommendation_items)} recommendations for user {request_data.user_id}")
-
         return RecommendationResponse(
             user_id=request_data.user_id,
             current_option_id=request_data.current_option_id,
@@ -229,25 +224,30 @@ async def get_recommendations(request_data: RecommendationRequest, request: Requ
 
 @router.get("/ml/analytics", response_model=AnalyticsResponse)
 async def get_analytics(request: Request):
+    """Get platform analytics"""
     model_store = get_model_store(request)
     validate_models_loaded(model_store)
 
     return AnalyticsResponse(
-        user_cluster_distribution={
-            "Casual User": 0.30,
-            "Analytical Researcher": 0.25,
-            "High Intent Buyer": 0.25,
-            "Power Decision Maker": 0.20
+        status="success",
+        data={
+            "user_cluster_distribution": {
+                "Casual User": 0.30,
+                "Analytical Researcher": 0.25,
+                "High Intent Buyer": 0.25,
+                "Power Decision Maker": 0.20
+            },
+            "average_decision_time": 720.5,
+            "popular_categories": ["Technology", "Services", "Products"],
+            "conversion_rate": 0.68,
+            "engagement_metrics": {
+                "avg_scroll_depth": 0.72,
+                "avg_clicks": 15.3,
+                "avg_comparisons": 3.8,
+                "avg_session_time": 450.2
+            }
         },
-        average_decision_time=720.5,
-        popular_categories=["Technology", "Services", "Products"],
-        conversion_rate=0.68,
-        engagement_metrics={
-            "avg_scroll_depth": 0.72,
-            "avg_clicks": 15.3,
-            "avg_comparisons": 3.8,
-            "avg_session_time": 450.2
-        }
+        timestamp=datetime.now().isoformat()
     )
 
 
@@ -331,18 +331,15 @@ def preprocess_user_data(features: Dict, model_store) -> np.ndarray:
     experience_level    = float(np.log1p(previous_decisions))
     session_efficiency  = product_views / (session_time + 1)
 
-    # device: assume desktop
     device_mobile  = 0.0
     device_tablet  = 0.0
     device_desktop = 1.0
 
-    # decision_speed one-hot
     speed_fast      = 1.0 if decision_time < 300  else 0.0
     speed_moderate  = 1.0 if 300 <= decision_time < 900  else 0.0
     speed_slow      = 1.0 if 900 <= decision_time < 1800 else 0.0
     speed_very_slow = 1.0 if decision_time >= 1800 else 0.0
 
-    # Step 1: scale 18 numerical features
     numerical_vector = np.array([
         session_time, clicks, scroll_depth, categories_viewed,
         comparison_count, product_views, decision_time,
@@ -355,7 +352,6 @@ def preprocess_user_data(features: Dict, model_store) -> np.ndarray:
     if model_store.scaler:
         numerical_vector = model_store.scaler.transform(numerical_vector)
 
-    # Step 2: append 9 unscaled features
     extra_vector = np.array([
         experience_level, session_efficiency,
         device_desktop, device_mobile, device_tablet,
@@ -366,32 +362,19 @@ def preprocess_user_data(features: Dict, model_store) -> np.ndarray:
 
 
 def calculate_option_score(option, all_options) -> float:
-    """
-    Score an option relative to all options in the comparison.
-    Works for any price range (products, salaries, subscriptions, etc.)
-    Returns a confidence score between 0.5 and 1.0.
-    """
+    """Score relative to all options — works for any price range."""
     features = option.features
 
-    # Find min/max prices across all options for relative scoring
     prices = [o.features.price for o in all_options]
     min_price = min(prices)
     max_price = max(prices)
     price_range = max_price - min_price if max_price != min_price else 1.0
 
-    # Price score: relative — cheaper = higher score (0-10)
-    price_score = 10.0 * (1.0 - (features.price - min_price) / price_range)
-
-    # Quality score: already 0-10
+    price_score   = 10.0 * (1.0 - (features.price - min_price) / price_range)
     quality_score = features.quality_score
-
-    # Feature count score: normalize to 0-10, cap at 50
     feature_score = min(features.feature_count / 5.0, 10.0)
+    brand_score   = features.brand_score
 
-    # Brand score: already 0-10
-    brand_score = features.brand_score
-
-    # Weighted sum — max = 10.0
     raw_score = (
         price_score   * 0.20 +
         quality_score * 0.40 +
@@ -399,9 +382,7 @@ def calculate_option_score(option, all_options) -> float:
         brand_score   * 0.15
     )
 
-    # Normalize to 0.0–1.0
-    score = min(max(raw_score / 10.0, 0.0), 1.0)
-    return round(score, 4)
+    return round(min(max(raw_score / 10.0, 0.0), 1.0), 4)
 
 
 def calculate_feature_importance(features: Dict) -> Dict[str, float]:
