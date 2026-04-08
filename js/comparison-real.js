@@ -17,7 +17,7 @@ function initializeComparison() {
         return;
     }
     
-    // Initialize first option
+    // Initialize first two options
     addOption();
     addOption();
     
@@ -96,13 +96,12 @@ function removeOption(optionNumber) {
     const option = document.querySelector(`[data-option-id="${optionNumber}"]`);
     if (option) {
         option.remove();
-        // Renumber remaining options
         renumberOptions();
     }
 }
 
 /**
- * Renumber Options
+ * Renumber Options after removal
  */
 function renumberOptions() {
     const container = document.getElementById('optionsContainer');
@@ -113,11 +112,8 @@ function renumberOptions() {
         option.setAttribute('data-option-id', optionNumber);
         
         const title = option.querySelector('h4');
-        if (title) {
-            title.textContent = `Option ${optionNumber}`;
-        }
+        if (title) title.textContent = `Option ${optionNumber}`;
         
-        // Update input IDs
         option.querySelectorAll('input, textarea').forEach(input => {
             const idPrefix = input.id.replace(/\d+$/, '');
             input.id = idPrefix + optionNumber;
@@ -139,25 +135,21 @@ async function handleComparisonSubmit(event) {
     
     const submitBtn = event.target.querySelector('button[type="submit"]');
     
-    // Show loading
     if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
     }
     
     try {
-        // Collect comparison data
         const comparisonTitle = document.getElementById('comparisonTitle')?.value || 'Untitled Comparison';
         const comparisonCategory = document.getElementById('comparisonCategory')?.value || 'Other';
         
-        // Collect options
         const container = document.getElementById('optionsContainer');
         const options = [];
         
         Array.from(container.children).forEach((optionCard, index) => {
             const num = index + 1;
             const name = document.getElementById(`optionName${num}`)?.value;
-            
             if (!name) return;
             
             options.push({
@@ -166,7 +158,10 @@ async function handleComparisonSubmit(event) {
                 features: {
                     price: parseFloat(document.getElementById(`optionPrice${num}`)?.value || 0),
                     quality_score: parseInt(document.getElementById(`optionQuality${num}`)?.value || 5),
-                    delivery_time: parseInt(document.getElementById(`optionDelivery${num}`)?.value || 0)
+                    delivery_time: parseInt(document.getElementById(`optionDelivery${num}`)?.value || 0),
+                    feature_count: parseInt(document.getElementById(`optionDelivery${num}`)?.value || 0),
+                    brand_score: 5.0,
+                    availability: 1.0
                 },
                 notes: document.getElementById(`optionNotes${num}`)?.value || ''
             });
@@ -181,44 +176,50 @@ async function handleComparisonSubmit(event) {
             return;
         }
         
-        console.log('Submitting comparison:', { title: comparisonTitle, options: options.length });
-        
         // Call ML prediction API
         let result;
+        let usedFallback = false;
+
         try {
             result = await apiCall('/ml/predict', {
                 method: 'POST',
-                body: {
-                    user_id: user.id,
-                    options: options
-                }
+                body: { user_id: user.id, options: options }
             });
-            
             console.log('ML prediction result:', result);
         } catch (error) {
-            console.error('ML API failed, using fallback:', error);
-            // Use fallback if backend fails
+            console.error('ML API failed:', error);
+            usedFallback = true;
+
+            // Score options by quality/price ratio as a real fallback
+            const scored = options.map(opt => {
+                const q = opt.features.quality_score || 5;
+                const p = opt.features.price || 1;
+                return { opt, score: q / Math.log(p + 2) };
+            }).sort((a, b) => b.score - a.score);
+
+            const winner = scored[0].opt;
             result = {
-                recommended_option_id: options[0].id,
-                recommended_option_name: options[0].name,
-                confidence: 0.75 + Math.random() * 0.2,
-                reasoning: "Based on your preferences and our analysis, this option offers the best balance of features.",
-                alternative_options: options.slice(1, 3).map(opt => ({
-                    id: opt.id,
-                    name: opt.name,
-                    score: 0.6 + Math.random() * 0.15,
-                    reason: "Alternative option with good features"
+                recommended_option_id: winner.id,
+                recommended_option_name: winner.name,
+                confidence: scored[0].score / (scored[0].score + scored[1].score),
+                reasoning: "ML service temporarily unavailable. This recommendation is based on quality-to-cost ratio analysis.",
+                alternative_options: scored.slice(1).map(s => ({
+                    id: s.opt.id,
+                    name: s.opt.name,
+                    score: s.score / (scored[0].score + s.score),
+                    reason: 'Alternative based on quality-to-cost analysis'
                 })),
                 feature_importance: [
-                    { feature_name: "quality_score", importance: 0.35 },
-                    { feature_name: "price", importance: 0.30 },
-                    { feature_name: "delivery_time", importance: 0.20 }
+                    { feature_name: 'quality_score', importance: 0.45 },
+                    { feature_name: 'price', importance: 0.35 },
+                    { feature_name: 'delivery_time', importance: 0.20 }
                 ],
-                user_cluster: "Analytical Researcher"
+                user_cluster: 'Analytical Researcher',
+                is_fallback: true
             };
         }
         
-        // Save comparison to localStorage
+        // Save to localStorage
         const comparison = {
             id: 'comp_' + Date.now(),
             user_id: user.id,
@@ -233,14 +234,15 @@ async function handleComparisonSubmit(event) {
         allComparisons.push(comparison);
         localStorage.setItem('comparisons', JSON.stringify(allComparisons));
         
-        console.log('Comparison saved:', comparison.id);
+        if (usedFallback) {
+            showNotification('⚠️ ML service unavailable — used local analysis. Results may vary.', 'warning');
+        } else {
+            showNotification('✅ AI analysis complete! Redirecting...', 'success');
+        }
         
-        showNotification('Comparison analyzed successfully!', 'success');
-        
-        // Redirect to results
         setTimeout(() => {
             window.location.href = `results.html?id=${comparison.id}`;
-        }, 500);
+        }, 1000);
         
     } catch (error) {
         console.error('Failed to process comparison:', error);
@@ -255,12 +257,13 @@ async function handleComparisonSubmit(event) {
 
 /**
  * Initialize on page load
+ * FIX: replaced broken checkAuth() with isAuthenticated() from api-config.js
  */
 document.addEventListener('DOMContentLoaded', () => {
-    // Check auth first
-    if (!checkAuth()) return;
-    
-    // Initialize comparison
+    if (!isAuthenticated()) {
+        window.location.href = 'login.html';
+        return;
+    }
     initializeComparison();
 });
 

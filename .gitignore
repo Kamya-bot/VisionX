@@ -5,3 +5,4 @@ backend/logs/
 __pycache__/ 
 *.pkl 
 *.pyc 
+backend/trained_models/ 

@@ -1,6 +1,7 @@
 /**
  * Results Page with Real Data
  * Displays comparison results with ML insights
+ * FIX: replaced broken checkAuth() with isAuthenticated()
  */
 
 let currentComparison = null;
@@ -16,7 +17,6 @@ async function loadResults() {
         return;
     }
     
-    // Get comparison ID from URL
     const urlParams = new URLSearchParams(window.location.search);
     const comparisonId = urlParams.get('id');
     
@@ -25,10 +25,7 @@ async function loadResults() {
         return;
     }
     
-    console.log('Loading results for comparison:', comparisonId);
-    
     try {
-        // Load comparison from localStorage
         const allComparisons = JSON.parse(localStorage.getItem('comparisons') || '[]');
         currentComparison = allComparisons.find(c => c.id === comparisonId);
         
@@ -37,13 +34,11 @@ async function loadResults() {
             return;
         }
         
-        // Check if user owns this comparison
         if (currentComparison.user_id !== user.id) {
             showError('resultsContainer', 'Access denied');
             return;
         }
         
-        // Display results
         displayResults(currentComparison);
         
     } catch (error) {
@@ -56,13 +51,9 @@ async function loadResults() {
  * Display Results
  */
 function displayResults(comparison) {
-    // Update title
     const titleEl = document.getElementById('comparisonTitle');
-    if (titleEl) {
-        titleEl.textContent = comparison.title || 'Comparison Results';
-    }
+    if (titleEl) titleEl.textContent = comparison.title || 'Comparison Results';
     
-    // Update metadata
     const metaEl = document.getElementById('comparisonMeta');
     if (metaEl) {
         metaEl.innerHTML = `
@@ -76,17 +67,23 @@ function displayResults(comparison) {
         showError('resultsContainer', 'No results available');
         return;
     }
+
+    // Show fallback warning banner if ML was unavailable
+    if (comparison.result.is_fallback) {
+        const existing = document.getElementById('fallbackBanner');
+        if (!existing) {
+            const banner = document.createElement('div');
+            banner.id = 'fallbackBanner';
+            banner.style.cssText = 'background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.4);color:#f59e0b;padding:0.75rem 1.25rem;border-radius:8px;margin-bottom:1.5rem;font-size:0.9rem;';
+            banner.innerHTML = '⚠️ <strong>Note:</strong> ML service was temporarily unavailable. This result uses local quality-to-cost analysis and may differ from the full AI recommendation.';
+            const container = document.getElementById('resultsContainer') || document.querySelector('.content-wrapper');
+            if (container) container.prepend(banner);
+        }
+    }
     
-    // Display winner
     displayWinner(comparison);
-    
-    // Display all options comparison
     displayOptionsComparison(comparison);
-    
-    // Display feature importance
     displayFeatureImportance(comparison.result);
-    
-    // Display alternatives
     displayAlternatives(comparison.result);
 }
 
@@ -166,7 +163,7 @@ function displayOptionsComparison(comparison) {
     container.innerHTML = `
         <h3 style="color: #E6E8F2; margin-bottom: 1.5rem;">All Options Comparison</h3>
         <div style="display: grid; gap: 1rem;">
-            ${comparison.options.map((option, index) => {
+            ${comparison.options.map((option) => {
                 const isWinner = option.id === comparison.result.recommended_option_id;
                 return `
                     <div class="glass-card" style="padding: 1.5rem; ${isWinner ? 'border: 2px solid #4F8CFF;' : ''}">
@@ -221,11 +218,11 @@ function displayFeatureImportance(result) {
             ${sorted.map(feature => `
                 <div style="margin-bottom: 1.5rem;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                        <span style="color: #E6E8F2; text-transform: capitalize;">${feature.feature_name.replace('_', ' ')}</span>
+                        <span style="color: #E6E8F2; text-transform: capitalize;">${feature.feature_name.replace(/_/g, ' ')}</span>
                         <span style="color: #4F8CFF; font-weight: 600;">${Math.round(feature.importance * 100)}%</span>
                     </div>
                     <div style="background: rgba(255, 255, 255, 0.05); height: 8px; border-radius: 4px; overflow: hidden;">
-                        <div style="background: linear-gradient(90deg, #4F8CFF, #7B61FF); height: 100%; width: ${feature.importance * 100}%; transition: width 0.5s ease;"></div>
+                        <div style="background: linear-gradient(90deg, #4F8CFF, #7B61FF); height: 100%; width: ${Math.round(feature.importance * 100)}%; transition: width 0.5s ease;"></div>
                     </div>
                 </div>
             `).join('')}
@@ -243,7 +240,7 @@ function displayAlternatives(result) {
     container.innerHTML = `
         <h3 style="color: #E6E8F2; margin-bottom: 1.5rem;">Alternative Options</h3>
         <div style="display: grid; gap: 1rem;">
-            ${result.alternative_options.map((alt, index) => `
+            ${result.alternative_options.map((alt) => `
                 <div class="glass-card" style="padding: 1.5rem;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                         <h4 style="color: #E6E8F2;">${alt.name}</h4>
@@ -257,30 +254,22 @@ function displayAlternatives(result) {
 }
 
 /**
- * Initialize Results Page
+ * Initialize on page load
+ * FIX: replaced broken checkAuth() with isAuthenticated()
  */
 document.addEventListener('DOMContentLoaded', () => {
-    // Check auth first
-    if (!checkAuth()) return;
+    if (!isAuthenticated()) {
+        window.location.href = 'login.html';
+        return;
+    }
     
-    // Load results
     loadResults();
     
-    // Bind back button
     const backBtn = document.getElementById('backBtn');
-    if (backBtn) {
-        backBtn.addEventListener('click', () => {
-            window.location.href = 'history.html';
-        });
-    }
+    if (backBtn) backBtn.addEventListener('click', () => { window.location.href = 'history.html'; });
     
-    // Bind new comparison button
     const newBtn = document.getElementById('newComparisonBtn');
-    if (newBtn) {
-        newBtn.addEventListener('click', () => {
-            window.location.href = 'comparison.html';
-        });
-    }
+    if (newBtn) newBtn.addEventListener('click', () => { window.location.href = 'comparison.html'; });
 });
 
 console.log('✅ Results Real Data loaded');
