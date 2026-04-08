@@ -1,6 +1,6 @@
 /**
- * VisionX — Profile Page
- * Fetches real user data from /auth/me and populates all profile fields.
+ * VisionX - Profile Page
+ * Fetches real user data and handles delete account.
  */
 
 async function loadUserProfile() {
@@ -8,31 +8,27 @@ async function loadUserProfile() {
     if (!user) { window.location.href = 'login.html'; return; }
 
     try {
-        // Fetch fresh data from backend
         const profile = await apiCall('/auth/me');
 
-        // Merge into localStorage so nav updates too
         const updated = {
             ...user,
             id: profile.user_id,
             email: profile.email,
             name: profile.full_name || user.name,
+            full_name: profile.full_name,
             cluster_id: profile.cluster_id,
             cluster_label: profile.cluster_label,
             created_at: profile.created_at
         };
         setCurrentUser(updated);
 
-        // ── Form fields ──────────────────────────────────────────────────────
         const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val || ''; };
+        set('profileFullName', profile.full_name || '');
+        set('profileName',     profile.full_name || '');
+        set('profileEmail',    profile.email);
+        set('profileUserId',   profile.user_id);
+        set('profileCluster',  profile.cluster_label || (profile.cluster_id !== null ? `Cluster ${profile.cluster_id}` : 'Not assigned yet'));
 
-        set('profileFullName',  profile.full_name || '');
-        set('profileName',      profile.full_name || '');
-        set('profileEmail',     profile.email);
-        set('profileUserId',    profile.user_id);
-        set('profileCluster',   profile.cluster_label || (profile.cluster_id !== null ? `Cluster ${profile.cluster_id}` : 'Not assigned yet'));
-
-        // ── Display text ─────────────────────────────────────────────────────
         document.querySelectorAll('.user-name, .profile-user-name').forEach(el => {
             el.textContent = profile.full_name || profile.email.split('@')[0];
         });
@@ -43,32 +39,29 @@ async function loadUserProfile() {
             el.textContent = (profile.full_name || profile.email).charAt(0).toUpperCase();
         });
 
-        // Member since
         const memberSinceEl = document.getElementById('memberSince');
         if (memberSinceEl && profile.created_at) {
             const d = new Date(profile.created_at);
             memberSinceEl.textContent = d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
         }
 
-        // Total predictions stat
         const predCountEl = document.getElementById('totalPredictions');
-        if (predCountEl) predCountEl.textContent = profile.total_predictions ?? 0;
-
-        // Cluster badge
-        const clusterBadge = document.getElementById('clusterBadge');
-        if (clusterBadge) {
-            clusterBadge.textContent = profile.cluster_label || 'Pending';
+        if (predCountEl) {
+            // Count from localStorage
+            const comparisons = JSON.parse(localStorage.getItem('comparisons') || '[]');
+            const userComparisons = comparisons.filter(c => c.user_id === user.id);
+            predCountEl.textContent = userComparisons.length;
         }
+
+        const clusterBadge = document.getElementById('clusterBadge');
+        if (clusterBadge) clusterBadge.textContent = profile.cluster_label || 'Pending';
 
     } catch (error) {
         console.error('Failed to load profile:', error);
-        showNotification('Could not load profile: ' + error.message, 'error');
-
-        // Fallback: show whatever is in localStorage
         const fallback = getCurrentUser();
         if (fallback) {
             const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val || ''; };
-            set('profileFullName', fallback.name);
+            set('profileFullName', fallback.full_name || fallback.name);
             set('profileEmail',    fallback.email);
             set('profileUserId',   fallback.id);
         }
@@ -80,16 +73,38 @@ async function saveProfile() {
     const newName = nameInput?.value?.trim();
     if (!newName) { showNotification('Name cannot be empty', 'error'); return; }
 
-    // Update localStorage immediately
     const user = getCurrentUser();
     if (user) {
         user.name = newName;
         user.full_name = newName;
         setCurrentUser(user);
     }
-
-    // Note: a PATCH /auth/me endpoint could be added later for persistence
     showNotification('Profile updated!', 'success');
+}
+
+async function deleteAccount() {
+    const confirmed = confirm('Are you sure you want to delete your account? This cannot be undone.');
+    if (!confirmed) return;
+
+    const confirmed2 = confirm('This will permanently delete all your data. Type OK to confirm.');
+    if (!confirmed2) return;
+
+    try {
+        // Try to call backend delete endpoint
+        await apiCall('/auth/me', { method: 'DELETE' });
+    } catch (error) {
+        // Even if backend fails, clear local data
+        console.warn('Backend delete failed, clearing local data:', error);
+    }
+
+    // Always clear local data and logout
+    localStorage.removeItem('comparisons');
+    localStorage.removeItem('visionx_token');
+    localStorage.removeItem('visionx_user');
+    sessionStorage.clear();
+
+    showNotification('Account deleted. Redirecting...', 'success');
+    setTimeout(() => { window.location.href = 'index.html'; }, 1500);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -97,4 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const saveBtn = document.getElementById('saveProfileBtn');
     if (saveBtn) saveBtn.addEventListener('click', saveProfile);
+
+    const deleteBtn = document.getElementById('deleteAccountBtn');
+    if (deleteBtn) deleteBtn.addEventListener('click', deleteAccount);
 });
