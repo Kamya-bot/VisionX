@@ -1,0 +1,3001 @@
+title,company,seniority_level,max_salary,company_size,work_type,company_rating,applies
+DevOps Engineer,Google,Senior,147030,51-200,Remote,4.1,45
+UX Designer,Enterprise Corp,Senior,142367,1001-5000,Remote,4.4,2
+Marketing Manager,Apple,Mid,92292,201-1000,Remote,3.9,918
+DevOps Engineer,Apple,VP,325023,1001-5000,Remote,3.9,282
+UX Designer,Microsoft,Mid,89411,201-1000,Hybrid,3.9,317
+Business Analyst,Airbnb,Senior,108564,51-200,On-site,3.8,27
+HR Manager,Meta,Senior,116327,51-200,On-site,3.5,3304
+Sales Representative,Meta,Mid,76364,201-1000,Hybrid,2.9,26
+Backend Developer,Airbnb,Lead,156419,1001-5000,On-site,3.8,138
+Financial Analyst,Startup A,Entry,53658,201-1000,Remote,4.5,54
+DevOps Engineer,Intel,Senior,176110,1001-5000,Remote,3.8,289
+Frontend Developer,Netflix,Senior,175501,5001+,Remote,4.3,36
+UX Designer,Amazon,Entry,69675,1-50,Hybrid,3.6,255
+HR Manager,Enterprise Corp,Mid,82806,51-200,Hybrid,2.9,1
+Operations Manager,Startup A,Lead,153309,5001+,On-site,3.9,47
+HR Manager,Salesforce,Lead,123937,201-1000,Hybrid,3.7,84
+Data Scientist,Uber,Entry,84769,51-200,Hybrid,3.9,86
+Software Engineer,Startup A,Entry,67712,1001-5000,On-site,3.8,1
+Frontend Developer,Mid-size Corp,Senior,144399,201-1000,On-site,2.6,3
+Marketing Manager,Amazon,Mid,85923,1-50,Hybrid,4.7,19
+Frontend Developer,Netflix,Entry,78748,201-1000,On-site,4.0,3961
+Product Manager,Amazon,Entry,95965,51-200,Hybrid,4.2,435
+Marketing Manager,Salesforce,Mid,106037,201-1000,On-site,3.8,19
+Machine Learning Engineer,IBM,VP,371787,1-50,Hybrid,3.9,90
+Operations Manager,Salesforce,Mid,81062,5001+,Hybrid,3.7,38
+DevOps Engineer,Meta,Senior,169249,5001+,Remote,3.7,78
+Marketing Manager,Google,VP,254830,201-1000,Remote,3.8,36
+Backend Developer,IBM,Mid,123109,1001-5000,Remote,3.0,35
+Business Analyst,Salesforce,Mid,88974,5001+,Remote,4.2,44
+Marketing Manager,Uber,Senior,129025,201-1000,Remote,4.3,11
+Data Scientist,Google,Senior,194556,1-50,Remote,3.4,42
+Data Scientist,Startup B,Mid,139761,5001+,Remote,3.0,859
+HR Manager,Uber,Senior,122658,5001+,Hybrid,4.9,159
+Operations Manager,Microsoft,Entry,52630,1001-5000,Hybrid,3.0,36
+Machine Learning Engineer,Startup B,Senior,199050,5001+,Remote,4.4,8
+UX Designer,Meta,Mid,106254,201-1000,Hybrid,3.2,37
+Machine Learning Engineer,Mid-size Corp,Senior,210024,201-1000,Hybrid,3.5,29
+Operations Manager,IBM,Lead,131216,5001+,On-site,5.0,24
+Financial Analyst,Netflix,Senior,108294,1-50,Remote,3.9,72
+Operations Manager,Amazon,Mid,79836,201-1000,On-site,3.7,30
+UX Designer,IBM,Director,179245,201-1000,Hybrid,3.5,238
+HR Manager,Airbnb,Entry,46376,201-1000,Remote,3.8,46
+Sales Representative,Google,Mid,70643,51-200,On-site,3.1,496
+Backend Developer,Airbnb,Senior,140264,51-200,On-site,4.1,324
+Machine Learning Engineer,IBM,Entry,83847,51-200,Remote,3.1,15
+Marketing Manager,Startup B,Director,166958,1001-5000,On-site,4.4,39
+Frontend Developer,Airbnb,Director,236360,51-200,Remote,5.0,1168
+Frontend Developer,Enterprise Corp,Director,199337,1001-5000,Remote,2.1,318
+Machine Learning Engineer,IBM,Lead,219007,5001+,Remote,4.2,5
+Product Manager,Microsoft,Entry,93615,201-1000,Hybrid,3.3,134
+Marketing Manager,Oracle,Senior,131460,1001-5000,Hybrid,3.9,3
+Marketing Manager,IBM,Senior,151409,5001+,Hybrid,3.3,121
+Product Manager,IBM,Entry,89189,5001+,On-site,3.8,110
+Financial Analyst,Mid-size Corp,Director,154347,201-1000,Hybrid,4.0,104
+Financial Analyst,Google,Senior,102313,201-1000,Remote,5.0,380
+Frontend Developer,Startup A,Entry,75301,1001-5000,On-site,2.7,1626
+Machine Learning Engineer,Netflix,Director,264536,201-1000,Hybrid,4.3,42
+Software Engineer,Uber,Entry,75418,1001-5000,On-site,4.5,186
+Business Analyst,Enterprise Corp,Lead,133670,201-1000,Remote,3.3,9
+Operations Manager,Mid-size Corp,Mid,81254,5001+,Remote,2.7,116
+Backend Developer,Microsoft,Lead,184676,5001+,On-site,4.1,152
+Data Scientist,Intel,Director,247298,1001-5000,Hybrid,3.8,26
+Software Engineer,Google,Mid,128927,1001-5000,Hybrid,4.6,161
+Backend Developer,Netflix,Senior,146274,201-1000,Remote,4.0,57
+Product Manager,Apple,Mid,132270,51-200,On-site,2.4,52
+Software Engineer,Startup A,Lead,198437,5001+,On-site,4.7,150
+UX Designer,Amazon,VP,315280,1001-5000,Hybrid,3.8,2
+Marketing Manager,Meta,Lead,151118,201-1000,Remote,3.2,1
+DevOps Engineer,Google,Senior,143290,1001-5000,Remote,3.4,9
+Frontend Developer,Airbnb,Mid,101074,5001+,Remote,1.8,85
+DevOps Engineer,Netflix,Senior,158264,1-50,Hybrid,3.4,6
+Data Scientist,Netflix,Senior,155643,201-1000,Hybrid,4.2,10
+Frontend Developer,Apple,Senior,140377,51-200,On-site,3.7,148
+Backend Developer,Google,Entry,72167,201-1000,Remote,3.2,1
+Machine Learning Engineer,Salesforce,Entry,78830,1001-5000,Hybrid,3.2,69
+DevOps Engineer,Microsoft,VP,328584,201-1000,Remote,3.1,1579
+Sales Representative,Salesforce,Entry,48952,201-1000,Remote,3.8,123
+Frontend Developer,Uber,Mid,120343,51-200,Hybrid,3.1,10
+Software Engineer,Apple,Senior,153781,5001+,Hybrid,4.1,128
+UX Designer,Oracle,Mid,90314,1001-5000,Remote,3.7,57
+UX Designer,IBM,Director,200785,201-1000,On-site,4.0,19
+Business Analyst,Oracle,Mid,94453,51-200,Remote,2.9,4
+Marketing Manager,Apple,Mid,94516,1-50,Remote,5.0,27
+Machine Learning Engineer,IBM,Mid,139940,51-200,On-site,2.8,162
+Business Analyst,Intel,Senior,130153,5001+,Hybrid,2.9,16
+Data Scientist,Netflix,Entry,71855,1-50,Hybrid,4.3,23
+Frontend Developer,Intel,Mid,95010,5001+,Hybrid,4.2,36
+Product Manager,Intel,Entry,82497,201-1000,On-site,3.1,19
+DevOps Engineer,Uber,Mid,127827,1001-5000,Remote,5.0,491
+Data Scientist,Mid-size Corp,Entry,76897,1001-5000,Remote,3.7,13
+Business Analyst,Amazon,Senior,105084,201-1000,Hybrid,3.0,10
+UX Designer,Netflix,Lead,182502,201-1000,On-site,4.1,19
+Software Engineer,Mid-size Corp,Director,230465,1001-5000,On-site,3.3,25
+Software Engineer,Microsoft,Mid,137866,1001-5000,On-site,4.1,35
+Machine Learning Engineer,Oracle,Entry,80525,5001+,Hybrid,3.7,30
+Machine Learning Engineer,Startup B,Entry,78250,5001+,Hybrid,4.5,27
+Data Scientist,Enterprise Corp,Mid,131251,201-1000,Remote,3.2,21
+DevOps Engineer,Google,Entry,71870,5001+,On-site,3.2,1
+Operations Manager,Startup A,Lead,126092,5001+,Hybrid,4.2,31
+Financial Analyst,Enterprise Corp,Senior,104278,201-1000,Remote,4.0,53
+Frontend Developer,IBM,Entry,77350,1001-5000,On-site,2.5,1211
+Operations Manager,Startup A,Entry,60656,201-1000,Hybrid,4.3,37
+Backend Developer,IBM,Mid,126450,201-1000,Hybrid,3.5,15
+Backend Developer,Salesforce,Lead,162541,201-1000,Remote,4.5,126
+Data Scientist,Uber,Lead,223194,1-50,Remote,4.2,38
+Financial Analyst,Airbnb,VP,204048,201-1000,Hybrid,3.1,110
+Operations Manager,Salesforce,Mid,99970,1001-5000,Remote,3.3,178
+Product Manager,Apple,Senior,190007,1-50,On-site,3.7,112
+Sales Representative,Mid-size Corp,Senior,118267,51-200,Hybrid,4.2,3
+Data Scientist,Intel,Lead,188984,201-1000,Remote,4.2,1
+Machine Learning Engineer,IBM,Senior,169583,51-200,Remote,4.4,191
+Financial Analyst,Mid-size Corp,Mid,84867,201-1000,Remote,4.0,45
+Machine Learning Engineer,Amazon,Lead,203680,1001-5000,Hybrid,4.5,314
+Sales Representative,Enterprise Corp,Mid,68576,5001+,Hybrid,3.1,18
+DevOps Engineer,Meta,Senior,177454,5001+,Hybrid,3.2,55
+Business Analyst,Amazon,Mid,89937,5001+,On-site,3.7,73
+Machine Learning Engineer,IBM,Entry,83067,201-1000,Remote,4.0,652
+Financial Analyst,Enterprise Corp,Lead,119831,51-200,Remote,4.7,118
+DevOps Engineer,Startup B,Mid,108231,201-1000,On-site,4.1,36
+DevOps Engineer,Startup B,Senior,184483,1001-5000,Remote,4.3,36
+Business Analyst,Google,Entry,61276,201-1000,Remote,3.8,1
+Machine Learning Engineer,Enterprise Corp,Lead,196239,1-50,Remote,4.3,68
+Operations Manager,Meta,Lead,149844,51-200,Hybrid,4.3,8
+Sales Representative,Amazon,Senior,97294,5001+,On-site,3.4,123
+Frontend Developer,Airbnb,Mid,124645,51-200,Remote,3.8,2
+Business Analyst,Amazon,Mid,81348,201-1000,Remote,3.4,9
+Backend Developer,Amazon,Senior,142428,51-200,Hybrid,4.3,156
+Financial Analyst,Oracle,Mid,97672,1001-5000,On-site,3.6,25
+Financial Analyst,Startup A,Mid,76835,1001-5000,On-site,3.5,136
+Operations Manager,Apple,Entry,50464,201-1000,On-site,3.1,198
+DevOps Engineer,Uber,Mid,113334,5001+,Hybrid,2.8,74
+Operations Manager,Intel,Mid,87546,51-200,Remote,3.5,60
+Data Scientist,Airbnb,Senior,192169,5001+,On-site,4.6,124
+Software Engineer,Amazon,Senior,166996,1001-5000,On-site,4.7,65
+UX Designer,Google,Director,226364,1001-5000,Hybrid,2.4,186
+Sales Representative,Mid-size Corp,Entry,53755,1-50,On-site,3.9,8
+Business Analyst,Oracle,Mid,98609,201-1000,Remote,4.0,337
+Backend Developer,Oracle,Senior,151195,51-200,On-site,1.5,193
+Sales Representative,Intel,Mid,86123,51-200,Hybrid,4.1,46
+Data Scientist,Mid-size Corp,Mid,140952,201-1000,Remote,4.1,9
+Sales Representative,Microsoft,Entry,51793,5001+,On-site,2.7,44
+Frontend Developer,IBM,Mid,112150,5001+,On-site,4.0,47
+Machine Learning Engineer,Airbnb,Senior,183706,201-1000,On-site,2.7,11
+Backend Developer,Startup A,VP,330990,51-200,Hybrid,3.2,2
+Software Engineer,IBM,Entry,82555,5001+,Hybrid,3.2,13
+Financial Analyst,Salesforce,Lead,127979,51-200,Remote,3.7,193
+Frontend Developer,Startup B,Senior,150889,201-1000,Remote,4.0,1
+Financial Analyst,Meta,Director,182282,1001-5000,Hybrid,3.7,15
+Backend Developer,Mid-size Corp,Mid,98053,51-200,Remote,3.4,53
+Product Manager,Google,Mid,147222,201-1000,Hybrid,4.5,7
+DevOps Engineer,Salesforce,Director,253348,1001-5000,Remote,4.5,2
+Software Engineer,Meta,Senior,192486,1-50,Remote,4.3,136
+Frontend Developer,Meta,Senior,138956,1-50,Hybrid,3.0,94
+Sales Representative,Meta,Director,171305,201-1000,Hybrid,3.7,35
+Backend Developer,Netflix,Mid,129005,1-50,Hybrid,3.1,103
+Backend Developer,Startup B,Mid,128303,51-200,Hybrid,5.0,53
+Backend Developer,Meta,Senior,158419,1001-5000,Remote,4.7,37
+UX Designer,Microsoft,Mid,111641,5001+,Remote,3.6,24
+Operations Manager,Google,Senior,107188,1-50,Remote,2.8,79
+DevOps Engineer,Startup B,Senior,188265,51-200,Hybrid,4.3,71
+Business Analyst,Uber,Mid,83302,5001+,Remote,3.2,6
+Frontend Developer,Google,Mid,125174,1-50,Remote,4.9,172
+UX Designer,Oracle,Entry,75070,51-200,Hybrid,3.5,29
+Software Engineer,Intel,Lead,172426,5001+,Hybrid,4.7,59
+Operations Manager,Enterprise Corp,Mid,102677,1001-5000,Hybrid,2.9,12
+Marketing Manager,Enterprise Corp,Mid,91068,5001+,On-site,3.7,84
+Business Analyst,Startup B,Mid,93937,1001-5000,Hybrid,4.4,19
+Frontend Developer,Amazon,Director,222949,1-50,Hybrid,4.4,24
+DevOps Engineer,Airbnb,Mid,103630,1001-5000,On-site,4.6,9
+UX Designer,Enterprise Corp,Senior,149118,201-1000,On-site,3.9,9
+Machine Learning Engineer,Netflix,Mid,146582,1001-5000,Hybrid,3.7,11
+Software Engineer,Uber,Director,253608,1001-5000,Hybrid,4.7,37
+Frontend Developer,Salesforce,Senior,166963,201-1000,On-site,4.5,49
+Product Manager,Netflix,Entry,84658,1001-5000,Hybrid,2.3,107
+HR Manager,Intel,Entry,47981,5001+,Remote,3.6,43
+Business Analyst,Mid-size Corp,Lead,123473,1-50,Remote,3.7,308
+DevOps Engineer,Meta,Lead,196958,5001+,Hybrid,4.0,16
+Machine Learning Engineer,Amazon,Director,271806,1-50,On-site,4.8,46
+Financial Analyst,Enterprise Corp,Senior,124379,1001-5000,Remote,4.4,194
+Sales Representative,Oracle,VP,236033,1-50,Remote,3.3,22
+Operations Manager,Netflix,VP,228084,1001-5000,Hybrid,3.9,13
+Software Engineer,Startup B,Entry,66812,201-1000,Hybrid,2.9,20
+Machine Learning Engineer,Amazon,Lead,247802,51-200,On-site,4.1,220
+Operations Manager,Google,Senior,142596,1001-5000,Hybrid,4.4,194
+DevOps Engineer,Mid-size Corp,Director,250513,201-1000,Remote,3.3,196
+DevOps Engineer,Enterprise Corp,Entry,83406,1001-5000,On-site,2.6,7
+DevOps Engineer,Salesforce,Entry,77734,201-1000,Remote,3.9,24
+Sales Representative,Apple,Senior,104848,201-1000,Hybrid,4.1,40
+Business Analyst,Meta,Senior,119114,51-200,Remote,5.0,47
+Product Manager,Netflix,Director,221769,51-200,Hybrid,3.1,7
+Product Manager,Amazon,Senior,204538,201-1000,Hybrid,4.6,129
+Frontend Developer,Airbnb,Mid,126103,201-1000,Hybrid,2.8,85
+Data Scientist,Netflix,Director,264092,1001-5000,Remote,2.8,128
+Financial Analyst,Startup B,Director,168453,5001+,On-site,3.8,43
+Data Scientist,Airbnb,Entry,78140,51-200,Hybrid,4.8,8
+Software Engineer,IBM,Mid,114983,1-50,Remote,4.1,289
+Financial Analyst,IBM,Senior,129935,51-200,Remote,2.8,9
+Backend Developer,IBM,Entry,67520,5001+,Hybrid,3.8,59
+Sales Representative,Apple,Entry,51755,5001+,On-site,5.0,73
+Backend Developer,Startup A,Mid,101396,5001+,On-site,3.7,534
+Sales Representative,Amazon,Mid,65172,1001-5000,Remote,3.0,464
+Sales Representative,Apple,Entry,49055,1001-5000,On-site,3.8,59
+Sales Representative,Google,Mid,75691,1-50,On-site,3.5,28
+Backend Developer,Google,Lead,172951,1001-5000,Hybrid,4.0,15
+Marketing Manager,Amazon,Mid,99314,1001-5000,Remote,3.6,122
+Marketing Manager,IBM,Lead,173350,5001+,On-site,3.2,35
+Operations Manager,Salesforce,Director,160685,1001-5000,Hybrid,3.5,40
+Operations Manager,Google,Senior,141442,201-1000,Hybrid,3.9,32
+Sales Representative,Airbnb,Director,152773,5001+,Hybrid,3.7,9
+Business Analyst,Startup B,Mid,83574,5001+,On-site,3.5,38
+Machine Learning Engineer,Uber,Mid,120487,1001-5000,Hybrid,3.9,17
+UX Designer,Apple,Senior,137633,5001+,Hybrid,3.4,38
+Frontend Developer,Uber,Senior,165961,1-50,Hybrid,4.1,87
+Business Analyst,Startup B,Senior,114657,1001-5000,Hybrid,3.3,8
+UX Designer,Microsoft,Director,228273,1-50,Remote,3.2,21
+Frontend Developer,Mid-size Corp,Senior,173569,5001+,Hybrid,3.6,79
+Frontend Developer,Startup B,Mid,100059,1001-5000,On-site,4.4,2
+Product Manager,Microsoft,Entry,83643,5001+,Hybrid,4.0,89
+Product Manager,Amazon,Senior,198539,1-50,Hybrid,3.0,17
+Software Engineer,Uber,Lead,163424,51-200,Remote,3.9,3341
+Data Scientist,Salesforce,Senior,193910,1001-5000,Hybrid,3.5,32
+UX Designer,Mid-size Corp,Director,185330,1001-5000,On-site,4.5,105
+Software Engineer,Startup A,Senior,175030,201-1000,Remote,3.4,12
+Data Scientist,Mid-size Corp,Entry,85298,201-1000,Remote,3.5,32
+Software Engineer,Meta,Lead,163277,5001+,Hybrid,3.8,1
+HR Manager,Netflix,Mid,82102,1-50,Remote,4.4,10
+Backend Developer,Apple,Lead,176663,51-200,Remote,3.2,16
+Product Manager,Microsoft,Entry,85992,1001-5000,Hybrid,4.4,61
+Sales Representative,Startup A,Lead,129811,201-1000,Hybrid,4.7,49
+HR Manager,Enterprise Corp,Entry,57745,5001+,Remote,3.4,19
+DevOps Engineer,Apple,Entry,76234,51-200,On-site,3.5,23
+Machine Learning Engineer,Google,Senior,191829,201-1000,Hybrid,3.6,340
+Sales Representative,Intel,Mid,83056,1001-5000,Hybrid,4.6,96
+Data Scientist,Meta,Director,248063,51-200,Hybrid,3.3,5
+DevOps Engineer,Amazon,Director,266432,1001-5000,Remote,3.4,63
+Machine Learning Engineer,Meta,Director,252395,5001+,Remote,4.3,32
+Frontend Developer,Uber,VP,337023,1-50,Hybrid,3.6,160
+HR Manager,IBM,Mid,68068,1001-5000,Remote,3.8,4
+Financial Analyst,Microsoft,Lead,143264,51-200,Remote,3.7,19
+Financial Analyst,Airbnb,Lead,125618,51-200,Hybrid,3.3,11
+DevOps Engineer,Oracle,Lead,200950,1001-5000,On-site,3.1,77
+Sales Representative,Startup B,Director,132064,201-1000,Remote,3.8,27
+UX Designer,Uber,Senior,154188,51-200,Remote,2.8,59
+Marketing Manager,Apple,Entry,70186,201-1000,On-site,4.3,8
+Backend Developer,Enterprise Corp,Senior,140011,51-200,Hybrid,2.8,92
+Product Manager,Netflix,VP,323730,201-1000,Hybrid,3.7,80
+HR Manager,Airbnb,Entry,51846,5001+,Remote,4.8,65
+Frontend Developer,Netflix,Mid,119762,201-1000,Hybrid,3.9,64
+DevOps Engineer,Meta,Director,229098,1001-5000,Remote,3.7,6
+DevOps Engineer,Amazon,Mid,105304,201-1000,On-site,3.9,3
+Frontend Developer,Uber,Senior,152411,5001+,Hybrid,4.3,140
+Operations Manager,Microsoft,Entry,63974,201-1000,Hybrid,3.8,125
+Product Manager,Microsoft,Mid,122085,1-50,On-site,2.9,9
+Machine Learning Engineer,Enterprise Corp,Director,279023,201-1000,Remote,2.3,14
+Data Scientist,Oracle,Mid,142842,201-1000,Hybrid,4.3,95
+Product Manager,Startup B,Mid,111395,1001-5000,Hybrid,3.3,78
+DevOps Engineer,Enterprise Corp,Senior,152114,201-1000,On-site,3.7,3
+Frontend Developer,Startup B,Mid,120900,51-200,Hybrid,4.5,326
+UX Designer,Netflix,Mid,100955,1001-5000,Remote,4.2,59
+Backend Developer,Airbnb,Senior,150951,201-1000,Remote,3.1,36
+Business Analyst,Mid-size Corp,Senior,123718,1001-5000,Hybrid,3.9,49
+Machine Learning Engineer,Startup A,Senior,171730,51-200,Remote,3.3,81
+Machine Learning Engineer,Enterprise Corp,Entry,83925,1001-5000,Hybrid,3.1,1825
+HR Manager,IBM,Mid,81248,5001+,Hybrid,4.6,4
+Financial Analyst,Airbnb,Mid,83799,5001+,On-site,1.1,2
+Marketing Manager,Intel,VP,227964,1-50,Remote,4.9,1
+Software Engineer,Enterprise Corp,Mid,116973,1001-5000,On-site,3.9,14
+Financial Analyst,IBM,VP,250670,201-1000,Remote,4.4,7
+Financial Analyst,Meta,Senior,126273,5001+,Hybrid,3.8,141
+Frontend Developer,Airbnb,VP,288507,5001+,Hybrid,2.7,41
+Backend Developer,Apple,Senior,175331,201-1000,Hybrid,3.3,35
+Operations Manager,Microsoft,Senior,139257,1001-5000,Hybrid,2.7,19
+Business Analyst,Uber,Mid,84117,1001-5000,Remote,2.9,3760
+Backend Developer,IBM,Lead,210047,1001-5000,Hybrid,3.5,6
+Operations Manager,Oracle,Lead,164129,201-1000,Hybrid,3.5,82
+Financial Analyst,Airbnb,Senior,123918,51-200,Hybrid,4.3,7
+UX Designer,Startup B,Mid,115748,1001-5000,Hybrid,3.1,19
+HR Manager,Startup B,Entry,55850,5001+,Remote,4.1,44
+Backend Developer,Salesforce,Lead,170323,201-1000,Hybrid,3.9,36
+Software Engineer,IBM,Mid,137602,1-50,Hybrid,4.2,34
+UX Designer,Startup A,Director,220156,201-1000,Remote,4.4,12
+Frontend Developer,Airbnb,VP,308966,51-200,Hybrid,3.4,18
+Software Engineer,Meta,Entry,69468,1001-5000,On-site,5.0,9
+Machine Learning Engineer,Google,Entry,91159,1001-5000,Hybrid,3.7,6
+Operations Manager,Enterprise Corp,Entry,51134,5001+,Hybrid,2.6,9
+DevOps Engineer,Amazon,Senior,180328,1001-5000,On-site,3.8,67
+Backend Developer,Google,Mid,118661,1001-5000,Remote,3.7,98
+Frontend Developer,Uber,Entry,70068,201-1000,Remote,2.8,720
+Operations Manager,Enterprise Corp,Senior,117342,201-1000,Hybrid,4.2,5
+HR Manager,Netflix,Director,175324,201-1000,Hybrid,3.9,43
+Frontend Developer,Amazon,Mid,108870,5001+,Hybrid,3.2,50
+Software Engineer,Enterprise Corp,Senior,171476,1-50,Hybrid,4.1,148
+Frontend Developer,Microsoft,Entry,69292,1001-5000,Hybrid,3.9,166
+Financial Analyst,Intel,Entry,53597,201-1000,On-site,3.2,12
+Operations Manager,Intel,Entry,52440,201-1000,Remote,4.3,10
+Software Engineer,Oracle,Senior,179186,51-200,Hybrid,4.8,14
+Software Engineer,Airbnb,Mid,136651,5001+,Hybrid,4.6,21
+Marketing Manager,Enterprise Corp,Lead,141787,201-1000,On-site,4.4,59
+Frontend Developer,Startup A,Senior,176474,1001-5000,On-site,5.0,127
+DevOps Engineer,Google,Mid,125648,51-200,Hybrid,3.5,106
+HR Manager,Salesforce,Senior,113319,201-1000,Remote,3.8,182
+Product Manager,Amazon,Mid,136810,1001-5000,Remote,4.4,601
+DevOps Engineer,Netflix,Entry,75638,51-200,Remote,3.9,31
+Frontend Developer,Mid-size Corp,Senior,143185,1001-5000,Hybrid,3.5,2
+DevOps Engineer,Startup A,Director,236410,201-1000,Remote,3.1,357
+UX Designer,Meta,Senior,137038,201-1000,On-site,3.3,99
+Software Engineer,Netflix,Lead,203522,1001-5000,Remote,4.7,1
+Financial Analyst,Salesforce,Mid,90739,1001-5000,On-site,3.1,22
+Sales Representative,Enterprise Corp,Entry,43423,51-200,Remote,4.5,149
+Frontend Developer,Salesforce,Entry,72571,1001-5000,Remote,3.0,133
+Machine Learning Engineer,Google,VP,431016,51-200,Remote,4.8,5
+DevOps Engineer,Startup B,Mid,122549,5001+,On-site,3.5,13
+Sales Representative,Amazon,Mid,81648,201-1000,Hybrid,4.0,73
+Business Analyst,Intel,Senior,132053,1001-5000,On-site,4.5,55
+Marketing Manager,Uber,Mid,85612,201-1000,On-site,4.0,136
+Data Scientist,Oracle,Mid,129547,1-50,Remote,5.0,38
+Marketing Manager,Enterprise Corp,Entry,62259,51-200,Hybrid,3.6,57
+Product Manager,Amazon,Director,280902,51-200,Remote,3.2,10
+Business Analyst,Amazon,Mid,84433,1001-5000,Hybrid,4.6,18
+Frontend Developer,Microsoft,Lead,173313,1001-5000,Remote,4.1,4908
+UX Designer,Amazon,Entry,65743,5001+,On-site,3.2,2
+Marketing Manager,Startup A,Mid,94449,1-50,Hybrid,4.2,68
+UX Designer,Microsoft,Senior,127941,201-1000,Hybrid,3.5,51
+Business Analyst,Oracle,Mid,79518,51-200,Remote,5.0,105
+DevOps Engineer,Meta,Entry,66598,1001-5000,Remote,3.9,36
+Data Scientist,Startup A,Mid,107510,51-200,Remote,4.3,38
+Operations Manager,Apple,VP,216332,51-200,On-site,3.7,45
+HR Manager,IBM,VP,204256,201-1000,Remote,3.8,96
+Software Engineer,Uber,Senior,185003,51-200,On-site,3.1,37
+Financial Analyst,Apple,Mid,78549,201-1000,Remote,3.2,19
+HR Manager,Microsoft,Lead,135690,1001-5000,Hybrid,3.2,208
+Data Scientist,Airbnb,Entry,82340,1-50,Remote,3.0,316
+UX Designer,Intel,Senior,145110,1001-5000,Hybrid,5.0,1
+Operations Manager,Google,Lead,135268,201-1000,Hybrid,3.5,26
+Frontend Developer,Uber,Entry,79288,1001-5000,Remote,2.6,191
+Marketing Manager,Mid-size Corp,Lead,158745,51-200,Hybrid,2.2,147
+Software Engineer,Amazon,Lead,167849,51-200,On-site,4.0,258
+UX Designer,Intel,VP,298640,1001-5000,Hybrid,3.6,73
+Machine Learning Engineer,Startup B,Senior,181388,5001+,Remote,2.6,29
+HR Manager,Enterprise Corp,Director,145756,5001+,Hybrid,3.0,14
+Product Manager,Airbnb,Entry,83031,1001-5000,On-site,4.7,7
+Frontend Developer,Startup A,Entry,74921,1001-5000,Hybrid,3.4,8
+Backend Developer,Apple,Mid,113721,5001+,On-site,4.0,3
+Product Manager,Startup B,Lead,214876,201-1000,Hybrid,2.4,87
+Business Analyst,Airbnb,Entry,49871,1-50,On-site,3.0,6
+Business Analyst,IBM,Senior,140299,1001-5000,Hybrid,2.8,33
+Financial Analyst,Startup B,VP,239694,51-200,Remote,3.7,266
+Data Scientist,Salesforce,Senior,156189,5001+,On-site,4.8,483
+Financial Analyst,Netflix,Director,184479,201-1000,Hybrid,3.6,107
+HR Manager,Startup B,Mid,78916,201-1000,On-site,2.8,509
+Frontend Developer,Oracle,Entry,73272,1001-5000,Remote,3.9,115
+HR Manager,Google,Lead,124084,1001-5000,Remote,3.8,42
+Backend Developer,Startup A,Mid,121009,1001-5000,On-site,4.2,169
+Frontend Developer,Airbnb,Entry,75315,1001-5000,Remote,4.7,9
+UX Designer,Google,Mid,89712,201-1000,Remote,3.9,65
+Operations Manager,Netflix,VP,277876,1001-5000,On-site,3.0,32
+Financial Analyst,Mid-size Corp,Mid,76696,201-1000,On-site,4.3,12
+Operations Manager,Airbnb,Entry,66858,1001-5000,On-site,3.5,7
+Data Scientist,Enterprise Corp,Lead,212957,51-200,Hybrid,3.6,1
+Financial Analyst,Startup A,Entry,58209,201-1000,Hybrid,3.8,31
+Product Manager,Startup A,Entry,89667,1-50,Remote,4.5,266
+HR Manager,Startup B,Senior,98655,201-1000,On-site,3.0,54
+Business Analyst,Netflix,Senior,108843,51-200,Remote,4.6,54
+Financial Analyst,Apple,Senior,112794,1001-5000,On-site,3.6,30
+Product Manager,IBM,Senior,154907,201-1000,On-site,3.4,23
+Data Scientist,Enterprise Corp,Senior,184233,1001-5000,Hybrid,3.7,54
+Machine Learning Engineer,Mid-size Corp,Senior,177561,201-1000,Hybrid,2.8,32
+Business Analyst,Google,Mid,100544,51-200,On-site,4.1,50
+Business Analyst,Enterprise Corp,Entry,61352,201-1000,Hybrid,3.5,65
+Frontend Developer,Netflix,Mid,94375,5001+,On-site,2.2,177
+Product Manager,Google,Lead,203455,5001+,Remote,3.6,8
+Marketing Manager,Intel,Senior,119284,51-200,Hybrid,4.1,8
+Operations Manager,Google,Director,170279,201-1000,Hybrid,4.8,6
+Data Scientist,Meta,Mid,123778,1001-5000,Remote,4.1,1
+Marketing Manager,Meta,Senior,135529,1001-5000,Hybrid,3.7,1456
+Sales Representative,Netflix,Mid,65048,1001-5000,On-site,3.0,256
+Backend Developer,Startup A,Entry,82662,1001-5000,On-site,4.4,14
+Marketing Manager,IBM,Mid,107184,1001-5000,Hybrid,4.1,15
+Software Engineer,Uber,Mid,132104,201-1000,On-site,4.3,13
+Software Engineer,Mid-size Corp,Mid,113046,1-50,On-site,5.0,23
+UX Designer,Mid-size Corp,Senior,167279,201-1000,Hybrid,4.1,115
+Marketing Manager,Apple,Mid,104442,201-1000,On-site,3.0,4
+Financial Analyst,Netflix,Senior,126920,1-50,Remote,4.5,43
+DevOps Engineer,Salesforce,Senior,174299,201-1000,Hybrid,3.5,36
+Product Manager,Google,Mid,124745,201-1000,Remote,3.9,165
+Product Manager,Google,Mid,138728,201-1000,Hybrid,4.2,160
+Frontend Developer,Google,Lead,187110,5001+,Remote,4.1,220
+HR Manager,Intel,Entry,50615,1-50,Hybrid,2.6,1061
+Marketing Manager,Startup A,Senior,113934,1001-5000,On-site,5.0,92
+Backend Developer,Startup A,Mid,104071,5001+,Remote,4.7,67
+Sales Representative,Oracle,Mid,68385,201-1000,Remote,3.4,47
+Data Scientist,Microsoft,Mid,132289,201-1000,Hybrid,4.4,7
+Software Engineer,IBM,Entry,78262,201-1000,On-site,4.8,260
+HR Manager,Oracle,Mid,80801,201-1000,Hybrid,4.4,7
+Data Scientist,Meta,Mid,107689,201-1000,Hybrid,4.0,153
+Software Engineer,Amazon,Lead,170562,51-200,Remote,4.2,42
+Operations Manager,Uber,Senior,122375,5001+,Remote,2.9,187
+Business Analyst,Salesforce,Entry,49897,1001-5000,Hybrid,3.3,144
+Product Manager,IBM,Director,243895,5001+,On-site,4.5,379
+Frontend Developer,Microsoft,Mid,114176,201-1000,Remote,4.0,77
+UX Designer,Airbnb,Senior,155721,201-1000,Hybrid,4.4,7
+UX Designer,Oracle,Lead,180722,201-1000,On-site,3.1,35
+Operations Manager,Meta,Lead,134559,1001-5000,Hybrid,3.6,142
+Sales Representative,Amazon,Lead,108790,201-1000,Remote,4.8,380
+Sales Representative,Startup A,Mid,76302,1-50,Hybrid,3.1,5
+Business Analyst,Startup B,Mid,92758,5001+,Remote,3.8,104
+Machine Learning Engineer,Google,Mid,128333,201-1000,Remote,3.1,106
+Product Manager,Startup A,Mid,134538,1-50,Hybrid,4.0,35
+HR Manager,Apple,Director,149360,5001+,Remote,2.6,45
+Financial Analyst,Netflix,Mid,75000,1001-5000,Remote,4.1,1
+Frontend Developer,Meta,Senior,145875,51-200,Hybrid,3.3,6
+Business Analyst,Enterprise Corp,Senior,105577,201-1000,On-site,3.9,2
+Backend Developer,Google,Entry,69338,1001-5000,Hybrid,3.7,16
+Sales Representative,Oracle,Mid,66226,5001+,Hybrid,2.8,14
+Business Analyst,Mid-size Corp,Mid,98220,201-1000,Hybrid,5.0,44
+Machine Learning Engineer,Apple,VP,331917,1001-5000,On-site,4.3,36
+DevOps Engineer,Mid-size Corp,Mid,123361,51-200,On-site,3.1,12
+Frontend Developer,Microsoft,Senior,137960,1001-5000,On-site,2.4,188
+Data Scientist,Google,Senior,190906,1001-5000,Remote,3.8,8
+Frontend Developer,Amazon,Senior,149252,5001+,On-site,4.4,50
+Financial Analyst,Google,Mid,94242,1001-5000,Remote,3.2,2
+Financial Analyst,Uber,Entry,62163,5001+,Hybrid,4.6,41
+UX Designer,Salesforce,Mid,94421,1001-5000,On-site,2.6,111
+Financial Analyst,Mid-size Corp,Mid,77005,1001-5000,On-site,3.2,42
+Financial Analyst,Startup B,Entry,61249,1001-5000,Remote,4.2,18
+DevOps Engineer,Mid-size Corp,Entry,83989,201-1000,Remote,4.1,1284
+Machine Learning Engineer,Microsoft,Entry,92194,5001+,Remote,3.5,13
+HR Manager,Amazon,Director,161596,201-1000,On-site,3.6,1
+Marketing Manager,Startup A,Mid,90080,1-50,Hybrid,3.6,479
+Marketing Manager,Google,Entry,56908,1-50,Hybrid,2.6,16
+Business Analyst,Startup A,Entry,55953,201-1000,On-site,3.4,19
+Backend Developer,IBM,Senior,138311,5001+,On-site,4.1,15
+Software Engineer,Intel,Mid,126849,1001-5000,On-site,3.6,167
+Software Engineer,Google,Mid,116522,1-50,Remote,3.3,20
+DevOps Engineer,Intel,Mid,134336,51-200,Remote,3.7,1
+UX Designer,Google,Senior,158840,51-200,Hybrid,4.3,56
+HR Manager,Google,Mid,79022,51-200,Hybrid,3.7,6185
+DevOps Engineer,Enterprise Corp,Lead,210154,51-200,On-site,3.1,26
+Operations Manager,Oracle,Mid,102200,51-200,Hybrid,4.3,337
+UX Designer,Enterprise Corp,Senior,163263,1001-5000,On-site,4.7,299
+Financial Analyst,Intel,Lead,118364,5001+,Remote,3.0,45
+Sales Representative,Enterprise Corp,Lead,134506,5001+,Remote,4.7,80
+Business Analyst,Oracle,Entry,52558,201-1000,Hybrid,3.9,471
+Business Analyst,Meta,Mid,100797,1-50,Hybrid,5.0,173
+Machine Learning Engineer,Netflix,Senior,199685,5001+,On-site,4.3,1
+Software Engineer,Startup A,VP,299379,51-200,Remote,5.0,90
+Sales Representative,Intel,Lead,127448,1001-5000,Hybrid,3.4,22
+DevOps Engineer,Netflix,Mid,129791,51-200,Hybrid,3.9,12
+Product Manager,Airbnb,VP,365517,5001+,Remote,5.0,370
+Sales Representative,Oracle,Lead,132763,1001-5000,Hybrid,2.9,4
+Operations Manager,Microsoft,Director,183834,201-1000,Remote,5.0,1643
+Backend Developer,Intel,Mid,98948,1001-5000,Hybrid,4.2,9
+Data Scientist,Amazon,Senior,150264,1001-5000,Hybrid,3.9,101
+Financial Analyst,Amazon,Lead,119069,5001+,Hybrid,3.6,57
+Product Manager,Oracle,Lead,194681,1001-5000,Remote,3.9,114
+Software Engineer,Netflix,Entry,80863,5001+,Hybrid,3.4,22
+Software Engineer,Intel,Senior,177957,1001-5000,On-site,3.3,54
+Data Scientist,Uber,Senior,161638,1001-5000,On-site,3.2,104
+Business Analyst,Amazon,Mid,85754,51-200,Remote,5.0,72
+UX Designer,Uber,Senior,135175,1001-5000,Hybrid,4.5,3
+Software Engineer,Meta,Mid,119564,201-1000,Hybrid,2.3,1
+Operations Manager,Uber,Senior,116265,1-50,Remote,3.0,2
+DevOps Engineer,Startup B,Mid,125048,51-200,Remote,4.4,46
+Product Manager,Salesforce,Senior,185029,51-200,Remote,4.0,6
+UX Designer,Netflix,Director,220365,1001-5000,Hybrid,5.0,7
+Product Manager,Airbnb,Senior,170830,201-1000,Hybrid,3.9,554
+Operations Manager,Mid-size Corp,Director,181611,5001+,Hybrid,5.0,14
+Operations Manager,Microsoft,Senior,130799,1001-5000,On-site,3.0,186
+Backend Developer,Microsoft,Mid,122261,201-1000,Hybrid,2.7,68
+Software Engineer,Startup A,Director,247655,5001+,Hybrid,2.8,9
+Backend Developer,Mid-size Corp,Entry,76323,201-1000,On-site,4.5,2
+Marketing Manager,Apple,Lead,148086,201-1000,On-site,4.2,195
+Software Engineer,Startup B,Entry,75968,201-1000,On-site,3.9,50
+Marketing Manager,Google,Mid,98854,1001-5000,Hybrid,3.1,50
+Machine Learning Engineer,Google,VP,423858,51-200,On-site,3.6,382
+Operations Manager,Amazon,Mid,79583,201-1000,On-site,4.7,10
+Operations Manager,Oracle,Mid,88176,51-200,Hybrid,3.4,8
+Business Analyst,Oracle,Lead,125810,201-1000,On-site,4.1,192
+Marketing Manager,Salesforce,Mid,97053,1001-5000,Hybrid,3.9,167
+Machine Learning Engineer,Microsoft,Entry,98980,1001-5000,On-site,3.6,564
+Operations Manager,Netflix,Mid,100002,1001-5000,Remote,3.6,547
+Software Engineer,Startup A,Lead,200731,201-1000,Remote,3.7,3
+Business Analyst,Uber,Mid,96499,201-1000,Remote,2.8,113
+Sales Representative,Enterprise Corp,Senior,115570,201-1000,Hybrid,3.9,58
+Software Engineer,Startup B,Director,267884,5001+,Remote,3.1,113
+Business Analyst,Startup B,Senior,138387,1001-5000,On-site,2.8,30
+Operations Manager,Airbnb,Mid,82025,201-1000,Remote,4.5,682
+Product Manager,Intel,Mid,126767,1-50,Hybrid,3.1,6
+Backend Developer,Startup B,Mid,104017,51-200,Hybrid,3.4,105
+Marketing Manager,Oracle,Senior,115187,1001-5000,On-site,2.9,3
+Business Analyst,Netflix,Senior,106315,201-1000,On-site,3.7,51
+HR Manager,Startup B,Senior,120266,51-200,Hybrid,4.9,49
+UX Designer,Microsoft,Senior,168929,201-1000,Hybrid,3.3,14
+HR Manager,Google,Entry,48003,51-200,Remote,4.8,16
+Sales Representative,Startup A,Mid,63930,1001-5000,Hybrid,2.5,2
+Software Engineer,Uber,Mid,117615,1-50,Hybrid,4.2,11
+DevOps Engineer,Uber,VP,296016,5001+,Hybrid,2.8,12
+Operations Manager,Microsoft,Senior,131324,5001+,On-site,2.8,92
+HR Manager,Meta,Entry,55351,1-50,Hybrid,3.4,51
+Sales Representative,Oracle,VP,189517,201-1000,Remote,4.0,353
+Business Analyst,Salesforce,Director,160059,5001+,On-site,3.0,1
+Backend Developer,Mid-size Corp,Mid,104515,5001+,On-site,4.3,173
+Machine Learning Engineer,Apple,Senior,183475,5001+,Hybrid,3.6,61
+Machine Learning Engineer,Amazon,Lead,192002,51-200,On-site,4.7,100
+Marketing Manager,Intel,Senior,147617,1-50,Remote,4.9,18
+Business Analyst,Intel,Mid,83776,1001-5000,Hybrid,3.9,12
+HR Manager,Apple,Lead,146445,5001+,On-site,3.7,158
+Data Scientist,Google,Lead,200794,201-1000,Remote,3.6,1
+Operations Manager,Mid-size Corp,Mid,84903,1001-5000,Remote,4.0,10
+Sales Representative,Meta,Senior,107603,1001-5000,On-site,4.1,104
+DevOps Engineer,Enterprise Corp,Mid,134249,1001-5000,Remote,3.7,18
+DevOps Engineer,Google,Director,210942,1001-5000,Hybrid,3.1,389
+Data Scientist,Meta,Mid,126496,1001-5000,Remote,2.8,24
+Operations Manager,Intel,Senior,120521,201-1000,On-site,3.3,66
+UX Designer,Amazon,Director,239456,1001-5000,Remote,3.8,80
+Operations Manager,Startup A,Mid,101766,51-200,On-site,3.6,88
+Business Analyst,Salesforce,Director,188054,201-1000,Hybrid,3.0,22
+DevOps Engineer,Uber,Director,217531,1-50,On-site,3.9,35
+Product Manager,Intel,Lead,208343,1-50,Hybrid,4.1,49
+Sales Representative,Airbnb,Lead,113158,1001-5000,Hybrid,2.8,40
+HR Manager,Uber,Senior,95911,51-200,Hybrid,2.7,1
+Business Analyst,Apple,Senior,135558,1-50,Hybrid,3.3,255
+Sales Representative,Netflix,Senior,115993,51-200,Hybrid,4.5,171
+Financial Analyst,Google,Senior,128530,5001+,Remote,3.3,2
+Business Analyst,Microsoft,Mid,85279,201-1000,Remote,4.3,70
+Marketing Manager,Startup B,Senior,120460,201-1000,Hybrid,4.1,166
+Product Manager,Google,Lead,232739,5001+,Hybrid,4.0,129
+Frontend Developer,Google,Lead,152394,1001-5000,Hybrid,4.1,4
+UX Designer,Microsoft,Mid,97493,51-200,On-site,3.4,10
+Product Manager,Salesforce,Lead,191069,5001+,Remote,4.0,148
+Data Scientist,Uber,Mid,116361,1-50,Hybrid,3.1,6
+Financial Analyst,Apple,Lead,148745,51-200,Hybrid,4.0,2
+Business Analyst,Enterprise Corp,Entry,54772,51-200,On-site,2.7,92
+Operations Manager,Intel,Mid,97116,51-200,Hybrid,4.0,166
+HR Manager,Startup A,Entry,47886,201-1000,On-site,3.9,2
+Data Scientist,Enterprise Corp,Lead,219740,5001+,Remote,3.8,36
+DevOps Engineer,Microsoft,Mid,115152,1001-5000,On-site,2.8,67
+Financial Analyst,Salesforce,Senior,125029,1001-5000,On-site,4.1,12
+Marketing Manager,Meta,Senior,143559,51-200,Hybrid,3.8,118
+HR Manager,Startup B,Entry,58372,51-200,Hybrid,2.3,5
+Backend Developer,Startup B,Mid,114749,201-1000,Remote,4.0,79
+Marketing Manager,Amazon,Mid,95733,1-50,Hybrid,2.9,57
+UX Designer,Netflix,Mid,120092,201-1000,On-site,4.2,147
+DevOps Engineer,Salesforce,Senior,184915,51-200,Remote,3.7,204
+Product Manager,Meta,Senior,170699,201-1000,Remote,3.5,8
+Software Engineer,Startup A,Mid,109590,5001+,Remote,4.6,4
+Machine Learning Engineer,Netflix,Senior,176839,201-1000,Remote,4.5,1
+HR Manager,Amazon,Mid,80518,201-1000,Remote,5.0,337
+Financial Analyst,Uber,Lead,131758,5001+,Remote,3.0,12
+Data Scientist,Mid-size Corp,Mid,113198,1001-5000,Remote,4.4,6
+HR Manager,Airbnb,Mid,75259,5001+,Hybrid,2.7,99
+Operations Manager,Google,Entry,63117,51-200,On-site,3.9,30
+Data Scientist,Salesforce,Mid,135726,5001+,Hybrid,4.1,14
+Machine Learning Engineer,Airbnb,Senior,206730,201-1000,On-site,2.6,57
+Product Manager,Uber,Mid,127020,1001-5000,Remote,3.6,8
+Software Engineer,Google,Senior,169221,5001+,Remote,3.0,101
+Sales Representative,Oracle,Entry,45103,201-1000,On-site,3.9,41
+UX Designer,Apple,Entry,67096,201-1000,On-site,4.7,516
+Financial Analyst,Google,Senior,104293,1-50,Remote,4.7,15
+HR Manager,Microsoft,Senior,114829,5001+,On-site,4.7,1
+Machine Learning Engineer,Meta,Lead,214510,201-1000,Remote,3.6,88
+HR Manager,Microsoft,Mid,73092,1001-5000,On-site,4.5,13
+Business Analyst,Meta,Lead,141864,51-200,Hybrid,2.9,52
+DevOps Engineer,Meta,Senior,164457,201-1000,Remote,3.9,19
+Software Engineer,Google,Entry,80985,51-200,Remote,2.6,57
+UX Designer,Apple,Director,180497,1001-5000,Remote,4.0,11
+Machine Learning Engineer,Google,Senior,215930,51-200,Hybrid,3.1,2494
+UX Designer,Netflix,Lead,150538,51-200,Hybrid,4.1,9
+Data Scientist,Startup A,Lead,194311,5001+,On-site,3.5,39
+Frontend Developer,Google,Senior,145741,1001-5000,On-site,3.8,86
+Frontend Developer,Mid-size Corp,Lead,174783,51-200,Remote,4.1,411
+Frontend Developer,Salesforce,Senior,162707,1001-5000,Hybrid,3.4,9
+Software Engineer,Microsoft,Lead,205978,51-200,Hybrid,3.3,19
+Frontend Developer,Startup A,Senior,149184,5001+,Hybrid,2.3,87
+DevOps Engineer,Meta,Senior,156288,51-200,Hybrid,3.1,31
+Sales Representative,Salesforce,Senior,109726,1001-5000,On-site,3.6,1
+Software Engineer,Apple,Senior,161517,51-200,Remote,3.7,127
+Frontend Developer,Amazon,Mid,112606,1001-5000,Remote,3.3,208
+Financial Analyst,Google,Lead,119070,201-1000,Hybrid,3.8,20
+Financial Analyst,Startup B,Mid,87779,51-200,On-site,3.8,17
+HR Manager,IBM,Lead,122297,1001-5000,Remote,4.4,419
+Software Engineer,Salesforce,Senior,174360,51-200,Remote,4.6,99
+Software Engineer,Amazon,Mid,105425,201-1000,Hybrid,4.2,41
+Financial Analyst,Amazon,Lead,146999,5001+,On-site,3.8,32
+HR Manager,Salesforce,Entry,55927,5001+,On-site,4.6,297
+Financial Analyst,Enterprise Corp,VP,245328,1001-5000,On-site,3.5,172
+DevOps Engineer,Salesforce,Director,228316,1001-5000,On-site,2.5,76
+Backend Developer,Airbnb,Mid,116852,51-200,Hybrid,4.0,32
+Frontend Developer,Oracle,Mid,118588,5001+,Remote,3.4,22
+Marketing Manager,Amazon,Mid,103260,5001+,Remote,3.1,27
+Operations Manager,Netflix,Lead,154080,1-50,Hybrid,3.3,9
+Operations Manager,Intel,Senior,111865,1001-5000,Remote,3.9,466
+Software Engineer,Apple,Director,239231,1001-5000,Remote,5.0,168
+Software Engineer,Netflix,Entry,78456,201-1000,On-site,2.6,1
+HR Manager,Microsoft,Mid,86103,201-1000,Hybrid,3.5,31
+Business Analyst,Startup B,Entry,59203,201-1000,On-site,3.4,59
+Frontend Developer,Oracle,Senior,152412,1001-5000,Hybrid,3.5,42
+Business Analyst,Meta,Entry,64594,5001+,Hybrid,4.5,24
+Financial Analyst,Salesforce,Entry,62330,1001-5000,Remote,4.3,74
+Product Manager,Apple,Senior,158684,1-50,Hybrid,4.3,9
+Financial Analyst,Startup B,Mid,92814,201-1000,Remote,3.9,2
+Product Manager,Mid-size Corp,Mid,149008,201-1000,Hybrid,3.6,36
+UX Designer,Apple,Mid,115122,1001-5000,On-site,2.6,5
+Software Engineer,Startup B,Director,233286,201-1000,Hybrid,4.1,146
+DevOps Engineer,Meta,VP,363134,1001-5000,On-site,3.7,19
+Backend Developer,Enterprise Corp,Mid,107575,1001-5000,On-site,3.8,22
+Financial Analyst,IBM,Entry,57633,1001-5000,Hybrid,4.0,144
+Financial Analyst,Mid-size Corp,Senior,116037,51-200,On-site,4.0,62
+Financial Analyst,Apple,Mid,76998,51-200,Remote,3.2,10
+HR Manager,Amazon,Senior,126190,1-50,Remote,3.8,66
+Backend Developer,Salesforce,Mid,123554,1001-5000,Remote,4.5,19
+Backend Developer,IBM,Mid,107176,201-1000,Hybrid,4.7,8
+Data Scientist,Amazon,VP,312255,5001+,Hybrid,2.5,152
+Product Manager,Uber,Mid,123751,1001-5000,On-site,4.1,114
+HR Manager,Apple,Senior,120082,201-1000,Hybrid,5.0,4
+Data Scientist,IBM,Lead,218008,201-1000,Hybrid,3.7,453
+DevOps Engineer,Meta,Entry,74452,201-1000,Remote,3.8,178
+Frontend Developer,Apple,Mid,124207,201-1000,Hybrid,4.7,139
+Business Analyst,Mid-size Corp,Mid,89397,201-1000,Remote,2.6,8
+UX Designer,Enterprise Corp,VP,313992,51-200,Remote,2.4,113
+Financial Analyst,Google,Mid,73233,201-1000,Remote,3.7,8
+Frontend Developer,Meta,Director,250143,1-50,Remote,2.7,24
+Data Scientist,Startup A,Director,264305,1-50,Remote,5.0,4
+Machine Learning Engineer,Enterprise Corp,Director,269057,1001-5000,Remote,3.6,16
+Software Engineer,Salesforce,Mid,118258,201-1000,Hybrid,5.0,1
+Business Analyst,Amazon,Senior,108042,1-50,Hybrid,4.1,367
+Machine Learning Engineer,Microsoft,Mid,136307,201-1000,Hybrid,4.1,2
+Data Scientist,Uber,Mid,132253,1001-5000,Remote,3.3,1
+HR Manager,Apple,Mid,86525,1001-5000,On-site,5.0,77
+Machine Learning Engineer,Uber,Senior,201196,1001-5000,On-site,3.9,89
+Marketing Manager,Salesforce,Senior,136583,1001-5000,Hybrid,3.0,52
+Sales Representative,Intel,Senior,103159,1001-5000,Hybrid,3.9,40
+Marketing Manager,Uber,Mid,104371,201-1000,Hybrid,4.1,77
+Data Scientist,Startup A,Senior,174214,1001-5000,Remote,4.6,6
+Operations Manager,Microsoft,Entry,63682,201-1000,Remote,4.1,22
+Operations Manager,Amazon,Mid,91617,201-1000,On-site,3.4,10000
+Backend Developer,Mid-size Corp,Mid,102061,201-1000,On-site,3.0,2
+Frontend Developer,Amazon,Entry,71335,201-1000,Remote,4.0,4
+Machine Learning Engineer,Meta,Senior,201962,1-50,On-site,3.6,189
+DevOps Engineer,Intel,Mid,123891,5001+,On-site,3.0,1
+UX Designer,Uber,Senior,167194,1-50,Remote,3.8,335
+Marketing Manager,Mid-size Corp,Entry,60683,201-1000,On-site,4.1,2
+Marketing Manager,Oracle,Mid,89653,1001-5000,Hybrid,4.7,7
+Data Scientist,Google,Mid,133273,1-50,On-site,3.4,17
+DevOps Engineer,IBM,Senior,153026,201-1000,Hybrid,3.2,70
+Backend Developer,Oracle,Entry,82877,1-50,On-site,3.4,28
+UX Designer,Mid-size Corp,Director,211241,51-200,Remote,3.8,16
+HR Manager,Mid-size Corp,Mid,70435,5001+,Hybrid,4.1,58
+Operations Manager,Intel,VP,215636,1-50,Remote,3.1,24
+Marketing Manager,Enterprise Corp,Mid,101352,1001-5000,Remote,4.2,21
+Operations Manager,Salesforce,Entry,61697,201-1000,Remote,3.7,17
+Product Manager,Salesforce,Mid,114230,201-1000,Remote,3.9,15
+DevOps Engineer,Startup B,Mid,107332,1001-5000,On-site,4.2,9
+Data Scientist,Google,Senior,174212,201-1000,Hybrid,2.5,33
+Data Scientist,Intel,Director,233275,51-200,Hybrid,4.2,3
+Machine Learning Engineer,Intel,Mid,135169,51-200,Remote,3.3,5
+HR Manager,Netflix,Entry,57141,51-200,Hybrid,4.1,11
+Business Analyst,Meta,Mid,85239,1001-5000,Remote,3.2,140
+Marketing Manager,Uber,Senior,125235,201-1000,Hybrid,4.1,77
+Software Engineer,Oracle,Senior,160719,1-50,On-site,4.9,1
+Software Engineer,Microsoft,Senior,168820,201-1000,Remote,3.7,793
+Data Scientist,Enterprise Corp,Director,248681,5001+,On-site,3.3,1
+Sales Representative,Amazon,Senior,119974,5001+,Remote,2.9,92
+DevOps Engineer,IBM,Entry,74951,1001-5000,Remote,4.3,2158
+Software Engineer,Microsoft,Senior,174403,201-1000,Remote,4.7,1
+Frontend Developer,Airbnb,Senior,151700,5001+,Hybrid,4.7,28
+Financial Analyst,Meta,Senior,111763,201-1000,Remote,3.6,20
+Sales Representative,Salesforce,Entry,47253,1001-5000,Hybrid,5.0,42
+Backend Developer,Meta,Lead,209578,201-1000,On-site,4.3,443
+Financial Analyst,Uber,Senior,104364,5001+,Remote,3.2,43
+Product Manager,IBM,Mid,139829,1001-5000,Remote,3.9,273
+Software Engineer,Salesforce,Entry,73566,201-1000,Hybrid,4.8,377
+DevOps Engineer,Mid-size Corp,Director,244247,5001+,On-site,5.0,234
+Data Scientist,Netflix,Entry,79346,51-200,Remote,3.5,44
+Software Engineer,Startup B,Mid,104886,1001-5000,Remote,4.8,17
+Sales Representative,Netflix,Senior,89441,201-1000,Remote,4.7,29
+Business Analyst,Startup B,Senior,134387,5001+,Hybrid,4.6,17
+Software Engineer,IBM,Senior,176483,1-50,On-site,5.0,46
+Financial Analyst,Google,Entry,51530,1001-5000,Hybrid,3.5,6
+Frontend Developer,Microsoft,Senior,140707,1001-5000,Remote,4.4,72
+Data Scientist,Amazon,Mid,111584,51-200,Hybrid,3.7,2
+Operations Manager,Netflix,Mid,99670,1001-5000,On-site,5.0,4
+Software Engineer,Airbnb,Lead,204820,201-1000,Hybrid,4.5,76
+Marketing Manager,Netflix,Mid,106477,201-1000,On-site,4.7,46
+Marketing Manager,Amazon,Mid,108166,5001+,Hybrid,3.8,16
+Frontend Developer,Startup B,Entry,62133,201-1000,Remote,2.6,29
+HR Manager,Amazon,Director,158685,201-1000,Remote,4.0,127
+HR Manager,Startup B,Mid,72011,1001-5000,Hybrid,2.8,108
+Machine Learning Engineer,Meta,Senior,176716,51-200,On-site,3.2,74
+Software Engineer,Meta,VP,355190,51-200,Hybrid,2.7,18
+Marketing Manager,Airbnb,Mid,91217,51-200,Remote,4.9,31
+Operations Manager,Enterprise Corp,Mid,92454,5001+,On-site,3.8,34
+Sales Representative,Mid-size Corp,Entry,50036,5001+,On-site,4.4,2
+Software Engineer,Meta,Senior,152548,201-1000,Hybrid,4.2,261
+Frontend Developer,IBM,Mid,119280,1001-5000,Hybrid,3.3,485
+Software Engineer,Google,Director,260355,1001-5000,On-site,4.7,6
+Sales Representative,Oracle,Mid,64342,1001-5000,Hybrid,4.4,23
+Software Engineer,Netflix,Lead,173606,1001-5000,Hybrid,4.7,48
+Data Scientist,Google,Lead,221699,5001+,Remote,4.1,69
+UX Designer,Netflix,Lead,167769,5001+,On-site,3.4,55
+Business Analyst,Airbnb,Senior,132400,1-50,On-site,3.5,57
+DevOps Engineer,Meta,Director,253677,5001+,Hybrid,3.2,226
+Machine Learning Engineer,Apple,Director,253524,1001-5000,Hybrid,3.4,1
+Machine Learning Engineer,Uber,Mid,150573,201-1000,Hybrid,3.5,87
+DevOps Engineer,Intel,Senior,153273,1001-5000,Hybrid,3.7,20
+Backend Developer,IBM,Entry,64409,201-1000,Hybrid,4.3,30
+UX Designer,IBM,Entry,69566,1-50,Hybrid,3.6,4
+DevOps Engineer,Oracle,Director,221987,51-200,Remote,2.8,115
+UX Designer,Salesforce,Lead,143166,51-200,Hybrid,3.8,28
+Business Analyst,Startup B,Entry,62094,51-200,Hybrid,3.1,61
+Frontend Developer,Enterprise Corp,VP,309033,5001+,Hybrid,3.2,107
+Sales Representative,Enterprise Corp,Lead,106477,51-200,Hybrid,3.9,47
+Backend Developer,Oracle,Lead,208684,1001-5000,Remote,4.8,1
+Marketing Manager,Google,Senior,127319,5001+,On-site,4.8,90
+DevOps Engineer,Startup B,Senior,173768,51-200,Remote,2.9,102
+Operations Manager,IBM,VP,214653,5001+,Remote,4.0,2
+Software Engineer,Mid-size Corp,Lead,197816,1001-5000,On-site,5.0,552
+UX Designer,Intel,Entry,63969,201-1000,Hybrid,3.5,25
+Business Analyst,Enterprise Corp,Senior,113342,1001-5000,Hybrid,3.7,3465
+Business Analyst,Uber,Senior,124472,5001+,Hybrid,3.1,792
+HR Manager,Airbnb,Mid,85486,51-200,Hybrid,3.2,8
+Software Engineer,Netflix,Mid,130128,5001+,Remote,3.5,16
+Sales Representative,Intel,Senior,107724,5001+,Remote,4.1,70
+Financial Analyst,Salesforce,Senior,136544,51-200,Hybrid,4.6,132
+Sales Representative,Salesforce,Mid,73736,51-200,Hybrid,4.3,98
+HR Manager,Meta,Director,163952,1001-5000,Hybrid,2.9,63
+Financial Analyst,Google,Mid,75092,5001+,Remote,3.8,19
+Frontend Developer,Google,Entry,77644,51-200,Remote,3.9,87
+Frontend Developer,Amazon,Senior,169661,201-1000,On-site,3.7,1
+Frontend Developer,Startup B,Mid,100344,5001+,Hybrid,3.4,11
+Sales Representative,Startup B,Mid,75566,1001-5000,Remote,3.2,1
+Operations Manager,Apple,Entry,64228,1001-5000,Remote,3.9,3
+Machine Learning Engineer,IBM,Entry,99582,201-1000,Hybrid,4.0,83
+Data Scientist,Apple,Mid,139858,201-1000,Remote,4.8,14
+Software Engineer,Startup B,Mid,116441,5001+,Hybrid,3.6,25
+Data Scientist,Mid-size Corp,Mid,108955,1001-5000,On-site,3.5,2
+DevOps Engineer,Airbnb,Senior,157946,1001-5000,Remote,3.0,237
+Software Engineer,Meta,Mid,126073,1001-5000,Hybrid,3.9,52
+Data Scientist,Uber,Mid,134050,201-1000,On-site,3.0,80
+Business Analyst,Apple,Lead,153221,5001+,On-site,3.5,166
+Machine Learning Engineer,Meta,Entry,93193,1001-5000,Hybrid,3.4,15
+DevOps Engineer,Startup B,Mid,106560,1001-5000,Hybrid,3.2,19
+UX Designer,Salesforce,Senior,163165,5001+,On-site,3.6,1
+Operations Manager,Airbnb,Mid,89604,5001+,Hybrid,3.8,192
+Data Scientist,Startup A,Lead,184386,201-1000,Hybrid,4.6,18
+HR Manager,IBM,Entry,57201,201-1000,On-site,3.1,14
+Data Scientist,Microsoft,Senior,185803,201-1000,On-site,3.5,288
+Marketing Manager,Oracle,Entry,68667,5001+,Remote,4.2,8
+Financial Analyst,Mid-size Corp,Senior,111802,1-50,Hybrid,3.6,55
+Marketing Manager,Meta,Senior,113526,201-1000,Remote,4.3,38
+Operations Manager,Microsoft,Mid,98359,1001-5000,Hybrid,3.9,50
+Data Scientist,Startup A,Entry,92819,1001-5000,On-site,4.2,14
+DevOps Engineer,Apple,Senior,165717,1001-5000,Hybrid,2.9,266
+Marketing Manager,Google,Mid,99113,51-200,Hybrid,3.8,22
+Business Analyst,Salesforce,Senior,135930,51-200,On-site,3.9,8
+DevOps Engineer,Uber,Senior,176067,1-50,Hybrid,3.3,50
+DevOps Engineer,Enterprise Corp,Mid,124889,1001-5000,Hybrid,3.7,12
+Data Scientist,Startup A,Director,219796,1001-5000,On-site,2.8,24
+Machine Learning Engineer,Amazon,Mid,130585,1-50,Remote,3.6,5
+UX Designer,Meta,Director,238320,51-200,Remote,4.0,53
+Frontend Developer,Oracle,Lead,164442,5001+,On-site,4.0,1
+Business Analyst,Oracle,Entry,60695,201-1000,Remote,3.9,53
+Data Scientist,Airbnb,Entry,77748,51-200,On-site,4.0,23
+Software Engineer,Oracle,Mid,135490,1001-5000,Hybrid,3.8,203
+Frontend Developer,Enterprise Corp,Mid,94310,51-200,Hybrid,3.2,149
+DevOps Engineer,Oracle,VP,299171,1001-5000,On-site,4.7,42
+Marketing Manager,Apple,Senior,125616,5001+,Remote,3.0,29
+HR Manager,IBM,Senior,115287,1001-5000,Remote,4.7,139
+Sales Representative,Uber,Mid,80068,201-1000,Hybrid,4.7,76
+Product Manager,IBM,Mid,133570,1001-5000,Hybrid,2.3,3
+Financial Analyst,Apple,Lead,154667,5001+,Remote,4.1,5
+Data Scientist,Enterprise Corp,Mid,132183,5001+,Hybrid,3.5,825
+Backend Developer,Uber,Mid,109650,201-1000,On-site,4.0,10
+Financial Analyst,Microsoft,Mid,84614,201-1000,On-site,4.4,16
+UX Designer,Apple,Entry,63608,201-1000,Remote,4.0,19
+Operations Manager,Salesforce,Director,201605,5001+,On-site,3.3,71
+Sales Representative,Airbnb,Mid,78522,1-50,Hybrid,3.3,26
+Operations Manager,Oracle,Entry,65305,51-200,Remote,3.1,25
+Data Scientist,Intel,Lead,212546,5001+,Hybrid,3.6,92
+Marketing Manager,Microsoft,Mid,101168,201-1000,Remote,5.0,66
+Frontend Developer,Microsoft,Mid,102154,51-200,On-site,3.6,30
+DevOps Engineer,Startup B,Mid,101153,1-50,On-site,4.2,48
+Sales Representative,Apple,Entry,55226,1001-5000,Hybrid,3.3,2
+Backend Developer,IBM,Lead,187515,51-200,Remote,3.4,87
+Sales Representative,Uber,Lead,102005,1001-5000,On-site,3.5,23
+Backend Developer,Intel,Director,246817,5001+,On-site,4.1,24
+Business Analyst,Google,Entry,57001,201-1000,Remote,4.1,1
+Backend Developer,Meta,Mid,117760,51-200,Remote,3.0,17
+Business Analyst,Mid-size Corp,Mid,93663,201-1000,Remote,3.8,480
+Operations Manager,Microsoft,Lead,159690,1-50,Hybrid,5.0,77
+Frontend Developer,Amazon,Entry,67795,51-200,Hybrid,3.7,154
+Machine Learning Engineer,Startup B,Entry,99969,201-1000,Remote,4.6,53
+Product Manager,Uber,Senior,172261,201-1000,Remote,2.5,2063
+HR Manager,Startup B,Lead,141922,1001-5000,Hybrid,2.8,50
+Backend Developer,Microsoft,Senior,165880,5001+,On-site,4.0,481
+Data Scientist,Startup B,Senior,191398,201-1000,On-site,3.7,11
+Product Manager,Oracle,Entry,96109,1001-5000,Remote,3.6,62
+Machine Learning Engineer,Amazon,Entry,94696,201-1000,Hybrid,3.7,93
+UX Designer,Microsoft,Senior,147842,51-200,Hybrid,4.2,132
+UX Designer,IBM,Mid,101336,51-200,Remote,3.7,22
+DevOps Engineer,Microsoft,Lead,167198,5001+,Remote,2.9,1
+Product Manager,Uber,Entry,80916,51-200,On-site,4.3,31
+Machine Learning Engineer,Airbnb,Mid,124359,201-1000,Remote,4.2,103
+UX Designer,Mid-size Corp,Senior,150601,1001-5000,Hybrid,3.9,69
+Business Analyst,Intel,Lead,145232,1001-5000,Remote,3.8,3
+Data Scientist,Salesforce,VP,394085,51-200,Hybrid,4.3,3
+Sales Representative,Netflix,Lead,126398,1001-5000,Hybrid,4.0,48
+Marketing Manager,Netflix,Mid,95934,201-1000,Hybrid,4.6,12
+Business Analyst,Oracle,VP,279699,1001-5000,On-site,3.7,95
+Operations Manager,Startup A,Lead,145946,1-50,On-site,3.9,32
+Financial Analyst,Meta,Mid,97381,51-200,On-site,4.4,1
+Sales Representative,Meta,Entry,42025,51-200,Hybrid,4.1,816
+Marketing Manager,Enterprise Corp,VP,249111,201-1000,Remote,3.3,16
+Operations Manager,Enterprise Corp,Senior,133494,51-200,Remote,3.3,204
+UX Designer,Startup A,Lead,182802,1001-5000,Remote,2.7,17
+HR Manager,Enterprise Corp,Mid,84294,201-1000,On-site,3.5,14
+HR Manager,Apple,Lead,116162,51-200,Remote,4.3,10
+Operations Manager,Amazon,Mid,78907,51-200,Hybrid,4.2,75
+HR Manager,Meta,Entry,48667,1-50,On-site,2.9,3
+HR Manager,Startup B,Entry,59667,1-50,Hybrid,3.1,19
+Data Scientist,Intel,Entry,74546,201-1000,Hybrid,4.6,17
+Sales Representative,Uber,Mid,74277,1001-5000,Hybrid,4.7,51
+Machine Learning Engineer,Mid-size Corp,Mid,139322,201-1000,Hybrid,4.0,35
+Operations Manager,Salesforce,Mid,78757,5001+,Hybrid,3.6,12
+Marketing Manager,Mid-size Corp,Mid,97930,201-1000,On-site,4.1,9
+UX Designer,Enterprise Corp,Director,218457,51-200,Hybrid,3.5,23
+Frontend Developer,Startup B,Mid,95106,51-200,On-site,1.7,69
+Software Engineer,Airbnb,Mid,109816,201-1000,Remote,4.0,99
+Backend Developer,Enterprise Corp,Lead,172448,51-200,Hybrid,4.5,85
+DevOps Engineer,Enterprise Corp,Mid,127654,1001-5000,Remote,4.3,156
+Operations Manager,Meta,Mid,88287,201-1000,Remote,4.7,23
+Financial Analyst,Netflix,Entry,52102,201-1000,Hybrid,4.1,101
+UX Designer,Enterprise Corp,Director,188450,201-1000,Remote,4.5,19
+UX Designer,Google,Senior,141304,51-200,On-site,4.7,10000
+Machine Learning Engineer,Microsoft,Senior,198251,51-200,On-site,4.3,38
+Product Manager,Uber,Mid,130700,201-1000,Hybrid,5.0,19
+Machine Learning Engineer,Netflix,Lead,245631,1-50,Remote,3.6,101
+HR Manager,Meta,Lead,137179,51-200,Hybrid,4.0,483
+Product Manager,Amazon,Mid,134575,1001-5000,Hybrid,4.0,5
+UX Designer,Meta,Mid,91532,201-1000,On-site,3.7,16
+Financial Analyst,Amazon,Mid,77867,201-1000,Remote,4.2,17
+Backend Developer,Oracle,Mid,132024,5001+,Hybrid,4.8,181
+Machine Learning Engineer,Amazon,Mid,130434,51-200,Remote,3.9,28
+Business Analyst,Uber,Director,179364,5001+,On-site,3.3,5740
+Frontend Developer,Startup A,Senior,133298,5001+,On-site,4.6,20
+Sales Representative,Apple,Entry,46342,201-1000,Remote,5.0,2
+Frontend Developer,Oracle,Senior,131602,1-50,Remote,3.5,1108
+Product Manager,Startup B,Senior,194119,51-200,Hybrid,4.2,106
+Software Engineer,Startup B,Senior,183347,1001-5000,Hybrid,2.9,43
+Operations Manager,Airbnb,Entry,59848,51-200,Remote,2.6,455
+Business Analyst,Airbnb,Senior,137490,201-1000,Remote,3.9,38
+Business Analyst,Startup B,Senior,106702,201-1000,Remote,2.9,17
+Financial Analyst,Mid-size Corp,Mid,91056,51-200,Hybrid,4.0,12
+Software Engineer,Airbnb,Entry,85698,1001-5000,On-site,2.5,1
+Frontend Developer,Microsoft,Lead,199911,51-200,On-site,4.2,1
+Data Scientist,Oracle,Senior,164611,201-1000,Remote,3.1,454
+Frontend Developer,Enterprise Corp,Lead,184397,1-50,Hybrid,3.6,9
+HR Manager,IBM,Lead,116529,5001+,On-site,2.9,4
+Software Engineer,Amazon,Mid,135540,201-1000,Remote,3.8,572
+UX Designer,Google,Lead,187722,5001+,Hybrid,3.2,45
+Data Scientist,Startup B,Senior,158414,201-1000,Remote,2.4,86
+Software Engineer,Netflix,Mid,134803,51-200,Hybrid,4.8,1
+Machine Learning Engineer,Airbnb,Mid,146531,1001-5000,Hybrid,3.9,19
+Financial Analyst,Startup B,Director,166613,1001-5000,Hybrid,5.0,1237
+Frontend Developer,Google,Senior,146185,51-200,On-site,3.8,38
+DevOps Engineer,Meta,Mid,134588,201-1000,Remote,5.0,372
+HR Manager,Mid-size Corp,Lead,114943,1001-5000,Remote,3.2,34
+Financial Analyst,Uber,Entry,48206,51-200,On-site,5.0,93
+Financial Analyst,Startup B,Mid,81796,1001-5000,On-site,4.0,117
+Data Scientist,IBM,Mid,143327,201-1000,Hybrid,4.6,23
+HR Manager,Uber,Senior,118451,5001+,Remote,3.2,742
+Backend Developer,Salesforce,Senior,173980,201-1000,On-site,3.0,363
+UX Designer,Microsoft,Senior,125909,201-1000,Hybrid,3.6,23
+Backend Developer,Enterprise Corp,Senior,158394,1001-5000,On-site,3.7,7
+Marketing Manager,Startup B,Mid,100276,1001-5000,Remote,4.4,49
+UX Designer,Mid-size Corp,Mid,92750,201-1000,Hybrid,2.8,54
+Product Manager,Mid-size Corp,Mid,139500,1001-5000,On-site,3.2,14
+Frontend Developer,Mid-size Corp,Director,238471,1-50,On-site,3.2,31
+Backend Developer,Enterprise Corp,Entry,76580,201-1000,On-site,3.3,156
+Backend Developer,Oracle,Entry,79409,5001+,On-site,3.8,32
+Operations Manager,Meta,Entry,57102,201-1000,Remote,1.8,18
+Financial Analyst,Microsoft,Entry,52891,201-1000,Hybrid,4.6,237
+HR Manager,Startup B,Mid,86793,51-200,Remote,4.5,120
+Backend Developer,Amazon,Director,198691,51-200,Hybrid,4.0,3293
+Financial Analyst,Intel,Director,157137,51-200,Hybrid,3.2,31
+Financial Analyst,Enterprise Corp,Mid,86263,201-1000,On-site,4.8,23
+Sales Representative,Microsoft,Director,150943,201-1000,On-site,4.2,1004
+Business Analyst,Startup B,Lead,129304,51-200,Remote,4.1,1
+Sales Representative,Netflix,Mid,69311,201-1000,Hybrid,1.8,25
+DevOps Engineer,Oracle,Lead,212162,1-50,Remote,5.0,42
+Sales Representative,Startup B,Entry,46536,5001+,Hybrid,3.6,1
+Business Analyst,Startup B,VP,256613,5001+,Hybrid,4.3,80
+Software Engineer,Meta,Mid,126684,51-200,Remote,2.3,437
+Sales Representative,Apple,Entry,49518,1001-5000,Remote,3.5,214
+Machine Learning Engineer,Startup A,Senior,202303,201-1000,On-site,4.0,22
+Operations Manager,Apple,Director,206315,1001-5000,Hybrid,3.9,236
+DevOps Engineer,Startup B,Entry,79861,201-1000,On-site,2.8,20
+Financial Analyst,Startup A,Entry,63225,201-1000,Hybrid,4.0,1
+UX Designer,Airbnb,Senior,162834,1-50,Hybrid,3.5,1
+Business Analyst,Airbnb,Senior,107697,1-50,On-site,3.6,57
+DevOps Engineer,Microsoft,Entry,73621,1001-5000,On-site,2.2,2
+Backend Developer,Startup A,Director,219650,201-1000,On-site,5.0,10
+Marketing Manager,Salesforce,Senior,137888,201-1000,On-site,3.6,1
+DevOps Engineer,Airbnb,Lead,167067,1001-5000,On-site,5.0,56
+Product Manager,Enterprise Corp,Mid,112687,201-1000,Hybrid,4.2,21
+Software Engineer,Intel,Director,218704,51-200,On-site,3.5,20
+HR Manager,Startup A,Lead,109410,5001+,Hybrid,5.0,9
+HR Manager,Meta,Entry,56930,201-1000,Hybrid,4.3,27
+UX Designer,Apple,Lead,164101,1001-5000,Hybrid,4.9,1691
+Backend Developer,Salesforce,VP,330311,5001+,Hybrid,2.3,1
+Frontend Developer,Amazon,Mid,102339,1001-5000,On-site,5.0,6
+Business Analyst,Startup B,Entry,51337,201-1000,Remote,3.4,14
+Backend Developer,Startup A,Entry,64057,51-200,Remote,4.1,28
+Software Engineer,Mid-size Corp,Mid,119180,201-1000,Hybrid,4.1,3
+Frontend Developer,Enterprise Corp,Lead,201970,1001-5000,Remote,3.4,69
+Machine Learning Engineer,Oracle,Entry,87833,51-200,Hybrid,3.2,160
+Software Engineer,IBM,Entry,80195,1-50,Hybrid,5.0,8
+Machine Learning Engineer,Oracle,Senior,186149,1-50,On-site,4.2,1
+Frontend Developer,Salesforce,Mid,106581,5001+,Hybrid,4.3,94
+Data Scientist,Amazon,Senior,184884,1-50,On-site,4.5,3
+Machine Learning Engineer,Oracle,Mid,148660,51-200,On-site,3.8,108
+Frontend Developer,Intel,Mid,102126,201-1000,Remote,3.2,407
+UX Designer,Google,Mid,118856,201-1000,Remote,3.7,174
+Backend Developer,Enterprise Corp,Senior,153701,1001-5000,Hybrid,3.3,121
+HR Manager,Startup B,Director,149806,1-50,On-site,4.5,42
+Data Scientist,Salesforce,Mid,121993,5001+,Remote,2.6,183
+Marketing Manager,Meta,Entry,66585,201-1000,Hybrid,4.2,40
+Software Engineer,Meta,Mid,110308,201-1000,On-site,4.2,10
+HR Manager,Intel,Entry,48841,1001-5000,Hybrid,2.8,2
+Machine Learning Engineer,Amazon,Lead,192151,201-1000,Hybrid,3.9,1
+Machine Learning Engineer,Mid-size Corp,Mid,128485,201-1000,Hybrid,4.4,40
+HR Manager,Microsoft,Senior,111847,201-1000,Remote,4.1,52
+HR Manager,Oracle,Mid,72988,201-1000,Remote,2.7,54
+Backend Developer,Mid-size Corp,Senior,184048,201-1000,Hybrid,4.7,165
+Business Analyst,Google,Mid,93614,1001-5000,Hybrid,4.8,131
+Software Engineer,Salesforce,Senior,164182,51-200,Hybrid,4.0,32
+Machine Learning Engineer,Apple,Mid,117547,201-1000,Hybrid,4.6,299
+Frontend Developer,Uber,Director,211293,1-50,Hybrid,2.3,93
+Operations Manager,Airbnb,Lead,143712,201-1000,Hybrid,4.0,181
+Software Engineer,Apple,Entry,71720,1001-5000,Hybrid,3.8,21
+Marketing Manager,Microsoft,Mid,83264,5001+,Hybrid,4.6,427
+HR Manager,Mid-size Corp,Lead,110374,201-1000,Hybrid,4.9,10
+Marketing Manager,Netflix,Senior,143910,51-200,Remote,3.6,87
+Software Engineer,Intel,Mid,135270,5001+,Hybrid,4.2,170
+Data Scientist,Intel,Mid,116134,5001+,Remote,4.5,156
+Product Manager,Uber,Mid,140331,5001+,On-site,2.9,12
+Operations Manager,Startup A,Mid,102409,201-1000,On-site,3.1,11
+Financial Analyst,IBM,Mid,83992,51-200,Hybrid,3.5,16
+UX Designer,Startup B,Director,195733,1-50,On-site,4.0,127
+DevOps Engineer,Salesforce,Senior,181316,201-1000,Remote,4.6,58
+Marketing Manager,Enterprise Corp,Senior,122782,5001+,Remote,4.7,12
+Product Manager,Startup A,Entry,83585,1001-5000,Hybrid,4.0,20
+Business Analyst,Mid-size Corp,Senior,120746,1-50,Remote,4.0,1
+Backend Developer,Enterprise Corp,Director,223939,51-200,On-site,4.0,121
+Marketing Manager,Amazon,Mid,86635,51-200,Hybrid,3.7,77
+Sales Representative,Intel,Lead,125608,1-50,On-site,3.5,5
+Frontend Developer,Netflix,Lead,181891,1001-5000,On-site,3.4,231
+Financial Analyst,Meta,Mid,92550,1001-5000,On-site,2.9,104
+Financial Analyst,Intel,VP,237438,1001-5000,On-site,4.2,75
+Operations Manager,Apple,Entry,60873,201-1000,On-site,3.8,207
+Frontend Developer,Google,Senior,152982,1001-5000,On-site,4.0,23
+Frontend Developer,Startup B,Senior,176166,201-1000,Hybrid,3.2,577
+Frontend Developer,Uber,Entry,63573,1-50,Hybrid,3.7,16
+DevOps Engineer,Airbnb,Mid,119141,51-200,On-site,3.7,72
+DevOps Engineer,Microsoft,Lead,175350,51-200,Remote,3.9,168
+Marketing Manager,Startup B,Mid,108421,51-200,Remote,4.4,36
+DevOps Engineer,Netflix,Lead,208628,1-50,On-site,2.9,121
+HR Manager,Salesforce,Mid,69794,1001-5000,On-site,4.4,37
+Frontend Developer,IBM,Entry,78983,1001-5000,Remote,4.2,363
+Machine Learning Engineer,Netflix,Entry,94170,1001-5000,Remote,3.2,54
+Product Manager,Startup B,Mid,118643,1001-5000,On-site,4.6,13
+Frontend Developer,Intel,Entry,67740,1001-5000,On-site,3.2,3
+Data Scientist,Airbnb,Mid,126162,5001+,Remote,4.4,1
+Sales Representative,Microsoft,Senior,105479,1001-5000,Remote,3.2,3
+Backend Developer,Uber,Senior,160622,201-1000,Hybrid,2.5,89
+Machine Learning Engineer,Airbnb,Senior,195307,51-200,Remote,3.3,16
+Backend Developer,Enterprise Corp,Mid,108812,201-1000,Remote,3.8,123
+Software Engineer,Startup B,Entry,74902,201-1000,Hybrid,3.4,210
+Frontend Developer,Oracle,Director,233541,1001-5000,Remote,2.8,20
+Product Manager,Apple,Mid,125020,1-50,Hybrid,4.0,51
+Frontend Developer,IBM,Senior,152665,201-1000,On-site,3.7,77
+HR Manager,Mid-size Corp,Mid,85608,201-1000,On-site,4.3,118
+Frontend Developer,Intel,Senior,151276,201-1000,Hybrid,4.3,12
+Software Engineer,Apple,Entry,84431,51-200,On-site,4.1,30
+Backend Developer,Google,Senior,174493,201-1000,On-site,2.7,71
+Product Manager,Enterprise Corp,Mid,147766,201-1000,On-site,3.7,185
+Software Engineer,Intel,Senior,162550,201-1000,Remote,4.1,12
+Financial Analyst,Airbnb,Senior,102346,201-1000,On-site,3.5,55
+Frontend Developer,Airbnb,Senior,146949,1001-5000,Hybrid,3.3,3
+Sales Representative,Netflix,Lead,114466,1001-5000,Remote,3.8,37
+Operations Manager,Oracle,Senior,110323,201-1000,On-site,2.4,11
+Operations Manager,Google,Mid,98669,5001+,Remote,3.1,295
+Marketing Manager,Startup B,Mid,99777,5001+,Remote,3.3,1
+Product Manager,Apple,Mid,137995,201-1000,Hybrid,3.5,665
+DevOps Engineer,Salesforce,Entry,83772,1001-5000,Remote,4.7,16
+Business Analyst,Google,Entry,61755,1001-5000,Hybrid,3.4,4
+Business Analyst,Startup B,Mid,98522,51-200,Remote,2.6,58
+Marketing Manager,Enterprise Corp,Entry,70542,201-1000,Hybrid,3.6,51
+Software Engineer,Salesforce,VP,347814,5001+,Hybrid,4.0,2
+Business Analyst,Apple,Mid,76233,5001+,Hybrid,4.2,42
+Backend Developer,IBM,Mid,116235,51-200,Hybrid,3.3,11
+Frontend Developer,Enterprise Corp,Senior,149353,5001+,Hybrid,5.0,11
+Marketing Manager,Salesforce,Senior,128696,51-200,Hybrid,4.6,1
+Marketing Manager,Enterprise Corp,Mid,88818,1001-5000,On-site,4.8,789
+Data Scientist,Salesforce,Senior,191567,1001-5000,Remote,3.7,139
+Backend Developer,Meta,Mid,115452,1-50,On-site,4.4,510
+Frontend Developer,Startup A,Entry,67998,1-50,On-site,3.8,62
+Business Analyst,Oracle,Lead,143210,201-1000,Hybrid,2.7,11
+Operations Manager,Oracle,Mid,87582,1001-5000,Hybrid,3.9,70
+Machine Learning Engineer,Oracle,Entry,91654,51-200,Remote,3.9,23
+Backend Developer,Airbnb,Senior,183331,1001-5000,On-site,3.8,45
+Frontend Developer,Intel,Entry,61122,1001-5000,Hybrid,2.7,510
+Software Engineer,Startup B,Mid,110818,5001+,Remote,3.2,120
+Marketing Manager,Airbnb,Senior,145561,201-1000,Hybrid,4.5,51
+Sales Representative,Meta,Mid,72672,1001-5000,Remote,3.0,156
+Operations Manager,Uber,Entry,55338,1001-5000,Hybrid,3.7,32
+Sales Representative,Microsoft,Senior,102726,51-200,Hybrid,3.4,71
+Frontend Developer,Startup A,Senior,176988,1-50,On-site,3.9,59
+Product Manager,Mid-size Corp,Director,271449,51-200,On-site,3.9,21
+Marketing Manager,Startup B,Senior,129535,201-1000,Hybrid,3.4,10
+Frontend Developer,Amazon,Entry,77032,1001-5000,Remote,2.9,111
+Software Engineer,Oracle,Entry,69696,51-200,Remote,4.8,108
+Backend Developer,Enterprise Corp,Senior,164544,1-50,Hybrid,2.3,22
+Machine Learning Engineer,Netflix,Mid,145211,5001+,Hybrid,5.0,436
+Financial Analyst,IBM,Mid,83062,1001-5000,Hybrid,3.7,6
+Business Analyst,Microsoft,Lead,137083,201-1000,Remote,2.0,45
+Frontend Developer,Salesforce,Mid,116226,201-1000,Remote,4.8,34
+Operations Manager,Amazon,Mid,89588,5001+,Hybrid,4.1,26
+UX Designer,Startup B,Senior,140238,1001-5000,On-site,4.0,207
+Backend Developer,Startup B,Senior,148495,201-1000,Remote,3.7,425
+Financial Analyst,Enterprise Corp,Entry,59163,1-50,Remote,3.2,196
+UX Designer,Apple,Senior,165539,201-1000,Hybrid,3.5,2
+HR Manager,Startup B,Entry,45624,1-50,Remote,2.9,5
+DevOps Engineer,IBM,Mid,130394,51-200,Remote,2.6,1
+UX Designer,Microsoft,Mid,118751,5001+,Hybrid,4.9,264
+Marketing Manager,Airbnb,Mid,81779,51-200,Remote,4.0,91
+Marketing Manager,IBM,Senior,143580,201-1000,Hybrid,4.2,15
+Marketing Manager,Uber,Senior,121714,1001-5000,Remote,4.4,1
+Machine Learning Engineer,Amazon,Mid,124480,1001-5000,Hybrid,3.8,9
+DevOps Engineer,Mid-size Corp,Senior,173963,201-1000,On-site,2.6,570
+UX Designer,Oracle,Mid,112542,201-1000,On-site,3.7,42
+Business Analyst,Salesforce,Entry,62118,1001-5000,On-site,2.2,2910
+Business Analyst,Amazon,Entry,59479,201-1000,Hybrid,4.6,26
+HR Manager,Airbnb,Entry,46991,51-200,Remote,5.0,91
+Marketing Manager,Airbnb,VP,251332,201-1000,On-site,4.3,58
+Business Analyst,Meta,Senior,140387,1001-5000,Hybrid,4.1,95
+Marketing Manager,Enterprise Corp,Entry,52829,51-200,Remote,2.2,6
+Business Analyst,IBM,Senior,105505,201-1000,Hybrid,2.3,74
+Product Manager,Amazon,Mid,118618,5001+,Hybrid,3.2,37
+Sales Representative,Airbnb,Lead,128088,201-1000,Remote,3.7,145
+Backend Developer,Enterprise Corp,Entry,81340,1001-5000,On-site,4.6,71
+Operations Manager,Uber,Lead,150900,201-1000,Hybrid,3.7,217
+HR Manager,Amazon,Lead,135849,1001-5000,On-site,4.1,236
+HR Manager,Oracle,Mid,91537,1-50,Hybrid,5.0,17
+Product Manager,Oracle,Lead,185159,1001-5000,Hybrid,3.3,3570
+UX Designer,Mid-size Corp,Entry,75826,5001+,Remote,4.0,6
+Sales Representative,Amazon,VP,194336,51-200,Hybrid,4.2,68
+DevOps Engineer,Intel,Lead,205052,201-1000,Hybrid,1.9,29
+Operations Manager,Oracle,Senior,130157,51-200,On-site,3.5,8
+Product Manager,Startup B,Mid,113646,1001-5000,On-site,3.1,29
+HR Manager,IBM,Lead,125610,1-50,Hybrid,3.9,4
+DevOps Engineer,Uber,Entry,66803,5001+,Remote,4.2,816
+HR Manager,Airbnb,Mid,85918,1001-5000,On-site,4.4,214
+Operations Manager,Netflix,VP,214828,5001+,Hybrid,3.7,34
+Business Analyst,Apple,Mid,87103,201-1000,Hybrid,3.8,34
+Operations Manager,IBM,Mid,77892,51-200,Hybrid,4.1,60
+Software Engineer,Enterprise Corp,Mid,104191,1001-5000,Remote,4.1,236
+Backend Developer,Google,Director,227538,1-50,Remote,5.0,170
+Machine Learning Engineer,Meta,Director,263905,201-1000,Remote,3.3,16
+Software Engineer,Microsoft,Lead,202871,51-200,Remote,4.1,8
+DevOps Engineer,Oracle,Mid,100969,5001+,Remote,3.9,9
+Marketing Manager,Netflix,Mid,82743,5001+,Hybrid,3.3,11
+Business Analyst,Mid-size Corp,Entry,61139,201-1000,Remote,3.0,6671
+Sales Representative,Intel,Entry,45762,5001+,Remote,3.6,89
+Financial Analyst,Enterprise Corp,Senior,135413,1001-5000,On-site,3.7,686
+DevOps Engineer,Amazon,Mid,134423,51-200,Remote,3.7,36
+Data Scientist,Microsoft,Entry,77775,201-1000,Hybrid,4.4,136
+Sales Representative,Microsoft,Director,148058,5001+,On-site,4.3,86
+Financial Analyst,Apple,Senior,116212,201-1000,On-site,4.5,193
+Data Scientist,Microsoft,Senior,184368,1001-5000,Hybrid,4.5,16
+Marketing Manager,IBM,Senior,141362,5001+,On-site,2.2,177
+Frontend Developer,Salesforce,Mid,122105,5001+,Hybrid,3.9,3
+Data Scientist,Mid-size Corp,Mid,116284,5001+,On-site,4.3,247
+Sales Representative,Amazon,Mid,69391,201-1000,Hybrid,4.3,6
+Machine Learning Engineer,Startup A,Lead,206810,201-1000,Hybrid,4.7,27
+Marketing Manager,Microsoft,Lead,168001,51-200,Remote,4.7,213
+Data Scientist,Airbnb,Lead,170868,201-1000,Remote,4.7,29
+Backend Developer,IBM,Senior,161944,1001-5000,On-site,3.9,6
+Business Analyst,Microsoft,Director,201412,201-1000,On-site,4.1,14
+Operations Manager,Startup A,Lead,138302,201-1000,On-site,3.8,1
+Product Manager,Enterprise Corp,Senior,177350,201-1000,On-site,2.5,81
+Data Scientist,Netflix,Mid,110355,1001-5000,Hybrid,3.9,62
+UX Designer,Salesforce,Senior,155898,201-1000,Hybrid,2.8,430
+Frontend Developer,IBM,Lead,194007,1-50,Remote,4.0,90
+DevOps Engineer,Google,Senior,162347,201-1000,Hybrid,3.3,61
+Software Engineer,Meta,Entry,68372,1001-5000,Hybrid,3.4,51
+Data Scientist,Apple,Senior,183510,201-1000,Hybrid,3.6,38
+Financial Analyst,Uber,Mid,82532,1001-5000,On-site,5.0,1
+Operations Manager,Enterprise Corp,Lead,150352,51-200,Hybrid,3.4,65
+Software Engineer,Netflix,Mid,103164,51-200,Hybrid,5.0,9
+Financial Analyst,Netflix,Senior,102954,201-1000,On-site,3.7,2404
+Software Engineer,Startup A,Entry,66940,5001+,Hybrid,4.7,1
+Product Manager,Amazon,Mid,145080,5001+,Remote,3.0,4
+HR Manager,Google,Senior,112253,1001-5000,On-site,3.9,2
+Operations Manager,Google,Mid,88112,1001-5000,Hybrid,2.7,29
+Operations Manager,Startup B,Director,199041,51-200,Remote,3.4,26
+Sales Representative,Mid-size Corp,Senior,106565,1-50,Hybrid,4.0,168
+Software Engineer,IBM,Entry,82464,51-200,Hybrid,5.0,64
+Software Engineer,Uber,Mid,108550,51-200,Hybrid,5.0,35
+Machine Learning Engineer,Netflix,Mid,146527,201-1000,Remote,3.5,21
+Backend Developer,Meta,Entry,72126,51-200,On-site,2.6,114
+Sales Representative,Amazon,Entry,42867,1001-5000,Hybrid,4.7,8
+DevOps Engineer,Netflix,Lead,197090,201-1000,On-site,4.5,53
+Backend Developer,Enterprise Corp,Senior,174776,1001-5000,Remote,3.1,21
+UX Designer,Uber,Lead,171844,5001+,Remote,5.0,2
+Data Scientist,Intel,Entry,90829,201-1000,On-site,3.9,56
+UX Designer,Mid-size Corp,Entry,58284,1001-5000,Remote,2.5,1
+Business Analyst,Amazon,VP,218017,51-200,Remote,5.0,74
+Machine Learning Engineer,Oracle,Mid,129307,1001-5000,Hybrid,3.3,24
+Data Scientist,Amazon,Senior,151535,51-200,Remote,4.4,29
+Product Manager,IBM,Entry,92847,51-200,Hybrid,4.2,12
+HR Manager,Apple,Mid,82157,51-200,Remote,4.4,114
+Sales Representative,Uber,Director,138112,201-1000,Hybrid,4.9,31
+Data Scientist,Intel,Director,247561,1001-5000,Hybrid,4.4,49
+HR Manager,Amazon,Entry,45258,201-1000,On-site,4.1,5
+Operations Manager,Mid-size Corp,Senior,111880,5001+,Remote,4.5,3
+HR Manager,IBM,Senior,108838,5001+,On-site,3.8,2
+HR Manager,Apple,Mid,86064,201-1000,Hybrid,4.4,6
+Operations Manager,Intel,Entry,66879,51-200,Hybrid,2.8,63
+Frontend Developer,Enterprise Corp,VP,332809,201-1000,Hybrid,4.5,85
+DevOps Engineer,Oracle,Mid,118420,1001-5000,On-site,5.0,1
+Frontend Developer,IBM,Senior,134100,1001-5000,Hybrid,4.7,86
+Backend Developer,Mid-size Corp,Lead,203404,51-200,Remote,3.8,10
+DevOps Engineer,IBM,Mid,128810,1001-5000,On-site,5.0,233
+Marketing Manager,Uber,Entry,55465,201-1000,On-site,4.6,1
+Marketing Manager,Uber,Mid,89837,51-200,On-site,4.6,40
+DevOps Engineer,Oracle,Lead,198199,5001+,Hybrid,3.4,245
+Marketing Manager,Enterprise Corp,Entry,65621,1001-5000,Remote,4.1,10
+Operations Manager,Oracle,Senior,141978,201-1000,Hybrid,3.8,53
+Product Manager,Apple,Entry,73009,51-200,Hybrid,4.0,775
+HR Manager,IBM,Lead,118157,5001+,Hybrid,3.6,255
+Operations Manager,Google,Director,163473,201-1000,Hybrid,3.1,19
+Backend Developer,Airbnb,Entry,76400,1001-5000,Remote,2.3,18
+Data Scientist,Apple,Senior,183815,5001+,Remote,3.9,31
+Product Manager,Startup A,VP,322613,5001+,Remote,3.9,16
+UX Designer,Startup B,Senior,142215,5001+,On-site,3.9,16
+Frontend Developer,Intel,Mid,103408,201-1000,On-site,3.2,18
+Sales Representative,Oracle,Mid,67864,51-200,Remote,4.4,15
+Product Manager,Amazon,Lead,232456,1-50,Hybrid,2.2,15
+Data Scientist,Salesforce,Senior,199564,201-1000,Hybrid,3.6,5
+Machine Learning Engineer,Meta,Senior,171140,1-50,On-site,3.8,16
+Financial Analyst,Meta,Entry,62441,201-1000,Remote,2.8,6
+Financial Analyst,Startup B,Entry,46989,1001-5000,Hybrid,5.0,32
+DevOps Engineer,Microsoft,Entry,70948,201-1000,Hybrid,3.4,235
+Data Scientist,Salesforce,Mid,111270,1001-5000,Hybrid,3.9,10
+UX Designer,IBM,Director,202408,1001-5000,Remote,4.1,11
+Business Analyst,Apple,VP,223577,1-50,Remote,3.8,163
+Product Manager,Startup A,Entry,72531,1001-5000,Remote,3.5,454
+Frontend Developer,Uber,Mid,114133,51-200,Remote,2.6,65
+Product Manager,Google,Mid,140510,201-1000,Hybrid,4.2,18
+Backend Developer,Startup B,Mid,110830,51-200,Hybrid,3.2,2
+Product Manager,Google,Mid,141152,5001+,On-site,3.4,11
+UX Designer,Oracle,Senior,164823,5001+,On-site,2.0,11
+Backend Developer,IBM,Senior,138117,5001+,On-site,5.0,11
+Machine Learning Engineer,Microsoft,Mid,152220,201-1000,Remote,4.1,15
+HR Manager,Uber,Lead,139969,51-200,Hybrid,4.1,20
+Software Engineer,Airbnb,Entry,87103,201-1000,Remote,4.4,18
+Software Engineer,Microsoft,VP,294597,5001+,Remote,3.0,4
+DevOps Engineer,Apple,Senior,142900,1-50,On-site,4.7,9
+Software Engineer,Meta,Lead,218634,201-1000,Hybrid,3.5,150
+Data Scientist,IBM,Senior,166562,201-1000,On-site,4.7,5
+Marketing Manager,Uber,Senior,124869,201-1000,Hybrid,2.8,13
+DevOps Engineer,Startup A,Director,263292,1001-5000,Remote,2.7,117
+UX Designer,Startup A,Mid,107712,51-200,On-site,4.7,16
+Machine Learning Engineer,Apple,Senior,191988,201-1000,Hybrid,3.4,6
+Frontend Developer,Google,Entry,62065,1-50,Remote,3.6,104
+Product Manager,Airbnb,Entry,73178,5001+,Remote,3.6,94
+Operations Manager,Intel,Lead,132069,1001-5000,Hybrid,3.9,33
+Marketing Manager,Mid-size Corp,Entry,55983,201-1000,Hybrid,3.8,215
+Business Analyst,Enterprise Corp,Mid,75245,5001+,On-site,4.0,41
+Backend Developer,Oracle,Entry,73187,201-1000,Hybrid,3.6,67
+Data Scientist,Mid-size Corp,Entry,69624,201-1000,Hybrid,4.7,41
+Financial Analyst,Startup B,Entry,51087,201-1000,Hybrid,2.8,3
+Software Engineer,Microsoft,Mid,136809,1001-5000,Remote,4.0,16
+Business Analyst,Apple,Entry,56357,1-50,Hybrid,3.7,142
+Product Manager,Google,Senior,191174,1001-5000,Remote,4.2,6
+UX Designer,Mid-size Corp,Director,209355,1001-5000,Hybrid,5.0,19
+Operations Manager,Uber,Senior,120961,201-1000,Remote,3.7,244
+Machine Learning Engineer,Microsoft,Senior,190293,201-1000,On-site,3.9,48
+Financial Analyst,IBM,Mid,90026,201-1000,On-site,3.7,59
+Operations Manager,Mid-size Corp,Lead,160799,5001+,Hybrid,3.7,27
+UX Designer,Mid-size Corp,Director,217952,201-1000,Remote,3.1,2
+DevOps Engineer,Meta,Entry,79543,201-1000,Remote,3.6,53
+Product Manager,Uber,Senior,168606,1001-5000,Remote,4.2,564
+Sales Representative,Amazon,Entry,50102,5001+,Remote,2.9,187
+Product Manager,Apple,Director,237272,1001-5000,On-site,5.0,4
+HR Manager,Amazon,Senior,117740,51-200,Hybrid,4.2,15
+Business Analyst,Salesforce,Mid,80169,201-1000,Hybrid,4.7,15
+HR Manager,Mid-size Corp,Mid,79796,201-1000,Hybrid,4.8,5780
+Marketing Manager,Mid-size Corp,Entry,67623,5001+,On-site,4.0,122
+Operations Manager,Mid-size Corp,Mid,80174,51-200,Remote,4.1,96
+DevOps Engineer,Startup B,Entry,76458,1-50,Hybrid,3.1,13
+Frontend Developer,Startup B,Mid,105576,201-1000,Hybrid,3.3,5
+Backend Developer,Google,Senior,172388,201-1000,Hybrid,4.4,4
+Frontend Developer,IBM,Lead,154004,1-50,Remote,3.9,28
+Business Analyst,Intel,Senior,137606,201-1000,Hybrid,2.8,14
+UX Designer,Meta,Mid,93084,1001-5000,Hybrid,4.5,546
+Frontend Developer,Google,Mid,102059,51-200,Hybrid,3.3,264
+Machine Learning Engineer,Intel,Entry,91795,201-1000,On-site,4.1,37
+Frontend Developer,Microsoft,Mid,117413,1001-5000,Hybrid,3.7,168
+Marketing Manager,Enterprise Corp,Entry,53651,201-1000,On-site,3.6,8
+Product Manager,Airbnb,Mid,117959,51-200,Hybrid,2.8,106
+Backend Developer,Apple,VP,312260,1001-5000,On-site,3.4,108
+Machine Learning Engineer,Uber,Senior,197239,201-1000,Remote,2.7,10
+Data Scientist,Oracle,Mid,109654,1001-5000,Hybrid,2.8,11
+HR Manager,Mid-size Corp,Lead,145542,51-200,Hybrid,4.3,1
+UX Designer,Startup A,Mid,117076,1-50,On-site,4.0,143
+Business Analyst,Mid-size Corp,Mid,77730,5001+,Hybrid,3.6,14
+Product Manager,Airbnb,Senior,158538,51-200,On-site,4.2,58
+Marketing Manager,Startup A,Director,212202,1001-5000,Hybrid,3.6,16
+Sales Representative,Amazon,Mid,85638,201-1000,Hybrid,3.1,35
+DevOps Engineer,Amazon,Entry,76134,201-1000,On-site,3.9,3
+Data Scientist,Enterprise Corp,Mid,125535,5001+,Hybrid,4.8,27
+Backend Developer,Microsoft,Mid,99748,201-1000,Remote,3.8,127
+Operations Manager,Intel,Director,168286,5001+,Hybrid,3.1,326
+Sales Representative,Netflix,Mid,81795,1001-5000,Remote,4.4,110
+Operations Manager,Meta,VP,248656,1001-5000,Hybrid,4.4,577
+DevOps Engineer,Salesforce,Mid,117471,51-200,Remote,2.5,235
+UX Designer,Startup B,Mid,106198,1001-5000,Hybrid,3.0,73
+Product Manager,Intel,Mid,115015,5001+,Hybrid,3.4,87
+Product Manager,Netflix,Senior,207806,1001-5000,On-site,2.9,1
+Financial Analyst,Apple,Senior,136149,1001-5000,Remote,3.7,54
+Software Engineer,Mid-size Corp,Lead,196058,5001+,Remote,3.7,44
+UX Designer,Salesforce,Entry,78353,51-200,Hybrid,4.6,94
+Backend Developer,Mid-size Corp,Mid,114295,51-200,On-site,3.7,1
+Data Scientist,Enterprise Corp,Senior,199481,1001-5000,Hybrid,4.1,9
+Sales Representative,Uber,Senior,94685,5001+,Hybrid,5.0,5
+UX Designer,Microsoft,Director,189809,1001-5000,Hybrid,4.2,9
+Product Manager,Startup B,VP,333628,51-200,On-site,3.2,6
+Backend Developer,IBM,Senior,161339,5001+,Hybrid,4.0,31
+HR Manager,Apple,Mid,90206,201-1000,Hybrid,3.1,343
+Machine Learning Engineer,Microsoft,VP,392025,1001-5000,On-site,2.7,20
+Backend Developer,Airbnb,Director,202697,201-1000,Hybrid,3.9,43
+Marketing Manager,Startup A,Director,209916,51-200,Remote,4.4,436
+Business Analyst,Amazon,Director,197465,201-1000,Hybrid,2.7,25
+Machine Learning Engineer,Uber,Director,298521,5001+,Remote,3.7,974
+Product Manager,Oracle,Mid,115025,51-200,Hybrid,5.0,15
+HR Manager,Meta,Mid,91133,1-50,On-site,3.6,134
+Sales Representative,Airbnb,Mid,70818,201-1000,Remote,3.8,8
+Financial Analyst,Startup A,Mid,84717,201-1000,Hybrid,4.0,35
+Frontend Developer,Amazon,Mid,102775,1001-5000,On-site,4.7,58
+Marketing Manager,Startup B,Senior,113580,1001-5000,Hybrid,3.6,6
+Business Analyst,Mid-size Corp,Senior,113110,1-50,On-site,3.5,55
+Marketing Manager,Meta,Mid,105745,201-1000,Remote,3.1,44
+Frontend Developer,IBM,Senior,156521,201-1000,Hybrid,3.2,2
+Data Scientist,Google,Entry,77427,51-200,On-site,3.6,7
+Backend Developer,Microsoft,Entry,68450,1001-5000,Hybrid,3.5,143
+Product Manager,Microsoft,Senior,189158,1-50,Remote,3.2,12
+Product Manager,Amazon,Senior,170934,201-1000,Remote,3.1,285
+HR Manager,Netflix,Lead,124632,1-50,On-site,5.0,176
+Backend Developer,Meta,Lead,175461,1001-5000,Hybrid,4.6,130
+Software Engineer,Mid-size Corp,Lead,175422,1-50,Remote,4.3,422
+HR Manager,IBM,Mid,72999,201-1000,Hybrid,2.4,30
+Operations Manager,Mid-size Corp,Senior,139135,201-1000,Hybrid,4.6,3
+Marketing Manager,Uber,Entry,70609,201-1000,On-site,5.0,213
+Product Manager,IBM,Entry,81044,1001-5000,Remote,2.7,91
+UX Designer,Mid-size Corp,Senior,163007,5001+,Hybrid,4.2,68
+Product Manager,Meta,Mid,120352,1001-5000,On-site,4.1,123
+Machine Learning Engineer,Apple,Entry,97540,201-1000,On-site,3.4,28
+Sales Representative,Intel,Lead,105016,51-200,Remote,4.3,48
+Data Scientist,Startup B,Entry,80555,1001-5000,Hybrid,2.7,73
+Data Scientist,Intel,Senior,190880,51-200,Hybrid,3.5,37
+Business Analyst,Enterprise Corp,Mid,89815,201-1000,Remote,2.7,15
+DevOps Engineer,Mid-size Corp,Entry,71825,201-1000,Hybrid,4.6,102
+Machine Learning Engineer,Apple,Lead,194569,201-1000,Remote,4.3,116
+Data Scientist,Microsoft,Director,239951,201-1000,Hybrid,4.3,131
+Machine Learning Engineer,Intel,Mid,118977,1001-5000,Hybrid,4.9,12
+UX Designer,Oracle,Mid,117127,5001+,Hybrid,3.4,21
+Backend Developer,Oracle,Mid,111641,1001-5000,On-site,3.7,116
+DevOps Engineer,Uber,Lead,168794,51-200,On-site,4.4,103
+Financial Analyst,Startup B,Entry,53108,1001-5000,Remote,4.1,5
+UX Designer,Mid-size Corp,Mid,90812,5001+,Remote,4.0,31
+Machine Learning Engineer,Apple,Lead,199178,201-1000,Remote,3.9,111
+Backend Developer,Startup A,Senior,140337,201-1000,Hybrid,3.8,85
+Operations Manager,Airbnb,Director,170255,5001+,Hybrid,3.7,221
+Data Scientist,Intel,Senior,189917,201-1000,Hybrid,4.0,428
+Product Manager,Mid-size Corp,Entry,86059,201-1000,On-site,4.7,95
+Marketing Manager,Meta,Entry,56966,5001+,On-site,4.3,129
+Product Manager,Mid-size Corp,Entry,93655,201-1000,Remote,2.9,16
+Backend Developer,Oracle,Entry,82199,51-200,On-site,4.6,18
+Financial Analyst,Meta,Entry,55405,1-50,Hybrid,3.8,10
+Marketing Manager,Microsoft,Entry,59249,51-200,Remote,2.2,4
+Data Scientist,Airbnb,Mid,141570,1001-5000,On-site,3.7,197
+Product Manager,Startup A,Senior,190858,1001-5000,Hybrid,4.3,57
+Backend Developer,Airbnb,Senior,163719,5001+,On-site,2.8,19
+UX Designer,Salesforce,Mid,91400,51-200,On-site,4.5,24
+Data Scientist,Meta,Entry,84700,5001+,Hybrid,4.4,26
+Software Engineer,Salesforce,Mid,134671,1001-5000,On-site,3.8,123
+Machine Learning Engineer,IBM,Mid,141599,1-50,On-site,3.6,132
+Product Manager,Google,Mid,124083,201-1000,Remote,3.8,29
+Machine Learning Engineer,Intel,Mid,138352,1001-5000,On-site,3.1,48
+Frontend Developer,Google,Mid,98375,1-50,Remote,4.8,27
+Marketing Manager,Mid-size Corp,Senior,147014,201-1000,On-site,3.6,56
+Sales Representative,Mid-size Corp,Director,149728,1001-5000,On-site,3.1,430
+Data Scientist,Netflix,Senior,189886,1-50,Hybrid,3.7,25
+Product Manager,Airbnb,Mid,147017,1-50,Hybrid,3.5,140
+Marketing Manager,Uber,Mid,100333,51-200,Remote,4.4,186
+Software Engineer,Startup B,Senior,145154,201-1000,Hybrid,4.2,5
+Machine Learning Engineer,Apple,Senior,174826,1001-5000,On-site,3.1,67
+Product Manager,Enterprise Corp,Mid,115390,51-200,On-site,3.8,63
+Backend Developer,Meta,Director,211759,201-1000,On-site,4.5,718
+Marketing Manager,Intel,Director,194695,201-1000,Hybrid,4.6,10
+UX Designer,Startup A,Senior,164231,201-1000,On-site,4.2,50
+Marketing Manager,Google,Mid,92751,201-1000,On-site,3.7,16
+Financial Analyst,IBM,Senior,136076,51-200,On-site,4.0,107
+Operations Manager,Salesforce,Entry,58112,201-1000,Hybrid,3.4,914
+UX Designer,Amazon,Senior,146337,201-1000,Remote,3.0,74
+Data Scientist,Salesforce,Director,217146,1001-5000,On-site,3.2,17
+Machine Learning Engineer,Microsoft,Lead,190724,51-200,Remote,3.0,29
+Product Manager,Startup B,VP,369852,201-1000,On-site,4.5,23
+Business Analyst,Uber,Entry,59106,51-200,On-site,3.7,23
+Marketing Manager,Startup A,Lead,137729,1001-5000,Remote,3.1,31
+Data Scientist,Uber,Senior,156802,5001+,Remote,2.2,25
+Product Manager,Microsoft,Senior,183088,51-200,On-site,4.2,105
+Product Manager,Mid-size Corp,Entry,96331,201-1000,Remote,3.8,35
+Product Manager,IBM,Director,252647,5001+,Hybrid,1.9,35
+DevOps Engineer,IBM,Mid,132447,1001-5000,Remote,3.1,20
+Marketing Manager,Netflix,Senior,130049,5001+,Hybrid,2.6,61
+UX Designer,Netflix,Lead,178585,5001+,On-site,4.7,515
+Product Manager,Microsoft,Lead,206837,1001-5000,Remote,3.8,165
+Frontend Developer,Mid-size Corp,Mid,111045,201-1000,On-site,2.7,68
+Financial Analyst,Uber,Mid,75594,201-1000,Hybrid,3.9,2709
+Software Engineer,Google,Senior,167078,51-200,Remote,3.7,3
+Backend Developer,Apple,Entry,75154,5001+,Hybrid,2.8,37
+Financial Analyst,Mid-size Corp,Entry,48200,201-1000,Hybrid,3.6,25
+Product Manager,Mid-size Corp,Entry,87957,51-200,On-site,5.0,31
+DevOps Engineer,Airbnb,Entry,82748,5001+,Remote,3.7,20
+Backend Developer,Apple,Mid,122868,1001-5000,On-site,3.5,20
+Frontend Developer,Startup A,Entry,61081,51-200,Hybrid,3.2,82
+Marketing Manager,Netflix,Mid,87378,51-200,Hybrid,3.2,402
+Machine Learning Engineer,Salesforce,Senior,183082,51-200,Remote,2.8,30
+Backend Developer,Netflix,VP,305914,1-50,On-site,2.7,170
+DevOps Engineer,IBM,Lead,199463,201-1000,On-site,3.8,83
+Software Engineer,Startup A,Lead,219086,201-1000,Hybrid,2.6,781
+Marketing Manager,Salesforce,VP,275755,51-200,On-site,2.8,72
+Software Engineer,Google,Director,229838,201-1000,Remote,3.8,11
+Product Manager,Intel,Senior,173228,1001-5000,Hybrid,3.5,30
+UX Designer,Amazon,Senior,158000,1001-5000,Remote,3.3,29
+Data Scientist,IBM,Entry,84666,51-200,On-site,3.1,29
+Frontend Developer,Google,Lead,188727,1001-5000,Hybrid,3.6,39
+UX Designer,Startup A,Entry,78430,51-200,Remote,4.3,266
+Marketing Manager,Amazon,Director,203855,1001-5000,Remote,2.9,539
+Operations Manager,Startup A,Entry,67057,201-1000,Hybrid,4.2,216
+Data Scientist,Oracle,Entry,88964,51-200,Remote,4.2,7
+Frontend Developer,Amazon,Mid,109141,1001-5000,Hybrid,3.1,5
+Machine Learning Engineer,Enterprise Corp,Senior,176728,1001-5000,Remote,4.0,597
+Frontend Developer,Microsoft,Senior,176247,51-200,Hybrid,4.0,561
+HR Manager,Startup A,Entry,56545,5001+,On-site,3.9,234
+Machine Learning Engineer,Google,Entry,90204,1001-5000,On-site,4.2,67
+Frontend Developer,Google,VP,279902,5001+,Hybrid,4.4,35
+Marketing Manager,Startup B,Entry,52784,51-200,Hybrid,4.1,290
+UX Designer,Uber,Senior,153850,201-1000,Remote,4.7,30
+Sales Representative,Oracle,Mid,78259,1001-5000,Hybrid,3.7,51
+DevOps Engineer,Microsoft,VP,326225,5001+,Hybrid,3.8,51
+DevOps Engineer,Apple,Mid,129000,1-50,Hybrid,3.1,1014
+Backend Developer,Startup A,Mid,111015,201-1000,Remote,2.8,78
+Backend Developer,Microsoft,Director,262254,1-50,Hybrid,3.8,22
+Operations Manager,Startup B,VP,279386,5001+,On-site,3.1,5
+Software Engineer,Enterprise Corp,Mid,112819,201-1000,Hybrid,4.4,58
+UX Designer,Apple,Senior,150801,1-50,Remote,4.6,104
+Business Analyst,Meta,Mid,84394,1001-5000,Remote,4.9,81
+Sales Representative,Startup B,Entry,50652,51-200,On-site,3.7,27
+Frontend Developer,Startup B,Senior,132041,1001-5000,Hybrid,5.0,287
+Marketing Manager,Salesforce,Senior,126295,201-1000,On-site,3.3,6
+Software Engineer,IBM,Mid,108934,1001-5000,On-site,4.4,3
+Machine Learning Engineer,Airbnb,Mid,129065,201-1000,Remote,4.3,236
+Product Manager,Amazon,VP,392967,5001+,Hybrid,3.8,190
+Business Analyst,Startup B,Mid,97184,51-200,Hybrid,4.2,5
+Data Scientist,Salesforce,Senior,183099,1001-5000,Hybrid,3.9,6
+Financial Analyst,Oracle,Senior,104423,51-200,Remote,3.3,57
+Data Scientist,Google,Mid,131794,201-1000,On-site,2.6,9
+UX Designer,Meta,Lead,173578,201-1000,On-site,3.5,42
+Machine Learning Engineer,Apple,Lead,184763,1-50,Remote,4.5,4
+Product Manager,Netflix,Entry,95299,1-50,On-site,4.4,105
+UX Designer,Salesforce,Senior,132538,1001-5000,Remote,3.8,13
+Frontend Developer,Startup B,Lead,162062,1-50,Hybrid,3.3,41
+Backend Developer,Salesforce,Senior,157776,1-50,Remote,2.9,1601
+Data Scientist,Meta,Senior,198861,51-200,Remote,4.0,23
+Frontend Developer,Google,Lead,160504,201-1000,Remote,3.4,30
+UX Designer,Airbnb,Director,181858,5001+,On-site,3.5,1
+Financial Analyst,Startup A,Mid,84470,1-50,On-site,5.0,5
+Marketing Manager,Oracle,Senior,120172,201-1000,Hybrid,4.1,24
+Backend Developer,Intel,Director,248783,201-1000,On-site,5.0,34
+Product Manager,Uber,Senior,167811,51-200,On-site,4.9,41
+Business Analyst,Microsoft,Mid,94920,51-200,On-site,4.6,82
+Machine Learning Engineer,Oracle,Mid,145779,1001-5000,Remote,4.5,155
+HR Manager,Enterprise Corp,Mid,82842,201-1000,On-site,2.7,109
+Financial Analyst,Microsoft,Entry,53690,201-1000,On-site,3.2,20
+Sales Representative,Apple,Senior,102071,201-1000,Remote,3.3,2
+Business Analyst,Intel,Senior,126420,201-1000,Remote,3.9,8
+Machine Learning Engineer,Startup A,Lead,223638,201-1000,Hybrid,4.0,88
+Sales Representative,Mid-size Corp,Lead,128094,1-50,Hybrid,4.2,13
+Financial Analyst,Enterprise Corp,Mid,81784,201-1000,On-site,4.9,36
+Machine Learning Engineer,Oracle,Mid,128213,201-1000,On-site,3.8,14
+DevOps Engineer,Intel,Senior,186844,201-1000,On-site,4.8,1428
+DevOps Engineer,Startup B,Senior,155409,51-200,Remote,4.3,24
+Data Scientist,Startup B,Senior,200420,51-200,Remote,3.5,10
+Sales Representative,Amazon,Entry,44880,5001+,Hybrid,3.5,8
+Machine Learning Engineer,IBM,VP,382957,51-200,On-site,4.5,93
+HR Manager,Startup A,Lead,132797,201-1000,Remote,4.4,1
+Marketing Manager,Startup B,Lead,145315,201-1000,On-site,3.9,25
+Product Manager,Oracle,Director,261924,1001-5000,Remote,4.5,546
+Marketing Manager,Google,Entry,57473,201-1000,Hybrid,3.7,10
+UX Designer,Google,Mid,99319,201-1000,Hybrid,3.5,33
+Frontend Developer,Apple,Lead,164542,1001-5000,Hybrid,4.4,109
+Software Engineer,Startup A,Mid,118018,201-1000,Remote,4.3,326
+UX Designer,IBM,Senior,149656,201-1000,Hybrid,3.7,73
+DevOps Engineer,Intel,Mid,115518,5001+,Hybrid,4.0,7
+Marketing Manager,Uber,Entry,65601,51-200,Hybrid,3.7,51
+Backend Developer,Startup B,Senior,160666,5001+,On-site,4.2,20
+Financial Analyst,Startup A,Lead,141014,201-1000,Remote,3.7,70
+HR Manager,IBM,Lead,119695,51-200,Hybrid,2.1,321
+UX Designer,IBM,Senior,166238,1001-5000,On-site,3.8,8
+Frontend Developer,Meta,VP,295556,51-200,On-site,4.7,27
+Software Engineer,Uber,Senior,177646,1001-5000,On-site,3.2,19
+DevOps Engineer,Startup A,Entry,78233,51-200,Remote,3.5,27
+Product Manager,Airbnb,Senior,185124,5001+,Hybrid,3.8,25
+Financial Analyst,Enterprise Corp,Senior,116800,201-1000,Remote,2.9,205
+UX Designer,Microsoft,Entry,60151,51-200,On-site,3.6,56
+HR Manager,Meta,Mid,87228,1001-5000,Remote,4.7,135
+Financial Analyst,Microsoft,Mid,73839,201-1000,On-site,5.0,37
+DevOps Engineer,Salesforce,Senior,170461,51-200,Remote,3.7,148
+Business Analyst,Apple,Director,173913,201-1000,Hybrid,3.3,67
+DevOps Engineer,Startup A,Director,213198,1001-5000,Remote,4.3,36
+UX Designer,Google,Entry,67780,5001+,Remote,3.1,56
+Marketing Manager,Google,VP,254059,1-50,On-site,2.7,165
+UX Designer,Enterprise Corp,Mid,110861,1001-5000,Remote,3.8,21
+Product Manager,Microsoft,Lead,190758,201-1000,On-site,4.2,766
+Marketing Manager,Mid-size Corp,Entry,57058,51-200,Remote,3.9,16
+Operations Manager,Enterprise Corp,Entry,59987,1001-5000,On-site,4.1,19
+Machine Learning Engineer,Salesforce,Mid,128423,1001-5000,On-site,2.9,8
+Sales Representative,Mid-size Corp,Senior,102994,51-200,Hybrid,4.4,15
+Business Analyst,Meta,Director,156539,1-50,Remote,4.5,1
+Operations Manager,Salesforce,Senior,136936,51-200,On-site,4.8,343
+Machine Learning Engineer,Uber,Lead,213291,201-1000,Hybrid,3.7,5
+DevOps Engineer,Uber,Director,255638,51-200,Remote,3.9,587
+Backend Developer,Meta,Mid,131894,1001-5000,Hybrid,3.8,54
+Marketing Manager,Mid-size Corp,VP,245272,1001-5000,Hybrid,3.6,129
+HR Manager,Startup A,Lead,134554,1001-5000,Hybrid,4.3,105
+Frontend Developer,Startup A,Lead,183331,201-1000,Hybrid,4.4,69
+Financial Analyst,Google,Lead,136874,1001-5000,Remote,4.2,16
+HR Manager,Meta,Director,168848,5001+,Hybrid,4.7,9
+HR Manager,Intel,Mid,90431,201-1000,Hybrid,3.1,264
+Product Manager,Amazon,Mid,140061,5001+,On-site,3.5,140
+Operations Manager,Intel,Senior,124280,201-1000,Hybrid,2.2,62
+Product Manager,Oracle,Entry,72681,5001+,Hybrid,2.6,17
+Business Analyst,Amazon,Lead,144411,201-1000,On-site,3.1,67
+HR Manager,Airbnb,VP,201016,51-200,On-site,3.7,24
+DevOps Engineer,Meta,Director,252385,1001-5000,On-site,2.6,595
+Financial Analyst,IBM,Entry,53689,51-200,On-site,3.5,8
+Software Engineer,Meta,Entry,67713,201-1000,Remote,2.9,316
+Operations Manager,Startup A,Mid,93929,1001-5000,Remote,3.3,3
+DevOps Engineer,Amazon,Mid,132883,201-1000,Remote,4.0,19
+Marketing Manager,Mid-size Corp,Senior,143095,1001-5000,Hybrid,4.1,60
+UX Designer,Intel,Senior,157767,1001-5000,Hybrid,3.0,104
+DevOps Engineer,IBM,Mid,129220,201-1000,Hybrid,3.9,316
+DevOps Engineer,Enterprise Corp,VP,286246,201-1000,Hybrid,3.3,147
+Backend Developer,Google,Mid,117640,201-1000,Remote,3.5,5
+HR Manager,Google,Director,176306,51-200,Remote,4.1,34
+Business Analyst,Apple,VP,238565,51-200,Hybrid,4.1,50
+Product Manager,Microsoft,Lead,177163,1001-5000,Remote,3.5,868
+Marketing Manager,Airbnb,Mid,99970,1-50,Hybrid,3.8,27
+Backend Developer,Oracle,Mid,124644,51-200,Remote,3.8,30
+Machine Learning Engineer,Apple,Entry,96721,51-200,Remote,3.7,75
+Frontend Developer,Salesforce,Mid,122068,1-50,Remote,3.5,8
+Financial Analyst,IBM,Mid,81463,5001+,Remote,4.1,29
+Financial Analyst,Uber,Senior,103611,201-1000,Remote,3.5,2093
+Operations Manager,Meta,Director,168631,1001-5000,Hybrid,4.8,72
+Business Analyst,Salesforce,Senior,115724,201-1000,On-site,3.4,56
+Data Scientist,Netflix,Entry,72052,1001-5000,Hybrid,3.9,80
+Software Engineer,Netflix,Entry,89562,5001+,Remote,3.5,380
+Marketing Manager,IBM,Senior,146334,1001-5000,Hybrid,4.2,236
+Operations Manager,Meta,Entry,53188,201-1000,Hybrid,3.2,152
+Operations Manager,Meta,Senior,115054,201-1000,On-site,3.6,74
+UX Designer,Airbnb,Mid,95482,201-1000,Remote,4.3,24
+Business Analyst,Microsoft,Senior,112562,5001+,Remote,3.5,86
+Frontend Developer,Google,VP,344533,201-1000,Hybrid,3.1,121
+Sales Representative,Enterprise Corp,Senior,102410,51-200,Remote,4.6,53
+Frontend Developer,Airbnb,Senior,146940,201-1000,Remote,2.5,244
+Marketing Manager,Google,Lead,137676,1001-5000,On-site,2.6,62
+Software Engineer,Airbnb,Mid,123875,51-200,Remote,3.0,2
+UX Designer,Meta,Director,215885,51-200,Hybrid,4.0,21
+Marketing Manager,Amazon,Senior,114891,5001+,Hybrid,2.6,28
+Backend Developer,Enterprise Corp,Entry,73147,1001-5000,Hybrid,3.4,73
+Machine Learning Engineer,Startup B,Mid,130530,51-200,On-site,3.6,1027
+Data Scientist,Startup B,Entry,83759,201-1000,Hybrid,4.4,103
+HR Manager,Oracle,Senior,97458,51-200,Remote,3.5,75
+Data Scientist,Airbnb,Senior,154478,1001-5000,Hybrid,3.1,7424
+Data Scientist,Oracle,Director,272081,1-50,Remote,2.9,65
+Data Scientist,Mid-size Corp,Mid,127931,1-50,On-site,3.3,18
+Product Manager,Startup A,Senior,190853,1001-5000,Remote,3.2,2158
+Business Analyst,Apple,Lead,122865,5001+,Hybrid,2.6,16
+Machine Learning Engineer,Oracle,Entry,91675,201-1000,Hybrid,3.4,44
+Data Scientist,Microsoft,Senior,178314,201-1000,Remote,4.1,2956
+Financial Analyst,Enterprise Corp,Senior,135783,201-1000,Remote,3.0,6
+Marketing Manager,Meta,Entry,53965,1001-5000,On-site,3.9,74
+Software Engineer,Enterprise Corp,Mid,112109,1001-5000,Remote,3.4,12
+Software Engineer,IBM,Mid,102290,5001+,Remote,3.8,36
+Frontend Developer,Oracle,Lead,151580,51-200,Remote,4.6,86
+Operations Manager,Apple,VP,273725,201-1000,Hybrid,3.3,1
+Sales Representative,Intel,Lead,117670,51-200,Hybrid,3.0,30
+UX Designer,Amazon,Entry,67563,1-50,Hybrid,4.4,11
+Sales Representative,IBM,Mid,80282,201-1000,Hybrid,4.8,38
+Software Engineer,Google,Entry,87196,201-1000,Remote,3.1,1
+Software Engineer,Amazon,Mid,116128,5001+,Hybrid,3.6,23
+Marketing Manager,Airbnb,Lead,162279,201-1000,On-site,4.3,42
+Marketing Manager,Airbnb,Mid,85756,201-1000,Remote,3.7,16
+Software Engineer,Startup A,Director,230432,201-1000,Remote,3.1,1441
+Frontend Developer,Uber,Senior,148355,1001-5000,Hybrid,3.9,36
+Machine Learning Engineer,Google,Director,253193,201-1000,On-site,3.1,445
+Financial Analyst,Salesforce,Senior,128186,201-1000,Remote,4.7,1
+Product Manager,Meta,Director,240929,201-1000,Remote,4.3,1
+Frontend Developer,Apple,Senior,167999,1001-5000,On-site,4.4,25
+UX Designer,Microsoft,VP,329945,201-1000,Remote,3.7,5
+Marketing Manager,Mid-size Corp,VP,251841,5001+,Remote,3.7,13
+Machine Learning Engineer,Google,Senior,184907,1001-5000,Hybrid,4.0,40
+Operations Manager,Meta,Entry,50541,5001+,Remote,2.2,41
+Product Manager,Apple,Lead,221314,201-1000,On-site,4.8,35
+Backend Developer,Apple,Director,202967,201-1000,Remote,2.9,10
+Data Scientist,Startup A,Director,213470,1-50,On-site,2.7,151
+Machine Learning Engineer,Microsoft,Mid,126831,201-1000,On-site,5.0,2
+Product Manager,Uber,Senior,182464,1-50,Remote,4.9,11
+Frontend Developer,Intel,Senior,139250,201-1000,On-site,3.9,1
+Operations Manager,Startup A,Director,196390,5001+,Hybrid,3.0,598
+Product Manager,Startup B,VP,356179,201-1000,Remote,4.0,20
+Sales Representative,Meta,Lead,106758,51-200,Remote,4.2,1
+Financial Analyst,Oracle,Mid,74215,1001-5000,Hybrid,3.4,264
+Backend Developer,Uber,Mid,128671,51-200,Hybrid,3.8,51
+Frontend Developer,Apple,Mid,93596,1001-5000,On-site,3.3,43
+HR Manager,Google,VP,215037,1001-5000,Remote,3.6,17
+DevOps Engineer,Airbnb,Mid,113408,1-50,On-site,4.9,6
+Machine Learning Engineer,Amazon,Entry,96298,51-200,On-site,4.1,62
+Software Engineer,Apple,Mid,130211,1001-5000,Hybrid,4.7,1
+Business Analyst,Mid-size Corp,Lead,156853,201-1000,On-site,4.0,46
+Backend Developer,Meta,Senior,155723,51-200,Remote,3.3,30
+DevOps Engineer,Startup A,Senior,160797,5001+,On-site,4.2,26
+Sales Representative,IBM,Entry,42443,51-200,Remote,4.0,71
+Data Scientist,Microsoft,Mid,115439,201-1000,On-site,4.2,49
+Business Analyst,Oracle,Entry,58859,5001+,On-site,3.7,16
+Operations Manager,Startup A,Lead,142485,201-1000,Hybrid,3.7,7
+Frontend Developer,Meta,Director,202334,201-1000,Remote,4.6,161
+Software Engineer,Netflix,Mid,108119,201-1000,Hybrid,4.7,8
+Frontend Developer,Startup B,Entry,73599,51-200,On-site,5.0,24
+HR Manager,Oracle,Lead,118438,5001+,Hybrid,3.5,17
+Marketing Manager,Microsoft,Senior,121928,201-1000,Hybrid,3.4,115
+Marketing Manager,Google,Entry,70569,201-1000,Hybrid,3.7,8
+Frontend Developer,IBM,Mid,101961,1001-5000,Hybrid,2.9,2
+Product Manager,Microsoft,Entry,92863,1001-5000,On-site,2.8,9
+Frontend Developer,Google,Mid,111669,1001-5000,Remote,3.8,4
+DevOps Engineer,Startup A,Entry,69585,51-200,Remote,4.4,1
+Operations Manager,Uber,Mid,102964,1001-5000,On-site,3.7,90
+HR Manager,Mid-size Corp,Senior,123612,1-50,Hybrid,3.6,51
+Financial Analyst,Startup A,Entry,53045,51-200,Hybrid,3.5,39
+Machine Learning Engineer,Uber,Director,267811,51-200,Remote,3.1,243
+UX Designer,Meta,Mid,97617,1-50,On-site,4.3,63
+Data Scientist,Startup A,Mid,129113,51-200,Hybrid,3.7,9
+Business Analyst,Mid-size Corp,Mid,76377,1001-5000,Remote,4.4,10
+Frontend Developer,Startup B,VP,328713,5001+,Hybrid,4.6,9
+Frontend Developer,Mid-size Corp,Mid,115552,51-200,Hybrid,3.9,1
+Backend Developer,Microsoft,Senior,142732,201-1000,Remote,3.1,1
+UX Designer,Google,Mid,107731,51-200,On-site,3.8,16
+Frontend Developer,Uber,Senior,141449,51-200,Hybrid,4.4,22
+Financial Analyst,Meta,Lead,120118,5001+,Remote,3.4,63
+Marketing Manager,Microsoft,Mid,92201,201-1000,Remote,3.8,638
+Backend Developer,Amazon,Senior,154153,1001-5000,Hybrid,4.9,340
+Sales Representative,Uber,Mid,73076,51-200,On-site,3.9,28
+UX Designer,Uber,Mid,115032,1001-5000,Hybrid,3.4,55
+Marketing Manager,Microsoft,Entry,62338,1-50,On-site,2.5,80
+Business Analyst,Meta,Director,185232,1001-5000,On-site,3.6,805
+Frontend Developer,Microsoft,Mid,96060,1001-5000,Remote,3.1,33
+Machine Learning Engineer,Salesforce,Mid,124323,201-1000,Remote,3.9,40
+Operations Manager,Google,Senior,118242,51-200,On-site,3.0,11
+Sales Representative,Microsoft,Lead,111030,201-1000,Remote,3.6,1
+Software Engineer,Amazon,Mid,104835,1-50,Remote,4.2,1
+UX Designer,Startup B,Entry,73942,1001-5000,Hybrid,4.3,38
+Machine Learning Engineer,Intel,Lead,186359,1001-5000,Remote,3.4,103
+Marketing Manager,Enterprise Corp,Mid,83300,1-50,On-site,4.9,176
+Product Manager,Airbnb,Senior,186498,51-200,On-site,3.9,91
+Backend Developer,Enterprise Corp,Mid,113211,201-1000,Remote,3.2,34
+Financial Analyst,Enterprise Corp,Mid,74622,1001-5000,Remote,3.5,40
+Software Engineer,Startup A,Senior,172938,1-50,Hybrid,3.7,48
+Operations Manager,Apple,Senior,126088,1001-5000,Remote,3.0,14
+Marketing Manager,Oracle,Director,208323,1001-5000,Remote,4.1,80
+Operations Manager,Netflix,Entry,62753,1001-5000,Remote,3.9,80
+Backend Developer,Uber,VP,298790,51-200,Hybrid,3.9,3
+Operations Manager,Meta,Mid,94251,1001-5000,Hybrid,5.0,99
+Financial Analyst,Amazon,Mid,74059,1-50,Remote,3.2,7
+Software Engineer,Amazon,Entry,89487,201-1000,Remote,4.3,96
+Machine Learning Engineer,Amazon,Lead,197208,51-200,Hybrid,3.6,191
+Operations Manager,Oracle,Senior,132954,1-50,Hybrid,3.4,25
+Marketing Manager,Uber,Mid,105643,201-1000,Hybrid,3.9,2232
+Sales Representative,Salesforce,Senior,118186,201-1000,On-site,4.0,18
+Machine Learning Engineer,Meta,Senior,206691,51-200,On-site,3.0,82
+Marketing Manager,Startup B,Lead,150108,1001-5000,Remote,4.0,13
+Operations Manager,Google,Senior,113300,201-1000,On-site,4.0,199
+Sales Representative,Oracle,Director,155938,201-1000,Remote,3.9,1
+Sales Representative,Salesforce,Entry,46961,1001-5000,Remote,3.4,5
+Machine Learning Engineer,Google,Director,299671,201-1000,Hybrid,3.5,14
+Product Manager,Microsoft,Entry,72302,1-50,Remote,3.6,1720
+Business Analyst,Mid-size Corp,Senior,139751,5001+,Remote,2.4,2
+Backend Developer,Microsoft,Mid,127958,5001+,Hybrid,4.3,17
+Sales Representative,IBM,Mid,67722,1001-5000,Hybrid,3.2,186
+Data Scientist,Netflix,Senior,190497,51-200,Remote,4.7,37
+Backend Developer,Amazon,VP,342048,1001-5000,Remote,4.6,147
+Backend Developer,Startup B,Senior,141057,5001+,Hybrid,2.8,65
+Product Manager,Startup B,Mid,132175,1001-5000,Remote,4.2,9
+UX Designer,Intel,Mid,114001,51-200,Hybrid,4.5,312
+Machine Learning Engineer,Startup B,Entry,100310,1-50,Remote,3.4,31
+HR Manager,Microsoft,Lead,117690,5001+,On-site,4.6,241
+Operations Manager,Microsoft,Entry,53827,1-50,On-site,4.2,30
+Software Engineer,Airbnb,Mid,125157,5001+,On-site,4.2,6
+Financial Analyst,Oracle,Mid,85945,1-50,On-site,4.9,85
+HR Manager,Microsoft,Mid,78301,5001+,Hybrid,2.7,5
+Marketing Manager,Intel,Senior,127063,201-1000,Hybrid,4.8,357
+DevOps Engineer,Meta,Entry,69847,5001+,Remote,2.5,53
+HR Manager,Startup B,Mid,68332,1001-5000,Hybrid,3.3,273
+Data Scientist,Startup B,Entry,88502,1001-5000,Hybrid,3.2,29
+Software Engineer,Google,Entry,67054,201-1000,Hybrid,4.2,12
+Operations Manager,Startup A,Mid,84238,5001+,Remote,3.7,889
+Sales Representative,IBM,Entry,41735,1001-5000,On-site,5.0,27
+Sales Representative,Google,Mid,76267,201-1000,Hybrid,3.3,48
+HR Manager,Meta,Mid,69965,1-50,On-site,2.9,10
+Operations Manager,Amazon,Senior,143256,1-50,Remote,4.0,16
+UX Designer,Netflix,Senior,160234,5001+,Hybrid,3.8,2
+Financial Analyst,Enterprise Corp,Mid,80971,1001-5000,Hybrid,2.6,3
+Frontend Developer,Microsoft,Mid,118613,51-200,On-site,3.2,147
+HR Manager,Enterprise Corp,Senior,124795,201-1000,Remote,3.5,94
+Backend Developer,Apple,VP,274734,201-1000,Remote,3.6,37
+Machine Learning Engineer,Mid-size Corp,Mid,149542,1001-5000,On-site,3.2,62
+Operations Manager,Amazon,Senior,131976,201-1000,On-site,3.5,47
+Business Analyst,Meta,Mid,89467,201-1000,On-site,4.4,99
+HR Manager,Amazon,Lead,144466,1001-5000,Remote,2.4,119
+Data Scientist,Amazon,Senior,186307,51-200,Hybrid,3.5,4
+Machine Learning Engineer,IBM,Senior,216166,1001-5000,Hybrid,2.7,69
+Operations Manager,Oracle,Mid,94122,1001-5000,Hybrid,4.0,51
+Operations Manager,Meta,Entry,61388,1001-5000,Remote,3.4,117
+Marketing Manager,Intel,Entry,57764,1001-5000,On-site,3.3,35
+Marketing Manager,Meta,VP,275236,201-1000,Hybrid,5.0,1
+Software Engineer,Oracle,Entry,82797,51-200,On-site,4.2,20
+Financial Analyst,Airbnb,Mid,80113,1-50,On-site,4.0,28
+Sales Representative,Salesforce,Mid,68118,1001-5000,On-site,3.4,402
+Frontend Developer,Netflix,Mid,111105,201-1000,On-site,4.6,90
+UX Designer,Netflix,Entry,67860,1001-5000,Remote,5.0,33
+Financial Analyst,Amazon,Lead,151233,1-50,Remote,3.8,81
+Operations Manager,Intel,Senior,139551,201-1000,On-site,3.6,196
+Marketing Manager,Startup A,Mid,92987,1001-5000,Remote,3.0,13
+Backend Developer,Microsoft,Entry,84421,1001-5000,Hybrid,4.2,264
+Sales Representative,Airbnb,Senior,95530,1001-5000,Hybrid,3.7,36
+DevOps Engineer,Oracle,Mid,124710,201-1000,Remote,3.2,27
+DevOps Engineer,Enterprise Corp,Mid,127197,201-1000,On-site,3.1,1
+Backend Developer,Uber,Senior,141097,51-200,On-site,3.2,2
+HR Manager,Startup B,Senior,104334,201-1000,Remote,4.7,244
+Product Manager,Uber,VP,338618,1001-5000,Hybrid,4.6,77
+DevOps Engineer,Intel,VP,309069,1001-5000,Hybrid,2.2,1
+Machine Learning Engineer,Microsoft,Mid,143840,1001-5000,Hybrid,4.4,14
+Software Engineer,Salesforce,Senior,143924,201-1000,On-site,4.0,61
+Business Analyst,IBM,Senior,138795,1001-5000,On-site,3.7,36
+Financial Analyst,Intel,Senior,119102,1001-5000,Remote,2.4,1
+Software Engineer,Startup B,Entry,77868,1001-5000,Hybrid,4.2,13
+Financial Analyst,Microsoft,Senior,116659,51-200,On-site,3.1,55
+Sales Representative,Amazon,Mid,71419,201-1000,On-site,3.8,476
+Sales Representative,Meta,Mid,75091,1001-5000,On-site,3.5,14
+UX Designer,Microsoft,Entry,62110,1001-5000,Hybrid,4.5,12
+Frontend Developer,Apple,Entry,67425,1001-5000,On-site,3.9,153
+HR Manager,Oracle,Mid,72887,201-1000,On-site,2.3,87
+Operations Manager,Uber,Entry,52290,1001-5000,Hybrid,3.2,458
+Business Analyst,Salesforce,Senior,118896,201-1000,Remote,3.2,89
+Business Analyst,IBM,Mid,96927,51-200,Remote,2.8,119
+Financial Analyst,Google,Senior,111075,51-200,Remote,4.4,85
+Data Scientist,Startup A,Entry,73215,201-1000,Remote,4.0,157
+DevOps Engineer,Oracle,Mid,113437,1-50,Hybrid,3.8,125
+Frontend Developer,Apple,Director,204386,201-1000,Remote,3.4,297
+Data Scientist,Airbnb,Entry,69165,201-1000,Remote,4.4,37
+Operations Manager,Salesforce,Mid,94354,51-200,Hybrid,2.4,43
+HR Manager,Mid-size Corp,Mid,89665,201-1000,Remote,4.0,304
+Financial Analyst,Airbnb,Mid,72250,201-1000,On-site,3.0,4
+Backend Developer,Airbnb,Entry,83783,51-200,Hybrid,4.1,550
+Backend Developer,Mid-size Corp,Lead,174561,1001-5000,Hybrid,4.0,129
+Backend Developer,Salesforce,Entry,67384,1001-5000,Hybrid,4.2,33
+Operations Manager,Mid-size Corp,Senior,121729,1-50,Remote,3.3,12
+Data Scientist,Startup B,Entry,75654,51-200,On-site,5.0,115
+Financial Analyst,Airbnb,Senior,136507,201-1000,Hybrid,3.4,30
+Business Analyst,Airbnb,Mid,81898,1001-5000,Hybrid,4.0,13
+Business Analyst,Amazon,Director,191427,1001-5000,Remote,3.4,14
+Machine Learning Engineer,Uber,Lead,192048,201-1000,Hybrid,4.7,6
+Frontend Developer,Apple,Senior,173915,51-200,Hybrid,4.2,157
+Business Analyst,Uber,Entry,55221,1001-5000,Remote,3.7,27
+Business Analyst,Uber,Lead,134187,201-1000,Remote,3.2,91
+Sales Representative,IBM,Entry,53140,201-1000,Remote,3.3,48
+Sales Representative,Meta,Lead,121851,51-200,Remote,3.9,42
+Business Analyst,Uber,Entry,62373,1-50,Hybrid,3.2,16
+Financial Analyst,Microsoft,Senior,130100,201-1000,On-site,4.9,1
+Data Scientist,Salesforce,VP,326510,51-200,Hybrid,4.2,5
+Product Manager,IBM,Mid,126714,5001+,On-site,2.7,5
+Frontend Developer,Microsoft,Mid,96867,5001+,Remote,3.5,150
+Machine Learning Engineer,Meta,Mid,136149,1001-5000,Remote,3.1,88
+Business Analyst,Salesforce,Lead,132603,5001+,Hybrid,5.0,14
+Frontend Developer,Intel,Entry,65994,1001-5000,On-site,3.4,22
+Financial Analyst,Mid-size Corp,Mid,81225,201-1000,Hybrid,3.9,1
+Software Engineer,Microsoft,Lead,171616,201-1000,Remote,4.9,105
+Machine Learning Engineer,Intel,Senior,179262,201-1000,Hybrid,3.8,6
+Financial Analyst,Startup A,Senior,136297,51-200,Hybrid,4.2,172
+HR Manager,Enterprise Corp,Director,170238,5001+,Remote,4.0,8
+Business Analyst,Google,Lead,134734,5001+,Hybrid,3.8,191
+UX Designer,Meta,Director,217529,201-1000,Hybrid,3.2,1094
+UX Designer,Apple,Senior,129377,201-1000,Hybrid,2.3,23
+Marketing Manager,Netflix,Mid,97959,1001-5000,On-site,2.9,8
+Software Engineer,Enterprise Corp,Senior,179043,5001+,Hybrid,3.2,2
+Backend Developer,Netflix,Mid,112748,201-1000,Remote,3.7,392
+DevOps Engineer,IBM,Senior,174876,5001+,Remote,4.0,4
+Frontend Developer,Netflix,Senior,139951,5001+,On-site,4.0,33
+Marketing Manager,Enterprise Corp,Mid,94461,5001+,Remote,4.6,6
+Financial Analyst,Airbnb,Lead,148583,51-200,On-site,4.4,56
+Sales Representative,Uber,Mid,65610,1001-5000,Remote,3.6,128
+Sales Representative,Apple,Lead,112061,1-50,Hybrid,3.9,2
+Business Analyst,Apple,Senior,131093,1001-5000,On-site,2.2,35
+HR Manager,Oracle,Senior,97579,5001+,On-site,2.9,43
+HR Manager,IBM,Senior,107654,201-1000,On-site,2.5,26
+Marketing Manager,Amazon,Mid,96209,1001-5000,Remote,3.0,49
+Data Scientist,Google,Senior,166095,1001-5000,Remote,3.2,8
+HR Manager,Netflix,VP,231109,1-50,Hybrid,4.7,34
+Product Manager,Airbnb,Entry,83688,51-200,Hybrid,4.4,5
+Product Manager,Salesforce,Mid,129773,1-50,On-site,3.8,87
+Backend Developer,Startup B,Entry,79877,1001-5000,Remote,3.1,11
+Product Manager,Oracle,VP,346239,201-1000,Remote,3.9,3
+Operations Manager,Apple,VP,241707,5001+,Remote,3.2,1288
+Data Scientist,Apple,Senior,148973,51-200,Hybrid,5.0,52
+Product Manager,Google,Lead,184626,51-200,Hybrid,4.6,71
+Operations Manager,Uber,Senior,125351,51-200,Hybrid,4.4,54
+UX Designer,Apple,Lead,158735,5001+,Remote,4.5,90
+Frontend Developer,Startup B,Mid,121404,1-50,Hybrid,4.8,91
+Data Scientist,Google,Senior,152803,1001-5000,On-site,2.4,199
+Business Analyst,IBM,Senior,123859,51-200,On-site,3.8,135
+Backend Developer,Startup B,VP,331837,1001-5000,Hybrid,2.9,103
+Business Analyst,Enterprise Corp,Mid,86479,5001+,Remote,4.1,194
+HR Manager,Airbnb,Entry,44245,1-50,On-site,2.9,122
+Data Scientist,Oracle,Mid,137444,1-50,On-site,4.3,17
+Frontend Developer,Netflix,Mid,102003,201-1000,Hybrid,3.0,31
+Financial Analyst,Uber,Mid,74054,1001-5000,Remote,4.6,5
+Data Scientist,Microsoft,VP,329787,201-1000,On-site,4.6,21
+Operations Manager,Startup A,Senior,143855,1-50,Hybrid,4.0,11
+Data Scientist,Netflix,Lead,189049,201-1000,On-site,3.5,178
+Frontend Developer,Startup A,VP,313012,51-200,Remote,4.4,25
+HR Manager,Mid-size Corp,Mid,70261,1-50,On-site,4.4,3
+Backend Developer,Startup B,Senior,166358,1001-5000,Hybrid,4.2,1985
+Software Engineer,Amazon,Senior,149421,51-200,On-site,3.3,81
+Marketing Manager,Mid-size Corp,Director,164041,1001-5000,Hybrid,3.7,172
+Business Analyst,Mid-size Corp,Director,198696,1001-5000,Hybrid,3.1,165
+Machine Learning Engineer,Uber,VP,369200,5001+,Remote,3.5,39
+Operations Manager,Oracle,Senior,130403,1001-5000,Hybrid,3.5,44
+Sales Representative,Apple,Lead,127676,201-1000,Hybrid,4.7,73
+HR Manager,Enterprise Corp,Mid,84116,201-1000,Remote,3.5,69
+Financial Analyst,Intel,Director,159868,5001+,On-site,3.6,2
+Machine Learning Engineer,Airbnb,Mid,150552,1001-5000,Hybrid,2.7,27
+Sales Representative,IBM,Senior,93396,5001+,Hybrid,4.4,23
+Operations Manager,Startup B,VP,226377,5001+,Remote,3.8,29
+Operations Manager,Mid-size Corp,Entry,61895,201-1000,On-site,3.8,3701
+HR Manager,Mid-size Corp,Senior,120370,201-1000,Hybrid,3.7,27
+Machine Learning Engineer,Oracle,Mid,118494,201-1000,Hybrid,3.5,35
+HR Manager,Google,Lead,145018,201-1000,Hybrid,4.1,64
+Operations Manager,Salesforce,Mid,85565,5001+,On-site,4.6,9
+Machine Learning Engineer,Enterprise Corp,Mid,150286,201-1000,Remote,3.6,414
+Software Engineer,Google,Entry,67412,201-1000,Hybrid,5.0,6
+Backend Developer,Intel,Lead,169682,5001+,Hybrid,4.7,25
+Frontend Developer,Google,Director,224726,1001-5000,Hybrid,3.6,599
+Data Scientist,IBM,Lead,180291,51-200,Hybrid,3.6,4
+Financial Analyst,Amazon,Lead,136624,1001-5000,Remote,2.9,23
+HR Manager,Oracle,Mid,71257,1-50,On-site,2.6,12
+UX Designer,IBM,Senior,167544,1-50,Remote,3.8,64
+Operations Manager,Google,Entry,52246,1001-5000,Hybrid,3.3,6
+Data Scientist,Mid-size Corp,Mid,137032,201-1000,Hybrid,3.2,22
+Operations Manager,Airbnb,Director,178245,201-1000,Remote,2.6,188
+Financial Analyst,Meta,Senior,118457,51-200,On-site,3.7,8
+Software Engineer,Meta,Lead,185614,201-1000,Remote,3.4,19
+Machine Learning Engineer,IBM,Entry,90139,201-1000,Remote,4.6,25
+Machine Learning Engineer,Intel,Entry,82973,1-50,Remote,4.1,159
+Backend Developer,Amazon,Mid,102092,201-1000,On-site,4.6,13
+Operations Manager,Uber,Entry,61913,201-1000,Remote,3.7,64
+UX Designer,Oracle,Mid,119203,201-1000,Hybrid,4.0,11
+Backend Developer,Startup A,Mid,128302,201-1000,On-site,4.4,3
+Machine Learning Engineer,Google,Entry,100501,1001-5000,Remote,4.2,13
+Business Analyst,Netflix,Director,164530,201-1000,Remote,5.0,116
+Software Engineer,Enterprise Corp,Senior,179527,51-200,On-site,4.6,218
+Software Engineer,Uber,VP,334976,201-1000,Remote,4.7,114
+Software Engineer,Uber,Senior,156359,1001-5000,Remote,4.0,79
+UX Designer,Oracle,Mid,113749,1-50,Remote,4.0,238
+Frontend Developer,Startup B,Mid,99452,1001-5000,On-site,3.5,37
+Marketing Manager,Salesforce,Director,178845,201-1000,Hybrid,3.8,26
+Sales Representative,Apple,Lead,105058,1001-5000,Remote,2.5,221
+Frontend Developer,Salesforce,Entry,66244,1001-5000,Remote,3.4,10
+Software Engineer,Enterprise Corp,Senior,153535,1001-5000,Hybrid,3.2,2353
+Frontend Developer,Salesforce,Mid,119302,51-200,On-site,3.9,81
+Software Engineer,Enterprise Corp,Mid,106253,1001-5000,Hybrid,4.7,88
+Marketing Manager,Uber,Senior,113420,51-200,Remote,4.5,102
+Business Analyst,Startup A,Mid,83401,1-50,Hybrid,4.1,29
+Data Scientist,Startup B,Senior,193215,1-50,On-site,2.7,137
+Marketing Manager,Uber,Mid,88560,201-1000,Hybrid,4.2,310
+Data Scientist,Microsoft,Entry,72210,51-200,Hybrid,3.5,321
+Sales Representative,Startup B,Mid,72039,201-1000,Remote,3.5,49
+Backend Developer,Airbnb,Director,216061,201-1000,Hybrid,3.6,850
+Software Engineer,Intel,Director,235071,5001+,On-site,3.4,115
+Operations Manager,Airbnb,Senior,110887,51-200,Remote,4.8,177
+Backend Developer,Uber,Entry,68804,5001+,Hybrid,5.0,265
+HR Manager,Oracle,Senior,104491,5001+,Remote,3.5,6
+HR Manager,Startup A,Lead,146625,201-1000,Hybrid,4.7,36
+Business Analyst,Meta,Entry,50034,201-1000,On-site,3.5,2
+Product Manager,Microsoft,Mid,119885,1-50,Remote,2.9,80
+Data Scientist,Airbnb,Senior,151705,5001+,On-site,2.1,57
+UX Designer,Enterprise Corp,Senior,156516,51-200,Hybrid,3.9,10
+Data Scientist,Microsoft,Entry,84885,201-1000,Hybrid,5.0,14
+Software Engineer,Google,Entry,82859,201-1000,On-site,4.7,993
+Financial Analyst,Microsoft,Entry,47634,201-1000,On-site,3.2,109
+Software Engineer,Airbnb,Lead,191663,201-1000,Hybrid,4.3,16
+UX Designer,Startup A,Lead,176689,1-50,Hybrid,3.9,23
+Data Scientist,IBM,Mid,142924,201-1000,Hybrid,3.6,1519
+Software Engineer,Oracle,Mid,108551,1001-5000,Hybrid,3.6,41
+Product Manager,Uber,Mid,118326,1001-5000,Hybrid,3.6,28
+Machine Learning Engineer,IBM,Lead,243176,5001+,Remote,3.0,72
+HR Manager,Oracle,Lead,108942,201-1000,On-site,5.0,1
+UX Designer,Enterprise Corp,Senior,135967,5001+,Hybrid,4.0,6
+Software Engineer,Startup A,Senior,184314,51-200,Hybrid,4.0,8879
+Backend Developer,Meta,Director,222803,201-1000,Hybrid,3.0,13
+Operations Manager,Enterprise Corp,Director,193336,201-1000,Hybrid,3.4,1
+HR Manager,Netflix,Lead,115495,201-1000,Remote,3.8,72
+Backend Developer,Salesforce,Lead,181509,201-1000,Remote,3.1,60
+DevOps Engineer,Airbnb,Mid,109412,1001-5000,Hybrid,5.0,18
+Frontend Developer,Airbnb,Senior,171052,201-1000,Remote,4.4,7
+Software Engineer,Uber,Senior,168720,201-1000,Hybrid,4.1,48
+DevOps Engineer,Meta,Entry,72210,51-200,Remote,3.8,79
+HR Manager,Microsoft,Senior,107697,1-50,Remote,4.8,45
+Backend Developer,Meta,Entry,78924,5001+,Hybrid,4.3,23
+Backend Developer,Apple,Senior,171139,51-200,Hybrid,4.2,27
+Sales Representative,Google,Lead,108412,51-200,On-site,4.7,5
+DevOps Engineer,IBM,Senior,151438,1001-5000,On-site,3.0,107
+HR Manager,Apple,Entry,54135,1001-5000,Remote,3.1,84
+HR Manager,Airbnb,Entry,48415,1-50,On-site,5.0,19
+Data Scientist,Airbnb,Entry,90530,201-1000,Hybrid,3.8,68
+DevOps Engineer,Amazon,Senior,174630,1001-5000,Hybrid,4.5,43
+Business Analyst,Apple,Entry,58077,5001+,Remote,4.2,145
+HR Manager,Startup B,Mid,90310,51-200,Remote,2.9,22
+Backend Developer,Startup A,Mid,117705,1001-5000,Hybrid,4.9,40
+Data Scientist,Oracle,Entry,75978,51-200,On-site,4.8,23
+DevOps Engineer,Airbnb,Mid,112138,1001-5000,Remote,3.6,34
+Marketing Manager,Uber,Entry,57134,201-1000,Remote,4.7,9
+UX Designer,IBM,Entry,64762,51-200,Remote,3.2,36
+Product Manager,Intel,Director,263380,1-50,Remote,4.5,5
+Machine Learning Engineer,Startup A,Mid,148876,1001-5000,Remote,4.7,68
+DevOps Engineer,Mid-size Corp,Director,255478,5001+,Remote,4.8,84
+DevOps Engineer,IBM,Mid,111672,5001+,On-site,3.2,15
+UX Designer,Startup A,Senior,137341,1001-5000,Hybrid,2.5,217
+HR Manager,Netflix,Mid,72328,201-1000,Hybrid,4.1,232
+UX Designer,Intel,Mid,90601,1-50,Hybrid,2.5,9
+Software Engineer,Amazon,Senior,178701,201-1000,Hybrid,3.6,27
+Frontend Developer,IBM,Senior,131056,1-50,Remote,4.2,1692
+UX Designer,Uber,Mid,92181,5001+,Hybrid,3.4,2
+UX Designer,Oracle,Lead,187253,201-1000,On-site,4.7,9
+Marketing Manager,Intel,Senior,113842,1-50,Hybrid,4.1,64
+Product Manager,Apple,Director,255123,1001-5000,Hybrid,2.4,142
+Machine Learning Engineer,Apple,Lead,230871,201-1000,On-site,3.4,36
+DevOps Engineer,Uber,Senior,186286,1-50,Hybrid,3.8,20
+Business Analyst,Airbnb,Mid,88615,51-200,Hybrid,3.6,2
+Product Manager,Amazon,Mid,118792,1001-5000,Remote,4.4,47
+Product Manager,Oracle,VP,411326,51-200,Remote,3.5,37
+HR Manager,Enterprise Corp,Mid,88601,201-1000,Hybrid,2.8,25
+Backend Developer,Microsoft,Mid,120683,1-50,Remote,4.3,4
+Frontend Developer,Salesforce,Lead,179885,201-1000,On-site,4.7,1
+Operations Manager,Amazon,Senior,124226,5001+,On-site,1.9,2
+Data Scientist,IBM,Senior,169757,1-50,Remote,3.0,215
+DevOps Engineer,Intel,Mid,108422,1-50,Remote,4.1,73
+Financial Analyst,Netflix,Mid,88561,201-1000,On-site,3.9,9
+Sales Representative,Startup A,Entry,46744,51-200,Hybrid,2.2,10
+Data Scientist,Intel,Mid,112966,1001-5000,On-site,5.0,244
+DevOps Engineer,Meta,Senior,164679,201-1000,Hybrid,3.6,20
+Data Scientist,Netflix,Lead,174773,51-200,Hybrid,4.6,227
+Sales Representative,Amazon,Mid,73370,201-1000,Remote,3.6,3
+DevOps Engineer,Airbnb,Mid,135603,1001-5000,Hybrid,3.2,68
+Machine Learning Engineer,Meta,Lead,191019,51-200,Hybrid,3.1,9
+DevOps Engineer,Amazon,Mid,116631,51-200,Remote,3.4,2
+Operations Manager,Oracle,Mid,93083,1-50,Remote,4.1,140
+Sales Representative,Enterprise Corp,Lead,127589,51-200,Remote,4.3,18
+UX Designer,Oracle,Entry,67363,1001-5000,Hybrid,3.4,2
+Frontend Developer,Enterprise Corp,Mid,97833,201-1000,Hybrid,4.6,58
+Product Manager,Airbnb,Mid,115017,51-200,On-site,3.8,21
+UX Designer,IBM,Entry,63664,201-1000,On-site,3.5,3
+Software Engineer,IBM,Senior,143228,1001-5000,Remote,4.6,6
+Product Manager,Amazon,Mid,131921,1001-5000,Hybrid,3.2,17
+HR Manager,IBM,Entry,54868,1001-5000,Remote,4.6,49
+Marketing Manager,Intel,Entry,59786,5001+,On-site,3.5,120
+Financial Analyst,Salesforce,Mid,90426,1001-5000,Hybrid,4.4,523
+Financial Analyst,Oracle,Mid,92568,1-50,Remote,3.6,11
+UX Designer,Salesforce,Mid,117065,1001-5000,On-site,4.1,330
+Sales Representative,Google,Mid,72517,201-1000,On-site,3.7,25
+Software Engineer,Microsoft,Senior,149387,5001+,On-site,3.7,14
+Data Scientist,Enterprise Corp,Entry,72065,201-1000,Remote,3.8,5
+DevOps Engineer,Microsoft,Lead,212052,1001-5000,Remote,4.7,16
+Financial Analyst,Salesforce,Senior,136294,51-200,Remote,2.8,57
+Product Manager,Google,Entry,77579,1001-5000,Remote,3.3,26
+DevOps Engineer,Mid-size Corp,Mid,102170,201-1000,On-site,2.3,104
+HR Manager,Startup A,Entry,44734,1001-5000,Hybrid,3.6,8
+Data Scientist,Uber,Entry,81078,201-1000,On-site,3.7,19
+Financial Analyst,Uber,Lead,143688,1001-5000,On-site,3.5,42
+Backend Developer,Netflix,Lead,192328,201-1000,Remote,3.5,20
+Operations Manager,Microsoft,Mid,97122,5001+,Remote,4.2,35
+Operations Manager,Salesforce,Senior,120635,5001+,Remote,3.4,620
+Software Engineer,IBM,Mid,124124,201-1000,On-site,4.2,25
+Product Manager,Intel,Senior,206365,1-50,Hybrid,5.0,15
+Backend Developer,Apple,Lead,182599,51-200,On-site,3.4,42
+Frontend Developer,Oracle,Mid,113010,201-1000,Hybrid,4.4,29
+Marketing Manager,Enterprise Corp,Director,195027,5001+,Remote,4.4,1
+Product Manager,Startup A,Mid,122797,1-50,Hybrid,3.8,43
+Product Manager,Apple,Senior,162378,5001+,Hybrid,3.7,55
+Marketing Manager,Microsoft,Entry,60344,5001+,Remote,3.6,6
+Product Manager,Amazon,VP,326139,201-1000,On-site,3.2,33
+Sales Representative,Uber,VP,186026,1-50,Hybrid,3.0,26
+Backend Developer,Microsoft,Mid,123284,201-1000,Remote,4.9,25
+Product Manager,Netflix,VP,385869,1001-5000,Hybrid,3.7,331
+HR Manager,Amazon,Senior,128013,201-1000,Hybrid,3.3,12
+Product Manager,Oracle,VP,323057,201-1000,On-site,5.0,368
+Frontend Developer,Amazon,Director,245515,201-1000,Remote,3.6,3
+DevOps Engineer,Salesforce,Senior,149547,201-1000,Hybrid,3.2,154
+Business Analyst,Microsoft,Mid,93054,1001-5000,On-site,4.6,68
+Operations Manager,Amazon,Entry,67248,1-50,Hybrid,5.0,696
+Machine Learning Engineer,Airbnb,Senior,163745,51-200,Remote,3.1,54
+Financial Analyst,Intel,Senior,113684,1001-5000,Hybrid,3.9,236
+Financial Analyst,IBM,Senior,131430,201-1000,On-site,4.3,49
+UX Designer,Enterprise Corp,Mid,95928,5001+,Remote,3.9,8
+Frontend Developer,Oracle,Mid,116704,51-200,On-site,4.2,19
+Machine Learning Engineer,Intel,Senior,208791,1001-5000,On-site,3.9,2
+Data Scientist,IBM,Director,245685,1001-5000,On-site,3.8,1
+Financial Analyst,Meta,Lead,142285,201-1000,Remote,3.8,10
+Financial Analyst,Enterprise Corp,Entry,62583,1-50,Remote,3.6,9
+Data Scientist,Mid-size Corp,Mid,143064,1001-5000,Remote,5.0,1
+HR Manager,Startup A,Lead,118892,51-200,Remote,4.2,55
+Sales Representative,Airbnb,Lead,132957,201-1000,On-site,3.5,201
+UX Designer,Startup A,Senior,130190,1-50,Hybrid,3.9,27
+DevOps Engineer,Oracle,Entry,77612,201-1000,On-site,3.8,8
+HR Manager,Google,Senior,123251,1-50,On-site,3.6,13
+Sales Representative,Apple,Senior,118229,5001+,Remote,3.8,17
+Data Scientist,Apple,VP,339200,201-1000,Remote,4.4,13
+HR Manager,Oracle,Mid,72313,201-1000,Hybrid,3.9,13
+Business Analyst,Mid-size Corp,Director,176684,1001-5000,On-site,3.1,24
+Business Analyst,Airbnb,Mid,77810,1001-5000,Hybrid,3.6,9
+Product Manager,Airbnb,Senior,157882,1001-5000,On-site,4.1,80
+HR Manager,Startup B,Mid,87265,51-200,Remote,3.6,74
+Financial Analyst,Salesforce,Mid,83023,1001-5000,Hybrid,3.9,138
+DevOps Engineer,Meta,Mid,114381,1-50,Hybrid,3.3,40
+DevOps Engineer,Startup B,Mid,126765,201-1000,Hybrid,2.9,8
+Financial Analyst,Google,Director,154122,201-1000,On-site,4.5,260
+DevOps Engineer,Mid-size Corp,Senior,177928,201-1000,Hybrid,3.2,177
+Product Manager,Startup B,Mid,141251,51-200,Hybrid,4.2,11
+Frontend Developer,Google,Entry,65110,5001+,Remote,4.4,74
+Backend Developer,Netflix,Mid,104362,201-1000,Remote,3.1,12
+Data Scientist,Uber,Mid,128017,1001-5000,Remote,4.4,257
+Sales Representative,Oracle,Mid,84520,51-200,Remote,4.2,212
+DevOps Engineer,Meta,Entry,75161,201-1000,Hybrid,4.7,5341
+HR Manager,Startup B,Mid,76197,51-200,Remote,2.8,85
+DevOps Engineer,Enterprise Corp,Senior,169472,1001-5000,Hybrid,2.9,7
+DevOps Engineer,Intel,Mid,135511,1-50,Hybrid,3.4,52
+Operations Manager,Enterprise Corp,Director,181764,51-200,Remote,3.5,8
+Software Engineer,Intel,Mid,103116,201-1000,On-site,3.2,7
+Product Manager,Mid-size Corp,Entry,93972,51-200,Remote,1.9,172
+Business Analyst,Microsoft,Senior,128891,1001-5000,Hybrid,4.1,127
+Frontend Developer,Uber,Director,221126,51-200,On-site,3.5,3
+Backend Developer,Meta,Lead,170626,201-1000,Hybrid,4.3,11
+Backend Developer,Uber,Mid,111305,1-50,Hybrid,2.5,16
+DevOps Engineer,IBM,VP,363656,201-1000,Hybrid,3.9,20
+UX Designer,Microsoft,Senior,161884,201-1000,Hybrid,4.0,58
+Operations Manager,Netflix,Lead,124385,51-200,Hybrid,3.0,35
+UX Designer,Apple,Mid,92216,1001-5000,Hybrid,3.7,23
+Data Scientist,Oracle,Senior,153081,201-1000,Hybrid,3.5,44
+Frontend Developer,Mid-size Corp,Lead,187760,51-200,Hybrid,2.9,15
+Frontend Developer,Startup A,Mid,95927,51-200,Hybrid,3.2,26
+Backend Developer,Uber,Mid,110069,1001-5000,Remote,3.4,1
+Software Engineer,Amazon,Director,272355,201-1000,Hybrid,3.3,11
+Operations Manager,IBM,Director,156813,51-200,Remote,4.1,3
+UX Designer,Salesforce,Mid,117137,5001+,On-site,3.9,74
+HR Manager,Salesforce,Senior,110284,51-200,Hybrid,4.9,81
+Business Analyst,Enterprise Corp,Entry,58960,1-50,Hybrid,4.9,12
+Sales Representative,IBM,Senior,106435,51-200,On-site,3.7,8
+Business Analyst,IBM,Entry,50747,51-200,Hybrid,3.8,3
+HR Manager,Mid-size Corp,Senior,123181,201-1000,Remote,3.1,78
+Product Manager,Enterprise Corp,Lead,192239,1-50,Remote,4.5,49
+Business Analyst,IBM,VP,210560,1-50,Hybrid,4.3,8
+Marketing Manager,Mid-size Corp,VP,227296,1001-5000,On-site,3.9,18
+Software Engineer,Startup A,Lead,209171,1-50,On-site,4.5,98
+Backend Developer,Google,Mid,107643,1001-5000,Hybrid,3.7,169
+Software Engineer,Uber,Mid,109651,201-1000,Hybrid,4.0,33
+Product Manager,Salesforce,Mid,113625,51-200,Hybrid,4.2,62
+Product Manager,Startup B,Entry,79233,51-200,Hybrid,3.9,111
+Product Manager,Google,Mid,121573,5001+,Hybrid,4.1,320
+DevOps Engineer,Oracle,Entry,79202,1001-5000,On-site,4.3,9
+Data Scientist,Airbnb,Lead,187699,201-1000,On-site,3.6,29
+Product Manager,Startup A,Mid,132995,201-1000,On-site,2.4,693
+DevOps Engineer,Startup B,Lead,192055,5001+,Remote,3.0,49
+Product Manager,Google,Lead,181184,1001-5000,Hybrid,4.5,12
+Financial Analyst,Enterprise Corp,Mid,85925,201-1000,On-site,4.5,1
+Software Engineer,Mid-size Corp,Entry,70249,51-200,On-site,4.3,130
+Frontend Developer,Uber,Entry,79675,51-200,Remote,3.6,88
+Machine Learning Engineer,Startup A,Director,238685,1001-5000,Hybrid,3.2,112
+Business Analyst,Microsoft,Director,194835,201-1000,Remote,3.2,186
+Product Manager,Oracle,Mid,133484,201-1000,Remote,3.2,24
+Marketing Manager,Apple,Entry,69539,5001+,On-site,4.2,26
+UX Designer,Salesforce,Entry,63761,51-200,Hybrid,3.9,27
+Sales Representative,Amazon,Mid,82140,1-50,On-site,3.1,31
+Product Manager,Amazon,Mid,133160,5001+,Remote,2.9,93
+UX Designer,Startup B,Senior,131927,51-200,Hybrid,4.8,11
+Marketing Manager,Startup A,Mid,100465,201-1000,Hybrid,3.8,54
+Marketing Manager,IBM,Entry,60819,1001-5000,Remote,2.6,22
+Marketing Manager,IBM,Senior,145089,51-200,Remote,3.8,19
+Backend Developer,Airbnb,Senior,161868,1001-5000,Hybrid,3.6,17
+Backend Developer,Mid-size Corp,Senior,181800,51-200,On-site,4.0,85
+Sales Representative,Enterprise Corp,Lead,137676,1001-5000,On-site,3.9,5
+Machine Learning Engineer,Airbnb,Lead,240874,1001-5000,Remote,4.0,55
+Financial Analyst,Oracle,Senior,115881,201-1000,On-site,5.0,99
+Sales Representative,Intel,Lead,137131,51-200,Hybrid,3.8,19
+Business Analyst,Enterprise Corp,Mid,87046,51-200,On-site,4.0,7
+UX Designer,Netflix,Mid,93154,1-50,Remote,4.7,46
+Software Engineer,Mid-size Corp,Mid,118969,51-200,On-site,3.2,34
+Financial Analyst,Uber,Mid,94923,1001-5000,Remote,3.0,61
+Data Scientist,Oracle,Mid,124193,201-1000,Remote,4.5,45
+Machine Learning Engineer,Mid-size Corp,Entry,91509,5001+,Hybrid,4.4,467
+Operations Manager,IBM,Entry,56583,5001+,Hybrid,4.8,41
+Sales Representative,Google,Entry,45874,201-1000,Remote,2.9,24
+UX Designer,Startup B,Lead,150455,1001-5000,Hybrid,4.7,18
+Product Manager,Google,Entry,86126,51-200,Hybrid,3.2,155
+Frontend Developer,Microsoft,Mid,117866,51-200,Remote,3.9,134
+Backend Developer,IBM,Entry,71967,1001-5000,Hybrid,3.9,79
+Marketing Manager,Enterprise Corp,Mid,90766,1001-5000,Hybrid,4.5,1248
+Operations Manager,Apple,Mid,91841,201-1000,On-site,2.7,9
+HR Manager,Google,Senior,120345,201-1000,Hybrid,3.0,5
+Business Analyst,Enterprise Corp,Mid,75445,51-200,Hybrid,4.3,12
+Machine Learning Engineer,Netflix,Mid,143162,51-200,On-site,4.3,101
+Software Engineer,Startup B,VP,364704,1001-5000,Remote,3.8,12
+Frontend Developer,Airbnb,Senior,176805,1-50,Remote,5.0,196
+Business Analyst,Mid-size Corp,Lead,134567,201-1000,On-site,4.8,3045
+Product Manager,Uber,Mid,122950,1001-5000,Hybrid,3.6,1359
+UX Designer,Startup A,Senior,139419,51-200,Hybrid,2.6,71
+Sales Representative,Meta,Director,157640,1001-5000,Hybrid,4.8,56
+Business Analyst,Startup B,Entry,57800,51-200,Hybrid,3.6,11
+Sales Representative,Oracle,Lead,107933,201-1000,On-site,3.6,37
+Product Manager,Startup A,Mid,113258,201-1000,Remote,3.1,106
+Software Engineer,Salesforce,Entry,86705,201-1000,Remote,4.0,43
+Backend Developer,Startup A,Lead,181060,1-50,On-site,3.5,36
+Marketing Manager,Uber,Mid,97276,1001-5000,On-site,3.7,89
+Operations Manager,Apple,Mid,83852,201-1000,On-site,3.5,1
+Backend Developer,Apple,Entry,64477,51-200,Remote,3.6,194
+Business Analyst,IBM,Lead,122278,51-200,Remote,4.8,83
+Backend Developer,Salesforce,Entry,78447,1001-5000,Hybrid,5.0,1
+UX Designer,Uber,Senior,158939,5001+,Remote,4.4,131
+Operations Manager,Apple,Mid,85287,201-1000,Hybrid,4.0,5
+Data Scientist,Airbnb,Senior,178050,51-200,Hybrid,3.6,14
+Backend Developer,Uber,Senior,138920,1001-5000,Remote,3.8,1
+Sales Representative,Google,Mid,79167,5001+,Remote,2.6,471
+UX Designer,Oracle,Entry,77325,201-1000,Remote,4.5,295
+Data Scientist,Mid-size Corp,VP,385160,5001+,On-site,3.9,8
+Product Manager,Uber,Mid,148694,5001+,Remote,3.7,90
+Business Analyst,Uber,Entry,56647,51-200,Hybrid,2.3,42
+Machine Learning Engineer,Google,Entry,86516,1001-5000,Hybrid,2.7,64
+HR Manager,Apple,Lead,142840,1-50,Remote,4.5,67
+UX Designer,Uber,Mid,111978,1001-5000,On-site,4.4,33
+Machine Learning Engineer,Intel,Mid,150381,5001+,On-site,2.8,334
+Product Manager,Microsoft,Senior,189192,51-200,On-site,3.4,86
+Software Engineer,Mid-size Corp,Senior,155948,1-50,Hybrid,4.8,51
+Financial Analyst,Microsoft,Senior,118325,51-200,Remote,4.0,1
+Frontend Developer,Salesforce,Senior,145194,1001-5000,On-site,4.2,12
+Sales Representative,Startup B,Senior,99796,201-1000,Hybrid,4.3,26
+Backend Developer,Intel,Entry,63787,201-1000,Remote,3.4,116
+Data Scientist,IBM,Mid,140933,5001+,Hybrid,4.0,6
+Backend Developer,IBM,VP,274391,1001-5000,Hybrid,2.0,24
+Operations Manager,Google,Mid,101476,201-1000,Remote,4.9,102
+Marketing Manager,Netflix,Mid,105279,201-1000,Hybrid,4.7,92
+Financial Analyst,Apple,Entry,54908,51-200,On-site,3.5,76
+UX Designer,Uber,Entry,73814,51-200,Hybrid,3.7,391
+Sales Representative,Startup B,Director,157989,51-200,On-site,3.0,153
+Financial Analyst,Airbnb,Mid,86085,1001-5000,Hybrid,3.9,155
+Software Engineer,Startup B,Lead,190217,5001+,On-site,3.1,102
+HR Manager,Mid-size Corp,Mid,71013,5001+,Hybrid,2.5,23
+Sales Representative,Amazon,Entry,51935,5001+,Hybrid,3.2,20
+Data Scientist,Meta,Mid,139359,1001-5000,On-site,3.4,28
+Software Engineer,Enterprise Corp,Senior,177740,1001-5000,On-site,4.2,59
+UX Designer,Airbnb,Mid,114056,201-1000,Remote,3.7,1
+Data Scientist,Oracle,Senior,158062,51-200,Hybrid,2.5,92
+Frontend Developer,Meta,Mid,121891,1-50,On-site,4.2,26
+Sales Representative,Amazon,Director,152197,1001-5000,Remote,4.1,46
+UX Designer,Google,Senior,154057,5001+,Remote,3.9,77
+Sales Representative,Google,Director,159376,51-200,On-site,4.9,22
+Software Engineer,Startup B,Senior,158119,201-1000,Remote,4.4,4
+HR Manager,Google,Entry,50806,51-200,On-site,3.6,110
+Operations Manager,Uber,Senior,107328,1001-5000,Remote,3.8,206
+Product Manager,Netflix,VP,372064,51-200,Hybrid,4.5,73
+UX Designer,Amazon,Mid,97016,201-1000,Hybrid,3.7,105
+HR Manager,Startup A,Director,141318,201-1000,Hybrid,2.3,24
+Software Engineer,Startup B,Lead,215219,51-200,On-site,3.4,68
+Backend Developer,Amazon,Lead,188752,51-200,Remote,3.7,16
+Machine Learning Engineer,Microsoft,Mid,120706,201-1000,Hybrid,2.6,237
+Machine Learning Engineer,Mid-size Corp,Senior,186452,1001-5000,On-site,4.0,14
+Sales Representative,Oracle,Entry,42517,201-1000,On-site,4.3,380
+Backend Developer,Meta,Senior,149329,201-1000,Hybrid,4.4,40
+Marketing Manager,Netflix,Senior,152472,51-200,Remote,3.1,120
+Operations Manager,Netflix,Mid,102167,1001-5000,Hybrid,4.2,1660
+UX Designer,Meta,Senior,136573,5001+,On-site,3.3,56
+DevOps Engineer,Salesforce,Senior,183521,1-50,Hybrid,3.2,4
+Sales Representative,Uber,Entry,44647,51-200,Hybrid,5.0,28
+Marketing Manager,Microsoft,Mid,100115,201-1000,Remote,5.0,1
+Software Engineer,Startup B,Mid,109260,201-1000,Hybrid,3.5,246
+Software Engineer,Apple,Lead,206786,1001-5000,Remote,3.6,5
+Financial Analyst,Amazon,Mid,96450,1001-5000,Remote,4.1,7
+Business Analyst,Airbnb,Senior,114963,1001-5000,On-site,2.7,3
+Software Engineer,IBM,Director,275910,51-200,Remote,4.4,20
+Backend Developer,IBM,Senior,173126,201-1000,Hybrid,3.5,44
+UX Designer,Apple,Entry,74793,201-1000,Hybrid,3.0,5
+Financial Analyst,Intel,Mid,78938,1001-5000,Hybrid,3.6,42
+Software Engineer,Oracle,Entry,81950,1001-5000,Remote,3.0,43
+Operations Manager,Netflix,Director,153429,1-50,Remote,4.5,15
+HR Manager,IBM,Mid,74917,1001-5000,Remote,3.9,41
+Backend Developer,Intel,Senior,182348,1001-5000,Remote,3.7,1
+Product Manager,Meta,VP,405245,201-1000,Remote,5.0,5
+Software Engineer,Startup B,Entry,77470,5001+,Hybrid,4.2,10
+Business Analyst,Meta,Senior,111587,1001-5000,On-site,4.0,353
+HR Manager,Intel,Senior,111907,1001-5000,Hybrid,3.3,3
+Data Scientist,Startup B,Mid,135899,51-200,Hybrid,5.0,77
+Financial Analyst,Apple,Entry,54243,51-200,On-site,4.2,116
+Sales Representative,Netflix,Lead,105234,1001-5000,Remote,4.4,17
+HR Manager,Apple,Lead,122757,51-200,Hybrid,2.5,1
+Data Scientist,Google,Mid,115575,51-200,On-site,4.0,246
+Frontend Developer,Mid-size Corp,Senior,162751,1001-5000,Remote,4.0,1
+Marketing Manager,Google,Director,200121,5001+,Remote,3.3,73
+Backend Developer,Oracle,Mid,125563,5001+,Hybrid,3.7,24
+HR Manager,Google,Senior,126923,201-1000,On-site,3.3,6
+Frontend Developer,Enterprise Corp,Senior,167902,1001-5000,Hybrid,4.4,32
+Data Scientist,Startup B,Mid,112275,51-200,Hybrid,4.0,10
+Operations Manager,Enterprise Corp,Entry,55256,201-1000,On-site,4.3,14
+UX Designer,Startup A,Lead,187133,1001-5000,Hybrid,2.6,3
+Sales Representative,Airbnb,Entry,45345,1001-5000,Hybrid,4.3,7
+Data Scientist,Intel,Senior,195509,5001+,Remote,4.4,83
+Data Scientist,Microsoft,VP,303755,51-200,On-site,3.9,14
+Product Manager,Uber,Lead,217397,1001-5000,Remote,3.3,89
+Data Scientist,Microsoft,Senior,150028,1001-5000,Hybrid,4.1,2
+Sales Representative,Airbnb,Mid,76637,51-200,Hybrid,3.9,37
+Operations Manager,Enterprise Corp,Entry,60174,201-1000,Hybrid,4.2,34
+DevOps Engineer,Apple,Mid,128900,201-1000,Hybrid,4.7,144
+Product Manager,Netflix,VP,332784,1001-5000,Hybrid,3.1,33
+Sales Representative,Google,Senior,91585,1-50,Remote,3.1,11
+UX Designer,Apple,Mid,95345,1001-5000,Remote,4.0,38
+Machine Learning Engineer,Startup A,Entry,92652,5001+,Hybrid,4.2,13
+Software Engineer,Oracle,VP,294138,5001+,Remote,3.5,72
+DevOps Engineer,Amazon,Senior,158611,1001-5000,Remote,4.2,4
+Sales Representative,Enterprise Corp,Entry,48543,1-50,Hybrid,2.0,113
+DevOps Engineer,Amazon,Entry,72026,51-200,Remote,4.8,272
+DevOps Engineer,Google,VP,373921,51-200,Hybrid,3.5,26
+Machine Learning Engineer,Microsoft,Entry,94900,51-200,Remote,4.2,24
+Machine Learning Engineer,Apple,Mid,150564,51-200,Remote,4.0,21
+Data Scientist,Startup A,Lead,172766,201-1000,Hybrid,4.6,5
+Marketing Manager,Apple,Mid,109011,201-1000,On-site,3.7,69
+Frontend Developer,Microsoft,Mid,119756,5001+,Remote,3.7,17
+Backend Developer,Amazon,Mid,102247,51-200,Hybrid,3.6,35
+Frontend Developer,Oracle,VP,352465,201-1000,Remote,3.9,6
+Backend Developer,Google,Mid,126103,1001-5000,Remote,3.7,40
+Data Scientist,Google,Entry,75156,5001+,On-site,4.2,82
+DevOps Engineer,Apple,Entry,82064,51-200,On-site,2.2,234
+Frontend Developer,Salesforce,Senior,161190,201-1000,Remote,2.6,13
+DevOps Engineer,Mid-size Corp,Senior,157678,51-200,Remote,4.2,42
+Software Engineer,Enterprise Corp,Director,207632,1001-5000,Remote,4.4,820
+Frontend Developer,Meta,Entry,76242,201-1000,Hybrid,4.0,119
+Data Scientist,Uber,Mid,142946,201-1000,Remote,3.8,25
+Machine Learning Engineer,Amazon,Mid,142863,201-1000,Hybrid,2.8,793
+Backend Developer,Intel,Senior,140639,1-50,Hybrid,5.0,482
+UX Designer,Oracle,Entry,72762,5001+,Hybrid,3.1,50
+Data Scientist,Uber,Senior,188243,5001+,Hybrid,4.0,31
+Sales Representative,Meta,VP,212923,1001-5000,Remote,3.8,33
+Frontend Developer,Mid-size Corp,Mid,125097,201-1000,Hybrid,5.0,361
+Business Analyst,Apple,Entry,64845,51-200,Hybrid,3.7,355
+Backend Developer,Airbnb,Mid,109819,201-1000,Hybrid,4.0,19
+Financial Analyst,Mid-size Corp,VP,229538,201-1000,Hybrid,4.4,4
+Operations Manager,Intel,Entry,59300,201-1000,Remote,3.9,60
+Machine Learning Engineer,Microsoft,Mid,129412,201-1000,Hybrid,3.2,124
+Operations Manager,Mid-size Corp,Senior,143698,201-1000,Remote,4.1,75
+UX Designer,Startup B,Senior,149720,201-1000,Hybrid,3.2,68
+Software Engineer,Startup A,Entry,80761,51-200,Hybrid,4.0,111
+Backend Developer,Startup A,Senior,156522,5001+,Remote,4.1,23
+Financial Analyst,Microsoft,Lead,127765,1001-5000,Hybrid,3.8,514
+DevOps Engineer,Salesforce,Senior,142122,1001-5000,On-site,3.3,85
+Sales Representative,IBM,Entry,47387,201-1000,Hybrid,4.4,92
+Marketing Manager,Oracle,Director,178394,1001-5000,On-site,3.0,345
+HR Manager,IBM,Senior,101348,201-1000,Hybrid,3.6,2
+Business Analyst,Mid-size Corp,Lead,152797,1001-5000,Remote,3.7,13
+Product Manager,IBM,Senior,202999,51-200,Hybrid,4.1,1027
+Marketing Manager,Netflix,Lead,143353,1001-5000,Hybrid,4.6,11
+Data Scientist,Airbnb,Senior,160236,1001-5000,Remote,3.6,449
+Marketing Manager,Uber,Director,173918,5001+,On-site,5.0,4
+Sales Representative,Intel,Director,171680,51-200,Hybrid,3.9,6
+HR Manager,Startup B,Director,147536,5001+,Remote,2.7,217
+Business Analyst,Amazon,Entry,55152,201-1000,Hybrid,3.8,1
+Financial Analyst,Meta,Senior,128634,5001+,Hybrid,4.1,8
+Marketing Manager,Amazon,Lead,173942,1001-5000,On-site,4.0,1
+Machine Learning Engineer,IBM,Senior,202584,1-50,Remote,4.2,36
+Backend Developer,Apple,Senior,151205,201-1000,Remote,3.9,1
+Marketing Manager,Salesforce,Entry,65883,201-1000,Remote,3.6,226
+Frontend Developer,Salesforce,Lead,200915,5001+,Hybrid,5.0,66
+Machine Learning Engineer,Startup A,Lead,237476,201-1000,Hybrid,4.0,483
+UX Designer,Google,Mid,103742,1001-5000,Hybrid,4.6,110
+Marketing Manager,Netflix,Lead,159466,1001-5000,On-site,3.9,17
+Frontend Developer,Netflix,Entry,74897,51-200,Remote,3.7,51
+Financial Analyst,Intel,Senior,112077,201-1000,Hybrid,4.2,3
+Marketing Manager,Meta,Entry,54758,201-1000,On-site,3.6,64
+HR Manager,Meta,Mid,84009,51-200,Hybrid,3.0,1
+Machine Learning Engineer,Meta,Mid,148092,51-200,Remote,4.4,128
+Backend Developer,Meta,Senior,158455,1001-5000,Remote,3.1,157
+Machine Learning Engineer,Netflix,Director,296574,201-1000,Hybrid,3.6,6
+Marketing Manager,Startup B,Senior,151886,1-50,On-site,3.6,12
+Machine Learning Engineer,Microsoft,Mid,141834,51-200,Hybrid,3.4,85
+Business Analyst,Microsoft,Entry,52970,201-1000,Hybrid,4.9,8
+Operations Manager,Netflix,Senior,112335,51-200,Remote,3.3,22
+HR Manager,IBM,Mid,86655,51-200,On-site,4.0,412
+Product Manager,Startup B,Senior,179438,51-200,On-site,4.4,52
+DevOps Engineer,Mid-size Corp,Lead,208710,201-1000,Remote,3.8,46
+Product Manager,Startup A,VP,322069,51-200,Remote,4.4,39
+Software Engineer,Salesforce,Senior,167670,201-1000,Hybrid,4.6,25
+Operations Manager,Google,Entry,51090,201-1000,On-site,3.2,53
+Data Scientist,IBM,Lead,219870,1-50,Hybrid,3.5,177
+Backend Developer,Intel,Mid,121354,5001+,Hybrid,5.0,10
+Financial Analyst,Mid-size Corp,Mid,81635,201-1000,Hybrid,4.9,169
+DevOps Engineer,Salesforce,Entry,73760,201-1000,On-site,4.6,6
+UX Designer,IBM,Senior,148329,51-200,Remote,3.4,1
+Sales Representative,IBM,Mid,79866,1-50,Remote,3.1,3
+DevOps Engineer,Uber,Entry,80517,1001-5000,Remote,4.8,145
+Backend Developer,Startup A,Mid,119543,51-200,Hybrid,3.8,36
+Backend Developer,Uber,Director,217049,51-200,On-site,3.2,126
+Sales Representative,Salesforce,Mid,83230,51-200,On-site,2.8,358
+Software Engineer,Apple,Senior,146965,51-200,Remote,2.7,111
+Machine Learning Engineer,Startup A,Mid,131457,51-200,On-site,3.2,44
+Marketing Manager,Uber,Lead,169104,201-1000,Remote,2.8,4
+Operations Manager,Amazon,Mid,91206,51-200,Remote,2.9,45
+Marketing Manager,Intel,Mid,83954,201-1000,Remote,5.0,2
+Software Engineer,Microsoft,Mid,118764,201-1000,Hybrid,4.3,1
+Financial Analyst,IBM,Entry,56403,1001-5000,On-site,4.2,194
+Operations Manager,Startup B,Senior,129686,201-1000,Hybrid,4.2,45
+Sales Representative,Netflix,Lead,112802,1001-5000,Hybrid,2.7,15
+Marketing Manager,Uber,Mid,107968,1001-5000,Remote,3.9,92
+Business Analyst,Salesforce,Entry,48919,201-1000,On-site,4.1,42
+DevOps Engineer,Uber,Mid,134943,201-1000,Remote,2.9,1
+UX Designer,Microsoft,Mid,95579,5001+,Remote,3.8,572
+Financial Analyst,IBM,Senior,118611,51-200,Remote,3.4,124
+HR Manager,Mid-size Corp,Entry,50464,201-1000,On-site,4.0,490
+DevOps Engineer,Oracle,Mid,115148,1001-5000,Hybrid,3.8,33
+Data Scientist,IBM,Director,267373,1001-5000,Hybrid,3.9,47
+UX Designer,Amazon,Entry,61129,51-200,On-site,3.6,111
+Financial Analyst,Airbnb,Entry,58692,51-200,Remote,4.5,17
+Operations Manager,Enterprise Corp,Mid,88490,201-1000,Remote,3.9,264
+DevOps Engineer,Startup B,Entry,79880,51-200,On-site,3.1,513
+Sales Representative,Microsoft,Senior,101696,201-1000,Hybrid,5.0,27
+HR Manager,Netflix,Lead,110985,5001+,Remote,3.1,49
+DevOps Engineer,Salesforce,Senior,142946,201-1000,Remote,4.1,417
+UX Designer,IBM,Mid,104798,51-200,Hybrid,4.4,9
+Software Engineer,Microsoft,Mid,119976,201-1000,On-site,4.2,21
+UX Designer,IBM,VP,282128,201-1000,Hybrid,3.4,6
+Sales Representative,Netflix,Entry,49404,5001+,On-site,3.8,1
+Data Scientist,Google,Director,238953,5001+,Remote,4.7,7
+Backend Developer,Enterprise Corp,Lead,190872,1001-5000,Remote,2.9,561
+Frontend Developer,Netflix,Senior,137143,51-200,On-site,4.3,43
+UX Designer,Intel,Entry,61953,201-1000,Remote,4.2,480
+Business Analyst,Intel,Mid,95785,51-200,Remote,3.5,94
+Sales Representative,Meta,Entry,43265,51-200,On-site,4.1,13
+Product Manager,Netflix,Senior,206604,5001+,Hybrid,2.8,484
+Backend Developer,Salesforce,Lead,182627,201-1000,On-site,4.4,12
+Product Manager,Startup A,Senior,200798,201-1000,Remote,4.4,1
+Financial Analyst,Mid-size Corp,Mid,81412,51-200,Hybrid,2.7,38
+UX Designer,Oracle,Senior,157640,51-200,Remote,3.6,17
+HR Manager,Apple,Mid,91126,201-1000,Remote,4.3,55
+Sales Representative,Mid-size Corp,Senior,103916,1001-5000,Hybrid,4.4,8
+Frontend Developer,Oracle,Mid,107945,1001-5000,Remote,3.5,98
+Marketing Manager,Amazon,Director,188359,201-1000,Hybrid,4.1,41
+HR Manager,Startup A,Mid,70301,5001+,Remote,4.5,269
+Machine Learning Engineer,Amazon,Mid,149540,201-1000,Hybrid,3.6,14
+Marketing Manager,Enterprise Corp,Senior,134893,201-1000,Remote,2.2,6
+Software Engineer,Airbnb,Mid,128378,5001+,Remote,4.2,7
+DevOps Engineer,Intel,Lead,186910,1001-5000,Hybrid,3.4,43
+Financial Analyst,Microsoft,Lead,116802,51-200,Remote,2.7,2329
+HR Manager,Startup B,Entry,56736,201-1000,On-site,4.0,16
+HR Manager,Startup B,Director,147979,51-200,Remote,5.0,14
+Data Scientist,Netflix,Mid,113039,201-1000,Remote,3.4,207
+Software Engineer,Apple,Senior,143995,5001+,Hybrid,4.5,133
+Sales Representative,Airbnb,Senior,90484,51-200,Remote,3.0,64
+Operations Manager,IBM,Senior,134192,51-200,On-site,3.7,479
+Product Manager,Startup A,Entry,87325,1001-5000,Hybrid,4.1,18
+Sales Representative,Airbnb,VP,219074,1001-5000,Remote,4.0,18
+UX Designer,Salesforce,Mid,99684,5001+,On-site,2.8,64
+Data Scientist,Uber,Senior,200429,5001+,Remote,4.3,13
+Marketing Manager,Mid-size Corp,Mid,91748,201-1000,Hybrid,3.6,19
+Data Scientist,Meta,Entry,90418,1001-5000,Hybrid,4.2,85
+DevOps Engineer,Intel,Senior,158487,51-200,Hybrid,1.9,22
+DevOps Engineer,Google,Entry,71916,1001-5000,Remote,3.3,63
+Machine Learning Engineer,Enterprise Corp,Mid,142458,51-200,Hybrid,2.3,29
+Machine Learning Engineer,Startup B,Senior,189852,51-200,Remote,4.3,234
+Business Analyst,Airbnb,Entry,63986,5001+,On-site,3.7,3
+Operations Manager,Mid-size Corp,Lead,151897,5001+,Remote,4.2,12
+Marketing Manager,Microsoft,Entry,55527,201-1000,On-site,5.0,10
+Marketing Manager,Microsoft,Mid,82511,1001-5000,On-site,2.9,204
+UX Designer,IBM,Mid,107069,1001-5000,Hybrid,3.0,8
+Software Engineer,Startup A,Senior,156500,201-1000,Hybrid,3.2,72
+Business Analyst,Apple,Senior,124383,51-200,Hybrid,4.5,63
+Data Scientist,Startup B,VP,381758,1001-5000,Remote,2.8,15
+Machine Learning Engineer,Airbnb,Entry,93407,51-200,Remote,2.8,98
+Frontend Developer,Mid-size Corp,Mid,104907,1-50,Remote,5.0,23
+Software Engineer,Startup A,Senior,164766,1-50,Remote,2.8,19
+Frontend Developer,Startup A,Senior,176103,51-200,Hybrid,4.5,4
+Data Scientist,Oracle,Director,269933,1001-5000,On-site,4.5,64
+DevOps Engineer,Uber,Director,248591,5001+,Remote,3.1,24
+Backend Developer,Startup B,Mid,109315,51-200,Hybrid,3.3,13
+Product Manager,Startup B,Mid,147784,5001+,Remote,3.3,583
+Sales Representative,Salesforce,Mid,76985,1-50,On-site,3.7,2
+HR Manager,Salesforce,VP,228288,51-200,Remote,3.9,10
+Sales Representative,Mid-size Corp,Mid,74457,51-200,Hybrid,4.3,11
+Financial Analyst,IBM,Mid,97703,1001-5000,Hybrid,4.3,30
+Software Engineer,Amazon,Senior,173971,51-200,Remote,5.0,12
+Frontend Developer,Mid-size Corp,Mid,119299,201-1000,Remote,4.6,20
+Machine Learning Engineer,Enterprise Corp,Entry,92297,5001+,Remote,3.4,38
+UX Designer,Startup A,Mid,103028,1001-5000,Remote,2.3,4
+Business Analyst,Mid-size Corp,Mid,86924,5001+,Remote,3.8,37
+HR Manager,Intel,Entry,51570,1001-5000,On-site,4.4,48
+Financial Analyst,Startup A,Director,164265,201-1000,Hybrid,3.9,15
+Business Analyst,Startup B,Director,175362,201-1000,Remote,2.7,35
+Product Manager,Mid-size Corp,Mid,123976,5001+,Hybrid,3.5,168
+Frontend Developer,Startup B,Senior,164124,201-1000,Hybrid,4.7,16
+Backend Developer,Meta,Lead,159265,5001+,Hybrid,5.0,9
+Marketing Manager,Salesforce,Mid,83816,1-50,Hybrid,3.7,29
+Marketing Manager,Microsoft,Lead,168926,1001-5000,Hybrid,5.0,33
+DevOps Engineer,Microsoft,Lead,191063,1001-5000,Hybrid,3.5,33
+DevOps Engineer,Salesforce,Mid,118109,201-1000,Remote,4.3,78
+Sales Representative,Amazon,Director,136412,5001+,Hybrid,4.4,56
+Software Engineer,Airbnb,Mid,124997,201-1000,Hybrid,3.6,1
+Operations Manager,Oracle,Senior,139129,1001-5000,Remote,3.4,46
+Business Analyst,Intel,Senior,112436,1001-5000,Hybrid,3.3,37
+Frontend Developer,Intel,Mid,114636,201-1000,Remote,3.1,1165
+Backend Developer,Mid-size Corp,Entry,80953,51-200,On-site,2.0,1
+Operations Manager,Startup A,Entry,61293,201-1000,Remote,4.9,21
+Sales Representative,Enterprise Corp,VP,203257,51-200,Hybrid,3.5,2518
+DevOps Engineer,Amazon,VP,343150,51-200,Hybrid,4.4,263
+Machine Learning Engineer,Uber,Director,258134,201-1000,Hybrid,3.8,74
+Data Scientist,Oracle,Mid,117218,1-50,Hybrid,2.7,190
+Data Scientist,Netflix,Entry,91571,1-50,Remote,4.1,230
+Sales Representative,Startup B,Senior,113519,5001+,Hybrid,4.6,16
+Machine Learning Engineer,Uber,Entry,97760,1001-5000,Remote,4.5,31
+Marketing Manager,IBM,Senior,142788,5001+,Hybrid,3.7,35
+Marketing Manager,IBM,Director,196855,5001+,On-site,4.4,3
+Business Analyst,Meta,Entry,52004,201-1000,On-site,4.1,177
+Business Analyst,Mid-size Corp,Director,151330,51-200,On-site,4.1,72
+HR Manager,IBM,Entry,49734,51-200,Hybrid,5.0,119
+Data Scientist,Google,Director,265391,201-1000,Remote,3.4,180
+Sales Representative,Microsoft,Senior,112210,201-1000,Remote,4.4,9
+Business Analyst,Enterprise Corp,Mid,80154,1-50,Hybrid,2.6,110
+UX Designer,Enterprise Corp,Director,229747,5001+,On-site,4.3,6
+DevOps Engineer,Startup B,Senior,155354,1001-5000,Hybrid,3.6,71
+HR Manager,Intel,Mid,80327,1001-5000,Hybrid,4.2,21
+UX Designer,Mid-size Corp,Lead,184268,51-200,Remote,3.4,39
+Machine Learning Engineer,Amazon,Senior,178190,5001+,Remote,4.7,11
+Data Scientist,Airbnb,Mid,110738,51-200,Hybrid,2.8,22
+Frontend Developer,Uber,Entry,81610,51-200,On-site,4.0,163
+Data Scientist,Microsoft,Mid,107855,1-50,Hybrid,3.3,234
+UX Designer,Startup B,Senior,166248,201-1000,Hybrid,4.8,8
+DevOps Engineer,Amazon,Mid,116561,1001-5000,On-site,4.1,101
+Backend Developer,Microsoft,Mid,105784,5001+,On-site,4.2,82
+Software Engineer,Startup A,Director,254617,51-200,Hybrid,4.3,11
+Product Manager,Apple,Entry,96205,1001-5000,Remote,3.5,34
+Marketing Manager,Meta,Senior,137743,1001-5000,Hybrid,3.4,66
+Financial Analyst,Salesforce,Senior,122575,1001-5000,Hybrid,3.5,16
+Backend Developer,Intel,Director,241189,201-1000,Remote,2.2,64
+Machine Learning Engineer,Mid-size Corp,Mid,139338,201-1000,Remote,4.1,92
+Financial Analyst,Google,Mid,86028,5001+,Remote,4.3,31
+Business Analyst,Intel,Mid,89034,51-200,Remote,2.8,27
+Operations Manager,Enterprise Corp,Lead,131995,1001-5000,Hybrid,3.3,14
+Business Analyst,Mid-size Corp,Entry,65730,201-1000,Hybrid,4.0,869
+Sales Representative,Amazon,Mid,70212,1001-5000,Hybrid,3.3,15
+Data Scientist,Intel,Entry,76270,51-200,On-site,3.4,53
+DevOps Engineer,Google,Senior,184963,5001+,On-site,4.7,74
+Product Manager,Mid-size Corp,Entry,90489,1001-5000,On-site,3.3,1
+Business Analyst,Mid-size Corp,Director,198462,201-1000,On-site,3.6,35
+Software Engineer,Enterprise Corp,Senior,165536,201-1000,On-site,3.7,722
+Business Analyst,Startup A,Entry,59427,201-1000,Hybrid,3.0,9
+UX Designer,Mid-size Corp,Lead,158893,51-200,Remote,3.7,31
+Data Scientist,Startup A,Entry,72612,5001+,Hybrid,2.3,384
+Data Scientist,Amazon,Mid,118264,5001+,Remote,4.1,1
+Operations Manager,Amazon,Lead,159758,1001-5000,On-site,3.0,319
+Business Analyst,Enterprise Corp,Mid,80688,1001-5000,Remote,3.2,11
+Machine Learning Engineer,Mid-size Corp,Mid,146340,51-200,On-site,3.5,61
+Business Analyst,Apple,Senior,122883,51-200,Remote,3.5,141
+HR Manager,Startup A,Senior,123473,1001-5000,Hybrid,3.9,9
+Sales Representative,Airbnb,Lead,108042,5001+,Hybrid,2.9,99
+Sales Representative,Salesforce,Lead,127437,51-200,Remote,4.7,134
+DevOps Engineer,Startup A,Senior,181378,1001-5000,Hybrid,3.8,100
+Machine Learning Engineer,Airbnb,Mid,126296,1001-5000,Remote,3.3,12
+HR Manager,Salesforce,Senior,116676,201-1000,Remote,3.9,14
+Product Manager,IBM,Entry,85199,1001-5000,On-site,4.8,460
+Operations Manager,Enterprise Corp,Mid,84757,201-1000,Remote,3.7,216
+Operations Manager,Meta,Lead,140618,5001+,Hybrid,3.5,80
+Operations Manager,Netflix,Mid,92547,51-200,Hybrid,3.0,48
+Sales Representative,Amazon,Senior,106936,201-1000,Remote,2.9,537
+UX Designer,Uber,Entry,78057,201-1000,Remote,3.6,61
+Data Scientist,Airbnb,Entry,92354,201-1000,Hybrid,3.9,10
+Marketing Manager,Uber,Mid,89604,201-1000,On-site,5.0,51
+Financial Analyst,IBM,Mid,89967,5001+,Remote,4.5,45
+Frontend Developer,Netflix,Lead,156845,201-1000,Remote,3.7,7
+Backend Developer,Google,Lead,181481,1-50,Remote,4.7,44
+UX Designer,Oracle,Senior,157172,5001+,On-site,3.4,660
+Financial Analyst,Mid-size Corp,Mid,97059,5001+,Hybrid,4.7,16
+Sales Representative,Google,Lead,112881,1001-5000,Hybrid,3.9,40
+Business Analyst,Meta,Mid,97782,201-1000,On-site,3.8,10
+Software Engineer,Startup B,Senior,151429,5001+,On-site,3.4,7
+Financial Analyst,Netflix,Director,180913,1-50,On-site,2.7,131
+Operations Manager,Mid-size Corp,Senior,109666,5001+,Hybrid,4.1,1
+Data Scientist,Salesforce,Entry,91637,51-200,Remote,3.5,1
+Marketing Manager,Oracle,Entry,58086,51-200,Remote,5.0,60
+Backend Developer,Salesforce,Mid,119218,51-200,On-site,4.5,12
+Marketing Manager,Netflix,Lead,169652,201-1000,On-site,3.9,93
+Backend Developer,Startup A,Senior,173737,201-1000,Remote,4.3,2
+DevOps Engineer,Enterprise Corp,Entry,75449,5001+,Remote,4.1,53
+Machine Learning Engineer,Mid-size Corp,Mid,120453,51-200,Hybrid,3.9,19
+Data Scientist,Amazon,Senior,188773,1001-5000,On-site,4.9,1
+UX Designer,Intel,Senior,141353,1001-5000,On-site,4.3,242
+Data Scientist,Oracle,Entry,89996,51-200,Remote,5.0,13
+Operations Manager,Salesforce,VP,262012,1001-5000,Hybrid,5.0,48
+Machine Learning Engineer,Amazon,Mid,145786,1001-5000,Hybrid,4.9,40
+HR Manager,Microsoft,Senior,97083,1001-5000,Remote,4.2,44
+DevOps Engineer,Oracle,Entry,83968,5001+,On-site,4.4,49
+Operations Manager,Apple,Mid,100452,1001-5000,Hybrid,2.8,5
+Software Engineer,Startup A,Mid,110323,1001-5000,Hybrid,4.5,23
+DevOps Engineer,Startup B,Entry,76097,1001-5000,On-site,5.0,19
+Backend Developer,Enterprise Corp,Senior,165151,1-50,Remote,4.5,58
+Sales Representative,Uber,Entry,49995,51-200,Hybrid,4.0,15
+Product Manager,Microsoft,Mid,132917,5001+,Remote,4.0,22
+HR Manager,Uber,Mid,75243,1001-5000,Remote,3.7,115
+Sales Representative,Salesforce,Mid,82886,1-50,Hybrid,4.4,7
+UX Designer,Intel,Lead,178979,201-1000,Hybrid,4.2,134
+Software Engineer,Salesforce,Lead,171800,51-200,Hybrid,4.1,16
+Machine Learning Engineer,Mid-size Corp,Entry,79974,51-200,On-site,4.1,24
+Business Analyst,Airbnb,Entry,52876,201-1000,Hybrid,3.1,28
+HR Manager,Airbnb,Senior,103403,201-1000,Remote,2.3,83
+DevOps Engineer,Uber,VP,309277,5001+,On-site,4.0,47
+Data Scientist,Startup A,Mid,137131,201-1000,Remote,3.4,29
+Operations Manager,Startup A,Mid,78383,1001-5000,On-site,4.6,201
+Marketing Manager,Oracle,Senior,152786,5001+,Remote,4.2,66
+Data Scientist,Amazon,Senior,199883,1-50,Remote,3.6,4
+HR Manager,Uber,Mid,82886,1001-5000,On-site,4.3,73
+Software Engineer,Apple,Mid,137022,201-1000,Hybrid,3.3,316
+DevOps Engineer,Enterprise Corp,Entry,70252,51-200,Hybrid,4.8,32
+Backend Developer,Startup A,Lead,160344,1001-5000,Hybrid,3.9,1
+Financial Analyst,Apple,Entry,53514,201-1000,On-site,2.9,89
+Financial Analyst,Startup A,Entry,47012,201-1000,Remote,3.4,32
+UX Designer,Intel,Senior,162078,201-1000,Hybrid,4.6,18
+Marketing Manager,Microsoft,Senior,120779,1001-5000,Hybrid,3.5,1
+DevOps Engineer,Amazon,Lead,214062,5001+,On-site,4.0,8
+Sales Representative,Microsoft,Mid,72569,201-1000,Hybrid,5.0,6
+Data Scientist,Amazon,Entry,76764,51-200,Hybrid,3.9,86
+Backend Developer,Apple,Lead,197811,1001-5000,Remote,3.3,16
+Software Engineer,Oracle,Mid,132049,51-200,On-site,2.5,833
+Marketing Manager,Startup A,Mid,82000,51-200,On-site,3.2,15
+UX Designer,Intel,Entry,78394,1-50,Remote,3.4,12
+Operations Manager,IBM,Lead,142521,51-200,Remote,2.7,64
+Machine Learning Engineer,Amazon,Entry,75257,51-200,On-site,3.6,115
+Frontend Developer,Mid-size Corp,Senior,167768,201-1000,Hybrid,4.4,553
+Business Analyst,Microsoft,Lead,155637,51-200,Hybrid,3.6,637
+Frontend Developer,Microsoft,Director,190494,1-50,Hybrid,3.5,78
+Business Analyst,Salesforce,VP,254412,51-200,Hybrid,4.1,19
+Frontend Developer,Enterprise Corp,VP,315739,1-50,Remote,3.6,1
+Financial Analyst,Microsoft,Director,179780,1-50,On-site,2.4,3
+Machine Learning Engineer,Startup B,Entry,80686,5001+,Remote,4.1,115
+Frontend Developer,Netflix,Lead,170286,1001-5000,Remote,3.3,1
+Software Engineer,Microsoft,Entry,75596,51-200,Hybrid,3.9,145
+Product Manager,Netflix,Mid,144917,1-50,Remote,3.6,55
+Marketing Manager,IBM,Senior,130834,201-1000,On-site,3.4,741
+DevOps Engineer,Airbnb,Mid,116901,201-1000,Remote,4.2,4
+Machine Learning Engineer,Meta,Senior,179311,1-50,Remote,4.0,408
+Operations Manager,Startup A,Director,179802,201-1000,Hybrid,4.1,128
+Backend Developer,Airbnb,Mid,102658,5001+,On-site,3.5,27
+Operations Manager,Meta,Senior,144164,51-200,Hybrid,3.7,6
+UX Designer,Mid-size Corp,Mid,89983,201-1000,On-site,4.3,95
+Sales Representative,Salesforce,Mid,83820,5001+,Remote,4.9,48
+Machine Learning Engineer,Airbnb,Mid,117903,1001-5000,On-site,3.0,46
+Data Scientist,IBM,Entry,83138,201-1000,Hybrid,3.4,39
+Business Analyst,Amazon,Entry,50781,5001+,Hybrid,5.0,78
+Frontend Developer,Startup B,Entry,65921,1001-5000,Hybrid,3.7,282
+Frontend Developer,Mid-size Corp,Entry,71508,1001-5000,Remote,3.8,60
+Backend Developer,Oracle,Senior,160735,1-50,Hybrid,3.9,11
+DevOps Engineer,Amazon,Entry,68542,201-1000,On-site,2.7,39
+Machine Learning Engineer,Google,Entry,75115,201-1000,Hybrid,4.2,39
+Business Analyst,Intel,Lead,160145,201-1000,Remote,4.5,29
+Frontend Developer,Meta,Mid,94551,1001-5000,Hybrid,3.7,51
+DevOps Engineer,IBM,Mid,130100,5001+,Remote,3.0,52
+Business Analyst,Netflix,Entry,63480,201-1000,Hybrid,3.9,14
+Frontend Developer,Enterprise Corp,Mid,105494,1001-5000,Hybrid,3.3,5
+Marketing Manager,Uber,Senior,135025,201-1000,Remote,3.9,17
+Software Engineer,Amazon,Entry,82015,1001-5000,Hybrid,4.8,266
+Backend Developer,Enterprise Corp,Senior,149946,51-200,Hybrid,2.9,75
+Financial Analyst,Oracle,Mid,80616,201-1000,Hybrid,4.1,29
+Data Scientist,Meta,Mid,111086,51-200,On-site,3.9,468
+Financial Analyst,Intel,Director,174067,1001-5000,Remote,4.3,380
+Software Engineer,IBM,Senior,175364,1001-5000,On-site,3.6,1255
+Software Engineer,Microsoft,Mid,102446,201-1000,Hybrid,3.7,366
+Software Engineer,Microsoft,Mid,110481,201-1000,On-site,3.6,194
+Business Analyst,Netflix,Mid,100805,1001-5000,Hybrid,3.6,13
+DevOps Engineer,IBM,Mid,125253,5001+,On-site,4.1,144
+Operations Manager,Apple,Senior,140594,201-1000,On-site,4.1,72
+Product Manager,Startup B,Mid,144043,5001+,Remote,3.3,45
+Business Analyst,Meta,Director,175835,1001-5000,Hybrid,3.5,472
+Backend Developer,Mid-size Corp,Entry,80203,201-1000,Remote,4.2,3
+UX Designer,Airbnb,Senior,149790,201-1000,Hybrid,3.6,23
+Financial Analyst,Intel,Senior,110817,51-200,Remote,4.6,36
+Backend Developer,IBM,Mid,113166,201-1000,Hybrid,4.0,40
+HR Manager,Intel,Lead,117909,5001+,Remote,3.5,102
+Backend Developer,Amazon,Director,261068,1-50,Hybrid,2.9,204
+Product Manager,Airbnb,Entry,92291,201-1000,Hybrid,4.6,382
+DevOps Engineer,Enterprise Corp,Senior,176439,1001-5000,Hybrid,4.9,151
+Product Manager,Startup B,Lead,198856,1001-5000,Remote,3.4,22
+Software Engineer,IBM,Entry,84532,201-1000,Remote,3.7,57
+Marketing Manager,Airbnb,Lead,159931,1001-5000,Remote,3.3,169
+Data Scientist,Meta,Senior,187798,1-50,Remote,4.7,257
+Financial Analyst,Airbnb,Entry,49214,5001+,Hybrid,3.8,16
+HR Manager,Netflix,Entry,51414,1001-5000,Hybrid,2.6,26
+Marketing Manager,Microsoft,Mid,100098,201-1000,Hybrid,4.5,61
+Operations Manager,Mid-size Corp,Senior,123098,1001-5000,Remote,3.1,144
+Sales Representative,Airbnb,Senior,107887,201-1000,Remote,2.9,59
+Backend Developer,Startup B,Mid,128655,51-200,On-site,4.1,39
+Sales Representative,Airbnb,Entry,43403,1-50,Remote,4.4,55
+Software Engineer,Airbnb,Mid,107518,201-1000,Remote,3.5,7
+HR Manager,Salesforce,Mid,85815,51-200,Hybrid,3.6,1
+Marketing Manager,Enterprise Corp,Lead,136272,1001-5000,Remote,5.0,119
+Product Manager,Startup A,Senior,170637,201-1000,On-site,3.7,10
+Software Engineer,Startup B,Entry,72196,201-1000,On-site,3.1,74
+Marketing Manager,Mid-size Corp,Lead,173197,201-1000,Hybrid,4.7,53
+Financial Analyst,Intel,Mid,91144,51-200,Remote,4.5,60
+Backend Developer,Oracle,Entry,73716,201-1000,Hybrid,4.2,63
+Data Scientist,Google,VP,377071,1001-5000,Remote,2.7,138
+Operations Manager,Salesforce,Entry,58694,1001-5000,Hybrid,3.8,220
+UX Designer,Startup A,Lead,163097,51-200,On-site,4.5,6
+Business Analyst,IBM,Mid,85650,201-1000,Remote,3.8,267
+Marketing Manager,Apple,Mid,94366,1-50,Remote,3.6,12
+Business Analyst,Salesforce,Senior,114874,1001-5000,Hybrid,4.2,52
+HR Manager,Enterprise Corp,Mid,82125,51-200,Remote,3.4,144
+Product Manager,Meta,Mid,126160,51-200,Remote,3.7,2
+UX Designer,Microsoft,Mid,91955,1001-5000,Remote,3.7,9
+Frontend Developer,Apple,Senior,176066,51-200,Hybrid,2.9,91
+Marketing Manager,Intel,Mid,99086,51-200,On-site,3.0,7
+Business Analyst,Netflix,Senior,131545,5001+,Hybrid,3.6,270
+Marketing Manager,Uber,Entry,55153,1-50,Hybrid,4.3,24
+Frontend Developer,Mid-size Corp,Lead,192826,1001-5000,Hybrid,3.7,10
+DevOps Engineer,Uber,Senior,146862,201-1000,Hybrid,4.4,58
+Operations Manager,Airbnb,Lead,135065,51-200,Hybrid,4.1,72
+Sales Representative,Google,Senior,102723,51-200,Hybrid,2.8,26
+Machine Learning Engineer,Google,Entry,97350,5001+,Hybrid,3.5,17
+Business Analyst,Uber,Senior,124156,51-200,On-site,3.8,3
+Operations Manager,Intel,Entry,56609,1-50,Hybrid,3.6,30
+Financial Analyst,Uber,Entry,58485,5001+,Hybrid,3.7,18
+HR Manager,Enterprise Corp,Mid,71637,1001-5000,Hybrid,2.4,1086
+Sales Representative,Startup A,Mid,79659,1-50,Hybrid,2.8,34
+DevOps Engineer,Amazon,Senior,171613,1-50,Remote,3.3,44
+Business Analyst,Intel,Mid,100986,1001-5000,Remote,2.9,37
+Financial Analyst,Google,Entry,51823,201-1000,On-site,3.9,67
+Sales Representative,Apple,Entry,50751,201-1000,Remote,4.6,109
+DevOps Engineer,Airbnb,Mid,117916,1001-5000,On-site,4.1,9
+Machine Learning Engineer,Enterprise Corp,Senior,172280,51-200,On-site,4.5,31
+Financial Analyst,Startup A,Mid,72353,1001-5000,Hybrid,4.4,12
+DevOps Engineer,Meta,Senior,146758,5001+,Remote,3.0,485
+DevOps Engineer,Airbnb,Lead,182526,51-200,On-site,4.0,11
+Operations Manager,Meta,Lead,163671,201-1000,Hybrid,3.3,264
+Software Engineer,Apple,Senior,183718,1-50,Hybrid,2.9,141
+Product Manager,Mid-size Corp,Senior,204402,1001-5000,Hybrid,3.3,48
+Operations Manager,Mid-size Corp,VP,250463,201-1000,Remote,3.6,91
+Data Scientist,Salesforce,Mid,113519,5001+,Hybrid,4.1,42
+Sales Representative,Oracle,Mid,85045,1001-5000,Hybrid,4.9,25
+HR Manager,Airbnb,Director,152348,201-1000,On-site,3.9,18
+Business Analyst,Meta,Mid,78955,1-50,Hybrid,4.3,208
+Machine Learning Engineer,Startup B,Lead,203878,201-1000,On-site,2.9,7
+Machine Learning Engineer,Microsoft,Senior,180324,51-200,On-site,4.0,185
+Machine Learning Engineer,Startup A,Entry,92440,201-1000,Hybrid,3.6,122
+Backend Developer,Meta,Lead,188578,201-1000,On-site,4.3,1
+Software Engineer,Salesforce,Senior,176242,1001-5000,Remote,2.1,58
+DevOps Engineer,IBM,Mid,116373,201-1000,On-site,2.3,95
+Operations Manager,Netflix,Senior,125539,1001-5000,On-site,3.6,53
+UX Designer,Intel,Mid,101320,201-1000,On-site,3.3,293
+Sales Representative,Netflix,Mid,77691,51-200,Remote,3.3,182
+UX Designer,Microsoft,Senior,151492,1001-5000,Remote,5.0,15
+Frontend Developer,Startup A,Mid,109163,201-1000,Hybrid,4.2,1
+Product Manager,Apple,VP,361784,1001-5000,Remote,4.1,24
+DevOps Engineer,IBM,Senior,189541,5001+,Hybrid,4.6,82
+Data Scientist,IBM,Mid,128863,51-200,Hybrid,3.5,11
+Machine Learning Engineer,Airbnb,Lead,184581,51-200,Remote,3.3,85
+Frontend Developer,Amazon,Entry,79539,1001-5000,Remote,4.0,37
+Marketing Manager,Enterprise Corp,Director,175773,1001-5000,Hybrid,3.3,40
+Data Scientist,Airbnb,Lead,189996,201-1000,Remote,3.6,40
+Software Engineer,Mid-size Corp,Director,252643,51-200,Hybrid,3.5,11
+Machine Learning Engineer,Enterprise Corp,Director,276473,201-1000,Hybrid,3.6,100
+UX Designer,Microsoft,Mid,108628,51-200,Remote,3.4,24
+Sales Representative,Enterprise Corp,Senior,113927,201-1000,On-site,3.4,9
+UX Designer,Airbnb,Lead,147760,1001-5000,Remote,3.2,22
+Data Scientist,Google,Lead,224277,1001-5000,On-site,4.1,9
+Product Manager,Google,Senior,187799,201-1000,Remote,2.7,31
+HR Manager,Uber,Entry,51859,5001+,Remote,3.1,641
+Frontend Developer,Salesforce,Mid,95532,201-1000,On-site,3.5,25
+Business Analyst,IBM,Mid,86769,51-200,On-site,3.7,39
+Backend Developer,Google,Senior,146978,1001-5000,Hybrid,4.2,15
+Marketing Manager,Airbnb,Entry,70546,51-200,On-site,3.7,29
+UX Designer,Airbnb,Senior,161216,1001-5000,Hybrid,2.8,6
+Financial Analyst,Microsoft,VP,205765,1001-5000,On-site,3.8,52
+DevOps Engineer,Apple,Director,240203,201-1000,Hybrid,4.2,2
+Financial Analyst,Startup B,Senior,127090,51-200,Hybrid,3.1,11
+Machine Learning Engineer,Amazon,Director,283734,1001-5000,Hybrid,3.5,52
+Frontend Developer,Airbnb,Director,243561,1001-5000,Remote,3.9,38
+UX Designer,Airbnb,Senior,151667,1001-5000,Remote,3.2,7
+Business Analyst,Startup A,Mid,91528,1001-5000,Remote,4.3,267
+Backend Developer,Airbnb,Senior,152291,5001+,Hybrid,4.3,18
+DevOps Engineer,Mid-size Corp,Entry,69229,201-1000,On-site,3.1,5
+HR Manager,Amazon,Entry,48470,51-200,Remote,4.4,41
+Marketing Manager,Meta,Senior,132633,1-50,Remote,4.1,6
+Marketing Manager,Apple,Senior,149585,201-1000,On-site,4.2,9
+Software Engineer,Oracle,Senior,151435,1001-5000,On-site,3.2,163
+Operations Manager,IBM,Mid,102237,1001-5000,Remote,3.8,25
+DevOps Engineer,Salesforce,Senior,142916,201-1000,Hybrid,3.4,150
+Software Engineer,Netflix,Senior,144786,1001-5000,Hybrid,4.1,10
+UX Designer,IBM,Senior,131699,51-200,Remote,3.6,36
+Financial Analyst,Uber,Mid,88402,1-50,Remote,2.4,91
+Software Engineer,Enterprise Corp,Entry,81913,5001+,Remote,4.9,16
+UX Designer,Startup B,Mid,115289,201-1000,Remote,2.0,56
+Software Engineer,Uber,Entry,83355,1001-5000,Remote,3.6,60
+Financial Analyst,Mid-size Corp,Mid,94386,201-1000,Hybrid,3.8,52
+Frontend Developer,Startup A,Lead,157067,1-50,On-site,3.1,236
+Marketing Manager,Meta,Senior,145679,51-200,Hybrid,2.9,61
+Frontend Developer,Enterprise Corp,Director,231831,1001-5000,On-site,2.9,125
+Financial Analyst,Amazon,VP,271261,201-1000,Remote,3.0,430
+Financial Analyst,Mid-size Corp,Entry,57091,201-1000,On-site,5.0,47
+DevOps Engineer,Netflix,Mid,100525,51-200,On-site,3.2,92
+Frontend Developer,Startup A,Senior,131354,201-1000,Remote,4.5,139
+Frontend Developer,Enterprise Corp,Mid,95364,1001-5000,Remote,3.4,3
+Frontend Developer,Enterprise Corp,Senior,168622,1-50,Hybrid,4.9,23
+Marketing Manager,Microsoft,Senior,138678,1001-5000,On-site,2.8,79
+Business Analyst,Enterprise Corp,Director,180614,1001-5000,Hybrid,3.9,39
+Business Analyst,Netflix,Senior,121501,201-1000,Hybrid,3.8,4
+Business Analyst,Apple,Mid,76033,5001+,Hybrid,3.8,75
+Software Engineer,Mid-size Corp,Lead,219736,51-200,Hybrid,4.1,9
+Backend Developer,Meta,Mid,116023,201-1000,Remote,5.0,32
+Financial Analyst,Google,Entry,56033,51-200,Hybrid,3.1,1
+Business Analyst,IBM,Director,199990,1001-5000,Remote,3.8,15
+Data Scientist,Intel,Lead,208796,1-50,On-site,4.9,406
+Financial Analyst,IBM,Mid,84432,1001-5000,Hybrid,2.8,26
+Software Engineer,Apple,Senior,155465,201-1000,On-site,3.3,1001
+HR Manager,Microsoft,Mid,70805,201-1000,Hybrid,3.9,20
+Marketing Manager,Mid-size Corp,Mid,92772,1-50,On-site,4.3,56
+Financial Analyst,Mid-size Corp,Mid,75396,1001-5000,On-site,4.0,2
+Data Scientist,Airbnb,VP,376538,51-200,Hybrid,3.0,67
+Data Scientist,Startup A,VP,309371,201-1000,Remote,3.5,67
+Frontend Developer,IBM,Senior,152333,51-200,On-site,3.5,17
+UX Designer,Mid-size Corp,Mid,113920,1001-5000,On-site,3.9,98
+Product Manager,Meta,Mid,136172,201-1000,Hybrid,3.4,22
+Financial Analyst,Intel,Entry,47779,201-1000,On-site,4.9,122
+Sales Representative,Apple,Senior,105695,1001-5000,Hybrid,4.0,98
+Product Manager,Startup A,Mid,115730,201-1000,On-site,3.7,20
+DevOps Engineer,Oracle,Senior,175398,5001+,Hybrid,4.1,20
+Machine Learning Engineer,Netflix,Senior,160966,201-1000,Hybrid,2.8,10000
+Data Scientist,Google,Mid,130609,51-200,Hybrid,3.6,8
+Software Engineer,Amazon,Director,261775,1-50,Hybrid,3.6,6
+Machine Learning Engineer,Startup A,Senior,166601,51-200,Hybrid,5.0,24
+HR Manager,Startup B,Lead,143981,201-1000,Hybrid,3.9,1
+UX Designer,Startup A,Senior,161420,51-200,Hybrid,4.2,29
+Sales Representative,Uber,Mid,68166,201-1000,Remote,3.4,409
+DevOps Engineer,Microsoft,Senior,188648,201-1000,Remote,4.9,34
+Marketing Manager,Intel,Senior,152880,1-50,Remote,5.0,4
+HR Manager,Meta,Mid,73269,201-1000,Remote,3.7,155
+Product Manager,Amazon,Director,262912,5001+,Remote,3.1,5
+Sales Representative,IBM,Mid,80417,5001+,Hybrid,4.1,1
+Data Scientist,Mid-size Corp,Entry,91139,5001+,Hybrid,2.5,3219
+Marketing Manager,Startup B,Senior,150148,5001+,Hybrid,3.6,87
+Data Scientist,Startup A,Mid,124344,5001+,Hybrid,4.3,298
+HR Manager,Mid-size Corp,Senior,121489,51-200,Hybrid,3.9,7
+Software Engineer,Oracle,Director,264973,1001-5000,Hybrid,3.6,77
+Backend Developer,Meta,Director,205252,1001-5000,Remote,4.0,13
+Marketing Manager,Google,Senior,126466,201-1000,Hybrid,3.7,87
+Software Engineer,Meta,Entry,68343,51-200,Hybrid,3.2,12
+Operations Manager,Oracle,Mid,86845,51-200,Hybrid,4.7,72
+HR Manager,IBM,Senior,117969,51-200,On-site,4.2,14
+Backend Developer,Mid-size Corp,Entry,67629,1001-5000,Hybrid,4.3,10
+Backend Developer,Mid-size Corp,Director,233701,1001-5000,Remote,3.6,5
+Frontend Developer,Salesforce,Entry,66422,1001-5000,Remote,2.9,168
+Machine Learning Engineer,Enterprise Corp,Mid,139097,201-1000,On-site,3.9,4
+Frontend Developer,Mid-size Corp,Mid,116158,51-200,Hybrid,3.7,179
+Backend Developer,Meta,Senior,138578,51-200,On-site,3.2,5
+Product Manager,Enterprise Corp,Senior,158995,1001-5000,On-site,3.0,423
+HR Manager,Google,Senior,116776,51-200,Hybrid,4.2,19
+Data Scientist,Startup B,Entry,86004,51-200,Hybrid,3.0,188
+HR Manager,Enterprise Corp,Mid,71705,5001+,On-site,3.4,526
+Operations Manager,Mid-size Corp,Mid,99545,201-1000,Hybrid,3.7,28
+Backend Developer,IBM,Director,236262,1-50,Hybrid,4.5,21
+Operations Manager,Startup B,Senior,124363,201-1000,Remote,3.3,17
+Data Scientist,Meta,Director,235395,201-1000,Hybrid,4.4,50
+Operations Manager,Apple,Senior,137081,51-200,Hybrid,4.3,108
+HR Manager,Startup B,Director,148711,51-200,Remote,3.2,739
+DevOps Engineer,Apple,Mid,107495,51-200,Remote,4.5,99
+Sales Representative,Startup A,Mid,81553,201-1000,Hybrid,3.9,9
+Machine Learning Engineer,Airbnb,Mid,139014,1001-5000,Remote,3.8,6
+HR Manager,Enterprise Corp,Mid,83576,51-200,Hybrid,3.9,273
+Business Analyst,Meta,VP,231540,1-50,Hybrid,4.4,17
+Machine Learning Engineer,Mid-size Corp,Lead,194183,201-1000,On-site,4.5,30
+Sales Representative,Oracle,Entry,45665,1-50,On-site,4.1,22
+Product Manager,Microsoft,Mid,118994,5001+,Remote,3.2,112
+UX Designer,Startup A,Entry,65837,1001-5000,On-site,3.6,225
+DevOps Engineer,Startup B,Mid,117671,51-200,Remote,3.3,113
+Sales Representative,Netflix,Lead,127051,1-50,Hybrid,3.4,10
+Frontend Developer,Startup A,Entry,78712,51-200,Hybrid,3.9,112
+Product Manager,Mid-size Corp,Entry,76228,201-1000,Remote,4.0,43
+UX Designer,Airbnb,Entry,63611,1001-5000,On-site,3.8,1
+Product Manager,IBM,Senior,173606,1001-5000,Hybrid,3.0,95
+Frontend Developer,Intel,Entry,80307,201-1000,Hybrid,4.0,1227
+DevOps Engineer,Apple,Entry,74230,1001-5000,Remote,4.0,34
+Operations Manager,Intel,Entry,53830,201-1000,Hybrid,4.4,40
+Financial Analyst,Oracle,Senior,112872,51-200,Hybrid,3.4,18
+Machine Learning Engineer,Uber,Entry,91880,201-1000,On-site,3.5,46
+Marketing Manager,Startup A,Entry,53573,1001-5000,On-site,3.5,72
+Financial Analyst,Salesforce,Senior,110432,51-200,Hybrid,4.2,22
+Machine Learning Engineer,Oracle,Entry,79492,1001-5000,Remote,3.8,118
+Product Manager,Startup B,Senior,204321,1001-5000,On-site,2.7,20
+Backend Developer,Amazon,Senior,181127,201-1000,Hybrid,3.0,11
+Machine Learning Engineer,Apple,Mid,146002,5001+,Remote,2.8,28
+Backend Developer,Amazon,Mid,104134,51-200,Remote,4.0,61
+Sales Representative,Airbnb,Senior,93276,1001-5000,Hybrid,4.6,116
+Operations Manager,Oracle,Lead,126863,201-1000,Remote,3.7,102
+Operations Manager,Intel,VP,283988,201-1000,Remote,5.0,29
+Data Scientist,Google,Lead,185264,1-50,Hybrid,3.6,34
+UX Designer,Startup A,Director,203778,1001-5000,On-site,4.3,3
+Product Manager,Enterprise Corp,Entry,84784,1-50,On-site,3.2,10
+UX Designer,Airbnb,Mid,119421,1001-5000,Remote,4.9,132
+Operations Manager,Enterprise Corp,Entry,66476,51-200,Hybrid,3.1,13
+Product Manager,Startup A,Lead,201002,1001-5000,Hybrid,3.7,51
+Frontend Developer,Microsoft,Entry,78143,5001+,Hybrid,4.1,19
+Product Manager,Salesforce,Entry,95655,1001-5000,Hybrid,3.9,40
+Frontend Developer,Salesforce,Lead,169316,51-200,Remote,3.5,48
+UX Designer,Startup A,Mid,115258,1001-5000,Hybrid,5.0,130
+Business Analyst,Salesforce,Lead,152620,1001-5000,On-site,3.1,20
+DevOps Engineer,Intel,Senior,169389,51-200,Hybrid,2.4,1
+Product Manager,Startup B,Mid,129445,1-50,Hybrid,4.2,237
+Marketing Manager,Intel,Entry,59336,201-1000,Hybrid,4.0,47
+Marketing Manager,Meta,Director,171860,1-50,Hybrid,3.5,16
+HR Manager,Meta,Lead,112850,51-200,Remote,3.0,193
+UX Designer,Startup A,Director,228981,201-1000,On-site,5.0,220
+HR Manager,Enterprise Corp,Entry,47367,1001-5000,Hybrid,4.2,31
+HR Manager,Intel,Lead,127325,1001-5000,Hybrid,2.7,70
+Business Analyst,Google,Director,164050,5001+,Hybrid,2.9,77
+UX Designer,Uber,Lead,144487,51-200,Remote,3.5,63
+UX Designer,Meta,Mid,102426,51-200,Hybrid,4.1,15
+DevOps Engineer,Startup A,Lead,197246,5001+,Hybrid,3.0,11
+UX Designer,Salesforce,Mid,106733,201-1000,Hybrid,3.1,233
+Product Manager,Netflix,Senior,205199,51-200,Remote,3.3,516
+Product Manager,Mid-size Corp,Senior,157056,51-200,Hybrid,4.5,160
+Business Analyst,Intel,Entry,58468,1001-5000,Hybrid,3.1,486
+Frontend Developer,Enterprise Corp,Senior,144244,51-200,Remote,3.3,6
+Backend Developer,Meta,Lead,170751,1-50,Remote,3.9,22
+Marketing Manager,Microsoft,Mid,104854,1001-5000,Remote,3.2,7
+Product Manager,Startup A,Mid,130657,51-200,Remote,4.6,301
+Machine Learning Engineer,Meta,Senior,189541,5001+,Hybrid,3.9,3
+Backend Developer,IBM,Entry,73924,51-200,Remote,4.1,193
+Data Scientist,Intel,Lead,215267,1001-5000,Hybrid,3.2,26
+DevOps Engineer,Salesforce,VP,318797,51-200,Hybrid,4.3,5
+HR Manager,Uber,Director,153553,1001-5000,Remote,4.4,25
+Software Engineer,Salesforce,Director,223769,201-1000,Hybrid,4.5,31
+DevOps Engineer,Airbnb,Entry,73351,201-1000,Hybrid,3.0,119
+Frontend Developer,Oracle,Senior,138382,201-1000,Hybrid,3.8,1
+HR Manager,IBM,Mid,90319,201-1000,Hybrid,3.6,20
+HR Manager,Mid-size Corp,Entry,49607,51-200,Hybrid,3.6,2064
+Financial Analyst,Intel,VP,225382,1001-5000,Hybrid,4.3,44
+Data Scientist,Netflix,Mid,107309,1-50,Remote,4.0,83
+Software Engineer,Salesforce,Entry,66575,1001-5000,On-site,3.7,81
+HR Manager,Microsoft,Director,173316,201-1000,Hybrid,4.5,35
+Sales Representative,Salesforce,Lead,109920,1001-5000,On-site,3.6,224
+DevOps Engineer,Oracle,Entry,77616,5001+,Hybrid,3.8,342
+Data Scientist,Amazon,Mid,131818,51-200,Remote,2.4,38
+Software Engineer,Startup B,Mid,111439,201-1000,Remote,5.0,537
+Machine Learning Engineer,Airbnb,Director,293540,201-1000,Remote,3.8,32
+Marketing Manager,Startup A,Senior,140760,1001-5000,Hybrid,3.0,20
+Product Manager,Netflix,Entry,91000,5001+,On-site,4.0,2
+HR Manager,Apple,Senior,126249,5001+,On-site,4.1,188
+Marketing Manager,IBM,Entry,55018,201-1000,Remote,3.6,36
+DevOps Engineer,Intel,Mid,116156,5001+,Remote,3.8,2
+Sales Representative,Startup B,Mid,72886,51-200,On-site,3.5,5
+Marketing Manager,Uber,Mid,91054,51-200,Hybrid,3.3,49
+Business Analyst,Uber,Mid,75966,5001+,Hybrid,3.4,23
+Business Analyst,Oracle,Mid,93062,51-200,Hybrid,3.9,38
+Financial Analyst,Startup B,Lead,125868,201-1000,Hybrid,3.2,65
+Machine Learning Engineer,Airbnb,Senior,202006,51-200,Hybrid,2.9,86
+Data Scientist,Meta,Senior,174331,201-1000,On-site,3.8,21
+Software Engineer,Enterprise Corp,Lead,167036,51-200,Hybrid,3.5,48
+Marketing Manager,Startup A,Lead,166408,5001+,On-site,2.8,45
+Backend Developer,Amazon,VP,308945,201-1000,On-site,4.6,1790
+Sales Representative,IBM,Lead,134399,1-50,Hybrid,3.5,90
+Business Analyst,Intel,Lead,154276,5001+,Remote,4.0,38
+DevOps Engineer,Meta,Mid,131366,51-200,On-site,3.8,41
+Software Engineer,Salesforce,Mid,124953,5001+,Remote,4.0,5
+Operations Manager,Startup A,Senior,114512,51-200,On-site,4.1,25
+Financial Analyst,Intel,Entry,51408,201-1000,Remote,3.8,30
+Financial Analyst,Startup A,Senior,117324,201-1000,Hybrid,4.0,3
+Frontend Developer,Apple,Entry,77955,51-200,Hybrid,4.1,66
+Backend Developer,Enterprise Corp,Senior,153193,1001-5000,Remote,3.7,290
+Business Analyst,Meta,Senior,116168,51-200,Hybrid,5.0,18
+HR Manager,Startup A,Director,172221,5001+,Remote,4.4,121
+DevOps Engineer,Mid-size Corp,Senior,189066,201-1000,Remote,3.4,136
+Marketing Manager,IBM,Lead,144853,1-50,Remote,4.6,16
+Software Engineer,Amazon,Senior,167419,201-1000,Hybrid,2.5,15
+Sales Representative,Mid-size Corp,Senior,89970,201-1000,On-site,3.7,45
+Backend Developer,IBM,Senior,166266,201-1000,Hybrid,4.5,23
+Software Engineer,Uber,Mid,114595,51-200,Remote,3.3,15
+Backend Developer,Oracle,Entry,67138,201-1000,Remote,3.8,37
+Business Analyst,Google,Senior,115688,201-1000,On-site,2.3,10
+HR Manager,Netflix,Senior,98789,51-200,Hybrid,5.0,71
+UX Designer,IBM,Lead,169321,1-50,On-site,3.4,68
+Software Engineer,Uber,Senior,170687,51-200,Hybrid,3.8,16
+Software Engineer,Airbnb,Entry,83206,5001+,Hybrid,4.5,44
+Backend Developer,Meta,VP,339208,201-1000,Remote,3.4,149
+Business Analyst,Amazon,VP,269279,201-1000,Remote,4.0,32
+HR Manager,Uber,Mid,79411,1001-5000,Hybrid,3.3,137
+Sales Representative,Meta,VP,184819,1001-5000,Remote,5.0,514
+Backend Developer,Google,Lead,165622,201-1000,Remote,3.9,318
+Operations Manager,IBM,Mid,77126,1-50,Hybrid,4.6,45
+Operations Manager,Meta,Director,187122,201-1000,Remote,4.0,75
+Frontend Developer,Google,Entry,80496,1001-5000,Hybrid,4.6,124
+Frontend Developer,Amazon,Entry,76124,1001-5000,Hybrid,2.9,16
+DevOps Engineer,Meta,Mid,134452,201-1000,Hybrid,3.1,121
+UX Designer,Netflix,Senior,131338,201-1000,Remote,4.8,20
+Sales Representative,Oracle,Senior,98542,201-1000,On-site,3.3,36
+Financial Analyst,Uber,VP,270765,1001-5000,On-site,3.8,340
+Software Engineer,Salesforce,Lead,179293,1-50,Remote,5.0,46
+DevOps Engineer,Enterprise Corp,Mid,113099,5001+,On-site,4.1,27
+Data Scientist,Google,VP,381962,201-1000,On-site,3.8,11
+Machine Learning Engineer,Intel,VP,429290,201-1000,Remote,3.0,59
+Marketing Manager,Startup B,VP,255136,1001-5000,Hybrid,4.0,23
+Machine Learning Engineer,Microsoft,Entry,94954,1001-5000,Hybrid,3.3,47
+Operations Manager,Apple,Senior,118237,201-1000,On-site,3.4,9
+Software Engineer,Airbnb,Mid,115630,1001-5000,Remote,2.3,21
+DevOps Engineer,Salesforce,Director,238173,51-200,Hybrid,3.5,14
+HR Manager,Startup B,Mid,69721,51-200,On-site,3.4,1
+Financial Analyst,Intel,Entry,49005,1-50,On-site,3.5,10
+UX Designer,Amazon,Senior,156073,51-200,Remote,4.2,37
+Sales Representative,Uber,Senior,95561,1-50,On-site,3.9,36
+Marketing Manager,Apple,Entry,67173,51-200,Hybrid,4.1,5
+Data Scientist,Intel,Director,273762,201-1000,Hybrid,2.8,64
+Operations Manager,Startup B,Senior,125245,5001+,Hybrid,3.1,74
+DevOps Engineer,Uber,Mid,110019,51-200,Remote,3.6,30
+Sales Representative,Oracle,Mid,65279,51-200,Remote,3.2,10
+Marketing Manager,Oracle,Senior,134129,201-1000,Hybrid,3.9,2067
+Frontend Developer,Apple,Lead,161033,201-1000,Remote,3.8,126
+HR Manager,Apple,Senior,125163,5001+,Hybrid,4.9,30
+Marketing Manager,Google,Mid,106194,1001-5000,Hybrid,2.8,3
+Sales Representative,Uber,Lead,127195,1001-5000,On-site,4.4,288
+Machine Learning Engineer,Meta,Mid,115181,5001+,Hybrid,3.2,39
+HR Manager,Enterprise Corp,Senior,128697,201-1000,Hybrid,3.8,41
+Operations Manager,Airbnb,Entry,61970,201-1000,Hybrid,4.0,83
+Data Scientist,Google,Senior,169380,1-50,Hybrid,4.7,1
+Operations Manager,Meta,Senior,128215,201-1000,Remote,4.0,89
+UX Designer,Amazon,VP,286680,1001-5000,Remote,3.8,855
+Financial Analyst,Apple,VP,207281,1001-5000,On-site,3.0,124
+Marketing Manager,Uber,Mid,89896,201-1000,On-site,3.8,24
+Backend Developer,Meta,Mid,120301,5001+,Remote,3.5,23
+Sales Representative,Startup B,Mid,73545,201-1000,Remote,3.8,54
+Data Scientist,Google,Mid,109456,1001-5000,On-site,4.3,42
+Business Analyst,Netflix,Entry,59786,201-1000,Hybrid,4.6,264
+Operations Manager,Startup B,Mid,92062,201-1000,Hybrid,4.0,6
+Software Engineer,Meta,Senior,145843,1001-5000,Hybrid,3.9,2
+Product Manager,Meta,Entry,80772,51-200,On-site,3.3,26
+HR Manager,Startup A,Mid,81439,1001-5000,On-site,3.7,41
+Financial Analyst,Microsoft,Senior,104888,5001+,On-site,3.0,36
+Marketing Manager,Intel,VP,272658,5001+,Remote,3.8,126
+UX Designer,Airbnb,Senior,161048,1-50,Remote,4.6,18
+Financial Analyst,Salesforce,Mid,89432,5001+,On-site,4.9,362
+Backend Developer,Airbnb,Mid,108599,1001-5000,Hybrid,3.5,134
+Machine Learning Engineer,Apple,Entry,80143,5001+,Hybrid,3.8,98
+DevOps Engineer,Oracle,Senior,152086,5001+,Remote,2.9,21
+DevOps Engineer,Oracle,Mid,130630,1-50,Hybrid,3.0,10
+DevOps Engineer,Oracle,VP,367247,51-200,Hybrid,3.9,248
+UX Designer,Intel,Lead,190643,1001-5000,Hybrid,3.2,44
+DevOps Engineer,Apple,Lead,171988,5001+,Hybrid,3.1,19
+Product Manager,Salesforce,Lead,238212,201-1000,On-site,4.4,128
+HR Manager,Salesforce,Mid,86170,1-50,Remote,3.9,75
+Backend Developer,Apple,Entry,78576,5001+,On-site,4.3,12
+Product Manager,Apple,Mid,132601,5001+,On-site,3.6,3
+Business Analyst,Netflix,Senior,136118,1001-5000,Hybrid,3.9,117
+Operations Manager,Salesforce,Director,175544,1001-5000,Remote,3.3,49
+DevOps Engineer,Mid-size Corp,VP,288794,5001+,Hybrid,2.1,14
+Sales Representative,Uber,Mid,67923,51-200,Remote,4.3,110
+Data Scientist,Airbnb,Lead,221239,201-1000,Hybrid,4.9,41
+DevOps Engineer,Enterprise Corp,Senior,146836,51-200,Remote,3.5,81
+DevOps Engineer,Apple,Lead,198437,5001+,Hybrid,3.9,16
+Frontend Developer,Apple,Entry,66748,1001-5000,Hybrid,2.9,43
+Backend Developer,Startup A,Mid,119019,201-1000,Hybrid,4.9,31
+Marketing Manager,Salesforce,Mid,104744,201-1000,Remote,3.7,19
+UX Designer,Enterprise Corp,Lead,166233,51-200,Remote,4.0,5
+Machine Learning Engineer,Salesforce,Senior,162666,201-1000,On-site,3.5,46
+Product Manager,Startup B,VP,386841,5001+,Hybrid,3.1,21
+Product Manager,Enterprise Corp,Senior,175227,1-50,Remote,3.8,16
+HR Manager,Microsoft,VP,206131,5001+,Remote,4.6,59
+Sales Representative,Amazon,Mid,84358,1-50,Remote,3.7,25
+Software Engineer,Intel,Director,228778,1001-5000,Remote,3.7,12
+Data Scientist,Uber,Mid,118727,1001-5000,Hybrid,2.7,324
+Business Analyst,Amazon,Mid,80086,1001-5000,On-site,3.8,78
+Data Scientist,Amazon,Entry,78280,5001+,Remote,3.9,225
+DevOps Engineer,Uber,Director,207517,51-200,On-site,4.7,375
+Sales Representative,Salesforce,Entry,47846,201-1000,Remote,4.4,16
+Business Analyst,Oracle,Senior,116449,51-200,On-site,3.4,142
+Business Analyst,IBM,VP,273628,1001-5000,Hybrid,4.9,80
+Marketing Manager,Amazon,Mid,107147,51-200,Hybrid,3.1,22
+Data Scientist,Netflix,Senior,179747,5001+,Hybrid,4.5,2
+Marketing Manager,Startup B,Mid,95977,51-200,Remote,4.6,7
+Sales Representative,Startup B,Senior,119829,1001-5000,Remote,3.8,4
+Machine Learning Engineer,Mid-size Corp,Mid,148993,5001+,Remote,3.4,19
+UX Designer,Meta,Mid,102388,1001-5000,On-site,4.4,47
+UX Designer,Meta,Mid,102076,51-200,Remote,3.8,711
+Financial Analyst,Mid-size Corp,Senior,120082,1001-5000,Hybrid,3.9,49
+Financial Analyst,Startup A,Senior,116984,201-1000,Hybrid,3.2,11
+Operations Manager,Oracle,Mid,99494,51-200,Hybrid,4.3,15
+Frontend Developer,Enterprise Corp,Senior,175890,1001-5000,Remote,3.9,39
+Frontend Developer,Uber,Mid,122906,51-200,Remote,4.3,7
+Data Scientist,Mid-size Corp,Entry,75817,1001-5000,Remote,4.1,56
+Marketing Manager,Mid-size Corp,Entry,54766,5001+,Hybrid,4.2,47
+Financial Analyst,Apple,Senior,117138,201-1000,On-site,4.0,55
+Backend Developer,Amazon,Mid,124998,201-1000,Remote,4.2,121
+Financial Analyst,Uber,VP,205590,1001-5000,Hybrid,4.3,263
+Financial Analyst,Netflix,Director,186561,5001+,Hybrid,3.4,307
+Product Manager,Oracle,Mid,144483,5001+,On-site,4.1,63
+Backend Developer,Microsoft,Senior,140109,1001-5000,Remote,4.6,13
+Machine Learning Engineer,Netflix,Senior,195506,201-1000,On-site,4.4,85
+Marketing Manager,Startup B,VP,267070,51-200,Remote,3.2,10
+Operations Manager,Enterprise Corp,Mid,77192,201-1000,On-site,4.6,92
+Sales Representative,Enterprise Corp,Entry,56010,201-1000,Remote,3.1,1
+Operations Manager,IBM,Entry,64093,1001-5000,Hybrid,3.3,25
+Business Analyst,Startup B,Mid,101163,5001+,Remote,4.4,30
+DevOps Engineer,Mid-size Corp,VP,379772,1-50,Remote,2.6,145
+Frontend Developer,Amazon,Mid,123847,201-1000,Hybrid,3.6,111
+Sales Representative,Startup A,Senior,93054,51-200,Hybrid,3.6,219
+Financial Analyst,Amazon,Senior,134340,1001-5000,Remote,3.5,6
+Sales Representative,Airbnb,Entry,48223,1001-5000,On-site,3.4,180
+Machine Learning Engineer,Salesforce,Senior,178804,1001-5000,Remote,4.8,109
+Backend Developer,Apple,Mid,126103,51-200,Hybrid,3.6,50
+Financial Analyst,Intel,VP,264344,51-200,Hybrid,2.7,30
+Operations Manager,Salesforce,Entry,52352,201-1000,Remote,2.6,24
+Data Scientist,Enterprise Corp,Entry,83347,51-200,Hybrid,4.6,53
+Software Engineer,IBM,Mid,108833,1-50,Remote,3.8,213
+Software Engineer,IBM,Director,238969,1001-5000,Hybrid,4.6,17
+DevOps Engineer,Microsoft,Lead,164149,201-1000,On-site,3.6,19
+Software Engineer,Startup A,Entry,80225,201-1000,On-site,3.1,3
+Frontend Developer,Apple,Entry,69219,5001+,Hybrid,4.3,19
+Data Scientist,Netflix,Senior,195971,1-50,Hybrid,3.6,92
+Sales Representative,Startup B,Entry,49049,51-200,Hybrid,4.6,106
+DevOps Engineer,Meta,Director,222347,1001-5000,On-site,3.5,10
+UX Designer,Startup A,Mid,93596,201-1000,Remote,4.2,79
+Operations Manager,Startup A,Senior,126000,201-1000,Remote,2.8,59
+Backend Developer,Microsoft,Mid,98547,5001+,On-site,2.4,482
+Data Scientist,Startup B,Lead,197040,201-1000,On-site,2.5,1073
+Sales Representative,Microsoft,Mid,82233,1-50,Remote,3.6,3
+Software Engineer,Startup A,Senior,186218,1001-5000,Remote,4.3,2
+UX Designer,IBM,Mid,120651,1001-5000,Hybrid,2.8,26
+Marketing Manager,Salesforce,Mid,96678,201-1000,On-site,3.9,15
+Financial Analyst,Salesforce,Mid,89598,1001-5000,Remote,2.9,22
+UX Designer,Mid-size Corp,VP,263856,201-1000,Hybrid,2.9,1
+Financial Analyst,Salesforce,Entry,53891,51-200,On-site,3.1,6
+Data Scientist,Google,Entry,74471,201-1000,Remote,4.6,68
+Financial Analyst,Amazon,Entry,48753,5001+,Remote,4.5,31
+Product Manager,Startup B,Senior,191955,1-50,Remote,4.6,2
+HR Manager,Salesforce,Lead,144828,201-1000,On-site,3.8,20
+Backend Developer,Google,Director,221181,5001+,Hybrid,4.5,2
+Machine Learning Engineer,Google,Entry,81002,1001-5000,Remote,4.1,153
+Financial Analyst,Enterprise Corp,Senior,121225,1-50,Remote,3.9,37
+Sales Representative,Google,Senior,106024,1001-5000,Hybrid,2.5,60
+Backend Developer,Airbnb,Senior,173728,1-50,Remote,3.7,4
+UX Designer,Google,Entry,73614,5001+,On-site,4.5,1
+Product Manager,Oracle,Mid,126772,201-1000,Hybrid,4.0,20
+Business Analyst,Startup A,Senior,113874,51-200,Remote,4.5,66
+Financial Analyst,Startup A,Senior,136800,5001+,Remote,3.3,19
+Software Engineer,IBM,Senior,158072,201-1000,Remote,3.3,55
+DevOps Engineer,Amazon,Senior,179749,1001-5000,Remote,3.6,126
+Business Analyst,Startup A,Mid,96631,5001+,Remote,4.0,38
+Sales Representative,Startup B,Mid,80297,1001-5000,Remote,3.4,4
+Frontend Developer,Mid-size Corp,Senior,146375,201-1000,Hybrid,5.0,380
+Product Manager,Oracle,Mid,122704,201-1000,Hybrid,3.4,4
+Software Engineer,Intel,Director,233069,1001-5000,Remote,4.4,21
+UX Designer,Uber,Senior,166866,5001+,Hybrid,3.6,435
+DevOps Engineer,Mid-size Corp,Mid,125800,5001+,Hybrid,4.6,379
+Business Analyst,Intel,VP,215816,1001-5000,Remote,3.9,7
+Business Analyst,Enterprise Corp,Mid,76196,201-1000,Hybrid,4.5,72
+UX Designer,Salesforce,Lead,149243,1001-5000,Hybrid,3.6,228
+Backend Developer,Intel,Senior,144652,201-1000,On-site,3.2,37
+Machine Learning Engineer,Amazon,Lead,239710,51-200,Remote,3.6,629
+HR Manager,Startup A,Senior,105564,5001+,Remote,4.0,198
+HR Manager,Google,Senior,97093,51-200,Hybrid,4.2,15
+Backend Developer,Airbnb,Mid,112981,201-1000,Remote,2.9,12
+Software Engineer,Mid-size Corp,Mid,107929,1001-5000,On-site,3.9,250
+Data Scientist,Salesforce,Senior,198198,1001-5000,On-site,2.6,13

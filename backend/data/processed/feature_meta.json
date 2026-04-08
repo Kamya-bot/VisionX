@@ -1,0 +1,30 @@
+{
+  "total_rows": 8507,
+  "domains": {
+    "products": 3000,
+    "jobs": 3000,
+    "education": 1500,
+    "housing": 507,
+    "cities": 500
+  },
+  "feature_columns": [
+    "value_score",
+    "quality_score",
+    "growth_score",
+    "risk_score",
+    "fit_score",
+    "speed_score"
+  ],
+  "target_column": "winner",
+  "class_balance": {
+    "0": 5103,
+    "1": 3404
+  },
+  "domain_distribution": {
+    "jobs": 3000,
+    "products": 3000,
+    "education": 1500,
+    "housing": 507,
+    "cities": 500
+  }
+}

@@ -1,81 +1,49 @@
 {
-  "training_date": "2026-04-04T01:56:26.045234",
+  "training_date": "2026-04-08T23:24:05.598076",
+  "data_source": "real_world_multi_domain",
   "models_trained": [
     "clustering",
     "prediction"
   ],
-  "dataset_size": 10000,
+  "dataset_size": 8507,
+  "domain_distribution": {
+    "jobs": 3000,
+    "products": 3000,
+    "education": 1500,
+    "housing": 507,
+    "cities": 500
+  },
   "random_seed": 42,
+  "features": [
+    "value_score",
+    "quality_score",
+    "growth_score",
+    "risk_score",
+    "fit_score",
+    "speed_score"
+  ],
   "results": {
-    "dataset_size": 10000,
     "clustering": {
-      "silhouette_score": 0.3777879970864316,
-      "davies_bouldin_index": 1.247425869078726,
+      "silhouette_score": 0.37114433236610767,
       "n_clusters": 4,
       "cluster_distribution": {
-        "0": 3053,
-        "1": 1829,
-        "2": 2552,
-        "3": 2566
+        "0": 3010,
+        "1": 2591,
+        "2": 1143,
+        "3": 1763
       }
     },
     "prediction": {
-      "accuracy": 0.9945,
-      "f1_score": 0.9945051895273875,
-      "confusion_matrix": [
-        [
-          611,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          363,
-          0,
-          3
-        ],
-        [
-          0,
-          0,
-          510,
-          0
-        ],
-        [
-          0,
-          8,
-          0,
-          505
-        ]
-      ],
+      "accuracy": 0.9806110458284372,
+      "f1_score": 0.9806134085645638,
+      "roc_auc": 0.9988580485286229,
       "feature_importance": {
-        "session_time": 0.004627066198736429,
-        "clicks": 0.0026287755463272333,
-        "scroll_depth": 0.004508869722485542,
-        "categories_viewed": 0.012582572177052498,
-        "comparison_count": 0.004023470915853977,
-        "product_views": 0.008490982465445995,
-        "decision_time": 0.22543634474277496,
-        "price_sensitivity": 0.005525728687644005,
-        "feature_interest_score": 0.002262795576825738,
-        "previous_decisions": 0.28125467896461487,
-        "engagement_score": 0.0014167171902954578,
-        "purchase_intent_score": 0.04176623001694679,
-        "engagement_ratio": 0.0008697775774635375,
-        "decision_efficiency": 0.006292350124567747,
-        "interaction_score": 0.0019323262386023998,
-        "behavior_intensity": 0.007669100537896156,
-        "research_depth": 0.0039391727186739445,
-        "intent_signal": 0.3333800435066223,
-        "experience_level": 0.0,
-        "session_efficiency": 0.0010750748915597796,
-        "device_desktop": 0.0007269731722772121,
-        "device_mobile": 0.00029614553204737604,
-        "device_tablet": 0.0,
-        "speed_fast": 0.0,
-        "speed_moderate": 0.0484473817050457,
-        "speed_slow": 0.0008474009810015559,
-        "speed_very_slow": 0.0
+        "value_score": 0.1526569277048111,
+        "quality_score": 0.2718110680580139,
+        "growth_score": 0.19726938009262085,
+        "risk_score": 0.11658542603254318,
+        "fit_score": 0.19744165241718292,
+        "speed_score": 0.06423547863960266
       }
     }
   }

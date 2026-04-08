@@ -1,0 +1,26 @@
+{
+  "downloaded_at": "2026-04-08T23:08:12.375738",
+  "total_rows": 8005,
+  "datasets": {
+    "amazon_products": {
+      "rows": 3000,
+      "columns": 7,
+      "file": "amazon_products.csv"
+    },
+    "linkedin_jobs": {
+      "rows": 3000,
+      "columns": 8,
+      "file": "linkedin_jobs.csv"
+    },
+    "university_rankings": {
+      "rows": 1500,
+      "columns": 12,
+      "file": "university_rankings.csv"
+    },
+    "housing": {
+      "rows": 505,
+      "columns": 14,
+      "file": "housing.csv"
+    }
+  }
+}
