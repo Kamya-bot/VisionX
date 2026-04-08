@@ -219,4 +219,4 @@ def _alt_reason(best_vec: np.ndarray, alt_vec: np.ndarray) -> str:
         best_alt_feat = FEATURE_NAMES[int(np.argmax(diffs))]
         label, desc = FEATURE_EXPLANATIONS[best_alt_feat]
         return f"Higher {label.lower()} — worth considering if {desc} matters more."
-    return "Similar overall profile. A viable alternative."
+    return "Similar overall profile. A viable alternative."# trigger 
