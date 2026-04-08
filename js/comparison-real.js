@@ -5,32 +5,100 @@
 
 let comparisonOptions = [];
 let currentStep = 1;
+const totalSteps = 3;
+
+/**
+ * Update step UI
+ */
+function goToStep(step) {
+    // Hide all steps
+    document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.step-indicator').forEach(el => {
+        el.classList.remove('active', 'completed');
+    });
+
+    // Show current step
+    document.getElementById('step' + step).classList.add('active');
+
+    // Update indicators
+    document.querySelectorAll('.step-indicator').forEach((el, index) => {
+        if (index + 1 < step) el.classList.add('completed');
+        if (index + 1 === step) el.classList.add('active');
+    });
+
+    // Update progress bar
+    const fill = document.querySelector('.step-progress-fill');
+    if (fill) fill.style.width = ((step / totalSteps) * 100) + '%';
+
+    currentStep = step;
+}
+
+/**
+ * Validate current step before proceeding
+ */
+function validateStep(step) {
+    if (step === 1) {
+        const title = document.getElementById('comparisonTitle')?.value?.trim();
+        if (!title) {
+            showNotification('Please enter a comparison title', 'error');
+            return false;
+        }
+    }
+    if (step === 2) {
+        const container = document.getElementById('optionsContainer');
+        let validOptions = 0;
+        Array.from(container.children).forEach((card, index) => {
+            const name = document.getElementById(`optionName${index + 1}`)?.value?.trim();
+            if (name) validOptions++;
+        });
+        if (validOptions < 2) {
+            showNotification('Please fill in at least 2 option names', 'error');
+            return false;
+        }
+    }
+    return true;
+}
 
 /**
  * Initialize Comparison Page
  */
 function initializeComparison() {
     const user = getCurrentUser();
-    
     if (!user) {
         window.location.href = 'login.html';
         return;
     }
-    
+
     // Initialize first two options
     addOption();
     addOption();
-    
-    // Bind form submission
-    const form = document.getElementById('comparisonForm');
-    if (form) {
-        form.addEventListener('submit', handleComparisonSubmit);
-    }
-    
+
+    // Bind Next Step buttons
+    document.querySelectorAll('.btn-next-step').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (validateStep(currentStep)) {
+                goToStep(currentStep + 1);
+            }
+        });
+    });
+
+    // Bind Previous Step buttons
+    document.querySelectorAll('.btn-prev-step').forEach(btn => {
+        btn.addEventListener('click', () => {
+            goToStep(currentStep - 1);
+        });
+    });
+
     // Bind add option button
     const addBtn = document.getElementById('addOptionBtn');
     if (addBtn) {
         addBtn.addEventListener('click', addOption);
+    }
+
+    // Bind submit button
+    const submitBtn = document.getElementById('submitComparison');
+    if (submitBtn) {
+        submitBtn.addEventListener('click', handleComparisonSubmit);
     }
 }
 
@@ -40,14 +108,14 @@ function initializeComparison() {
 function addOption() {
     const container = document.getElementById('optionsContainer');
     if (!container) return;
-    
+
     const optionNumber = container.children.length + 1;
-    
+
     if (optionNumber > 5) {
         showNotification('Maximum 5 options allowed', 'error');
         return;
     }
-    
+
     const optionHtml = `
         <div class="option-card glass-card" data-option-id="${optionNumber}" style="padding: 1.5rem; margin-bottom: 1rem; position: relative;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
@@ -58,34 +126,34 @@ function addOption() {
                     </button>
                 ` : ''}
             </div>
-            
+
             <div class="form-group">
                 <label class="form-label">Option Name *</label>
                 <input type="text" class="form-input" id="optionName${optionNumber}" placeholder="e.g., Job at Company A" required>
             </div>
-            
+
             <div class="form-group">
                 <label class="form-label">Price/Cost ($)</label>
                 <input type="number" class="form-input" id="optionPrice${optionNumber}" placeholder="e.g., 75000" min="0">
             </div>
-            
+
             <div class="form-group">
                 <label class="form-label">Quality Score (1-10)</label>
                 <input type="number" class="form-input" id="optionQuality${optionNumber}" placeholder="e.g., 8" min="1" max="10">
             </div>
-            
+
             <div class="form-group">
                 <label class="form-label">Delivery/Start Time (days)</label>
                 <input type="number" class="form-input" id="optionDelivery${optionNumber}" placeholder="e.g., 30" min="0">
             </div>
-            
+
             <div class="form-group">
                 <label class="form-label">Additional Notes</label>
                 <textarea class="form-input" id="optionNotes${optionNumber}" rows="2" placeholder="Any additional information..."></textarea>
             </div>
         </div>
     `;
-    
+
     container.insertAdjacentHTML('beforeend', optionHtml);
 }
 
@@ -106,14 +174,14 @@ function removeOption(optionNumber) {
 function renumberOptions() {
     const container = document.getElementById('optionsContainer');
     if (!container) return;
-    
+
     Array.from(container.children).forEach((option, index) => {
         const optionNumber = index + 1;
         option.setAttribute('data-option-id', optionNumber);
-        
+
         const title = option.querySelector('h4');
         if (title) title.textContent = `Option ${optionNumber}`;
-        
+
         option.querySelectorAll('input, textarea').forEach(input => {
             const idPrefix = input.id.replace(/\d+$/, '');
             input.id = idPrefix + optionNumber;
@@ -124,34 +192,31 @@ function renumberOptions() {
 /**
  * Handle Comparison Submit
  */
-async function handleComparisonSubmit(event) {
-    event.preventDefault();
-    
+async function handleComparisonSubmit() {
     const user = getCurrentUser();
     if (!user) {
         window.location.href = 'login.html';
         return;
     }
-    
-    const submitBtn = event.target.querySelector('button[type="submit"]');
-    
+
+    const submitBtn = document.getElementById('submitComparison');
     if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
     }
-    
+
     try {
         const comparisonTitle = document.getElementById('comparisonTitle')?.value || 'Untitled Comparison';
-        const comparisonCategory = document.getElementById('comparisonCategory')?.value || 'Other';
-        
+        const comparisonCategory = document.getElementById('comparisonCategory')?.value || 'General';
+
         const container = document.getElementById('optionsContainer');
         const options = [];
-        
+
         Array.from(container.children).forEach((optionCard, index) => {
             const num = index + 1;
             const name = document.getElementById(`optionName${num}`)?.value;
             if (!name) return;
-            
+
             options.push({
                 id: num.toString(),
                 name: name,
@@ -166,16 +231,16 @@ async function handleComparisonSubmit(event) {
                 notes: document.getElementById(`optionNotes${num}`)?.value || ''
             });
         });
-        
+
         if (options.length < 2) {
             showNotification('Please add at least 2 options', 'error');
             if (submitBtn) {
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-magic"></i> Get AI Recommendation';
+                submitBtn.innerHTML = '<i class="fas fa-brain"></i> Get AI Recommendation';
             }
             return;
         }
-        
+
         // Call ML prediction API
         let result;
         let usedFallback = false;
@@ -190,7 +255,6 @@ async function handleComparisonSubmit(event) {
             console.error('ML API failed:', error);
             usedFallback = true;
 
-            // Score options by quality/price ratio as a real fallback
             const scored = options.map(opt => {
                 const q = opt.features.quality_score || 5;
                 const p = opt.features.price || 1;
@@ -218,7 +282,7 @@ async function handleComparisonSubmit(event) {
                 is_fallback: true
             };
         }
-        
+
         // Save to localStorage
         const comparison = {
             id: 'comp_' + Date.now(),
@@ -229,35 +293,34 @@ async function handleComparisonSubmit(event) {
             result: result,
             created_at: new Date().toISOString()
         };
-        
+
         const allComparisons = JSON.parse(localStorage.getItem('comparisons') || '[]');
         allComparisons.push(comparison);
         localStorage.setItem('comparisons', JSON.stringify(allComparisons));
-        
+
         if (usedFallback) {
-            showNotification('⚠️ ML service unavailable — used local analysis. Results may vary.', 'warning');
+            showNotification('⚠️ ML service unavailable — used local analysis.', 'warning');
         } else {
             showNotification('✅ AI analysis complete! Redirecting...', 'success');
         }
-        
+
         setTimeout(() => {
             window.location.href = `results.html?id=${comparison.id}`;
         }, 1000);
-        
+
     } catch (error) {
         console.error('Failed to process comparison:', error);
         showNotification('Failed to analyze comparison: ' + error.message, 'error');
-        
+
         if (submitBtn) {
             submitBtn.disabled = false;
-            submitBtn.innerHTML = '<i class="fas fa-magic"></i> Get AI Recommendation';
+            submitBtn.innerHTML = '<i class="fas fa-brain"></i> Get AI Recommendation';
         }
     }
 }
 
 /**
  * Initialize on page load
- * FIX: replaced broken checkAuth() with isAuthenticated() from api-config.js
  */
 document.addEventListener('DOMContentLoaded', () => {
     if (!isAuthenticated()) {
