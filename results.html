@@ -6,7 +6,6 @@
     <title>Results - VisionX</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/ml-components.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
 </head>
@@ -75,7 +74,7 @@
                     
                     <div class="user-menu">
                         <button class="user-avatar">
-                            <span>JD</span>
+                            <span id="userInitials">U</span>
                         </button>
                     </div>
                 </div>
@@ -91,23 +90,39 @@
                         <i class="fas fa-arrow-left"></i> Back to Dashboard
                     </a>
                 </div>
-                
-                <!-- ML AI Prediction Card -->
-                <div style="margin-bottom: 2rem;">
-                    <div id="mlPredictionCard"></div>
+
+                <!-- Fallback warning banner (shown if ML was unavailable) -->
+                <div id="fallbackWarning" style="display:none; background: rgba(255,180,0,0.1); border: 1px solid rgba(255,180,0,0.3); border-radius: 8px; padding: 1rem 1.5rem; margin-bottom: 1.5rem; color: #ffb400;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong> ML service was temporarily unavailable.</strong> Results below are based on local quality-to-cost analysis and may differ from full AI predictions.
                 </div>
-                
-                <!-- ML AI Recommendation Card -->
-                <div style="margin-bottom: 2rem;">
-                    <div id="mlRecommendationCard"></div>
-                </div>
-                
-                <!-- ML Score Breakdown (Optional) -->
-                <div class="glass-card" style="padding: 2rem;">
-                    <div class="card-header" style="margin-bottom: 1.5rem;">
-                        <h3><i class="fas fa-chart-radar"></i> Score Breakdown by Criteria</h3>
+
+                <!-- Recommendation Card -->
+                <div class="glass-card" style="padding: 2rem; margin-bottom: 2rem;" id="recommendationCard">
+                    <div style="text-align: center; color: var(--text-secondary);">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem;"></i>
+                        <p style="margin-top: 1rem;">Loading results...</p>
                     </div>
-                    <div id="mlScoreBreakdown" style="height: 400px;"></div>
+                </div>
+
+                <!-- Options Breakdown -->
+                <div class="glass-card" style="padding: 2rem; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem;"><i class="fas fa-list-ul"></i> All Options</h3>
+                    <div id="optionsBreakdown"></div>
+                </div>
+
+                <!-- Feature Importance -->
+                <div class="glass-card" style="padding: 2rem; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem;"><i class="fas fa-chart-bar"></i> Feature Importance</h3>
+                    <div id="featureImportance"></div>
+                </div>
+
+                <!-- Score Breakdown Chart -->
+                <div class="glass-card" style="padding: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem;"><i class="fas fa-chart-radar"></i> Score Breakdown by Criteria</h3>
+                    <div style="height: 300px; position: relative;">
+                        <canvas id="scoreChart"></canvas>
+                    </div>
                 </div>
             </div>
         </main>
@@ -115,36 +130,6 @@
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/ml-integration.js"></script>
-    <script src="js/results-ml.js"></script>
-    <script>
-        // Sample comparison data - Replace with actual data from your comparison
-        const comparisonData = {
-            comparison_id: 'comp_demo_001',
-            options: ['Company A', 'Company B', 'Company C'],
-            criteria: [
-                { name: 'Salary', weight: 0.4 },
-                { name: 'Career Growth', weight: 0.3 },
-                { name: 'Work-Life Balance', weight: 0.2 },
-                { name: 'Location', weight: 0.1 }
-            ],
-            scores: {
-                'Company A': { 'Salary': 9, 'Career Growth': 6, 'Work-Life Balance': 8, 'Location': 7 },
-                'Company B': { 'Salary': 7, 'Career Growth': 9, 'Work-Life Balance': 6, 'Location': 8 },
-                'Company C': { 'Salary': 5, 'Career Growth': 7, 'Work-Life Balance': 9, 'Location': 6 }
-            }
-        };
-        
-        // Initialize ML features when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeResultsML(comparisonData.comparison_id, comparisonData);
-            
-            // Optional: Render score breakdown radar chart
-            // renderScoreBreakdown(comparisonData.scores['Company A']);
-        });
-    </script>
-    
-    <!-- Real Data Integration -->
     <script src="js/api-config.js"></script>
     <script src="js/auth-handler.js"></script>
     <script src="js/results-real.js"></script>
