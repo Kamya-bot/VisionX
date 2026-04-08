@@ -12,7 +12,7 @@ import numpy as np
 from typing import Dict, List, Any, Tuple
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from ml.normalizer import to_universal_features, detect_domain
+from .normalizer import to_universal_features, detect_domain
 
 logger = logging.getLogger(__name__)
 
