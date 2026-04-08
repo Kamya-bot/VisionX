@@ -38,7 +38,7 @@ try:
     from ml.predict import predict_winner, score_options_for_user
     from ml.normalizer import detect_domain, DOMAIN_LABELS
     REAL_ML_AVAILABLE = True
-except ImportError as e:
+except Exception as e:
     REAL_ML_AVAILABLE = False
     logging.getLogger(__name__).warning(f"Real ML module not found: {e}")
 
