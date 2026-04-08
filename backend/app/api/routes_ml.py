@@ -34,13 +34,9 @@ from config import settings
 from database import get_db
 from crud import create_prediction_log
 
-try:
-    from ml.predict import predict_winner, score_options_for_user
-    from ml.normalizer import detect_domain, DOMAIN_LABELS
-    REAL_ML_AVAILABLE = True
-except Exception as e:
-    REAL_ML_AVAILABLE = False
-    logging.getLogger(__name__).warning(f"Real ML module not found: {e}")
+from ml.predict import predict_winner, score_options_for_user
+from ml.normalizer import detect_domain, DOMAIN_LABELS
+REAL_ML_AVAILABLE = True
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -71,19 +67,14 @@ def build_user_vector(user_id: str, model_store) -> np.ndarray:
     """
     Build a 6-feature user vector from the user's own decision history.
     Falls back to a deterministic hash-based vector if no history exists.
-    This vector is in the SAME 6-feature space the KMeans was trained on.
     """
-    # Deterministic per-user seed so same user always maps to same cluster
-    # until they have real history
     seed = abs(hash(user_id)) % (2**31)
     rng = np.random.default_rng(seed)
-
-    # Simulate realistic variation across the 6 universal dimensions
-    vec = rng.dirichlet(np.ones(6))  # sums to 1, all positive, varied
+    vec = rng.dirichlet(np.ones(6))
     return vec.reshape(1, -1)
 
 
-def assign_cluster(user_id: str, model_store) -> tuple[int, float]:
+def assign_cluster(user_id: str, model_store) -> tuple:
     """Assign user to cluster. Returns (cluster_id, confidence)."""
     X = build_user_vector(user_id, model_store)
     try:
@@ -142,14 +133,10 @@ async def predict_best_option(
         profile = profiles.get(cluster_id, {})
         user_cluster = profile.get("label", f"Cluster {cluster_id}")
 
-        if REAL_ML_AVAILABLE:
-            result = predict_winner(options, model_store, cluster_id)
-        else:
-            result = _heuristic_predict_result(options, cluster_id, user_cluster)
+        result = predict_winner(options, model_store, cluster_id, user_cluster)
 
         prediction_time_ms = (time.time() - start_time) * 1000
 
-        # Persist to DB
         try:
             create_prediction_log(
                 db=db,
@@ -207,38 +194,35 @@ async def get_recommendations(request_data: RecommendationRequest, request: Requ
     try:
         cluster_id, _ = assign_cluster(request_data.user_id, model_store)
 
-        if REAL_ML_AVAILABLE:
-            scored = score_options_for_user(
-                request_data.available_options, model_store, cluster_id
+        scored = score_options_for_user(
+            request_data.available_options, model_store, cluster_id
+        )
+        current_score = next(
+            (s["score"] for s in scored if s["id"] == request_data.current_option_id), 0.5
+        )
+        items = []
+        for s in scored:
+            if s["id"] == request_data.current_option_id:
+                continue
+            gap = s["score"] - current_score
+            reason = (
+                "Stronger predicted outcome — higher win probability."
+                if gap > 0.1 else
+                "Comparable overall profile — viable alternative."
+                if abs(gap) <= 0.1 else
+                "Lower predicted score but may suit specific priorities."
             )
-            current_score = next(
-                (s["score"] for s in scored if s["id"] == request_data.current_option_id), 0.5
+            items.append(
+                RecommendationItem(
+                    option_id=s["id"],
+                    option_name=s["name"],
+                    similarity_score=round(1.0 - abs(gap), 3),
+                    reason=reason,
+                    estimated_satisfaction=round(s["score"] * 0.95, 3),
+                )
             )
-            items = []
-            for s in scored:
-                if s["id"] == request_data.current_option_id:
-                    continue
-                gap = s["score"] - current_score
-                reason = (
-                    "Stronger predicted outcome — higher win probability."
-                    if gap > 0.1 else
-                    "Comparable overall profile — viable alternative."
-                    if abs(gap) <= 0.1 else
-                    "Lower predicted score but may suit specific priorities."
-                )
-                items.append(
-                    RecommendationItem(
-                        option_id=s["id"],
-                        option_name=s["name"],
-                        similarity_score=round(1.0 - abs(gap), 3),
-                        reason=reason,
-                        estimated_satisfaction=round(s["score"] * 0.95, 3),
-                    )
-                )
-            items.sort(key=lambda x: x.similarity_score, reverse=True)
-            items = items[: request_data.top_k]
-        else:
-            items = []
+        items.sort(key=lambda x: x.similarity_score, reverse=True)
+        items = items[: request_data.top_k]
 
         return RecommendationResponse(
             user_id=request_data.user_id,
@@ -261,13 +245,11 @@ async def get_analytics(request: Request, db: Session = Depends(get_db)):
     validate_models_loaded(model_store)
     profiles = get_cluster_profiles(request)
 
-    # Real cluster distribution from model
     cluster_dist = {
         prof["label"]: round(1.0 / len(profiles), 3)
         for prof in profiles.values()
     } if profiles else {}
 
-    # Real model metadata
     try:
         import json, os
         results_path = os.path.join(settings.MODEL_DIR, "training_results.json")
@@ -324,7 +306,6 @@ async def get_user_insights(user_id: str, request: Request):
 
     insights = []
 
-    # Generate insights from real cluster center values
     feature_labels = {
         "value_score":   ("Value Orientation",   "cost-effectiveness"),
         "quality_score": ("Quality Focus",        "objective quality"),
@@ -408,65 +389,5 @@ async def get_decision_patterns(user_id: str, request: Request):
     return PatternsResponse(
         user_id=user_id,
         patterns=patterns,
-        analyzed_decisions=0,  # will be real once DB tracking is wired
+        analyzed_decisions=0,
     )
-
-
-# ── Heuristic fallback (no ML module) ────────────────────────────────────────
-
-def _heuristic_predict_result(options, cluster_id: int, user_cluster: str) -> Dict:
-    """Fallback when ML module not available — uses normalizer directly."""
-    from ml.normalizer import to_universal_features, detect_domain
-
-    scored = []
-    for opt in options:
-        f = opt.features.dict() if hasattr(opt.features, "dict") else dict(opt.features)
-        domain = detect_domain(f)
-        vec = to_universal_features(f, domain)
-        weights = np.array([0.25, 0.30, 0.15, -0.10, 0.15, 0.15])
-        score = float(np.clip(np.dot(vec, weights), 0, 1))
-        scored.append({"id": opt.id, "name": opt.name, "score": score, "vec": vec, "domain": domain})
-
-    scored.sort(key=lambda x: x["score"], reverse=True)
-    best = scored[0]
-
-    fi_weights = np.array([0.25, 0.30, 0.15, 0.10, 0.12, 0.08])
-    fi_names = ["value_score", "quality_score", "growth_score",
-                "risk_score", "fit_score", "speed_score"]
-
-    domain_ctx = {
-        "products": "Among the products compared",
-        "jobs": "Among the job opportunities",
-        "education": "Among the institutions",
-        "housing": "Among the properties",
-    }.get(best["domain"], "Among the options")
-
-    top_fi_idx = int(np.argmax(fi_weights * best["vec"]))
-    top_fi_name = fi_names[top_fi_idx].replace("_score", "").replace("_", " ")
-
-    return {
-        "recommended_option_id": best["id"],
-        "recommended_option_name": best["name"],
-        "confidence": round(best["score"], 3),
-        "reasoning": (
-            f"{domain_ctx}, {best['name']} leads on {top_fi_name}. "
-            f"Recommended for {user_cluster} based on feature analysis."
-        ),
-        "alternative_options": [
-            {
-                "id": s["id"],
-                "name": s["name"],
-                "score": round(s["score"], 3),
-                "reason": "Alternative based on feature scoring.",
-            }
-            for s in scored[1:]
-        ],
-        "feature_importance": [
-            {"feature_name": fi_names[i], "importance": round(float(fi_weights[i]), 3)}
-            for i in np.argsort(fi_weights)[::-1]
-        ],
-        "universal_features": {
-            fi_names[i]: round(float(best["vec"][i]), 3)
-            for i in range(6)
-        },
-    }
