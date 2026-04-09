@@ -1,221 +1,150 @@
 """
-VisionX ML Backend - FastAPI Application
-Production-grade ML API service
+VisionX — FastAPI Application Entry Point
+
+Phase 2: Added /ml/retrain routes
 """
 
-from fastapi import FastAPI, HTTPException, Request
+from __future__ import annotations
+
+import logging
+import os
+import pickle
+from contextlib import asynccontextmanager
+from pathlib import Path
+
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from contextlib import asynccontextmanager
 from slowapi import Limiter, _rate_limit_exceeded_handler
-from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
-from slowapi.middleware import SlowAPIMiddleware
-import joblib
-import os
-import sys
-import logging
-from datetime import datetime
+from slowapi.util import get_remote_address
 
-from middleware.request_tracking import RequestTrackingMiddleware, setup_production_logging
+from config import settings
+from database import init_db
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
-from config import settings, create_directories
-from database import init_db, get_db_info
-from api.routes_health import router as health_router
-from api.routes_ml import router as ml_router
-from api.routes_advanced_ml import router as advanced_ml_router
-from api.routes_analytics import router as analytics_router
-from api.routes_drift import router as drift_router
-from api.routes_model_version import router as model_version_router
-from api.routes_auth import router as auth_router
-from api.routes_predictions import router as predictions_router
-from api.routes_feedback import router as feedback_router
-
-setup_production_logging(log_dir=settings.LOG_DIR)
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+)
 logger = logging.getLogger(__name__)
 
-# ── Rate limiter (keyed by remote IP) ─────────────────────────────────────────
-limiter = Limiter(key_func=get_remote_address, default_limits=[settings.RATE_LIMIT_GENERAL])
+MODELS_DIR = Path(__file__).parent.parent / "trained_models"
+
+CLUSTER_PROFILES = {
+    0: {"label": "Independent Thinker & Risk-Averse",   "dominant_features": ["fit_score", "risk_score"]},
+    1: {"label": "Growth-Oriented & Value-Conscious",    "dominant_features": ["growth_score", "value_score"]},
+    2: {"label": "Budget Pragmatist & Stability-Seeker", "dominant_features": ["quality_score", "growth_score"]},
+    3: {"label": "Socially-Validated & Speed-Driven",    "dominant_features": ["fit_score", "speed_score"]},
+}
 
 
 class ModelStore:
-    clustering_model = None
-    prediction_model = None
-    scaler = None
-    feature_columns = None
-    models_loaded = False
+    def __init__(self):
+        self.prediction_model = None
+        self.clustering_model = None
+        self.scaler = None
+        self.feature_columns = None
+        self.models_loaded = False
 
+    def load(self):
+        try:
+            with open(MODELS_DIR / "prediction.pkl", "rb") as f:
+                self.prediction_model = pickle.load(f)
+            with open(MODELS_DIR / "clustering.pkl", "rb") as f:
+                self.clustering_model = pickle.load(f)
+            with open(MODELS_DIR / "scaler.pkl", "rb") as f:
+                self.scaler = pickle.load(f)
+            with open(MODELS_DIR / "feature_columns.pkl", "rb") as f:
+                self.feature_columns = pickle.load(f)
+            self.models_loaded = True
+            logger.info("✅ Models loaded successfully")
+        except FileNotFoundError:
+            logger.warning("⚠️  Model files not found — running training pipeline now")
+            self._train_and_load()
+        except Exception as e:
+            logger.error(f"❌ Model loading failed: {e}")
+            self._train_and_load()
 
-model_store = ModelStore()
-
-
-def load_models():
-    logger.info("🔄 Loading ML models...")
-    try:
-        create_directories()
-
-        if not os.path.exists(settings.CLUSTERING_MODEL_PATH):
-            logger.warning(f"⚠️  Clustering model not found: {settings.CLUSTERING_MODEL_PATH}")
-            return False
-        if not os.path.exists(settings.PREDICTION_MODEL_PATH):
-            logger.warning(f"⚠️  Prediction model not found: {settings.PREDICTION_MODEL_PATH}")
-            return False
-
-        model_store.clustering_model = joblib.load(settings.CLUSTERING_MODEL_PATH)
-        logger.info("✅ Clustering model loaded")
-
-        model_store.prediction_model = joblib.load(settings.PREDICTION_MODEL_PATH)
-        logger.info("✅ Prediction model loaded")
-
-        if os.path.exists(settings.SCALER_PATH):
-            model_store.scaler = joblib.load(settings.SCALER_PATH)
-            logger.info("✅ Scaler loaded")
-
-        feature_cols_path = os.path.join(settings.MODEL_DIR, "feature_columns.pkl")
-        if os.path.exists(feature_cols_path):
-            model_store.feature_columns = joblib.load(feature_cols_path)
-            logger.info("✅ Feature columns loaded")
-
-        model_store.models_loaded = True
-        logger.info("✅ All models loaded successfully!")
-        return True
-
-    except Exception as e:
-        logger.error(f"❌ Error loading models: {str(e)}")
-        return False
-
-
-def load_cluster_profiles():
-    try:
-        from ml.cluster_profiler import get_or_generate_profiles
-        profiles = get_or_generate_profiles(
-            model_path=settings.CLUSTERING_MODEL_PATH,
-            scaler_path=settings.SCALER_PATH,
-            profiles_path=settings.CLUSTER_PROFILES_PATH,
-        )
-        logger.info(f"✅ Cluster profiles loaded: {[p['label'] for p in profiles.values()]}")
-        return profiles
-    except Exception as e:
-        logger.warning(f"⚠️  Could not generate cluster profiles: {e}")
-        return {}
+    def _train_and_load(self):
+        try:
+            import sys
+            sys.path.insert(0, str(Path(__file__).parent))
+            from ml.train import train
+            train()
+            # Retry loading
+            with open(MODELS_DIR / "prediction.pkl", "rb") as f:
+                self.prediction_model = pickle.load(f)
+            with open(MODELS_DIR / "clustering.pkl", "rb") as f:
+                self.clustering_model = pickle.load(f)
+            with open(MODELS_DIR / "scaler.pkl", "rb") as f:
+                self.scaler = pickle.load(f)
+            with open(MODELS_DIR / "feature_columns.pkl", "rb") as f:
+                self.feature_columns = pickle.load(f)
+            self.models_loaded = True
+            logger.info("✅ Models trained and loaded")
+        except Exception as e:
+            logger.error(f"❌ Training failed: {e}")
+            self.models_loaded = False
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    logger.info("=" * 70)
-    logger.info(f"🚀 {settings.APP_NAME} v{settings.APP_VERSION}")
-    logger.info("=" * 70)
-
-    try:
-        logger.info("🗄️  Initializing database...")
-        init_db()
-        db_info = get_db_info()
-        logger.info(f"✅ Database: {db_info['database_type']} @ {db_info['database_url']}")
-    except Exception as e:
-        logger.error(f"❌ Database init failed: {str(e)}")
-        logger.warning("   Continuing without database (some features disabled)")
-
-    models_loaded = load_models()
-    if not models_loaded:
-        logger.warning("⚠️  Models not loaded. Run the training pipeline.")
-    else:
-        app.state.cluster_profiles = load_cluster_profiles()
-
-    logger.info(f"🌐 Server starting on {settings.HOST}:{settings.PORT}")
-    logger.info(f"📚 API Docs: http://{settings.HOST}:{settings.PORT}/docs")
-
+    # Startup
+    init_db()
+    model_store = ModelStore()
+    model_store.load()
+    app.state.model_store = model_store
+    app.state.cluster_profiles = CLUSTER_PROFILES
+    logger.info(f"🚀 VisionX {settings.APP_VERSION} started")
     yield
+    # Shutdown
+    logger.info("VisionX shutting down")
 
-    logger.info("🛑 Shutting down VisionX ML Backend...")
 
+limiter = Limiter(key_func=get_remote_address)
 
 app = FastAPI(
-    title=settings.APP_NAME,
-    description="Production-grade ML backend for VisionX decision intelligence platform",
+    title="VisionX API",
+    description="AI-powered decision intelligence platform",
     version=settings.APP_VERSION,
-    docs_url=settings.DOCS_URL,
-    redoc_url=settings.REDOC_URL,
     lifespan=lifespan,
 )
 
-# Rate limiting
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
-app.add_middleware(SlowAPIMiddleware)
 
-app.add_middleware(RequestTrackingMiddleware)
+# CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS,
+    allow_origins=settings.ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-    expose_headers=["*"],
 )
 
 
-@app.exception_handler(HTTPException)
-async def http_exception_handler(request: Request, exc: HTTPException):
-    logger.error(f"HTTP {exc.status_code}: {exc.detail} - {request.url.path}")
-    return JSONResponse(
-        status_code=exc.status_code,
-        content={
-            "error": exc.detail,
-            "status_code": exc.status_code,
-            "timestamp": datetime.now().isoformat(),
-        },
-    )
+# ── Health ────────────────────────────────────────────────────────────────────
 
-
-@app.exception_handler(Exception)
-async def general_exception_handler(request: Request, exc: Exception):
-    logger.error(f"Unhandled exception: {str(exc)} - {request.url.path}")
-    return JSONResponse(
-        status_code=500,
-        content={
-            "error": "Internal server error",
-            "message": str(exc) if settings.DEBUG else "An error occurred",
-            "status_code": 500,
-            "timestamp": datetime.now().isoformat(),
-        },
-    )
-
-
-app.include_router(health_router, tags=["Health"])
-app.include_router(auth_router, prefix=settings.API_V1_PREFIX, tags=["Authentication"])
-app.include_router(predictions_router, prefix=settings.API_V1_PREFIX, tags=["Prediction History"])
-app.include_router(feedback_router, prefix=settings.API_V1_PREFIX, tags=["Outcome Feedback"])
-app.include_router(ml_router, prefix=settings.API_V1_PREFIX, tags=["Machine Learning"])
-app.include_router(advanced_ml_router, prefix=settings.API_V1_PREFIX, tags=["Advanced ML"])
-app.include_router(analytics_router, prefix=settings.API_V1_PREFIX, tags=["Analytics"])
-app.include_router(drift_router, prefix=settings.API_V1_PREFIX, tags=["Drift Detection"])
-app.include_router(model_version_router, prefix=settings.API_V1_PREFIX, tags=["Model Versioning"])
-
-
-@app.get("/")
-async def root():
+@app.get("/health")
+async def health(request: Request):
+    ms = request.app.state.model_store
     return {
-        "app": settings.APP_NAME,
+        "status": "healthy",
         "version": settings.APP_VERSION,
-        "status": "running",
-        "docs": "/docs",
-        "api": settings.API_V1_PREFIX,
-        "health": "/health",
-        "timestamp": datetime.now().isoformat(),
+        "models_loaded": ms.models_loaded,
     }
 
 
-app.state.model_store = model_store
+# ── Routers ───────────────────────────────────────────────────────────────────
 
+from api.routes_auth import router as auth_router
+from api.routes_ml import router as ml_router
+from api.routes_feedback import router as feedback_router
+from api.routes_retrain import router as retrain_router
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(
-        "main:app",
-        host=settings.HOST,
-        port=settings.PORT,
-        reload=settings.DEBUG,
-        log_level=settings.LOG_LEVEL.lower(),
-    )
+PREFIX = f"/api/{settings.API_VERSION}"
+
+app.include_router(auth_router,     prefix=PREFIX, tags=["auth"])
+app.include_router(ml_router,       prefix=PREFIX, tags=["ml"])
+app.include_router(feedback_router, prefix=PREFIX, tags=["feedback"])
+app.include_router(retrain_router,  prefix=PREFIX, tags=["retrain"])
