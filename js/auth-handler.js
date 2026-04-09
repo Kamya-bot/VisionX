@@ -1,245 +1,184 @@
 /**
- * VisionX — Auth Handler
- * Connects to the real FastAPI backend for login and registration.
- * Handles Render free-tier cold starts gracefully.
+ * VisionX — Auth Handler (Phase 3)
+ * - Email/password login & register → real backend
+ * - Google & GitHub OAuth → real backend redirect (no more "coming soon")
+ * - Stores access_token + refresh_token on success
+ * - Auth guard redirects unauthenticated users
  */
 
-// ─── Guard: redirect logged-in users away from login/register pages ──────────
-(function() {
-    const publicPages = ['login.html', 'register.html', 'index.html', ''];
+// ── Auth guard ────────────────────────────────────────────────────────────────
+(function () {
+    const PUBLIC = ['login.html', 'register.html', 'index.html', ''];
     const page = window.location.pathname.split('/').pop();
-    if (!publicPages.includes(page) && !isAuthenticated()) {
-        window.location.href = 'login.html';
+    if (!PUBLIC.includes(page) && !isAuthenticated()) {
+        window.location.replace('login.html');
     }
 })();
 
+// ── Wake server on page load ──────────────────────────────────────────────────
+fetch('https://visionx-mzqc.onrender.com/health').catch(() => {});
 
-// ─── Server wake-up: ping backend on page load so it's ready ─────────────────
-(function wakeUpServer() {
-    fetch('https://visionx-mzqc.onrender.com/').catch(() => {});
-})();
-
-
-// ─── apiCall with longer timeout for cold starts ──────────────────────────────
-async function apiCallWithRetry(endpoint, options = {}, timeoutMs = 55000) {
-    const token = localStorage.getItem('auth_token');
-    const config = {
-        method: options.method || 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            ...(token && { 'Authorization': `Bearer ${token}` }),
-        },
-        ...(options.body && { body: JSON.stringify(options.body) })
-    };
-
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
-
-    try {
-        const response = await fetch(
-            `https://visionx-mzqc.onrender.com/api/v1${endpoint}`,
-            { ...config, signal: controller.signal }
-        );
-        clearTimeout(timeoutId);
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(data.detail || data.error || data.message || `Error ${response.status}`);
-        }
-        return data;
-
-    } catch (error) {
-        clearTimeout(timeoutId);
-        if (error.name === 'AbortError') {
-            throw new Error('Server is taking too long to respond. Please try again.');
-        }
-        throw error;
-    }
-}
-
-
-// ─── Cold-start banner ────────────────────────────────────────────────────────
+// ── Cold-start banner ─────────────────────────────────────────────────────────
 function showWakingBanner() {
     if (document.getElementById('vx-waking-banner')) return;
-    const banner = document.createElement('div');
-    banner.id = 'vx-waking-banner';
-    banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:#1a56db;color:#fff;padding:10px 20px;font-size:13px;text-align:center;font-family:sans-serif;';
-    banner.innerHTML = '⏳ <strong>Starting server...</strong> — Our free server sleeps when idle. This takes up to 30 seconds on first use. Please wait.';
-    document.body.prepend(banner);
+    const b = document.createElement('div');
+    b.id = 'vx-waking-banner';
+    b.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:#1a56db;color:#fff;padding:10px 20px;font-size:13px;text-align:center;';
+    b.innerHTML = '⏳ <strong>Starting server...</strong> — Free server wakes from sleep. This takes up to 30 seconds on first use.';
+    document.body.prepend(b);
+}
+function hideWakingBanner() { document.getElementById('vx-waking-banner')?.remove(); }
+
+// ── Save session ──────────────────────────────────────────────────────────────
+function saveUserSession(data, emailFallback) {
+    const user = {
+        id:            data.user_id,
+        email:         data.email || emailFallback,
+        name:          data.full_name || (emailFallback || '').split('@')[0],
+        avatar:        (data.full_name || emailFallback || 'U').charAt(0).toUpperCase(),
+        cluster_id:    data.cluster_id,
+        cluster_label: data.cluster_label,
+        created_at:    new Date().toISOString(),
+    };
+    setCurrentUser(user);
+    localStorage.setItem('auth_token', data.access_token);
+    if (data.refresh_token) localStorage.setItem('refresh_token', data.refresh_token);
+    localStorage.setItem('isAuthenticated', 'true');
 }
 
-function hideWakingBanner() {
-    const banner = document.getElementById('vx-waking-banner');
-    if (banner) banner.remove();
-}
-
-
-// ─── Login ────────────────────────────────────────────────────────────────────
-
+// ── Login ─────────────────────────────────────────────────────────────────────
 async function handleLogin(event) {
     if (event) event.preventDefault();
-
     const email    = document.getElementById('email')?.value?.trim();
     const password = document.getElementById('password')?.value;
-    const submitBtn = document.querySelector('#loginForm button[type="submit"], button#loginBtn');
+    const btn      = document.querySelector('#loginForm button[type="submit"]');
+    if (!email || !password) { showNotification('Email and password required', 'error'); return; }
 
-    if (!email || !password) {
-        showNotification('Please enter your email and password', 'error');
-        return;
-    }
-
-    if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
-    }
+    if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...'; }
     showWakingBanner();
 
     try {
-        const data = await apiCallWithRetry('/auth/login', {
-            method: 'POST',
-            body: { email, password }
-        });
-
+        const data = await apiCall('/auth/login', { method: 'POST', body: { email, password } });
         hideWakingBanner();
         saveUserSession(data, email);
         showNotification('Login successful! Redirecting...', 'success');
         window.location.replace('dashboard.html');
-
-    } catch (error) {
+    } catch (err) {
         hideWakingBanner();
-        showNotification(error.message || 'Login failed', 'error');
-        if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
-        }
+        showNotification(err.message || 'Login failed', 'error');
+        if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In'; }
     }
 }
 
-
-// ─── Register ─────────────────────────────────────────────────────────────────
-
+// ── Register ──────────────────────────────────────────────────────────────────
 async function handleRegister(event) {
     if (event) event.preventDefault();
+    const name     = document.getElementById('name')?.value?.trim();
+    const email    = document.getElementById('email')?.value?.trim();
+    const password = document.getElementById('password')?.value;
+    const confirm  = document.getElementById('confirmPassword')?.value;
+    const btn      = document.querySelector('#registerForm button[type="submit"]');
 
-    const name            = document.getElementById('name')?.value?.trim();
-    const email           = document.getElementById('email')?.value?.trim();
-    const password        = document.getElementById('password')?.value;
-    const confirmPassword = document.getElementById('confirmPassword')?.value;
-    const submitBtn       = document.querySelector('#registerForm button[type="submit"]');
+    if (!email || !password) { showNotification('Email and password required', 'error'); return; }
+    if (confirm && password !== confirm) { showNotification('Passwords do not match', 'error'); return; }
+    if (password.length < 6) { showNotification('Password must be at least 6 characters', 'error'); return; }
 
-    if (!email || !password) {
-        showNotification('Email and password are required', 'error');
-        return;
-    }
-    if (confirmPassword && password !== confirmPassword) {
-        showNotification('Passwords do not match', 'error');
-        return;
-    }
-    if (password.length < 6) {
-        showNotification('Password must be at least 6 characters', 'error');
-        return;
-    }
-
-    if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account...';
-    }
+    if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account...'; }
     showWakingBanner();
 
     try {
-        const data = await apiCallWithRetry('/auth/register', {
-            method: 'POST',
-            body: { email, password, full_name: name || null }
-        });
-
+        const data = await apiCall('/auth/register', { method: 'POST', body: { email, password, full_name: name || null } });
         hideWakingBanner();
         saveUserSession(data, email);
         showNotification('Account created! Welcome to VisionX 🎉', 'success');
         window.location.replace('dashboard.html');
-
-    } catch (error) {
+    } catch (err) {
         hideWakingBanner();
-        showNotification(error.message || 'Registration failed', 'error');
-        if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
-        }
+        showNotification(err.message || 'Registration failed', 'error');
+        if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account'; }
     }
 }
 
-
-// ─── Save session helper ──────────────────────────────────────────────────────
-
-function saveUserSession(data, emailFallback) {
-    const user = {
-        id: data.user_id,
-        email: data.email,
-        name: data.full_name || emailFallback.split('@')[0],
-        avatar: (data.full_name || emailFallback).charAt(0).toUpperCase(),
-        cluster_id: data.cluster_id,
-        cluster_label: data.cluster_label,
-        created_at: new Date().toISOString()
-    };
-    setCurrentUser(user);
-    localStorage.setItem('auth_token', data.access_token);
-    localStorage.setItem('isAuthenticated', 'true');
-}
-
-
-// ─── Google / GitHub OAuth (not yet supported by backend) ────────────────────
+// ── OAuth ─────────────────────────────────────────────────────────────────────
+// Backend Phase 1 added /auth/google and /auth/github redirect endpoints.
+// These redirect to the provider and return back to /auth/callback.
+// We just redirect the browser to the backend OAuth entry point.
 
 function handleGoogleLogin() {
-    showNotification('Google login coming soon! Please use email & password for now.', 'info');
+    showWakingBanner();
+    window.location.href = 'https://visionx-mzqc.onrender.com/api/v1/auth/google';
 }
 
 function handleGithubLogin() {
-    showNotification('GitHub login coming soon! Please use email & password for now.', 'info');
+    showWakingBanner();
+    window.location.href = 'https://visionx-mzqc.onrender.com/api/v1/auth/github';
 }
 
+// ── OAuth callback handler ────────────────────────────────────────────────────
+// After OAuth the backend redirects to /oauth-callback.html?token=...&refresh=...
+// That page calls this function to save the session.
+function handleOAuthCallback() {
+    const params = new URLSearchParams(window.location.search);
+    const token   = params.get('token');
+    const refresh = params.get('refresh');
+    const userId  = params.get('user_id');
+    const email   = params.get('email');
+    const name    = params.get('name');
 
-// ─── Logout ───────────────────────────────────────────────────────────────────
+    if (!token) {
+        showNotification('OAuth login failed — no token received', 'error');
+        setTimeout(() => window.location.replace('login.html'), 2000);
+        return;
+    }
 
-function handleLogout() {
-    clearCurrentUser();
-    window.location.replace('login.html');
+    saveUserSession({
+        access_token:  token,
+        refresh_token: refresh,
+        user_id:       userId,
+        email:         email,
+        full_name:     name,
+    }, email || 'user');
+
+    showNotification('Logged in successfully!', 'success');
+    window.location.replace('dashboard.html');
 }
 
+// ── Logout ────────────────────────────────────────────────────────────────────
+function handleLogout() { clearCurrentUser(); window.location.replace('login.html'); }
 
-// ─── Update nav with real user name/avatar ────────────────────────────────────
-
+// ── Update nav ────────────────────────────────────────────────────────────────
 function updateNavUser() {
     const user = getCurrentUser();
     if (!user) return;
-    document.querySelectorAll('.user-name').forEach(el => {
+    document.querySelectorAll('.user-name, .user-name-initial').forEach(el => {
         el.textContent = user.name || user.email;
     });
     document.querySelectorAll('.user-avatar span').forEach(el => {
-        el.textContent = user.avatar || user.name?.charAt(0).toUpperCase() || 'U';
+        el.textContent = user.avatar || 'U';
+    });
+    document.querySelectorAll('#userInitials').forEach(el => {
+        el.textContent = user.avatar || 'U';
     });
 }
-document.addEventListener('DOMContentLoaded', updateNavUser);
 
-
-// ─── Wire up forms and buttons ────────────────────────────────────────────────
-
+// ── Wire everything up ────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-    // Forms
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) loginForm.addEventListener('submit', handleLogin);
+    updateNavUser();
 
-    const registerForm = document.getElementById('registerForm');
-    if (registerForm) registerForm.addEventListener('submit', handleRegister);
+    document.getElementById('loginForm')?.addEventListener('submit', handleLogin);
+    document.getElementById('registerForm')?.addEventListener('submit', handleRegister);
 
-    // Logout buttons
     document.querySelectorAll('.logout-btn, [data-action="logout"]')
-        .forEach(btn => btn.addEventListener('click', handleLogout));
-
-    // Google buttons (both login + register pages)
+        .forEach(b => b.addEventListener('click', handleLogout));
     document.querySelectorAll('.google-btn')
-        .forEach(btn => btn.addEventListener('click', handleGoogleLogin));
-
-    // GitHub buttons
+        .forEach(b => b.addEventListener('click', handleGoogleLogin));
     document.querySelectorAll('.github-btn')
-        .forEach(btn => btn.addEventListener('click', handleGithubLogin));
+        .forEach(b => b.addEventListener('click', handleGithubLogin));
+
+    // Toggle password visibility
+    document.getElementById('togglePassword')?.addEventListener('click', () => {
+        const pw = document.getElementById('password');
+        if (!pw) return;
+        pw.type = pw.type === 'password' ? 'text' : 'password';
+    });
 });

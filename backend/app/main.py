@@ -1,7 +1,7 @@
 """
 VisionX — FastAPI Application Entry Point
 
-Phase 2: Added /ml/retrain routes
+Phase 3: Added analytics + prediction history routes
 """
 
 from __future__ import annotations
@@ -71,7 +71,6 @@ class ModelStore:
             sys.path.insert(0, str(Path(__file__).parent))
             from ml.train import train
             train()
-            # Retry loading
             with open(MODELS_DIR / "prediction.pkl", "rb") as f:
                 self.prediction_model = pickle.load(f)
             with open(MODELS_DIR / "clustering.pkl", "rb") as f:
@@ -89,7 +88,6 @@ class ModelStore:
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup
     init_db()
     model_store = ModelStore()
     model_store.load()
@@ -97,7 +95,6 @@ async def lifespan(app: FastAPI):
     app.state.cluster_profiles = CLUSTER_PROFILES
     logger.info(f"🚀 VisionX {settings.APP_VERSION} started")
     yield
-    # Shutdown
     logger.info("VisionX shutting down")
 
 
@@ -113,7 +110,6 @@ app = FastAPI(
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-# CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.ALLOWED_ORIGINS,
@@ -122,8 +118,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-# ── Health ────────────────────────────────────────────────────────────────────
 
 @app.get("/health")
 async def health(request: Request):
@@ -135,12 +129,11 @@ async def health(request: Request):
     }
 
 
-# ── Routers ───────────────────────────────────────────────────────────────────
-
 from api.routes_auth import router as auth_router
 from api.routes_ml import router as ml_router
 from api.routes_feedback import router as feedback_router
 from api.routes_retrain import router as retrain_router
+from api.routes_analytics import router as analytics_router
 
 PREFIX = f"/api/{settings.API_VERSION}"
 
@@ -148,3 +141,4 @@ app.include_router(auth_router,     prefix=PREFIX, tags=["auth"])
 app.include_router(ml_router,       prefix=PREFIX, tags=["ml"])
 app.include_router(feedback_router, prefix=PREFIX, tags=["feedback"])
 app.include_router(retrain_router,  prefix=PREFIX, tags=["retrain"])
+app.include_router(analytics_router, prefix=PREFIX, tags=["analytics"])
