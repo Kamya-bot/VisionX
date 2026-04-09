@@ -68,15 +68,38 @@ class Settings(BaseSettings):
     REDOC_URL: str = "/redoc"
 
     # Rate Limiting
-    RATE_LIMIT_PER_MINUTE: int = 100
+    RATE_LIMIT_PREDICT: str = "10/minute"       # per user on /ml/predict
+    RATE_LIMIT_AUTH: str = "5/minute"           # per IP on login/register
+    RATE_LIMIT_GENERAL: str = "100/minute"      # everything else
 
     # JWT Auth
     SECRET_KEY: str = os.getenv(
         "SECRET_KEY",
         "visionx-change-this-in-production-use-openssl-rand-hex-32"
     )
+    REFRESH_SECRET_KEY: str = os.getenv(
+        "REFRESH_SECRET_KEY",
+        "visionx-refresh-change-this-in-production-use-openssl-rand-hex-32"
+    )
     ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24  # 24 hours
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 15           # 15 minutes
+    REFRESH_TOKEN_EXPIRE_DAYS: int = 7              # 7 days
+
+    # OAuth — Google
+    GOOGLE_CLIENT_ID: str = os.getenv("GOOGLE_CLIENT_ID", "")
+    GOOGLE_CLIENT_SECRET: str = os.getenv("GOOGLE_CLIENT_SECRET", "")
+    GOOGLE_REDIRECT_URI: str = os.getenv(
+        "GOOGLE_REDIRECT_URI",
+        "http://localhost:3000/auth/callback/google"
+    )
+
+    # OAuth — GitHub
+    GITHUB_CLIENT_ID: str = os.getenv("GITHUB_CLIENT_ID", "")
+    GITHUB_CLIENT_SECRET: str = os.getenv("GITHUB_CLIENT_SECRET", "")
+    GITHUB_REDIRECT_URI: str = os.getenv(
+        "GITHUB_REDIRECT_URI",
+        "http://localhost:3000/auth/callback/github"
+    )
 
     # Feature columns (universal 6-feature space)
     FEATURE_COLUMNS: List[str] = [

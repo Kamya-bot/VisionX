@@ -7,6 +7,10 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from contextlib import asynccontextmanager
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
+from slowapi.middleware import SlowAPIMiddleware
 import joblib
 import os
 import sys
@@ -27,9 +31,13 @@ from api.routes_drift import router as drift_router
 from api.routes_model_version import router as model_version_router
 from api.routes_auth import router as auth_router
 from api.routes_predictions import router as predictions_router
+from api.routes_feedback import router as feedback_router
 
 setup_production_logging(log_dir=settings.LOG_DIR)
 logger = logging.getLogger(__name__)
+
+# ── Rate limiter (keyed by remote IP) ─────────────────────────────────────────
+limiter = Limiter(key_func=get_remote_address, default_limits=[settings.RATE_LIMIT_GENERAL])
 
 
 class ModelStore:
@@ -56,19 +64,19 @@ def load_models():
             return False
 
         model_store.clustering_model = joblib.load(settings.CLUSTERING_MODEL_PATH)
-        logger.info(f"✅ Clustering model loaded")
+        logger.info("✅ Clustering model loaded")
 
         model_store.prediction_model = joblib.load(settings.PREDICTION_MODEL_PATH)
-        logger.info(f"✅ Prediction model loaded")
+        logger.info("✅ Prediction model loaded")
 
         if os.path.exists(settings.SCALER_PATH):
             model_store.scaler = joblib.load(settings.SCALER_PATH)
-            logger.info(f"✅ Scaler loaded")
+            logger.info("✅ Scaler loaded")
 
         feature_cols_path = os.path.join(settings.MODEL_DIR, "feature_columns.pkl")
         if os.path.exists(feature_cols_path):
             model_store.feature_columns = joblib.load(feature_cols_path)
-            logger.info(f"✅ Feature columns loaded")
+            logger.info("✅ Feature columns loaded")
 
         model_store.models_loaded = True
         logger.info("✅ All models loaded successfully!")
@@ -80,10 +88,6 @@ def load_models():
 
 
 def load_cluster_profiles():
-    """
-    Auto-generate dynamic cluster labels from the trained KMeans model.
-    No hardcoded labels anywhere.
-    """
     try:
         from ml.cluster_profiler import get_or_generate_profiles
         profiles = get_or_generate_profiles(
@@ -104,7 +108,6 @@ async def lifespan(app: FastAPI):
     logger.info(f"🚀 {settings.APP_NAME} v{settings.APP_VERSION}")
     logger.info("=" * 70)
 
-    # Database
     try:
         logger.info("🗄️  Initializing database...")
         init_db()
@@ -114,12 +117,10 @@ async def lifespan(app: FastAPI):
         logger.error(f"❌ Database init failed: {str(e)}")
         logger.warning("   Continuing without database (some features disabled)")
 
-    # Models
     models_loaded = load_models()
     if not models_loaded:
         logger.warning("⚠️  Models not loaded. Run the training pipeline.")
     else:
-        # Load dynamic cluster profiles (no hardcoded labels)
         app.state.cluster_profiles = load_cluster_profiles()
 
     logger.info(f"🌐 Server starting on {settings.HOST}:{settings.PORT}")
@@ -139,11 +140,16 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+# Rate limiting
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.add_middleware(SlowAPIMiddleware)
+
 app.add_middleware(RequestTrackingMiddleware)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
+    allow_origins=settings.CORS_ORIGINS,
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
     expose_headers=["*"],
@@ -180,6 +186,7 @@ async def general_exception_handler(request: Request, exc: Exception):
 app.include_router(health_router, tags=["Health"])
 app.include_router(auth_router, prefix=settings.API_V1_PREFIX, tags=["Authentication"])
 app.include_router(predictions_router, prefix=settings.API_V1_PREFIX, tags=["Prediction History"])
+app.include_router(feedback_router, prefix=settings.API_V1_PREFIX, tags=["Outcome Feedback"])
 app.include_router(ml_router, prefix=settings.API_V1_PREFIX, tags=["Machine Learning"])
 app.include_router(advanced_ml_router, prefix=settings.API_V1_PREFIX, tags=["Advanced ML"])
 app.include_router(analytics_router, prefix=settings.API_V1_PREFIX, tags=["Analytics"])
@@ -211,4 +218,4 @@ if __name__ == "__main__":
         port=settings.PORT,
         reload=settings.DEBUG,
         log_level=settings.LOG_LEVEL.lower(),
-    ) 
+    )
