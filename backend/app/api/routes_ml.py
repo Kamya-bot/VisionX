@@ -390,4 +390,4 @@ async def get_decision_patterns(user_id: str, request: Request):
         user_id=user_id,
         patterns=patterns,
         analyzed_decisions=0,
-    )
+    )# redeploy 
