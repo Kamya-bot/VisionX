@@ -35,7 +35,7 @@ from database import get_db
 from crud import create_prediction_log
 
 from ml.predict import predict_winner, score_options_for_user
-from ml.normalizer import detect_domain, DOMAIN_LABELS
+from ml.normalizer import detect_domain
 REAL_ML_AVAILABLE = True
 
 router = APIRouter()
