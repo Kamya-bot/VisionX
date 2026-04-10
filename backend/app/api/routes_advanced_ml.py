@@ -214,17 +214,6 @@ async def simulate_scenarios(
             }
         ]
         
-        return {
-            "user_id": request_data.user_id,
-            "scenarios": scenarios,
-            "insights": {
-                "most_sensitive_to": "price_sensitivity",
-                "highest_confidence_scenario": "Budget Conscious",
-                "recommended_strategy": "Emphasize value and cost-effectiveness"
-            },
-            "timestamp": datetime.now().isoformat()
-        }
-        
         # ✅ SAVE SIMULATION TO DATABASE
         try:
             import logging
@@ -429,3 +418,5 @@ def mock_predict(features: Dict) -> Dict[str, Any]:
         "prediction": "Option B" if score > 0.75 else "Option A",
         "confidence": min(score, 0.95)
     }
+
+
