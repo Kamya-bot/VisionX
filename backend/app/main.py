@@ -1,7 +1,7 @@
 """
-VisionX — FastAPI Application Entry Point
+VisionX – FastAPI Application Entry Point
 
-Phase 3: Added analytics + prediction history routes
+Phase 4: All routers registered, no dead routes
 """
 
 from __future__ import annotations
@@ -31,7 +31,7 @@ logger = logging.getLogger(__name__)
 MODELS_DIR = Path(__file__).parent.parent / "trained_models"
 
 CLUSTER_PROFILES = {
-    0: {"label": "Independent Thinker & Risk-Averse",   "dominant_features": ["fit_score", "risk_score"]},
+    0: {"label": "Independent Thinker & Risk-Averse",    "dominant_features": ["fit_score", "risk_score"]},
     1: {"label": "Growth-Oriented & Value-Conscious",    "dominant_features": ["growth_score", "value_score"]},
     2: {"label": "Budget Pragmatist & Stability-Seeker", "dominant_features": ["quality_score", "growth_score"]},
     3: {"label": "Socially-Validated & Speed-Driven",    "dominant_features": ["fit_score", "speed_score"]},
@@ -129,16 +129,25 @@ async def health(request: Request):
     }
 
 
-from api.routes_auth import router as auth_router
-from api.routes_ml import router as ml_router
-from api.routes_feedback import router as feedback_router
-from api.routes_retrain import router as retrain_router
-from api.routes_analytics import router as analytics_router
+# ── Routers ────────────────────────────────────────────────────────────────
+from api.routes_auth         import router as auth_router
+from api.routes_ml           import router as ml_router
+from api.routes_feedback     import router as feedback_router
+from api.routes_retrain      import router as retrain_router
+from api.routes_analytics    import router as analytics_router
+from api.routes_predictions  import router as predictions_router
+from api.routes_advanced_ml  import router as advanced_ml_router
+from api.routes_drift        import router as drift_router
+from api.routes_model_version import router as model_version_router
 
 PREFIX = f"/api/{settings.API_VERSION}"
 
-app.include_router(auth_router,     prefix=PREFIX, tags=["auth"])
-app.include_router(ml_router,       prefix=PREFIX, tags=["ml"])
-app.include_router(feedback_router, prefix=PREFIX, tags=["feedback"])
-app.include_router(retrain_router,  prefix=PREFIX, tags=["retrain"])
-app.include_router(analytics_router, prefix=PREFIX, tags=["analytics"])
+app.include_router(auth_router,          prefix=PREFIX, tags=["auth"])
+app.include_router(ml_router,            prefix=PREFIX, tags=["ml"])
+app.include_router(feedback_router,      prefix=PREFIX, tags=["feedback"])
+app.include_router(retrain_router,       prefix=PREFIX, tags=["retrain"])
+app.include_router(analytics_router,     prefix=PREFIX, tags=["analytics"])
+app.include_router(predictions_router,   prefix=PREFIX, tags=["predictions"])
+app.include_router(advanced_ml_router,   prefix=PREFIX, tags=["advanced_ml"])
+app.include_router(drift_router,         prefix=PREFIX, tags=["drift"])
+app.include_router(model_version_router, prefix=PREFIX, tags=["model_versions"])

@@ -1,15 +1,8 @@
 """
-VisionX — Analytics & Prediction History Routes
+VisionX – Analytics API Routes
 
-GET /api/v1/analytics/kpis
-  → Dashboard KPI cards: total predictions, avg confidence, model accuracy
-
-GET /api/v1/predictions/history
-  → Paginated prediction history for the current user
-  → Used by dashboard recent predictions list and history page
-
-GET /api/v1/predictions/{prediction_id}
-  → Single prediction detail (for results page)
+Phase 4: Removed duplicate /predictions/history (lives in routes_predictions.py).
+         This file owns /analytics/kpis and /analytics/overview only.
 """
 
 from __future__ import annotations
@@ -18,223 +11,169 @@ import json
 import logging
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Query
-from sqlalchemy import desc, func
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy import func
 from sqlalchemy.orm import Session
 
 from api.routes_auth import get_current_user
 from database import get_db
-import models
+from models import PredictionLog, User, FeedbackLog
 
-router = APIRouter()
+router = APIRouter(prefix="/analytics", tags=["analytics"])
 logger = logging.getLogger(__name__)
 
 MODELS_DIR = Path(__file__).parent.parent.parent / "trained_models"
 
 
-def _load_model_accuracy() -> tuple:
-    """Read accuracy/roc from training_results.json."""
+def _load_training_results() -> dict:
+    path = MODELS_DIR / "training_results.json"
     try:
-        with open(MODELS_DIR / "training_results.json") as f:
-            r = json.load(f)
-        return r.get("accuracy", 0.9806), r.get("roc_auc", 0.9988)
+        if path.exists():
+            with open(path) as f:
+                return json.load(f)
     except Exception:
-        return 0.9806, 0.9988
+        pass
+    return {}
 
 
-# ── KPI endpoint ──────────────────────────────────────────────────────────────
-
-@router.get("/analytics/kpis")
+@router.get("/kpis")
 async def get_kpis(
+    current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
-    current_user: models.User = Depends(get_current_user),
 ):
     """
-    Dashboard KPI cards.
-    Returns per-user stats + global model metrics.
+    Real KPI metrics for the dashboard.
+    Returns total predictions, avg confidence, acceptance rate,
+    cluster distribution, and model accuracy – all from live DB data.
     """
-    user_id = str(current_user.id)
-    accuracy, roc_auc = _load_model_accuracy()
-
-    # Total predictions for this user
-    total_predictions = (
-        db.query(func.count(models.PredictionLog.id))
-        .filter(models.PredictionLog.user_id == user_id)
-        .scalar() or 0
-    )
-
-    # Average confidence for this user (last 30 days)
-    cutoff = datetime.utcnow() - timedelta(days=30)
-    avg_conf = (
-        db.query(func.avg(models.PredictionLog.confidence))
-        .filter(
-            models.PredictionLog.user_id == user_id,
-            models.PredictionLog.created_at >= cutoff,
-            models.PredictionLog.confidence.isnot(None),
+    try:
+        # ── Total predictions for this user ───────────────────────────────
+        total = (
+            db.query(func.count(PredictionLog.id))
+            .filter(PredictionLog.user_id == current_user.id)
+            .scalar() or 0
         )
-        .scalar()
-    )
 
-    # User cluster
-    cluster_label = None
-    if current_user.cluster_id is not None:
-        # Look up label from most recent prediction
-        recent = (
-            db.query(models.PredictionLog)
-            .filter(models.PredictionLog.user_id == user_id)
-            .order_by(desc(models.PredictionLog.created_at))
-            .first()
+        # ── Avg confidence (last 30 days) ─────────────────────────────────
+        since = datetime.utcnow() - timedelta(days=30)
+        avg_conf_row = (
+            db.query(func.avg(PredictionLog.confidence))
+            .filter(
+                PredictionLog.user_id == current_user.id,
+                PredictionLog.created_at >= since,
+            )
+            .scalar()
         )
-        if recent:
-            cluster_id = recent.cluster_id
-            cluster_map = {
-                0: "Independent Thinker & Risk-Averse",
-                1: "Growth-Oriented & Value-Conscious",
-                2: "Budget Pragmatist & Stability-Seeker",
-                3: "Socially-Validated & Speed-Driven",
-            }
-            cluster_label = cluster_map.get(cluster_id)
+        avg_confidence = round(float(avg_conf_row), 3) if avg_conf_row else 0.0
 
-    # Feedback stats
-    total_feedback = (
-        db.query(func.count(models.OutcomeFeedback.id))
-        .filter(models.OutcomeFeedback.user_id == user_id)
-        .scalar() or 0
-    )
-    accepted_feedback = (
-        db.query(func.count(models.OutcomeFeedback.id))
-        .filter(
-            models.OutcomeFeedback.user_id == user_id,
-            models.OutcomeFeedback.accepted == True,
+        # ── Acceptance rate from feedback ─────────────────────────────────
+        try:
+            total_feedback = (
+                db.query(func.count(FeedbackLog.id))
+                .filter(FeedbackLog.user_id == current_user.id)
+                .scalar() or 0
+            )
+            accepted = (
+                db.query(func.count(FeedbackLog.id))
+                .filter(
+                    FeedbackLog.user_id == current_user.id,
+                    FeedbackLog.accepted == True,  # noqa: E712
+                )
+                .scalar() or 0
+            )
+            acceptance_rate = round(accepted / total_feedback, 3) if total_feedback else 0.0
+        except Exception:
+            acceptance_rate = 0.0
+            total_feedback = 0
+
+        # ── Cluster distribution (real, from DB) ──────────────────────────
+        cluster_rows = (
+            db.query(PredictionLog.cluster_id, func.count(PredictionLog.id))
+            .filter(PredictionLog.user_id == current_user.id)
+            .group_by(PredictionLog.cluster_id)
+            .all()
         )
-        .scalar() or 0
-    )
+        cluster_dist = {str(row[0]): row[1] for row in cluster_rows if row[0] is not None}
 
-    return {
-        "status": "success",
-        "data": {
-            "total_predictions": total_predictions,
-            "avg_confidence": round(float(avg_conf), 3) if avg_conf else None,
-            "model_accuracy": round(accuracy, 4),
-            "model_roc_auc": round(roc_auc, 4),
-            "model_type": "XGBoost_CalibratedCV",
-            "user_cluster": cluster_label,
-            "feedback": {
-                "total": total_feedback,
-                "accepted": accepted_feedback,
-                "acceptance_rate": round(accepted_feedback / total_feedback, 3) if total_feedback > 0 else None,
-            },
-        },
-    }
+        # ── Model accuracy from training_results.json ─────────────────────
+        tr = _load_training_results()
+        model_accuracy = tr.get("accuracy", tr.get("test_accuracy", None))
+        if model_accuracy is not None:
+            model_accuracy = round(float(model_accuracy), 4)
+
+        # ── Predictions this week vs last week ────────────────────────────
+        week_start = datetime.utcnow() - timedelta(days=7)
+        prev_week_start = datetime.utcnow() - timedelta(days=14)
+        this_week = (
+            db.query(func.count(PredictionLog.id))
+            .filter(
+                PredictionLog.user_id == current_user.id,
+                PredictionLog.created_at >= week_start,
+            )
+            .scalar() or 0
+        )
+        last_week = (
+            db.query(func.count(PredictionLog.id))
+            .filter(
+                PredictionLog.user_id == current_user.id,
+                PredictionLog.created_at >= prev_week_start,
+                PredictionLog.created_at < week_start,
+            )
+            .scalar() or 0
+        )
+        weekly_delta = this_week - last_week
+
+        return {
+            "status": "success",
+            "total_predictions": total,
+            "avg_confidence": avg_confidence,
+            "acceptance_rate": acceptance_rate,
+            "total_feedback": total_feedback,
+            "cluster_distribution": cluster_dist,
+            "model_accuracy": model_accuracy,
+            "this_week_predictions": this_week,
+            "last_week_predictions": last_week,
+            "weekly_delta": weekly_delta,
+            "generated_at": datetime.utcnow().isoformat(),
+        }
+
+    except Exception as e:
+        logger.error(f"KPI fetch failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 
-# ── Prediction history ────────────────────────────────────────────────────────
-
-@router.get("/predictions/history")
-async def get_prediction_history(
-    limit: int = Query(default=50, le=200),
-    offset: int = Query(default=0, ge=0),
+@router.get("/overview")
+async def get_overview(
+    current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
-    current_user: models.User = Depends(get_current_user),
 ):
     """
-    Paginated prediction history for the current user.
-    Returns enough data for the dashboard recent list and history page.
+    Global platform overview (admin-style).
+    Returns platform-wide totals, not per-user.
     """
-    user_id = str(current_user.id)
-
-    rows = (
-        db.query(models.PredictionLog)
-        .filter(models.PredictionLog.user_id == user_id)
-        .order_by(desc(models.PredictionLog.created_at))
-        .offset(offset)
-        .limit(limit)
-        .all()
-    )
-
-    total = (
-        db.query(func.count(models.PredictionLog.id))
-        .filter(models.PredictionLog.user_id == user_id)
-        .scalar() or 0
-    )
-
-    predictions = []
-    for row in rows:
-        predictions.append({
-            "prediction_id": str(row.id),
-            "recommended_option_name": row.recommended_option_name,
-            "recommended_option_id": row.recommended_option_id,
-            "confidence": row.confidence,
-            "reasoning": row.recommendation,
-            "domain_detected": row.domain_detected,
-            "cluster_id": row.cluster_id,
-            "options_count": row.options_count,
-            "shap_values": row.shap_values,
-            "universal_features": row.universal_features,
-            "feature_importance": None,  # stored in features blob
-            "created_at": row.created_at.isoformat() if row.created_at else None,
-            "prediction_time_ms": row.prediction_time_ms,
-        })
-
-    return {
-        "status": "success",
-        "total": total,
-        "offset": offset,
-        "limit": limit,
-        "predictions": predictions,
-    }
-
-
-# ── Single prediction detail ──────────────────────────────────────────────────
-
-@router.get("/predictions/{prediction_id}")
-async def get_prediction(
-    prediction_id: str,
-    db: Session = Depends(get_db),
-    current_user: models.User = Depends(get_current_user),
-):
-    """
-    Full detail for a single prediction — used by results.html.
-    """
-    row = (
-        db.query(models.PredictionLog)
-        .filter(
-            models.PredictionLog.id == prediction_id,
-            models.PredictionLog.user_id == str(current_user.id),
+    try:
+        platform_total = db.query(func.count(PredictionLog.id)).scalar() or 0
+        unique_users = (
+            db.query(func.count(func.distinct(PredictionLog.user_id))).scalar() or 0
         )
-        .first()
-    )
-    if not row:
-        raise HTTPException(status_code=404, detail="Prediction not found")
+        avg_conf = (
+            db.query(func.avg(PredictionLog.confidence)).scalar()
+        )
+        avg_conf = round(float(avg_conf), 3) if avg_conf else 0.0
 
-    # Load feedback for this prediction if it exists
-    feedback = (
-        db.query(models.OutcomeFeedback)
-        .filter(models.OutcomeFeedback.prediction_id == prediction_id)
-        .first()
-    )
+        tr = _load_training_results()
 
-    return {
-        "status": "success",
-        "data": {
-            "prediction_id": str(row.id),
-            "recommended_option_name": row.recommended_option_name,
-            "recommended_option_id": row.recommended_option_id,
-            "confidence": row.confidence,
-            "reasoning": row.recommendation,
-            "domain_detected": row.domain_detected,
-            "cluster_id": row.cluster_id,
-            "shap_values": row.shap_values,
-            "universal_features": row.universal_features,
-            "features": row.features,
-            "options_count": row.options_count,
-            "prediction_time_ms": row.prediction_time_ms,
-            "created_at": row.created_at.isoformat() if row.created_at else None,
-            "feedback": {
-                "accepted": feedback.accepted if feedback else None,
-                "satisfaction": feedback.satisfaction if feedback else None,
-            } if feedback else None,
-        },
-    }
+        return {
+            "status": "success",
+            "platform_total_predictions": platform_total,
+            "unique_active_users": unique_users,
+            "platform_avg_confidence": avg_conf,
+            "model_version": tr.get("model_version", "unknown"),
+            "last_trained": tr.get("trained_at", None),
+            "generated_at": datetime.utcnow().isoformat(),
+        }
+
+    except Exception as e:
+        logger.error(f"Overview fetch failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))

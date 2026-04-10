@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signing you in – VisionX</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: #0B0D17;
+            color: #E6E8F2;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            text-align: center;
+            padding: 3rem 2.5rem;
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 16px;
+            max-width: 380px;
+            width: 90%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4F8CFF;
+            letter-spacing: .5px;
+            margin-bottom: 2rem;
+        }
+
+        /* Spinner */
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(79,140,255,.2);
+            border-top-color: #4F8CFF;
+            border-radius: 50%;
+            animation: spin .8s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .status {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: .5rem;
+        }
+        .sub {
+            font-size: .875rem;
+            color: #9AA3C7;
+        }
+
+        .error-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        .error-msg {
+            color: #ef4444;
+            font-size: .9rem;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+        .btn-back {
+            display: none;
+            padding: .65rem 1.5rem;
+            background: rgba(79,140,255,.15);
+            color: #4F8CFF;
+            border: 1px solid rgba(79,140,255,.3);
+            border-radius: 8px;
+            font-size: .9rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-back:hover { background: rgba(79,140,255,.25); }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="logo">VisionX</div>
+
+    <div id="spinnerEl" class="spinner"></div>
+    <div id="errorIcon" class="error-icon">❌</div>
+
+    <div id="statusEl" class="status">Completing sign-in…</div>
+    <div id="subEl"    class="sub">Hang tight, we're verifying your account.</div>
+    <div id="errorMsg" class="error-msg"></div>
+
+    <a id="backBtn" class="btn-back" href="login.html">Back to Login</a>
+</div>
+
+<script src="js/api-config.js"></script>
+<script>
+(async function handleOAuthCallback() {
+    const params   = new URLSearchParams(window.location.search);
+    const token    = params.get('token');
+    const refresh  = params.get('refresh_token');
+    const errorMsg = params.get('error');
+
+    const statusEl  = document.getElementById('statusEl');
+    const subEl     = document.getElementById('subEl');
+    const spinnerEl = document.getElementById('spinnerEl');
+    const errorIcon = document.getElementById('errorIcon');
+    const errorDiv  = document.getElementById('errorMsg');
+    const backBtn   = document.getElementById('backBtn');
+
+    function showError(msg) {
+        spinnerEl.style.display = 'none';
+        errorIcon.style.display = 'block';
+        statusEl.textContent    = 'Sign-in failed';
+        subEl.textContent       = '';
+        errorDiv.textContent    = msg;
+        errorDiv.style.display  = 'block';
+        backBtn.style.display   = 'inline-block';
+    }
+
+    // ── Error returned by backend ─────────────────────────────────────────
+    if (errorMsg) {
+        showError(decodeURIComponent(errorMsg));
+        return;
+    }
+
+    // ── No token in callback ──────────────────────────────────────────────
+    if (!token) {
+        showError('No authentication token received. Please try again.');
+        return;
+    }
+
+    // ── Store tokens ──────────────────────────────────────────────────────
+    localStorage.setItem('visionx_token', token);
+    if (refresh) localStorage.setItem('visionx_refresh_token', refresh);
+
+    statusEl.textContent = 'Fetching your profile…';
+
+    // ── Fetch user profile with new token ─────────────────────────────────
+    try {
+        const res = await fetch(
+            (window.API_BASE_URL || 'https://visionx-mzqc.onrender.com') + '/api/v1/auth/me',
+            { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        if (!res.ok) throw new Error(`Profile fetch returned ${res.status}`);
+
+        const profile = await res.json();
+
+        const user = {
+            id:            profile.user_id,
+            email:         profile.email,
+            name:          profile.full_name || profile.email.split('@')[0],
+            full_name:     profile.full_name,
+            cluster_id:    profile.cluster_id,
+            cluster_label: profile.cluster_label,
+            created_at:    profile.created_at,
+        };
+        localStorage.setItem('visionx_user', JSON.stringify(user));
+
+        statusEl.textContent = 'Signed in! Redirecting…';
+        subEl.textContent    = `Welcome back, ${user.name}`;
+
+        setTimeout(() => { window.location.href = 'dashboard.html'; }, 800);
+
+    } catch (err) {
+        console.error('OAuth callback profile fetch failed:', err);
+        // Token is stored — still redirect to dashboard and let it retry
+        statusEl.textContent = 'Almost there…';
+        setTimeout(() => { window.location.href = 'dashboard.html'; }, 1200);
+    }
+})();
+</script>
+</body>
+</html>
