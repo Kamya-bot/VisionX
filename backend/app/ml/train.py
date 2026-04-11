@@ -208,7 +208,7 @@ def train(force_synthetic_only: bool = False) -> dict:
 
     # 7. KMeans clustering (on raw features — NOT scaled)
     kmeans = KMeans(n_clusters=N_CLUSTERS, random_state=42, n_init=20)
-    kmeans.fit(X[:, :])  # cluster on raw feature space
+    kmeans.fit(X_scaled)  # cluster on raw feature space
 
     # 8. Feature importance
     fi = xgb.feature_importances_
