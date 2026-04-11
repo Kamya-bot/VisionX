@@ -1,5 +1,5 @@
 """
-VisionX — Prediction History API Routes
+VisionX - Prediction History API Routes
 """
 
 from fastapi import APIRouter, Depends, Query, HTTPException
@@ -42,6 +42,7 @@ async def get_prediction_history(
 
     predictions = []
     for row in rows:
+        option_name = row.recommended_option_name if row.recommended_option_name and len(row.recommended_option_name) < 100 else None
         predictions.append({
             "id":                      row.id,
             "prediction_id":           row.id,
@@ -50,8 +51,8 @@ async def get_prediction_history(
             "cluster_label":           CLUSTER_LABELS.get(row.cluster_id, f"Cluster {row.cluster_id}"),
             "confidence":              round(float(row.confidence), 3) if row.confidence else 0,
             "recommendation":          row.recommendation,
-            "recommended_option_name": row.recommended_option_name or row.recommendation,
-            "title":                   row.recommendation or "Prediction",
+            "recommended_option_name": option_name or "Option A",
+            "title":                   option_name or "Prediction",
             "features":                row.features,
             "shap_values":             row.shap_values,
             "model_version":           row.model_version,
@@ -87,6 +88,7 @@ async def delete_prediction(
     db.commit()
     return {"status": "success", "deleted": prediction_id}
 
+
 @router.get("/predictions/{prediction_id}")
 async def get_prediction_by_id(
     prediction_id: str,
@@ -100,17 +102,24 @@ async def get_prediction_by_id(
     )
     if not row:
         raise HTTPException(status_code=404, detail="Prediction not found")
+
+    option_name = row.recommended_option_name if row.recommended_option_name and len(row.recommended_option_name) < 100 else None
+
     return {
-        "status": "success", "id": row.id, "prediction_id": row.id,
-        "created_at": row.created_at.isoformat() if row.created_at else None,
-        "cluster_id": row.cluster_id,
-        "cluster_label": CLUSTER_LABELS.get(row.cluster_id, f"Cluster {row.cluster_id}"),
-        "confidence": round(float(row.confidence), 3) if row.confidence else 0,
-        "recommendation": row.recommendation, "recommended_option_name": row.recommended_option_name or row.recommendation,
-        "reasoning": row.recommendation, "features": row.features,
-        "shap_values": row.shap_values, "universal_features": row.universal_features,
-        "model_version": row.model_version, "prediction_time_ms": row.prediction_time_ms,
-        "domain_detected": row.domain_detected,
+        "status":                  "success",
+        "id":                      row.id,
+        "prediction_id":           row.id,
+        "created_at":              row.created_at.isoformat() if row.created_at else None,
+        "cluster_id":              row.cluster_id,
+        "cluster_label":           CLUSTER_LABELS.get(row.cluster_id, f"Cluster {row.cluster_id}"),
+        "confidence":              round(float(row.confidence), 3) if row.confidence else 0,
+        "recommendation":          row.recommendation,
+        "recommended_option_name": option_name or "Option A",
+        "reasoning":               row.recommendation,
+        "features":                row.features,
+        "shap_values":             row.shap_values,
+        "universal_features":      row.universal_features,
+        "model_version":           row.model_version,
+        "prediction_time_ms":      row.prediction_time_ms,
+        "domain_detected":         row.domain_detected,
     }
-
-
