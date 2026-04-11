@@ -6,6 +6,9 @@ Phase 2 changes:
   - /ml/analytics returns real training metrics from training_results.json
   - model accuracy/roc_auc read from disk, not hardcoded
   - All other endpoints unchanged from Phase 1
+
+Phase 3 fix:
+  - /ml/predict now saves synchronously and returns real prediction_id
 """
 
 
@@ -119,47 +122,6 @@ def assign_cluster(user_id: str, db: Session, model_store) -> tuple:
         return 0, 0.5
 
 
-# ── Background DB logging ─────────────────────────────────────────────────────
-
-def _log_prediction_bg(
-    user_id: Optional[str],
-    features: dict,
-    cluster_id: int,
-    confidence: float,
-    recommendation: str,
-    shap_values: Optional[dict],
-    universal_features: Optional[dict],
-    model_version: str,
-    prediction_time_ms: float,
-    recommended_option_id: Optional[str],
-    recommended_option_name: Optional[str],
-    domain_detected: Optional[str],
-    options_count: int,
-    db: Session,
-):
-    try:
-        pred = models.PredictionLog(
-            user_id=user_id,
-            features=features,
-            cluster_id=cluster_id,
-            confidence=confidence,
-            recommendation=recommendation,
-            shap_values=shap_values,
-            universal_features=universal_features,
-            model_version=model_version,
-            prediction_time_ms=prediction_time_ms,
-            recommended_option_id=recommended_option_id,
-            recommended_option_name=recommended_option_name,
-            domain_detected=domain_detected,
-            options_count=options_count,
-        )
-        db.add(pred)
-        db.commit()
-    except Exception as e:
-        logger.warning(f"Background DB log failed: {e}")
-        db.rollback()
-
-
 # ── Real cluster distribution from DB ────────────────────────────────────────
 
 def _get_real_cluster_distribution(db: Session, cluster_profiles: Dict) -> Dict[str, float]:
@@ -234,7 +196,7 @@ async def get_user_cluster(user_id: str, request: Request, db: Session = Depends
     )
 
 
-@router.post("/ml/predict", response_model=PredictionResponse)
+@router.post("/ml/predict")
 @_limiter.limit(settings.RATE_LIMIT_PREDICT)
 async def predict(
     request_data: PredictionRequest,
@@ -271,39 +233,54 @@ async def predict(
         for opt in request_data.options
     }
 
-    background_tasks.add_task(
-        _log_prediction_bg,
-        user_id=user_id,
-        features=features_payload,
-        cluster_id=cluster_id,
-        confidence=result["confidence"],
-        recommendation=result["reasoning"],
-        shap_values=result.get("shap_values"),
-        universal_features=result.get("universal_features"),
-        model_version=settings.APP_VERSION,
-        prediction_time_ms=round(prediction_time_ms, 2),
-        recommended_option_id=result["recommended_option_id"],
-        recommended_option_name=result["recommended_option_name"],
-        domain_detected=result.get("domain_detected"),
-        options_count=len(request_data.options),
-        db=db,
-    )
+    # Save synchronously so we can return the real prediction_id to the frontend
+    prediction_id = None
+    try:
+        pred = models.PredictionLog(
+            user_id=user_id,
+            features=features_payload,
+            cluster_id=cluster_id,
+            confidence=result["confidence"],
+            recommendation=result["reasoning"],
+            shap_values=result.get("shap_values"),
+            universal_features=result.get("universal_features"),
+            model_version=settings.APP_VERSION,
+            prediction_time_ms=round(prediction_time_ms, 2),
+            recommended_option_id=result["recommended_option_id"],
+            recommended_option_name=result["recommended_option_name"],
+            domain_detected=result.get("domain_detected"),
+            options_count=len(request_data.options),
+        )
+        db.add(pred)
+        db.commit()
+        db.refresh(pred)
+        prediction_id = pred.id
+        logger.info(f"Prediction saved: {prediction_id} for user {user_id}")
+    except Exception as e:
+        logger.warning(f"DB log failed: {e}")
+        db.rollback()
 
-    return PredictionResponse(
-        recommended_option_id=result["recommended_option_id"],
-        recommended_option_name=result["recommended_option_name"],
-        confidence=result["confidence"],
-        reasoning=result["reasoning"],
-        alternative_options=result["alternative_options"],
-        feature_importance=[
-            FeatureImportance(
-                feature_name=fi["feature_name"],
-                importance=fi["importance"],
-            )
+    return {
+        "prediction_id":         prediction_id,
+        "recommended_option_id":   result["recommended_option_id"],
+        "recommended_option_name": result["recommended_option_name"],
+        "confidence":              result["confidence"],
+        "reasoning":               result["reasoning"],
+        "alternative_options":     result["alternative_options"],
+        "feature_importance": [
+            {
+                "feature_name": fi["feature_name"],
+                "importance":   fi["importance"],
+            }
             for fi in result["feature_importance"]
         ],
-        user_cluster=user_cluster,
-    )
+        "user_cluster":   user_cluster,
+        "shap_values":    result.get("shap_values"),
+        "universal_features": result.get("universal_features"),
+        "domain_detected":    result.get("domain_detected"),
+        "prediction_time_ms": round(prediction_time_ms, 2),
+        "model_version":      settings.APP_VERSION,
+    }
 
 
 @router.post("/ml/recommend", response_model=RecommendationResponse)
