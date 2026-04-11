@@ -8,7 +8,6 @@ Phase 2 changes:
   - All other endpoints unchanged from Phase 1
 """
 
-from __future__ import annotations
 
 import json
 import logging
