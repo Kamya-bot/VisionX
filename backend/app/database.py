@@ -1,83 +1,66 @@
 """
 Database configuration and connection management for VisionX.
-
 Supports both SQLite (development) and PostgreSQL (production).
 """
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 import os
 from typing import Generator
 
-# Get database URL from environment or use SQLite for development
-DATABASE_URL = os.getenv(
-    "DATABASE_URL",
-    "sqlite:////tmp/visionx.db"
-)
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:////tmp/visionx.db")
 
-# Handle PostgreSQL URL format from some hosting providers (postgres:// -> postgresql://)
 if DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
-# Configure engine based on database type
 if DATABASE_URL.startswith("sqlite"):
-    # SQLite configuration
     engine = create_engine(
         DATABASE_URL,
         connect_args={"check_same_thread": False},
         poolclass=StaticPool,
-        echo=False  # Set to True for SQL query logging
+        echo=False
     )
 else:
-    # PostgreSQL configuration
     engine = create_engine(
         DATABASE_URL,
         pool_size=10,
         max_overflow=20,
-        pool_pre_ping=True,  # Verify connections before using
-        echo=False  # Set to True for SQL query logging
+        pool_pre_ping=True,
+        echo=False
     )
 
-# Session factory
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-# Base class for models
 Base = declarative_base()
 
 
 def get_db() -> Generator:
-    """
-    Dependency for getting database sessions.
-    
-    Usage in FastAPI endpoints:
-        @app.get("/items")
-        def read_items(db: Session = Depends(get_db)):
-            items = db.query(Item).all()
-            return items
-    
-    Yields:
-        Database session that will be automatically closed after use.
-    """
     db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
 
+
 def init_db():
-    import models  # noqa - ensures all models are registered
+    import models  # noqa
     Base.metadata.create_all(bind=engine, checkfirst=True)
+    # Safe column migrations — adds missing columns without dropping existing data
+    with engine.connect() as conn:
+        for col, coltype in [
+            ("avatar_url",      "TEXT"),
+            ("oauth_provider",  "TEXT"),
+            ("oauth_sub",       "TEXT"),
+        ]:
+            try:
+                conn.execute(text(f"ALTER TABLE users ADD COLUMN {col} {coltype}"))
+                conn.commit()
+            except Exception:
+                pass  # column already exists, safe to ignore
 
 
 def get_db_info() -> dict:
-    """
-    Get information about current database connection.
-    
-    Returns:
-        Dictionary with database type, URL, and connection status.
-    """
     return {
         "database_type": "PostgreSQL" if "postgresql" in DATABASE_URL else "SQLite",
         "database_url": DATABASE_URL.split("@")[-1] if "@" in DATABASE_URL else DATABASE_URL,
