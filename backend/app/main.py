@@ -139,7 +139,7 @@ from api.routes_advanced_ml  import router as advanced_ml_router
 from api.routes_drift        import router as drift_router
 from api.routes_model_version import router as model_version_router
 
-PREFIX = f"/api/{settings.API_VERSION}"
+PREFIX = settings.API_V1_PREFIX
 
 app.include_router(auth_router,          prefix=PREFIX, tags=["auth"])
 app.include_router(ml_router,            prefix=PREFIX, tags=["ml"])
@@ -150,5 +150,7 @@ app.include_router(predictions_router,   prefix=PREFIX, tags=["predictions"])
 app.include_router(advanced_ml_router,   prefix=PREFIX, tags=["advanced_ml"])
 app.include_router(drift_router,         prefix=PREFIX, tags=["drift"])
 app.include_router(model_version_router, prefix=PREFIX, tags=["model_versions"])
+
+
 
 
