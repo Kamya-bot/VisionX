@@ -406,19 +406,19 @@ class DriftMonitor:
                     metric_value=1.0 if summary.get("overall_status") == "stable" else
                                  0.5 if summary.get("overall_status") == "monitor" else 0.0,
                     data_window="drift_check",
-                    metadata={"status": summary.get("overall_status"), "drifted_features": summary.get("drifted_features", [])}
+                    extra_data={"status": summary.get("overall_status"), "drifted_features": summary.get("drifted_features", [])}
                 ),
                 db_models.ModelMetrics(
                     metric_name="drift_prediction_psi",
                     metric_value=float(summary.get("prediction_psi", 0.0)),
                     data_window="drift_check",
-                    metadata={"severity": prediction_drift.get("severity", "unknown")}
+                    extra_data={"severity": prediction_drift.get("severity", "unknown")}
                 ),
                 db_models.ModelMetrics(
                     metric_name="drift_feature_count",
                     metric_value=float(len(summary.get("drifted_features", []))),
                     data_window="drift_check",
-                    metadata={"drifted": summary.get("drifted_features", [])}
+                    extra_data={"drifted": summary.get("drifted_features", [])}
                 ),
             ]
 
@@ -451,3 +451,4 @@ def check_model_drift(
         current_predictions,
         feature_names
     )
+
