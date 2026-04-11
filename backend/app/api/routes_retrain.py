@@ -10,7 +10,6 @@ GET /api/v1/ml/retrain/status
   → Returns last training run metadata from training_results.json
 """
 
-from __future__ import annotations
 
 import json
 import logging

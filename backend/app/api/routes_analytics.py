@@ -5,7 +5,6 @@ Phase 4: Removed duplicate /predictions/history (lives in routes_predictions.py)
          This file owns /analytics/kpis and /analytics/overview only.
 """
 
-from __future__ import annotations
 
 import json
 import logging

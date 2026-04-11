@@ -10,7 +10,6 @@ GET /api/v1/feedback/stats
   → Used by the MLOps dashboard
 """
 
-from __future__ import annotations
 
 import logging
 from datetime import datetime, timedelta

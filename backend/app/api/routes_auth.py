@@ -9,7 +9,6 @@ Implements:
   - GitHub OAuth2 flow
 """
 
-from __future__ import annotations
 
 import hashlib
 import logging
