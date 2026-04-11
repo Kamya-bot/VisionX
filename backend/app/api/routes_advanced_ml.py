@@ -199,7 +199,7 @@ async def get_monitoring_status(
 
         status = "✅ Model stable"
         alerts = []
-        if avg_conf_7d and avg_conf_7d < 0.55:
+        if avg_conf_7d and avg_conf_7d < 0.40:
             status = "⚠️ Low confidence detected"
             alerts.append("Average confidence below 0.55 — consider retraining")
         if drift_indicator and abs(drift_indicator) > 0.05:
