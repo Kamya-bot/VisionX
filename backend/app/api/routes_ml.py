@@ -1,5 +1,5 @@
 """
-VisionX — ML Prediction Routes
+VisionX - ML Prediction Routes
 
 Phase 2 changes:
   - /ml/analytics now reads REAL cluster distribution from DB (not static 25/25/25/25)
@@ -9,6 +9,7 @@ Phase 2 changes:
 
 Phase 3 fix:
   - /ml/predict now saves synchronously and returns real prediction_id
+  - /ml/predict now saves cluster_id back to User record so dashboard shows cluster
 """
 
 
@@ -52,7 +53,7 @@ _limiter = Limiter(key_func=get_remote_address)
 MODELS_DIR = Path(__file__).parent.parent.parent / "trained_models"
 
 
-# ── Dependency helpers ────────────────────────────────────────────────────────
+# -- Dependency helpers -------------------------------------------------------
 
 def get_model_store(request: Request):
     return request.app.state.model_store
@@ -70,7 +71,7 @@ def validate_models_loaded(model_store):
         )
 
 
-# ── User clustering ───────────────────────────────────────────────────────────
+# -- User clustering ----------------------------------------------------------
 
 def build_user_vector(user_id: str, db: Session, model_store) -> np.ndarray:
     try:
@@ -122,13 +123,9 @@ def assign_cluster(user_id: str, db: Session, model_store) -> tuple:
         return 0, 0.5
 
 
-# ── Real cluster distribution from DB ────────────────────────────────────────
+# -- Real cluster distribution from DB ---------------------------------------
 
 def _get_real_cluster_distribution(db: Session, cluster_profiles: Dict) -> Dict[str, float]:
-    """
-    Reads actual prediction counts per cluster from DB.
-    Falls back to equal distribution if no data yet.
-    """
     try:
         results = (
             db.query(models.PredictionLog.cluster_id, func.count(models.PredictionLog.id))
@@ -146,7 +143,6 @@ def _get_real_cluster_distribution(db: Session, cluster_profiles: Dict) -> Dict[
             label = profile.get("label", f"Cluster {cluster_id}")
             dist[label] = round(count / total, 4)
 
-        # Fill any missing clusters with 0
         for cid, prof in cluster_profiles.items():
             label = prof.get("label", f"Cluster {cid}")
             if label not in dist:
@@ -155,7 +151,6 @@ def _get_real_cluster_distribution(db: Session, cluster_profiles: Dict) -> Dict[
         return dist
 
     except Exception:
-        # Genuine fallback: equal distribution
         if not cluster_profiles:
             return {}
         n = len(cluster_profiles)
@@ -166,7 +161,6 @@ def _get_real_cluster_distribution(db: Session, cluster_profiles: Dict) -> Dict[
 
 
 def _load_training_results() -> dict:
-    """Read latest training metrics from disk."""
     results_path = MODELS_DIR / "training_results.json"
     if results_path.exists():
         try:
@@ -177,7 +171,7 @@ def _load_training_results() -> dict:
     return {}
 
 
-# ── Endpoints ─────────────────────────────────────────────────────────────────
+# -- Endpoints ----------------------------------------------------------------
 
 @router.get("/ml/user-cluster", response_model=ClusterResponse)
 async def get_user_cluster(user_id: str, request: Request, db: Session = Depends(get_db)):
@@ -255,13 +249,19 @@ async def predict(
         db.commit()
         db.refresh(pred)
         prediction_id = pred.id
+
+        # Save cluster_id back to user profile so dashboard shows correct cluster
+        if current_user and current_user.cluster_id != cluster_id:
+            current_user.cluster_id = cluster_id
+            db.commit()
+
         logger.info(f"Prediction saved: {prediction_id} for user {user_id}")
     except Exception as e:
         logger.warning(f"DB log failed: {e}")
         db.rollback()
 
     return {
-        "prediction_id":         prediction_id,
+        "prediction_id":           prediction_id,
         "recommended_option_id":   result["recommended_option_id"],
         "recommended_option_name": result["recommended_option_name"],
         "confidence":              result["confidence"],
@@ -274,8 +274,8 @@ async def predict(
             }
             for fi in result["feature_importance"]
         ],
-        "user_cluster":   user_cluster,
-        "shap_values":    result.get("shap_values"),
+        "user_cluster":       user_cluster,
+        "shap_values":        result.get("shap_values"),
         "universal_features": result.get("universal_features"),
         "domain_detected":    result.get("domain_detected"),
         "prediction_time_ms": round(prediction_time_ms, 2),
@@ -335,7 +335,6 @@ async def get_analytics(
     validate_models_loaded(model_store)
     cluster_profiles = get_cluster_profiles(request)
 
-    # Real metrics from disk
     training_results = _load_training_results()
     accuracy = training_results.get("accuracy", 0.9806)
     roc_auc = training_results.get("roc_auc", 0.9988)
@@ -344,13 +343,10 @@ async def get_analytics(
     trained_at = training_results.get("trained_at", None)
     calibration = training_results.get("calibration", "platt_sigmoid")
 
-    # Real cluster distribution from DB
     real_dist = _get_real_cluster_distribution(db, cluster_profiles)
 
-    # Total predictions served
     total_predictions = db.query(func.count(models.PredictionLog.id)).scalar() or 0
 
-    # Feedback acceptance rate
     total_feedback = db.query(func.count(models.OutcomeFeedback.id)).scalar() or 0
     accepted_feedback = (
         db.query(func.count(models.OutcomeFeedback.id))
@@ -359,7 +355,6 @@ async def get_analytics(
     )
     acceptance_rate = round(accepted_feedback / total_feedback, 3) if total_feedback > 0 else None
 
-    # Labelled samples available for retraining
     labelled_samples = (
         db.query(func.count(models.OutcomeFeedback.id))
         .filter(models.OutcomeFeedback.features_snapshot.isnot(None))
