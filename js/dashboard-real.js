@@ -1,51 +1,71 @@
 /**
- * VisionX — Dashboard (Phase 3)
- * 100% real API data. No localStorage fallback for core stats.
- * Uses /analytics/kpis and /predictions/history endpoints.
+ * VisionX - Dashboard (Phase 3)
+ * 100% real API data.
+ * Uses /ml/analytics, /ml/monitor/status, and /predictions/history endpoints.
  */
 
 let _activityChart = null;
 let _categoriesChart = null;
 
 const CLUSTER_ICONS = {
-    'Independent Thinker & Risk-Averse':   { icon: '🎯', color: '#4F8CFF' },
-    'Growth-Oriented & Value-Conscious':   { icon: '📈', color: '#10b981' },
-    'Budget Pragmatist & Stability-Seeker':{ icon: '🏦', color: '#f59e0b' },
-    'Socially-Validated & Speed-Driven':   { icon: '⚡', color: '#a855f7' },
+    'Independent Thinker & Risk-Averse':    { icon: '🎯', color: '#4F8CFF' },
+    'Growth-Oriented & Value-Conscious':    { icon: '📈', color: '#10b981' },
+    'Budget Pragmatist & Stability-Seeker': { icon: '🏦', color: '#f59e0b' },
+    'Socially-Validated & Speed-Driven':    { icon: '⚡', color: '#a855f7' },
 };
 
 async function loadDashboardData() {
     const user = getCurrentUser();
     if (!user) { window.location.replace('login.html'); return; }
 
-    // Update avatar initial immediately
     document.querySelectorAll('.user-name-initial, #userInitials').forEach(el => {
         el.textContent = user.avatar || user.name?.charAt(0) || 'U';
     });
 
-    // ── Fetch KPIs and history in parallel ──────────────────────────────────
-    let kpis = null;
+    let analytics = null;
+    let monitor = null;
     let predictions = [];
 
     try {
-        const [kpiRes, histRes] = await Promise.all([
-            apiCall('/analytics/kpis'),
+        const [analyticsRes, monitorRes, histRes] = await Promise.all([
+            apiCall('/ml/analytics'),
+            apiCall('/ml/monitor/status'),
             apiCall('/predictions/history?limit=50'),
         ]);
 
-        kpis        = kpiRes.data || kpiRes;
+        analytics   = analyticsRes.data || analyticsRes;
+        monitor     = monitorRes;
         predictions = histRes.predictions || [];
 
-        _setEl('totalPredictions', kpis.total_predictions ?? '—');
-        _setEl('avgConfidence',
-            kpis.avg_confidence != null ? Math.round(kpis.avg_confidence * 100) + '%' : '—');
-        _setEl('modelAccuracy',
-            kpis.model_accuracy != null ? (kpis.model_accuracy * 100).toFixed(1) + '%' : '—');
+        // KPI cards
+        const totalPreds = analytics.total_predictions_served ?? predictions.length ?? 0;
+        const avgConf    = monitor?.metrics?.avg_confidence_7d;
+        const modelAcc   = analytics.model_accuracy;
 
-        // Cluster badge
-        const cluster = kpis.user_cluster;
-        _setEl('userClusterLabel', cluster || 'Not assigned yet');
-        _renderClusterBadge(cluster);
+        _setEl('totalPredictions', totalPreds);
+        _setEl('avgConfidence',
+            avgConf != null ? Math.round(avgConf * 100) + '%' : '—');
+        _setEl('modelAccuracy',
+            modelAcc != null ? (modelAcc * 100).toFixed(1) + '%' : '—');
+
+        // Cluster — fetch from /auth/me for latest value
+        let clusterLabel = null;
+        try {
+            const meRes = await apiCall('/auth/me');
+            if (meRes.cluster_label) {
+                clusterLabel = meRes.cluster_label;
+            } else if (meRes.cluster_id != null) {
+                const clusters = analytics.clusters || {};
+                const prof = clusters[String(meRes.cluster_id)];
+                clusterLabel = prof?.label || 'Cluster ' + meRes.cluster_id;
+            }
+        } catch (e) {
+            if (predictions.length) clusterLabel = predictions[0].cluster_label || null;
+        }
+
+        _setEl('userClusterLabel', clusterLabel || 'Not assigned yet');
+        _renderClusterBadge(clusterLabel);
+        _renderMLPerformance(analytics, monitor);
 
     } catch (err) {
         console.error('Dashboard API error:', err);
@@ -58,10 +78,9 @@ async function loadDashboardData() {
 
     _renderCharts(predictions);
     _renderRecentPredictions(predictions);
-    _renderMLPerformance(kpis);
 }
 
-// ── Cluster badge ─────────────────────────────────────────────────────────────
+// -- Cluster badge ------------------------------------------------------------
 function _renderClusterBadge(clusterLabel) {
     const el = document.getElementById('mlClusterBadge');
     if (!el) return;
@@ -79,22 +98,22 @@ function _renderClusterBadge(clusterLabel) {
     ` : `<div style="color:#9AA3C7;font-size:0.9rem;padding:1rem;">Make your first comparison to get assigned a decision profile.</div>`;
 }
 
-// ── ML performance card ───────────────────────────────────────────────────────
-function _renderMLPerformance(kpis) {
+// -- ML performance card ------------------------------------------------------
+function _renderMLPerformance(analytics, monitor) {
     const el = document.getElementById('mlPerformanceStats');
-    if (!el || !kpis) return;
+    if (!el) return;
 
-    const acc    = kpis.model_accuracy    ? (kpis.model_accuracy * 100).toFixed(2) + '%' : '—';
-    const roc    = kpis.model_roc_auc     ? kpis.model_roc_auc.toFixed(4)              : '—';
-    const fb     = kpis.feedback;
-    const accRate = fb?.acceptance_rate != null ? Math.round(fb.acceptance_rate * 100) + '%' : '—';
+    const acc     = analytics?.model_accuracy ? (analytics.model_accuracy * 100).toFixed(2) + '%' : '—';
+    const roc     = analytics?.model_roc_auc  ? analytics.model_roc_auc.toFixed(4) : '—';
+    const avgConf = monitor?.metrics?.avg_confidence_7d != null
+        ? Math.round(monitor.metrics.avg_confidence_7d * 100) + '%' : '—';
 
     el.innerHTML = `
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-top:1rem;">
             ${_statPill('Accuracy', acc, '#4F8CFF')}
             ${_statPill('ROC-AUC', roc, '#10b981')}
-            ${_statPill('Model', kpis.model_type || 'XGBoost', '#7B61FF')}
-            ${_statPill('Acceptance Rate', accRate, '#f59e0b')}
+            ${_statPill('Avg Confidence', avgConf, '#7B61FF')}
+            ${_statPill('Model Status', monitor?.models_loaded ? '✅ Live' : '⚠️ Loading', '#f59e0b')}
         </div>
     `;
 }
@@ -107,7 +126,7 @@ function _statPill(label, value, color) {
         </div>`;
 }
 
-// ── Charts ────────────────────────────────────────────────────────────────────
+// -- Charts -------------------------------------------------------------------
 function _renderCharts(predictions) {
     const actCtx = document.getElementById('activityChart');
     if (actCtx) {
@@ -134,8 +153,10 @@ function _renderCharts(predictions) {
             },
             options: {
                 responsive: true, maintainAspectRatio: false,
-                plugins: { legend: { display: false },
-                    tooltip: { backgroundColor: 'rgba(11,15,43,0.9)', titleColor: '#E6E8F2', bodyColor: '#9AA3C7' }},
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { backgroundColor: 'rgba(11,15,43,0.9)', titleColor: '#E6E8F2', bodyColor: '#9AA3C7' }
+                },
                 scales: {
                     y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9AA3C7', precision: 0 }},
                     x: { grid: { display: false }, ticks: { color: '#9AA3C7' }}
@@ -172,7 +193,7 @@ function _renderCharts(predictions) {
     }
 }
 
-// ── Recent predictions list ───────────────────────────────────────────────────
+// -- Recent predictions list --------------------------------------------------
 function _renderRecentPredictions(predictions) {
     const el = document.getElementById('recentPredictions');
     if (!el) return;
@@ -195,11 +216,12 @@ function _renderRecentPredictions(predictions) {
         const title = p.recommended_option_name ? `${p.recommended_option_name} recommended` : 'Comparison';
         const conf  = p.confidence;
         const ts    = p.created_at;
+        const domain = p.domain_detected || '';
         return `
         <div onclick="window.location.href='results.html?id=${id}'" style="cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:1rem;border-bottom:1px solid rgba(255,255,255,0.06);">
             <div>
                 <div style="font-weight:500;color:#E6E8F2;">${title}</div>
-                <div style="font-size:0.8rem;color:#9AA3C7;">${ts ? formatDate(ts) : ''} ${p.domain_detected ? '· ' + p.domain_detected : ''}</div>
+                <div style="font-size:0.8rem;color:#9AA3C7;">${ts ? formatDate(ts) : ''}${domain ? ' · ' + domain : ''}</div>
             </div>
             <div style="display:flex;align-items:center;gap:0.75rem;">
                 ${conf != null ? `<span style="background:rgba(79,140,255,0.2);color:#4F8CFF;padding:0.25rem 0.75rem;border-radius:12px;font-size:0.8rem;">${Math.round(conf * 100)}% conf</span>` : ''}
@@ -209,7 +231,7 @@ function _renderRecentPredictions(predictions) {
     }).join('');
 }
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
+// -- Helpers ------------------------------------------------------------------
 function _setEl(id, val) {
     const el = document.getElementById(id);
     if (el) el.textContent = val;
