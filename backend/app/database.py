@@ -48,13 +48,23 @@ def init_db():
     Base.metadata.create_all(bind=engine, checkfirst=True)
     # Safe column migrations — adds missing columns without dropping existing data
     with engine.connect() as conn:
-        for col, coltype in [
-            ("avatar_url",      "TEXT"),
-            ("oauth_provider",  "TEXT"),
-            ("oauth_sub",       "TEXT"),
-        ]:
+        migrations = [
+            ("users",           "avatar_url",              "TEXT"),
+            ("users",           "oauth_provider",          "TEXT"),
+            ("users",           "oauth_sub",               "TEXT"),
+            ("predictions_log", "domain_detected",         "TEXT"),
+            ("predictions_log", "options_count",           "INTEGER"),
+            ("predictions_log", "recommended_option_id",   "TEXT"),
+            ("predictions_log", "recommended_option_name", "TEXT"),
+            ("predictions_log", "recommendation",          "TEXT"),
+            ("predictions_log", "shap_values",             "JSONB"),
+            ("predictions_log", "universal_features",      "JSONB"),
+            ("predictions_log", "model_version",           "TEXT"),
+            ("predictions_log", "prediction_time_ms",      "FLOAT"),
+        ]
+        for table, col, coltype in migrations:
             try:
-                conn.execute(text(f"ALTER TABLE users ADD COLUMN {col} {coltype}"))
+                conn.execute(text(f"ALTER TABLE {table} ADD COLUMN {col} {coltype}"))
                 conn.commit()
             except Exception:
                 pass  # column already exists, safe to ignore
