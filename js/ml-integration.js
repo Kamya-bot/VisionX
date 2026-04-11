@@ -23,7 +23,7 @@
 
 const ML_CONFIG = {
     // Backend API base URL - UPDATE THIS to your deployed backend URL
-    baseURL: 'http://localhost:8000',
+    baseURL: 'https://visionx-mzqc.onrender.com',
     
     // API endpoints
     endpoints: {
@@ -475,3 +475,4 @@ window.formatConfidence = formatConfidence;
 window.getConfidenceLevel = getConfidenceLevel;
 
 console.log('✅ ML Integration loaded successfully');
+
