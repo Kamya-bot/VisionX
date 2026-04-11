@@ -46,7 +46,7 @@ async def get_drift_status(
     """
     try:
         # Get recent predictions from database
-        recent_preds = get_recent_predictions(db, days=lookback_days, limit=100)
+        recent_preds = get_recent_predictions(db, limit=100)
         
         if len(recent_preds) < 10:
             return {
@@ -297,3 +297,4 @@ def _interpret_drift(detail: dict) -> str:
             f"MINOR drift detected. Mean shifted by {mean_shift:.2f}. "
             "Continue monitoring."
         )
+
