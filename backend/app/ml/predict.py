@@ -1,5 +1,5 @@
 """
-VisionX — Real ML Prediction Engine
+VisionX - Real ML Prediction Engine
 XGBoost inference on 6 universal features.
 Now includes per-prediction SHAP values for real explainability.
 """
@@ -40,22 +40,43 @@ FEATURE_EXPLANATIONS = {
     "speed_score":   ("Time-to-Value",      "how quickly benefits materialize"),
 }
 
-# Module-level SHAP explainer cache — initialised on first use
+# Module-level SHAP explainer cache - initialised on first use
 _shap_explainer = None
+
+
+def _unwrap_model(model):
+    """
+    Unwrap CalibratedClassifierCV to get the base XGBoost estimator.
+    SHAP TreeExplainer requires the raw tree model, not the calibrated wrapper.
+    """
+    # CalibratedClassifierCV stores calibrated_classifiers_ after fitting
+    if hasattr(model, "calibrated_classifiers_"):
+        try:
+            return model.calibrated_classifiers_[0].estimator
+        except (IndexError, AttributeError):
+            pass
+        try:
+            return model.calibrated_classifiers_[0].base_estimator
+        except (IndexError, AttributeError):
+            pass
+    # Already a raw estimator
+    return model
 
 
 def _get_shap_explainer(model_store):
     """
     Returns a cached SHAP TreeExplainer for the prediction model.
-    SHAP is expensive to init — we do it once and reuse.
+    Unwraps CalibratedClassifierCV first so TreeExplainer can access the tree.
+    SHAP is expensive to init - we do it once and reuse.
     """
     global _shap_explainer
     if _shap_explainer is not None:
         return _shap_explainer
     try:
         import shap
-        _shap_explainer = shap.TreeExplainer(model_store.prediction_model)
-        logger.info("✅ SHAP TreeExplainer initialised")
+        base_model = _unwrap_model(model_store.prediction_model)
+        _shap_explainer = shap.TreeExplainer(base_model)
+        logger.info("SHAP TreeExplainer initialised on unwrapped model")
     except Exception as e:
         logger.warning(f"SHAP init failed: {e}")
         _shap_explainer = None
@@ -71,7 +92,6 @@ def _compute_shap_values(model_store, X: np.ndarray) -> Optional[Dict[str, float
     if explainer is None:
         return None
     try:
-        import shap
         shap_vals = explainer.shap_values(X)
         # shap_vals shape: (1, 6) for binary classification (class 1)
         if isinstance(shap_vals, list):
@@ -181,7 +201,7 @@ def score_options_for_user(options: List[Any], model_store, cluster_id: int) -> 
     return results
 
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
+# -- Helpers ------------------------------------------------------------------
 
 def _extract_features(option) -> Dict:
     if hasattr(option, "features"):
@@ -205,7 +225,7 @@ def _heuristic_score(universal: np.ndarray) -> float:
 
 def _get_feature_importance(model_store, universal: np.ndarray) -> np.ndarray:
     try:
-        base = model_store.prediction_model.feature_importances_
+        base = _unwrap_model(model_store.prediction_model).feature_importances_
         weighted = base * universal
         total = weighted.sum()
         return weighted / total if total > 0 else base
@@ -222,7 +242,6 @@ def _calibrate_confidence(win_proba: float, scored: List[Dict]) -> float:
     if len(scored) < 2:
         return float(np.clip(win_proba, 0.30, 0.97))
     margin = win_proba - scored[1]["win_proba"]
-    # Weighted blend: 60% raw proba + 40% margin signal
     confidence = 0.6 * win_proba + 0.4 * (0.5 + margin)
     return float(np.clip(confidence, 0.30, 0.97))
 
@@ -256,7 +275,7 @@ def _generate_reasoning(best: Dict, fi: np.ndarray, cluster_label: str) -> str:
     )
 
     weak_text = (
-        f"Note: lower {weak_label.lower()} ({weak_desc}) than alternatives — "
+        f"Note: lower {weak_label.lower()} ({weak_desc}) than alternatives - "
         f"factor this into your decision."
         if float(universal[weakness_idx]) < 0.35
         else ""
@@ -276,5 +295,5 @@ def _alt_reason(best_vec: np.ndarray, alt_vec: np.ndarray) -> str:
     if diffs.max() > 0.1:
         best_alt_feat = FEATURE_NAMES[int(np.argmax(diffs))]
         label, desc = FEATURE_EXPLANATIONS[best_alt_feat]
-        return f"Higher {label.lower()} — worth considering if {desc} matters more."
+        return f"Higher {label.lower()} - worth considering if {desc} matters more."
     return "Similar overall profile. A viable alternative."
