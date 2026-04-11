@@ -1,7 +1,6 @@
 /**
- * VisionX - Dashboard (Phase 3)
- * 100% real API data.
- * Uses /ml/analytics, /ml/monitor/status, and /predictions/history endpoints.
+ * VisionX — Dashboard (Phase 3)
+ * 100% real API data. Pulls from /ml/analytics, /predictions/history, /auth/me
  */
 
 let _activityChart = null;
@@ -23,49 +22,38 @@ async function loadDashboardData() {
     });
 
     let analytics = null;
-    let monitor = null;
     let predictions = [];
+    let me = null;
 
     try {
-        const [analyticsRes, monitorRes, histRes] = await Promise.all([
+        const [analyticsRes, histRes, meRes] = await Promise.all([
             apiCall('/ml/analytics'),
-            apiCall('/ml/monitor/status'),
             apiCall('/predictions/history?limit=50'),
+            apiCall('/auth/me'),
         ]);
 
         analytics   = analyticsRes.data || analyticsRes;
-        monitor     = monitorRes;
         predictions = histRes.predictions || [];
+        me          = meRes;
 
-        // KPI cards
-        const totalPreds = analytics.total_predictions_served ?? predictions.length ?? 0;
-        const avgConf    = monitor?.metrics?.avg_confidence_7d;
-        const modelAcc   = analytics.model_accuracy;
+        // KPI: total predictions
+        _setEl('totalPredictions', analytics.total_predictions_served ?? predictions.length ?? '—');
 
-        _setEl('totalPredictions', totalPreds);
-        _setEl('avgConfidence',
-            avgConf != null ? Math.round(avgConf * 100) + '%' : '—');
+        // KPI: avg confidence from history
+        const confs = predictions.map(p => p.confidence).filter(c => c != null);
+        const avgConf = confs.length ? Math.round((confs.reduce((a,b)=>a+b,0)/confs.length)*100) + '%' : '—';
+        _setEl('avgConfidence', avgConf);
+
+        // KPI: model accuracy
         _setEl('modelAccuracy',
-            modelAcc != null ? (modelAcc * 100).toFixed(1) + '%' : '—');
+            analytics.model_accuracy != null ? (analytics.model_accuracy * 100).toFixed(1) + '%' : '—');
 
-        // Cluster — fetch from /auth/me for latest value
-        let clusterLabel = null;
-        try {
-            const meRes = await apiCall('/auth/me');
-            if (meRes.cluster_label) {
-                clusterLabel = meRes.cluster_label;
-            } else if (meRes.cluster_id != null) {
-                const clusters = analytics.clusters || {};
-                const prof = clusters[String(meRes.cluster_id)];
-                clusterLabel = prof?.label || 'Cluster ' + meRes.cluster_id;
-            }
-        } catch (e) {
-            if (predictions.length) clusterLabel = predictions[0].cluster_label || null;
-        }
-
+        // Cluster badge — from /auth/me
+        const clusterLabel = me?.cluster_label || null;
         _setEl('userClusterLabel', clusterLabel || 'Not assigned yet');
         _renderClusterBadge(clusterLabel);
-        _renderMLPerformance(analytics, monitor);
+
+        _renderMLPerformance(analytics);
 
     } catch (err) {
         console.error('Dashboard API error:', err);
@@ -76,11 +64,11 @@ async function loadDashboardData() {
         _setEl('userClusterLabel', '—');
     }
 
-    _renderCharts(predictions);
+    _renderCharts(predictions, analytics);
     _renderRecentPredictions(predictions);
 }
 
-// -- Cluster badge ------------------------------------------------------------
+// —— Cluster badge ————————————————————————————————————————————————————
 function _renderClusterBadge(clusterLabel) {
     const el = document.getElementById('mlClusterBadge');
     if (!el) return;
@@ -98,22 +86,23 @@ function _renderClusterBadge(clusterLabel) {
     ` : `<div style="color:#9AA3C7;font-size:0.9rem;padding:1rem;">Make your first comparison to get assigned a decision profile.</div>`;
 }
 
-// -- ML performance card ------------------------------------------------------
-function _renderMLPerformance(analytics, monitor) {
+// —— ML performance card ——————————————————————————————————————————————
+function _renderMLPerformance(analytics) {
     const el = document.getElementById('mlPerformanceStats');
-    if (!el) return;
+    if (!el || !analytics) return;
 
-    const acc     = analytics?.model_accuracy ? (analytics.model_accuracy * 100).toFixed(2) + '%' : '—';
-    const roc     = analytics?.model_roc_auc  ? analytics.model_roc_auc.toFixed(4) : '—';
-    const avgConf = monitor?.metrics?.avg_confidence_7d != null
-        ? Math.round(monitor.metrics.avg_confidence_7d * 100) + '%' : '—';
+    const acc    = analytics.model_accuracy    ? (analytics.model_accuracy * 100).toFixed(2) + '%' : '—';
+    const roc    = analytics.model_roc_auc     ? analytics.model_roc_auc.toFixed(4) : '—';
+    const fb     = analytics.feedback;
+    const accRate = fb?.acceptance_rate != null ? Math.round(fb.acceptance_rate * 100) + '%' : '—';
+    const modelType = (analytics.model_type || 'XGBoost').replace('_', ' ');
 
     el.innerHTML = `
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-top:1rem;">
             ${_statPill('Accuracy', acc, '#4F8CFF')}
             ${_statPill('ROC-AUC', roc, '#10b981')}
-            ${_statPill('Avg Confidence', avgConf, '#7B61FF')}
-            ${_statPill('Model Status', monitor?.models_loaded ? '✅ Live' : '⚠️ Loading', '#f59e0b')}
+            ${_statPill('Model', modelType, '#7B61FF')}
+            ${_statPill('Acceptance Rate', accRate, '#f59e0b')}
         </div>
     `;
 }
@@ -126,8 +115,9 @@ function _statPill(label, value, color) {
         </div>`;
 }
 
-// -- Charts -------------------------------------------------------------------
-function _renderCharts(predictions) {
+// —— Charts ———————————————————————————————————————————————————————————
+function _renderCharts(predictions, analytics) {
+    // Activity chart — predictions per day for last 7 days
     const actCtx = document.getElementById('activityChart');
     if (actCtx) {
         const days = _last7Days();
@@ -165,22 +155,39 @@ function _renderCharts(predictions) {
         });
     }
 
+    // Categories chart — from domain_detected in history, fallback to analytics cluster distribution
     const catCtx = document.getElementById('categoriesChart');
     if (catCtx) {
+        let labels, data, colors;
+
         const cats = {};
         predictions.forEach(p => {
             const c = p.domain_detected || 'General';
             cats[c] = (cats[c] || 0) + 1;
         });
-        const labels = Object.keys(cats).length ? Object.keys(cats) : ['No data yet'];
-        const data   = Object.values(cats).length ? Object.values(cats) : [1];
+
+        if (Object.keys(cats).length > 0) {
+            labels = Object.keys(cats);
+            data   = Object.values(cats);
+            colors = ['#4F8CFF','#7B61FF','#A855F7','#3FA8FF','#6B7298'];
+        } else if (analytics?.user_cluster_distribution) {
+            // Fallback: show cluster distribution
+            const dist = analytics.user_cluster_distribution;
+            labels = Object.keys(dist).filter(k => dist[k] > 0);
+            data   = labels.map(k => Math.round(dist[k] * 100));
+            colors = ['#a855f7','#10b981','#f59e0b','#4F8CFF'];
+        } else {
+            labels = ['No data yet'];
+            data   = [1];
+            colors = ['#6B7298'];
+        }
 
         _categoriesChart?.destroy();
         _categoriesChart = new Chart(catCtx, {
             type: 'doughnut',
             data: {
                 labels,
-                datasets: [{ data, backgroundColor: ['#4F8CFF','#7B61FF','#A855F7','#3FA8FF','#6B7298'], borderWidth: 0 }]
+                datasets: [{ data, backgroundColor: colors, borderWidth: 0 }]
             },
             options: {
                 responsive: true, maintainAspectRatio: false,
@@ -193,7 +200,7 @@ function _renderCharts(predictions) {
     }
 }
 
-// -- Recent predictions list --------------------------------------------------
+// —— Recent predictions list ——————————————————————————————————————————
 function _renderRecentPredictions(predictions) {
     const el = document.getElementById('recentPredictions');
     if (!el) return;
@@ -216,12 +223,11 @@ function _renderRecentPredictions(predictions) {
         const title = p.recommended_option_name ? `${p.recommended_option_name} recommended` : 'Comparison';
         const conf  = p.confidence;
         const ts    = p.created_at;
-        const domain = p.domain_detected || '';
         return `
         <div onclick="window.location.href='results.html?id=${id}'" style="cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:1rem;border-bottom:1px solid rgba(255,255,255,0.06);">
             <div>
                 <div style="font-weight:500;color:#E6E8F2;">${title}</div>
-                <div style="font-size:0.8rem;color:#9AA3C7;">${ts ? formatDate(ts) : ''}${domain ? ' · ' + domain : ''}</div>
+                <div style="font-size:0.8rem;color:#9AA3C7;">${ts ? formatDate(ts) : ''} ${p.domain_detected ? '· ' + p.domain_detected : ''}</div>
             </div>
             <div style="display:flex;align-items:center;gap:0.75rem;">
                 ${conf != null ? `<span style="background:rgba(79,140,255,0.2);color:#4F8CFF;padding:0.25rem 0.75rem;border-radius:12px;font-size:0.8rem;">${Math.round(conf * 100)}% conf</span>` : ''}
@@ -231,7 +237,7 @@ function _renderRecentPredictions(predictions) {
     }).join('');
 }
 
-// -- Helpers ------------------------------------------------------------------
+// —— Helpers ——————————————————————————————————————————————————————————
 function _setEl(id, val) {
     const el = document.getElementById(id);
     if (el) el.textContent = val;
