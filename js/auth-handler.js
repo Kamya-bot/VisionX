@@ -1,12 +1,12 @@
 /**
- * VisionX — Auth Handler (Phase 3)
+ * VisionX — Auth Handler
  * - Email/password login & register → real backend
- * - Google & GitHub OAuth → real backend redirect (no more "coming soon")
+ * - Google & GitHub OAuth → fetches URL from backend then redirects
  * - Stores access_token + refresh_token on success
  * - Auth guard redirects unauthenticated users
  */
 
-// ── Auth guard ────────────────────────────────────────────────────────────────
+// —— Auth guard ————————————————————————————————————————————————————————
 (function () {
     const PUBLIC = ['login.html', 'register.html', 'index.html', ''];
     const page = window.location.pathname.split('/').pop();
@@ -15,10 +15,10 @@
     }
 })();
 
-// ── Wake server on page load ──────────────────────────────────────────────────
+// —— Wake server on page load ——————————————————————————————————————————
 fetch('https://visionx-mzqc.onrender.com/health').catch(() => {});
 
-// ── Cold-start banner ─────────────────────────────────────────────────────────
+// —— Cold-start banner —————————————————————————————————————————————————
 function showWakingBanner() {
     if (document.getElementById('vx-waking-banner')) return;
     const b = document.createElement('div');
@@ -29,7 +29,7 @@ function showWakingBanner() {
 }
 function hideWakingBanner() { document.getElementById('vx-waking-banner')?.remove(); }
 
-// ── Save session ──────────────────────────────────────────────────────────────
+// —— Save session ——————————————————————————————————————————————————————
 function saveUserSession(data, emailFallback) {
     const user = {
         id:            data.user_id,
@@ -46,7 +46,7 @@ function saveUserSession(data, emailFallback) {
     localStorage.setItem('isAuthenticated', 'true');
 }
 
-// ── Login ─────────────────────────────────────────────────────────────────────
+// —— Login —————————————————————————————————————————————————————————————
 async function handleLogin(event) {
     if (event) event.preventDefault();
     const email    = document.getElementById('email')?.value?.trim();
@@ -70,7 +70,7 @@ async function handleLogin(event) {
     }
 }
 
-// ── Register ──────────────────────────────────────────────────────────────────
+// —— Register ——————————————————————————————————————————————————————————
 async function handleRegister(event) {
     if (event) event.preventDefault();
     const name     = document.getElementById('name')?.value?.trim();
@@ -99,22 +99,33 @@ async function handleRegister(event) {
     }
 }
 
-// ── OAuth ─────────────────────────────────────────────────────────────────────
-// Backend Phase 1 added /auth/google and /auth/github redirect endpoints.
-// These redirect to the provider and return back to /auth/callback.
-// We just redirect the browser to the backend OAuth entry point.
+// —— OAuth ————————————————————————————————————————————————————————————
+// Fetches the OAuth redirect URL from the backend, then redirects the browser.
+// Backend returns { url, state } from /auth/oauth/google/url and /auth/oauth/github/url
 
-function handleGoogleLogin() {
+async function handleGoogleLogin() {
     showWakingBanner();
-    window.location.href = 'https://visionx-mzqc.onrender.com/api/v1/auth/google';
+    try {
+        const data = await apiCall('/auth/oauth/google/url');
+        window.location.href = data.url;
+    } catch (e) {
+        hideWakingBanner();
+        showNotification('Google login not configured — set GOOGLE_CLIENT_ID in Render env vars', 'error');
+    }
 }
 
-function handleGithubLogin() {
+async function handleGithubLogin() {
     showWakingBanner();
-    window.location.href = 'https://visionx-mzqc.onrender.com/api/v1/auth/github';
+    try {
+        const data = await apiCall('/auth/oauth/github/url');
+        window.location.href = data.url;
+    } catch (e) {
+        hideWakingBanner();
+        showNotification('GitHub login not configured — set GITHUB_CLIENT_ID in Render env vars', 'error');
+    }
 }
 
-// ── OAuth callback handler ────────────────────────────────────────────────────
+// —— OAuth callback handler ————————————————————————————————————————————
 // After OAuth the backend redirects to /oauth-callback.html?token=...&refresh=...
 // That page calls this function to save the session.
 function handleOAuthCallback() {
@@ -143,10 +154,10 @@ function handleOAuthCallback() {
     window.location.replace('dashboard.html');
 }
 
-// ── Logout ────────────────────────────────────────────────────────────────────
+// —— Logout ————————————————————————————————————————————————————————————
 function handleLogout() { clearCurrentUser(); window.location.replace('login.html'); }
 
-// ── Update nav ────────────────────────────────────────────────────────────────
+// —— Update nav ————————————————————————————————————————————————————————
 function updateNavUser() {
     const user = getCurrentUser();
     if (!user) return;
@@ -161,7 +172,7 @@ function updateNavUser() {
     });
 }
 
-// ── Wire everything up ────────────────────────────────────────────────────────
+// —— Wire everything up ————————————————————————————————————————————————
 document.addEventListener('DOMContentLoaded', () => {
     updateNavUser();
 

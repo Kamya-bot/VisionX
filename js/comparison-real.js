@@ -1,13 +1,13 @@
 /**
- * VisionX — Comparison Page (Phase 3)
- * After ML prediction, redirects to results.html?id={prediction_id}
- * which reads from the real API. No more localStorage for core data.
+ * VisionX — Comparison Page
+ * After ML prediction, redirects to results.html?id={real_prediction_id}
+ * Falls back to localStorage legacy ID only if backend doesn't return a prediction_id.
  */
 
 let currentStep = 1;
 const totalSteps = 3;
 
-// ── Step navigation ───────────────────────────────────────────────────────────
+// —— Step navigation ————————————————————————————————————————————————————
 function goToStep(step) {
     document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.step-indicator').forEach((el, i) => {
@@ -37,7 +37,7 @@ function validateStep(step) {
     return true;
 }
 
-// ── Add / remove options ──────────────────────────────────────────────────────
+// —— Add / remove options ——————————————————————————————————————————————
 function addOption() {
     const container = document.getElementById('optionsContainer');
     if (!container) return;
@@ -91,7 +91,7 @@ function _renumberOptions() {
     });
 }
 
-// ── Submit ────────────────────────────────────────────────────────────────────
+// —— Submit ————————————————————————————————————————————————————————————
 async function handleComparisonSubmit() {
     const user = getCurrentUser();
     if (!user) { window.location.replace('login.html'); return; }
@@ -135,21 +135,19 @@ async function handleComparisonSubmit() {
 
         showNotification('✅ AI analysis complete! Redirecting...', 'success');
 
-        // result contains prediction_id from Phase 1 DB log (via background task)
-        // We redirect immediately; the background task will have completed by the time
-        // the results page loads (~100ms later).
-        const predId = result.prediction_id || result.recommended_option_id;
+        // Use real prediction_id from backend if available
+        const realPredId = result.prediction_id;
 
-        // Also store in localStorage as legacy fallback (results page handles both)
+        // Also store in localStorage as legacy fallback
+        const legacyId = 'comp_' + Date.now();
         const comp = {
-            id:         'comp_' + Date.now(),
+            id:         legacyId,
             user_id:    user.id,
             title:      document.getElementById('comparisonTitle')?.value || 'Comparison',
             category:   document.getElementById('comparisonCategory')?.value || 'general',
             options,
             result: {
                 ...result,
-                // Map API fields to legacy format
                 recommended_option_id:   result.recommended_option_id,
                 recommended_option_name: result.recommended_option_name,
                 confidence:              result.confidence,
@@ -160,13 +158,19 @@ async function handleComparisonSubmit() {
             },
             created_at: new Date().toISOString(),
         };
-        const all = JSON.parse(localStorage.getItem('comparisons') || '[]');
-        all.push(comp);
-        localStorage.setItem('comparisons', JSON.stringify(all.slice(-50))); // keep last 50
+        try {
+            const all = JSON.parse(localStorage.getItem('comparisons') || '[]');
+            all.push(comp);
+            localStorage.setItem('comparisons', JSON.stringify(all.slice(-50)));
+        } catch (_) { /* storage full — ignore */ }
 
         setTimeout(() => {
-            // Prefer real prediction_id if backend returned one, otherwise use legacy id
-            window.location.href = `results.html?id=${comp.id}`;
+            // Prefer real DB prediction_id over legacy localStorage id
+            if (realPredId && !String(realPredId).startsWith('comp_')) {
+                window.location.href = `results.html?id=${realPredId}`;
+            } else {
+                window.location.href = `results.html?id=${legacyId}`;
+            }
         }, 800);
 
     } catch (err) {
@@ -176,7 +180,7 @@ async function handleComparisonSubmit() {
     }
 }
 
-// ── Init ──────────────────────────────────────────────────────────────────────
+// —— Init ——————————————————————————————————————————————————————————————
 function initializeComparison() {
     const user = getCurrentUser();
     if (!user) { window.location.replace('login.html'); return; }

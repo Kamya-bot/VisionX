@@ -535,4 +535,24 @@ def _upsert_oauth_user(
     db.refresh(user)
     logger.info(f"New OAuth user ({provider}): {user.email}")
     return user
+@router.patch("/auth/me")
+async def update_me(
+    request: Request,
+    current_user: models.User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    body = await request.json()
+    if "full_name" in body and body["full_name"]:
+        current_user.full_name = body["full_name"]
+        db.commit()
+        db.refresh(current_user)
+    return {"status": "success", "full_name": current_user.full_name}
 
+@router.delete("/auth/me")
+async def delete_me(
+    current_user: models.User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    current_user.is_active = False
+    db.commit()
+    return {"status": "success", "message": "Account deactivated"}
