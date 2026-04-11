@@ -160,3 +160,4 @@ async def get_training_data(
         "count": len(data),
         "data": data,
     }
+

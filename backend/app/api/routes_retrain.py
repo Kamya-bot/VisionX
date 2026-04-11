@@ -130,3 +130,4 @@ async def retrain_status(
         "error": _retrain_status["error"],
         "last_result": _retrain_status["last_result"] or disk_result,
     }
+

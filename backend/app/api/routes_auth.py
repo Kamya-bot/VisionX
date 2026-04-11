@@ -535,3 +535,4 @@ def _upsert_oauth_user(
     db.refresh(user)
     logger.info(f"New OAuth user ({provider}): {user.email}")
     return user
+
