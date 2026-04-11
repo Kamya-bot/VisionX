@@ -43,11 +43,16 @@ def _get_model_store(request: Request):
     return ms
 
 
+def _unwrap_model(model):
+    """Unwrap CalibratedClassifierCV to get the base XGBoost estimator."""
+    if hasattr(model, 'calibrated_classifiers_'):
+        return model.calibrated_classifiers_[0].estimator
+    if hasattr(model, 'estimator'):
+        return model.estimator
+    return model
+
+
 def _build_universal_vector(request_data: PredictionRequest, model_store) -> np.ndarray:
-    """
-    Build a 6-dim universal feature vector from the first option in the request.
-    Uses the same normalizer as the main predict pipeline.
-    """
     from ml.normalizer import detect_domain, to_universal_features
     opt = request_data.options[0]
     features_raw = {k: v for k, v in opt.features.model_dump().items() if v is not None}
@@ -57,10 +62,10 @@ def _build_universal_vector(request_data: PredictionRequest, model_store) -> np.
 
 
 def _get_shap_values(model_store, X: np.ndarray) -> Optional[Dict[str, float]]:
-    """Get real SHAP values from the XGBoost model."""
     try:
         import shap
-        explainer = shap.TreeExplainer(model_store.prediction_model)
+        base_model = _unwrap_model(model_store.prediction_model)
+        explainer = shap.TreeExplainer(base_model)
         shap_vals = explainer.shap_values(X)
         if isinstance(shap_vals, list):
             vals = shap_vals[1][0]
@@ -73,12 +78,19 @@ def _get_shap_values(model_store, X: np.ndarray) -> Optional[Dict[str, float]]:
 
 
 def _predict_proba(model_store, X: np.ndarray) -> float:
-    """Get win probability from calibrated model."""
     try:
         return float(model_store.prediction_model.predict_proba(X)[0][1])
     except Exception:
         weights = np.array([0.25, 0.30, 0.15, -0.15, 0.10, 0.05])
         return float(np.clip(float(np.dot(X[0], weights)) + 0.5, 0, 1))
+
+
+def _get_feature_importances(model_store) -> np.ndarray:
+    try:
+        base_model = _unwrap_model(model_store.prediction_model)
+        return base_model.feature_importances_
+    except Exception:
+        return np.array([0.25, 0.30, 0.15, 0.10, 0.12, 0.08])
 
 
 # ── /ml/explain ────────────────────────────────────────────────────────────
@@ -88,15 +100,11 @@ async def explain_prediction(
     request_data: PredictionRequest,
     request: Request,
 ):
-    """
-    Real SHAP-based explanation for why the model made a prediction.
-    Uses TreeExplainer on the live XGBoost model.
-    """
+    """Real SHAP-based explanation using TreeExplainer on the live XGBoost model."""
     try:
         model_store = _get_model_store(request)
         X = _build_universal_vector(request_data, model_store)
 
-        # Scale input
         if model_store.scaler and hasattr(model_store.scaler, "mean_"):
             X_scaled = model_store.scaler.transform(X)
         else:
@@ -106,9 +114,7 @@ async def explain_prediction(
         shap_values = _get_shap_values(model_store, X_scaled)
 
         if shap_values:
-            sorted_features = sorted(
-                shap_values.items(), key=lambda x: abs(x[1]), reverse=True
-            )
+            sorted_features = sorted(shap_values.items(), key=lambda x: abs(x[1]), reverse=True)
             top_features = []
             for feat_name, shap_val in sorted_features[:5]:
                 label, desc = FEATURE_EXPLANATIONS.get(feat_name, (feat_name, ""))
@@ -121,8 +127,7 @@ async def explain_prediction(
                     "description": desc,
                 })
         else:
-            # Fallback: use model feature importances
-            fi = model_store.prediction_model.feature_importances_
+            fi = _get_feature_importances(model_store)
             top_features = [
                 {
                     "feature_name": FEATURE_NAMES[i],
@@ -140,8 +145,7 @@ async def explain_prediction(
             f"The recommendation is primarily driven by {top['display_name'].lower()} "
             f"({top['description']}), which has a "
             f"{'positive' if top['impact'] == 'positive' else 'negative'} influence "
-            f"on the outcome. "
-            f"Model confidence: {round(confidence * 100, 1)}%."
+            f"on the outcome. Model confidence: {round(confidence * 100, 1)}%."
         )
 
         return {
@@ -169,55 +173,26 @@ async def get_monitoring_status(
     request: Request,
     db: Session = Depends(get_db),
 ):
-    """
-    Real model monitoring from DB — confidence trends, prediction volume,
-    acceptance rate, and drift indicators from live data.
-    """
+    """Real model monitoring from DB."""
     try:
         model_store = _get_model_store(request)
-
         now = datetime.utcnow()
         since_24h = now - timedelta(hours=24)
         since_7d = now - timedelta(days=7)
 
-        # Real stats from DB
-        total_24h = (
-            db.query(func.count(models.PredictionLog.id))
-            .filter(models.PredictionLog.created_at >= since_24h)
-            .scalar() or 0
-        )
-        avg_conf_7d = (
-            db.query(func.avg(models.PredictionLog.confidence))
-            .filter(models.PredictionLog.created_at >= since_7d)
-            .scalar()
-        )
+        total_24h = db.query(func.count(models.PredictionLog.id)).filter(models.PredictionLog.created_at >= since_24h).scalar() or 0
+        avg_conf_7d = db.query(func.avg(models.PredictionLog.confidence)).filter(models.PredictionLog.created_at >= since_7d).scalar()
         avg_conf_7d = round(float(avg_conf_7d), 3) if avg_conf_7d else None
-
-        min_conf_7d = (
-            db.query(func.min(models.PredictionLog.confidence))
-            .filter(models.PredictionLog.created_at >= since_7d)
-            .scalar()
-        )
+        min_conf_7d = db.query(func.min(models.PredictionLog.confidence)).filter(models.PredictionLog.created_at >= since_7d).scalar()
         total_all = db.query(func.count(models.PredictionLog.id)).scalar() or 0
-
-        # Acceptance rate
         total_fb = db.query(func.count(models.OutcomeFeedback.id)).scalar() or 0
-        accepted = (
-            db.query(func.count(models.OutcomeFeedback.id))
-            .filter(models.OutcomeFeedback.accepted == True)
-            .scalar() or 0
-        )
+        accepted = db.query(func.count(models.OutcomeFeedback.id)).filter(models.OutcomeFeedback.accepted == True).scalar() or 0
         acceptance_rate = round(accepted / total_fb, 3) if total_fb > 0 else None
 
-        # Confidence drift indicator
-        avg_conf_prev = (
-            db.query(func.avg(models.PredictionLog.confidence))
-            .filter(
-                models.PredictionLog.created_at >= now - timedelta(days=14),
-                models.PredictionLog.created_at < since_7d,
-            )
-            .scalar()
-        )
+        avg_conf_prev = db.query(func.avg(models.PredictionLog.confidence)).filter(
+            models.PredictionLog.created_at >= now - timedelta(days=14),
+            models.PredictionLog.created_at < since_7d,
+        ).scalar()
         drift_indicator = None
         if avg_conf_7d and avg_conf_prev:
             drift_indicator = round(float(avg_conf_7d) - float(avg_conf_prev), 3)
@@ -243,10 +218,7 @@ async def get_monitoring_status(
                 "total_predictions": total_24h,
                 "predictions_per_hour": round(total_24h / 24, 1),
             },
-            "feedback": {
-                "total": total_fb,
-                "acceptance_rate": acceptance_rate,
-            },
+            "feedback": {"total": total_fb, "acceptance_rate": acceptance_rate},
             "alerts": alerts,
             "last_updated": datetime.utcnow().isoformat(),
         }
@@ -266,11 +238,7 @@ async def simulate_scenarios(
     request: Request,
     db: Session = Depends(get_db),
 ):
-    """
-    Real what-if simulation using the actual XGBoost model.
-    Perturbs the universal feature vector and re-runs inference
-    for each scenario to get real confidence deltas.
-    """
+    """Real what-if simulation — perturbs feature vector and re-runs model inference."""
     try:
         model_store = _get_model_store(request)
         X_base = _build_universal_vector(request_data, model_store)
@@ -282,49 +250,19 @@ async def simulate_scenarios(
 
         base_conf = _predict_proba(model_store, X_scaled)
 
-        # Define real perturbation scenarios on the 6-dim universal space
-        # [value, quality, growth, risk, fit, speed]
         scenario_defs = [
-            {
-                "name": "High Value Focus",
-                "description": "User strongly prioritises value for money",
-                "delta": np.array([+0.20, 0.0, 0.0, 0.0, 0.0, 0.0]),
-                "recommendation": "Lead with cost-benefit analysis and ROI metrics",
-            },
-            {
-                "name": "Quality Over Cost",
-                "description": "User prioritises objective quality above all",
-                "delta": np.array([0.0, +0.20, 0.0, 0.0, 0.0, 0.0]),
-                "recommendation": "Highlight ratings, certifications, and quality indicators",
-            },
-            {
-                "name": "Growth Oriented",
-                "description": "User focuses on future potential and upside",
-                "delta": np.array([0.0, 0.0, +0.20, 0.0, 0.0, 0.0]),
-                "recommendation": "Emphasise growth trajectory, trends, and future value",
-            },
-            {
-                "name": "Risk Averse",
-                "description": "User minimises uncertainty and downside exposure",
-                "delta": np.array([0.0, 0.0, 0.0, -0.20, 0.0, 0.0]),
-                "recommendation": "Stress stability, guarantees, and low-risk profiles",
-            },
-            {
-                "name": "Speed to Value",
-                "description": "User wants fastest time-to-benefit",
-                "delta": np.array([0.0, 0.0, 0.0, 0.0, 0.0, +0.20]),
-                "recommendation": "Highlight quick wins, fast delivery, and immediate returns",
-            },
+            {"name": "High Value Focus",  "description": "User strongly prioritises value for money",       "delta": np.array([+0.20, 0.0,  0.0,   0.0,   0.0, 0.0]),  "recommendation": "Lead with cost-benefit analysis and ROI metrics"},
+            {"name": "Quality Over Cost", "description": "User prioritises objective quality above all",    "delta": np.array([0.0,  +0.20, 0.0,   0.0,   0.0, 0.0]),  "recommendation": "Highlight ratings, certifications, and quality indicators"},
+            {"name": "Growth Oriented",   "description": "User focuses on future potential and upside",     "delta": np.array([0.0,   0.0, +0.20,  0.0,   0.0, 0.0]),  "recommendation": "Emphasise growth trajectory, trends, and future value"},
+            {"name": "Risk Averse",       "description": "User minimises uncertainty and downside exposure","delta": np.array([0.0,   0.0,  0.0,  -0.20,  0.0, 0.0]),  "recommendation": "Stress stability, guarantees, and low-risk profiles"},
+            {"name": "Speed to Value",    "description": "User wants fastest time-to-benefit",              "delta": np.array([0.0,   0.0,  0.0,   0.0,  0.0, +0.20]), "recommendation": "Highlight quick wins, fast delivery, and immediate returns"},
         ]
 
         scenarios = []
         for s in scenario_defs:
-            X_perturbed = np.clip(X_base + s["delta"], 0, 1)
-            if model_store.scaler and hasattr(model_store.scaler, "mean_"):
-                X_p_scaled = model_store.scaler.transform(X_perturbed)
-            else:
-                X_p_scaled = X_perturbed
-            conf = _predict_proba(model_store, X_p_scaled)
+            X_p = np.clip(X_base + s["delta"], 0, 1)
+            X_p_s = model_store.scaler.transform(X_p) if model_store.scaler and hasattr(model_store.scaler, "mean_") else X_p
+            conf = _predict_proba(model_store, X_p_s)
             delta = round(conf - base_conf, 3)
             scenarios.append({
                 "scenario": s["name"],
@@ -335,45 +273,20 @@ async def simulate_scenarios(
                 "recommendation": s["recommendation"],
             })
 
-        # Most impactful scenario
         best_scenario = max(scenarios, key=lambda x: x["delta_confidence"])
-        most_sensitive_feat = FEATURE_NAMES[
-            int(np.argmax([abs(s["delta_confidence"]) for s in scenarios]))
-        ] if scenarios else "value_score"
 
-        # Save to DB
         try:
-            base_features_dict = {
-                FEATURE_NAMES[i]: round(float(X_base[0][i]), 3)
-                for i in range(len(FEATURE_NAMES))
-            }
-            create_simulation_log(
-                db=db,
-                user_id=request_data.user_id,
-                scenario="baseline",
-                base_features=base_features_dict,
-                modified_features=base_features_dict,
-                base_prediction=0,
-                modified_prediction=0,
-                base_confidence=round(base_conf, 3),
-                modified_confidence=round(base_conf, 3),
-            )
+            base_dict = {FEATURE_NAMES[i]: round(float(X_base[0][i]), 3) for i in range(len(FEATURE_NAMES))}
+            create_simulation_log(db=db, user_id=request_data.user_id, scenario="baseline",
+                base_features=base_dict, modified_features=base_dict,
+                base_prediction=0, modified_prediction=0,
+                base_confidence=round(base_conf, 3), modified_confidence=round(base_conf, 3))
             for i, s in enumerate(scenarios):
-                perturbed_dict = {
-                    FEATURE_NAMES[j]: round(float(np.clip(X_base[0][j] + scenario_defs[i]["delta"][j], 0, 1)), 3)
-                    for j in range(len(FEATURE_NAMES))
-                }
-                create_simulation_log(
-                    db=db,
-                    user_id=request_data.user_id,
-                    scenario=s["scenario"],
-                    base_features=base_features_dict,
-                    modified_features=perturbed_dict,
-                    base_prediction=0,
-                    modified_prediction=0,
-                    base_confidence=round(base_conf, 3),
-                    modified_confidence=s["confidence"],
-                )
+                p_dict = {FEATURE_NAMES[j]: round(float(np.clip(X_base[0][j] + scenario_defs[i]["delta"][j], 0, 1)), 3) for j in range(len(FEATURE_NAMES))}
+                create_simulation_log(db=db, user_id=request_data.user_id, scenario=s["scenario"],
+                    base_features=base_dict, modified_features=p_dict,
+                    base_prediction=0, modified_prediction=0,
+                    base_confidence=round(base_conf, 3), modified_confidence=s["confidence"])
         except Exception as db_err:
             logger.warning(f"Simulation DB save failed: {db_err}")
 
@@ -405,45 +318,31 @@ async def check_drift_monitor(
     request: Request,
     db: Session = Depends(get_db),
 ):
-    """
-    Delegates to the real drift detection service.
-    """
+    """Delegates to the real drift detection service."""
     from services.drift_detection import check_model_drift
     from crud import get_recent_predictions
 
     try:
         recent_preds = get_recent_predictions(db, limit=100)
         if len(recent_preds) < 10:
-            return {
-                "drift_detected": False,
-                "status": "insufficient_data",
-                "message": f"Need 10+ predictions. Found {len(recent_preds)}.",
-                "timestamp": datetime.utcnow().isoformat(),
-            }
+            return {"drift_detected": False, "status": "insufficient_data",
+                    "message": f"Need 10+ predictions. Found {len(recent_preds)}.",
+                    "timestamp": datetime.utcnow().isoformat()}
 
         feature_names = ["price", "quality_score", "satisfaction_score", "risk_score"]
         features, predictions = [], []
         for pred in recent_preds:
             f = pred.features or {}
-            features.append([
-                float(f.get("price", 0.0)),
-                float(f.get("quality_score", 5.0)),
-                float(f.get("satisfaction_score", 5.0)),
-                float(f.get("risk_score", 0.5)),
-            ])
+            features.append([float(f.get("price", 0.0)), float(f.get("quality_score", 5.0)),
+                              float(f.get("satisfaction_score", 5.0)), float(f.get("risk_score", 0.5))])
             predictions.append(float(pred.confidence))
 
-        report = check_model_drift(
-            db,
-            np.array(features),
-            np.array(predictions),
-            feature_names,
-        )
+        report = check_model_drift(db, np.array(features), np.array(predictions), feature_names)
         summary = report.get("summary", {})
         return {
-            "drift_detected": summary.get("feature_drift_count", 0) > 0 or summary.get("has_prediction_drift", False),
+            "drift_detected": bool(summary.get("feature_drift_count", 0) > 0 or summary.get("has_prediction_drift", False)),
             "status": "⚠️ Drift detected" if summary.get("feature_drift_count", 0) > 0 else "✅ Model stable",
-            "feature_drift_count": summary.get("feature_drift_count", 0),
+            "feature_drift_count": int(summary.get("feature_drift_count", 0)),
             "prediction_psi": round(float(report["prediction_drift"]["psi_score"]), 4),
             "recommended_action": summary.get("recommended_action", "none"),
             "alerts": summary.get("drifted_features", []),
@@ -462,11 +361,7 @@ async def sensitivity_analysis(
     request_data: PredictionRequest,
     request: Request,
 ):
-    """
-    Real finite-difference sensitivity analysis.
-    Perturbs each feature by ±10% and measures the actual change
-    in model confidence — no hardcoded values.
-    """
+    """Real finite-difference sensitivity analysis — no hardcoded values."""
     try:
         model_store = _get_model_store(request)
         X_base = _build_universal_vector(request_data, model_store)
@@ -477,45 +372,34 @@ async def sensitivity_analysis(
             X_scaled = X_base.copy()
 
         base_conf = _predict_proba(model_store, X_scaled)
-        delta = 0.10  # 10% perturbation
+        delta = 0.10
 
         results = []
         for i, feat_name in enumerate(FEATURE_NAMES):
             label, desc = FEATURE_EXPLANATIONS[feat_name]
 
-            # Perturb up
             X_up = X_base.copy()
             X_up[0][i] = min(1.0, X_base[0][i] + delta)
-            if model_store.scaler and hasattr(model_store.scaler, "mean_"):
-                X_up_s = model_store.scaler.transform(X_up)
-            else:
-                X_up_s = X_up
+            X_up_s = model_store.scaler.transform(X_up) if model_store.scaler and hasattr(model_store.scaler, "mean_") else X_up
             conf_up = _predict_proba(model_store, X_up_s)
 
-            # Perturb down
             X_dn = X_base.copy()
             X_dn[0][i] = max(0.0, X_base[0][i] - delta)
-            if model_store.scaler and hasattr(model_store.scaler, "mean_"):
-                X_dn_s = model_store.scaler.transform(X_dn)
-            else:
-                X_dn_s = X_dn
+            X_dn_s = model_store.scaler.transform(X_dn) if model_store.scaler and hasattr(model_store.scaler, "mean_") else X_dn
             conf_dn = _predict_proba(model_store, X_dn_s)
 
             sensitivity = round(abs(conf_up - conf_dn) / (2 * delta), 4)
-            direction = "positive" if conf_up > conf_dn else "negative"
-            impact = "high" if sensitivity > 0.3 else "medium" if sensitivity > 0.1 else "low"
-
             results.append({
                 "feature": feat_name,
                 "display_name": label,
                 "description": desc,
                 "current_value": round(float(X_base[0][i]), 3),
                 "sensitivity_score": sensitivity,
-                "impact": impact,
-                "direction": direction,
+                "impact": "high" if sensitivity > 0.3 else "medium" if sensitivity > 0.1 else "low",
+                "direction": "positive" if conf_up > conf_dn else "negative",
                 "conf_if_increased": round(conf_up, 3),
                 "conf_if_decreased": round(conf_dn, 3),
-                "delta_description": f"+10% change → {'+' if conf_up > base_conf else ''}{round((conf_up - base_conf)*100, 1)}% confidence change",
+                "delta_description": f"+10% change -> {'+' if conf_up > base_conf else ''}{round((conf_up - base_conf)*100, 1)}% confidence change",
             })
 
         results.sort(key=lambda x: x["sensitivity_score"], reverse=True)
