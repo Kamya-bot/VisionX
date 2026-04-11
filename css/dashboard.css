@@ -32,7 +32,7 @@
     text-decoration: none;
 }
 
-.sidebar-nav {
+.sidebar-nav { overflow-y: auto;
     flex: 1;
     padding: 2rem 1.5rem;
     display: flex;
@@ -401,3 +401,4 @@
         flex-wrap: wrap;
     }
 }
+
