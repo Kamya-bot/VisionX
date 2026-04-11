@@ -112,3 +112,4 @@ async def get_prediction_by_id(
         "model_version": row.model_version, "prediction_time_ms": row.prediction_time_ms,
         "domain_detected": row.domain_detected,
     }
+
