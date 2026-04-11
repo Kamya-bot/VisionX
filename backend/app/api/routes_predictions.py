@@ -55,7 +55,8 @@ async def get_prediction_history(
             "title":                   option_name or "Prediction",
             "features":                row.features,
             "shap_values":             row.shap_values,
-            "model_version":           row.model_version,`n            "domain_detected":         row.domain_detected,
+            "model_version":           row.model_version,
+            "domain_detected":         row.domain_detected,
             "prediction_time_ms":      row.prediction_time_ms,
         })
 
@@ -119,7 +120,7 @@ async def get_prediction_by_id(
         "features":                row.features,
         "shap_values":             row.shap_values,
         "universal_features":      row.universal_features,
-        "model_version":           row.model_version,`n            "domain_detected":         row.domain_detected,
-        "prediction_time_ms":      row.prediction_time_ms,
+        "model_version":           row.model_version,
         "domain_detected":         row.domain_detected,
+        "prediction_time_ms":      row.prediction_time_ms,
     }
