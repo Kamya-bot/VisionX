@@ -17,7 +17,7 @@ from sqlalchemy.orm import Session
 
 from api.routes_auth import get_current_user
 from database import get_db
-from models import PredictionLog, User, FeedbackLog
+from models import PredictionLog, User, OutcomeFeedback
 
 router = APIRouter(prefix="/analytics", tags=["analytics"])
 logger = logging.getLogger(__name__)
@@ -69,15 +69,15 @@ async def get_kpis(
         # ── Acceptance rate from feedback ─────────────────────────────────
         try:
             total_feedback = (
-                db.query(func.count(FeedbackLog.id))
-                .filter(FeedbackLog.user_id == current_user.id)
+                db.query(func.count(OutcomeFeedback.id))
+                .filter(OutcomeFeedback.user_id == current_user.id)
                 .scalar() or 0
             )
             accepted = (
-                db.query(func.count(FeedbackLog.id))
+                db.query(func.count(OutcomeFeedback.id))
                 .filter(
-                    FeedbackLog.user_id == current_user.id,
-                    FeedbackLog.accepted == True,  # noqa: E712
+                    OutcomeFeedback.user_id == current_user.id,
+                    OutcomeFeedback.accepted == True,  # noqa: E712
                 )
                 .scalar() or 0
             )
@@ -176,3 +176,5 @@ async def get_overview(
     except Exception as e:
         logger.error(f"Overview fetch failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
