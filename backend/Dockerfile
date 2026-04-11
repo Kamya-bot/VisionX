@@ -12,7 +12,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Cache bust - forces full rebuild
-ARG CACHEBUST=2
+ARG CACHEBUST=3
 
 # Copy all code
 COPY . .
