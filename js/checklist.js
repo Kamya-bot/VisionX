@@ -17,7 +17,7 @@
 
 // ===== CONFIGURATION =====
 const CHECKLIST_CONFIG = {
-    backendURL: 'http://localhost:5000', // Update with your ML backend URL
+    backendURL: 'https://visionx-mzqc.onrender.com', // Update with your ML backend URL
     apiTimeout: 10000,
     retryAttempts: 3,
     retryDelay: 1000,
@@ -810,3 +810,4 @@ window.VisionXChecklist = {
 console.log('%c VisionX Pre-Deployment Checklist ', 'background: linear-gradient(135deg, #4F8CFF, #7B61FF); color: white; padding: 10px; font-size: 16px; font-weight: bold;');
 console.log('%c Module loaded successfully! ', 'color: #4F8CFF; font-size: 14px;');
 console.log('%c Access via: window.VisionXChecklist ', 'color: #7B61FF; font-size: 12px;');
+
