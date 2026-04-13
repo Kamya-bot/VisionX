@@ -200,7 +200,7 @@
             var features = Object.keys(featureDrift).length
                 ? Object.keys(featureDrift)
                 : ['value_score','quality_score','growth_score','risk_score','fit_score','speed_score'];
-            var values = features.map(function(f) { return featureDrift[f] != null ? featureDrift[f] : 0; });
+            var values = features.map(function(f) { return featureDrift[f] != null ? Math.max(featureDrift[f], 0.005) : 0.005; });
             var colors = values.map(function(v) { return v > 0.2 ? '#ef4444' : v > 0.1 ? '#fbbf24' : '#22c55e'; });
             if (featureDriftChart) featureDriftChart.destroy();
             featureDriftChart = new Chart(ctx, {
@@ -260,3 +260,4 @@
     </script>
 </body>
 </html>
+
