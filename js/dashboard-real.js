@@ -37,7 +37,7 @@ async function loadDashboardData() {
         me          = meRes;
 
         // KPI: total predictions
-        _setEl('totalPredictions', analytics.total_predictions_served ?? predictions.length ?? '—');
+        _setEl('totalPredictions', predictions.length ?? '—');
 
         // KPI: avg confidence from history
         const confs = predictions.map(p => p.confidence).filter(c => c != null);
