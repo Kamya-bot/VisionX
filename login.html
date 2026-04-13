@@ -144,6 +144,43 @@
     
     <script src="js/api-config.js"></script>
     <script src="js/auth-handler.js"></script>
+
+<script>
+// OAuth button handlers
+document.addEventListener('DOMContentLoaded', function() {
+    const API = window.API_BASE_URL || 'https://visionx-mzqc.onrender.com';
+
+    async function startOAuth(provider) {
+        try {
+            const btn = document.querySelector('.' + provider + '-btn');
+            if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting...'; }
+
+            const res = await fetch(API + '/api/v1/auth/oauth/' + provider + '/url');
+            if (!res.ok) throw new Error('Could not get OAuth URL');
+            const data = await res.json();
+
+            sessionStorage.setItem('oauth_state', data.state);
+            window.location.href = data.url;
+        } catch (err) {
+            console.error(provider + ' OAuth error:', err);
+            alert('Could not connect to ' + provider + '. Please try again.');
+            const btn = document.querySelector('.' + provider + '-btn');
+            if (btn) {
+                btn.disabled = false;
+                btn.innerHTML = (provider === 'google')
+                    ? '<i class="fab fa-google"></i> <span>Google</span>'
+                    : '<i class="fab fa-github"></i> <span>GitHub</span>';
+            }
+        }
+    }
+
+    const googleBtn = document.querySelector('.google-btn');
+    const githubBtn = document.querySelector('.github-btn');
+    if (googleBtn) googleBtn.addEventListener('click', () => startOAuth('google'));
+    if (githubBtn) githubBtn.addEventListener('click', () => startOAuth('github'));
+});
+</script>
+
 </body>
 </html>
 
