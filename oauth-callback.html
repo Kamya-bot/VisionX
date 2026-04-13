@@ -134,8 +134,9 @@
     }
 
     // ── Store tokens ──────────────────────────────────────────────────────
-    localStorage.setItem('visionx_token', token);
-    if (refresh) localStorage.setItem('visionx_refresh_token', refresh);
+    localStorage.setItem('auth_token', token);
+    localStorage.setItem('isAuthenticated', 'true');
+    if (refresh) localStorage.setItem('refresh_token', refresh);
 
     statusEl.textContent = 'Fetching your profile…';
 
@@ -154,12 +155,12 @@
             id:            profile.user_id,
             email:         profile.email,
             name:          profile.full_name || profile.email.split('@')[0],
-            full_name:     profile.full_name,
+            avatar:        (profile.full_name || profile.email || 'U').charAt(0).toUpperCase(),
             cluster_id:    profile.cluster_id,
             cluster_label: profile.cluster_label,
             created_at:    profile.created_at,
         };
-        localStorage.setItem('visionx_user', JSON.stringify(user));
+        localStorage.setItem('currentUser', JSON.stringify(user));
 
         statusEl.textContent = 'Signed in! Redirecting…';
         subEl.textContent    = `Welcome back, ${user.name}`;
