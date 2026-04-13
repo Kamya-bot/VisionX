@@ -403,7 +403,9 @@ async def google_callback(code: str, state: str, db: Session = Depends(get_db)):
         full_name=info.get("name"),
         avatar_url=info.get("picture"),
     )
-    return _token_response(user, db)
+    resp = _token_response(user, db)
+    redirect_url = f"https://visionx-topaz.vercel.app/oauth-callback.html?token={resp.access_token}&refresh_token={resp.refresh_token}"
+    return RedirectResponse(url=redirect_url, status_code=302)
 
 
 # ── Routes: OAuth — GitHub ────────────────────────────────────────────────────
@@ -475,7 +477,9 @@ async def github_callback(code: str, state: str, db: Session = Depends(get_db)):
         full_name=gh_user.get("name") or gh_user.get("login"),
         avatar_url=gh_user.get("avatar_url"),
     )
-    return _token_response(user, db)
+    resp = _token_response(user, db)
+    redirect_url = f"https://visionx-topaz.vercel.app/oauth-callback.html?token={resp.access_token}&refresh_token={resp.refresh_token}"
+    return RedirectResponse(url=redirect_url, status_code=302)
 
 
 # ── OAuth user upsert ─────────────────────────────────────────────────────────
