@@ -62,6 +62,13 @@ def init_db():
             ("predictions_log", "model_version",           "TEXT"),
             ("predictions_log", "prediction_time_ms",      "FLOAT"),
         ]
+        # Fix hashed_password NOT NULL constraint for OAuth users
+        try:
+            conn.execute(text("ALTER TABLE users ALTER COLUMN hashed_password DROP NOT NULL"))
+            conn.commit()
+        except Exception:
+            pass  # already nullable, safe to ignore
+
         for table, col, coltype in migrations:
             try:
                 conn.execute(text(f"ALTER TABLE {table} ADD COLUMN {col} {coltype}"))
