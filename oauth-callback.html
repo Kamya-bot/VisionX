@@ -99,6 +99,10 @@
 <script src="js/api-config.js"></script>
 <script>
 (async function handleOAuthCallback() {
+    // Prevent double-execution (page can load twice on redirect)
+    if (sessionStorage.getItem('oauth_processing')) return;
+    sessionStorage.setItem('oauth_processing', '1');
+
     const params   = new URLSearchParams(window.location.search);
     const token    = params.get('token');
     const refresh  = params.get('refresh_token');
@@ -112,6 +116,7 @@
     const backBtn   = document.getElementById('backBtn');
 
     function showError(msg) {
+        sessionStorage.removeItem('oauth_processing');
         spinnerEl.style.display = 'none';
         errorIcon.style.display = 'block';
         statusEl.textContent    = 'Sign-in failed';
